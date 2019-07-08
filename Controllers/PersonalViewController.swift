@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let realm: Realm
     let items: Results<OddJobItem>
@@ -17,7 +17,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "timestamp", ascending: false)
         super.init(nibName: nil, bundle: nil)
@@ -35,7 +35,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        title = "To Do Item"
+        title = "Personal Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
@@ -117,13 +117,13 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
-            oddJobName.placeholder = "Oddjob Name"
+            oddJobName.placeholder = "Odd Job Name"
         })
         alertController.addTextField(configurationHandler: {(oddJobPriority : UITextField!) -> Void in
-            oddJobPriority.placeholder = "Oddjob Priority"
+            oddJobPriority.placeholder = "Odd Job Priority"
         })
         alertController.addTextField(configurationHandler: {(oddJobOccurrence : UITextField!) -> Void in
-            oddJobOccurrence.placeholder = "Oddjob Occurrence"
+            oddJobOccurrence.placeholder = "Odd Job Occurrence"
         })
         self.present(alertController, animated: true, completion: nil)
     }
@@ -135,4 +135,6 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             realm.delete(item)
         }
     }
+    
+    
 }

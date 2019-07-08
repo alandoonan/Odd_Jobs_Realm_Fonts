@@ -13,9 +13,10 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         //super.viewDidAppear(animated)
         title = "Welcome"
+        
         if let _ = SyncUser.current {
             // We have already logged in here!
-            self.navigationController?.pushViewController(ItemsViewController(), animated: true)
+            self.navigationController?.pushViewController(PersonalViewController(), animated: true)
         } else {
             let alertController = UIAlertController(title: "Login to Odd Jobs", message: "Enter a Username", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Login", style: .default, handler: { [unowned self]
@@ -24,7 +25,7 @@ class WelcomeViewController: UIViewController {
                 let creds = SyncCredentials.nickname(textField.text!, isAdmin: true)
                 SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
                     if let _ = user {
-                        self?.navigationController?.pushViewController(ItemsViewController(), animated: true)
+                        self?.navigationController?.pushViewController(PersonalViewController(), animated: true)
                     } else if let error = err {
                         fatalError(error.localizedDescription)
                     }
