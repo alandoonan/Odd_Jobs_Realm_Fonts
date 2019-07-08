@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
             // We have already logged in here!
             self.navigationController?.pushViewController(ItemsViewController(), animated: true)
         } else {
-            let alertController = UIAlertController(title: "Login to Realm Cloud", message: "Supply a nice nickname!", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Login to Odd Jobs", message: "Enter a Username", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Login", style: .default, handler: { [unowned self]
                 alert -> Void in
                 let textField = alertController.textFields![0] as UITextField

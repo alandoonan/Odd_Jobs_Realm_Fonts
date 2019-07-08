@@ -74,14 +74,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
-        let item = items[indexPath.row]
-        cell.textLabel?.text = item.body
-        cell.accessoryType = item.isDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
-        return cell
-    }
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -94,22 +87,43 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cell.selectionStyle = .none
+        let item = items[indexPath.row]
+        cell.textLabel?.text = item.name
+        cell.detailTextLabel?.text = ("Priority: " + item.priority)
+        cell.detailTextLabel?.text = ("Occurence: " + item.occurrence)
+        cell.accessoryType = item.isDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        return cell
+    }
+    
     @objc func addButtonDidClick() {
         let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
-            let textField = alertController.textFields![0] as UITextField
+            let oddJobName = alertController.textFields![0] as UITextField
+            let oddJobPriority = alertController.textFields![1] as UITextField
+            let oddJobOccurrence = alertController.textFields![2] as UITextField
             let item = OddJobItem()
-            item.body = textField.text ?? ""
+            item.name = oddJobName.text ?? ""
+            item.priority = oddJobPriority.text ?? ""
+            item.occurrence = oddJobOccurrence.text ?? ""
             try! self.realm.write {
                 self.realm.add(item)
             }
             // do something with textField
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
-            textField.placeholder = "New Item Text"
+        alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
+            oddJobName.placeholder = "Oddjob Name"
+        })
+        alertController.addTextField(configurationHandler: {(oddJobPriority : UITextField!) -> Void in
+            oddJobPriority.placeholder = "Oddjob Priority"
+        })
+        alertController.addTextField(configurationHandler: {(oddJobOccurrence : UITextField!) -> Void in
+            oddJobOccurrence.placeholder = "Oddjob Occurrence"
         })
         self.present(alertController, animated: true, completion: nil)
     }
