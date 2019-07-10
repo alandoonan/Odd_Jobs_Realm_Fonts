@@ -12,14 +12,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let homeViewController = WelcomeViewController()
+        let navigationController = UINavigationController(rootViewController: homeViewController)
+        navigationController.isNavigationBarHidden = true
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible() 
         return true
     }
+
+
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        // Override point for customization after application launch.
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.makeKeyAndVisible()
+//        window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+//        return true
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

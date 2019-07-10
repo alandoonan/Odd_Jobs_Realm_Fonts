@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
+		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
 		816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8AEF22D21EB200C630B9 /* AppDelegate.swift */; };
 		816B8AF522D21EB200C630B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816B8AF322D21EB200C630B9 /* Main.storyboard */; };
 		816B8AF722D21EB200C630B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 816B8AF622D21EB200C630B9 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		3E76AB4AA925A7D2984748F9 /* Pods-Odd_Jobs_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.debug.xcconfig"; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
+		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		816B8AEC22D21EB200C630B9 /* Odd_Jobs_Realm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Odd_Jobs_Realm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		816B8AEF22D21EB200C630B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816B8AF422D21EB200C630B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,9 +84,9 @@
 		816B8AEE22D21EB200C630B9 /* Odd_Jobs_Realm */ = {
 			isa = PBXGroup;
 			children = (
+				816B8AF622D21EB200C630B9 /* Assets.xcassets */,
 				816B8AEF22D21EB200C630B9 /* AppDelegate.swift */,
 				816B8AF322D21EB200C630B9 /* Main.storyboard */,
-				816B8AF622D21EB200C630B9 /* Assets.xcassets */,
 				816B8AF822D21EB200C630B9 /* LaunchScreen.storyboard */,
 				816B8AFB22D21EB200C630B9 /* Info.plist */,
 			);
@@ -107,6 +109,7 @@
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
 				816B8B0422D21FC600C630B9 /* WelcomeViewController.swift */,
+				8128598822D5059200F1A406 /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
 				816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */,
+				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,
 				816B8B0322D21FA400C630B9 /* Constants.swift in Sources */,
 				816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */,

@@ -35,7 +35,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        title = "Personal Odd Jobs"
+        title = "Life Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
