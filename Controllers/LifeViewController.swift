@@ -15,11 +15,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let tableView = UITableView()
     var notificationToken: NotificationToken?
     
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.LIFE_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "timestamp", ascending: false)
+        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,13 +32,18 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = UIColor.navyTheme
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        navigationItem.rightBarButtonItems = [logout,search]
         title = "Life Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
         tableView.frame = self.view.frame
+        
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -83,18 +87,26 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         try! realm.write {
-            item.isDone = !item.isDone
+            item.IsDone = !item.IsDone
         }
+    }
+    
+    @objc func searchOddJobs() {
+        print("Search Button Pressed")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
         let item = items[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = ("Priority: " + item.priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.occurrence)
-        cell.accessoryType = item.isDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel?.text = item.Name
+        cell.backgroundColor = UIColor.greenTheme
+        cell.tintColor = .white
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
+        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
+        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         return cell
     }
     
@@ -107,9 +119,9 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let oddJobPriority = alertController.textFields![1] as UITextField
             let oddJobOccurrence = alertController.textFields![2] as UITextField
             let item = OddJobItem()
-            item.name = oddJobName.text ?? ""
-            item.priority = oddJobPriority.text ?? ""
-            item.occurrence = oddJobOccurrence.text ?? ""
+            item.Name = oddJobName.text ?? ""
+            item.Priority = oddJobPriority.text ?? ""
+            item.Occurrence = oddJobOccurrence.text ?? ""
             try! self.realm.write {
                 self.realm.add(item)
             }

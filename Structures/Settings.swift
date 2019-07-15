@@ -13,8 +13,6 @@ class Settings: Object {
     @objc dynamic var settingID: String = UUID().uuidString
     @objc dynamic var colour: String = "Select Colour"
     @objc dynamic var deleteAccount: String = "Delete Account"
-    
-    
     override static func primaryKey() -> String? {
         return "settingID"
     }

@@ -13,7 +13,6 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         //super.viewDidAppear(animated)
         title = "Welcome"
-        
         if let _ = SyncUser.current {
             // We have already logged in here!
             self.navigationController?.pushViewController(HomeViewController(), animated: true)
@@ -34,30 +33,11 @@ class WelcomeViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
                 textField.placeholder = "A Name for your user"
-            
             })
             alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
                 textField.placeholder = "A Password for your user"
-                
             })
             self.present(alertController, animated: true, completion: nil)
         }
     }
-    
-    //Password Text Field
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    //Email Text Field
-    @IBOutlet weak var emailTextField: UITextField!
-
-    //Login Button
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        print("Login button pressed")
-    }
-    
-    //New User Button
-    @IBAction func newUserButtonPressed(_ sender: Any) {
-        print("New user button pressed")
-    }
-    
 }

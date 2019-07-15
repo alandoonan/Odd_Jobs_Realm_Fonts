@@ -11,11 +11,12 @@ import RealmSwift
 class OddJobItem: Object {
     
     @objc dynamic var itemId: String = UUID().uuidString
-    @objc dynamic var name: String = ""
-    @objc dynamic var priority: String = ""
-    @objc dynamic var isDone: Bool = false
-    @objc dynamic var timestamp: Date = Date()
-    @objc dynamic var occurrence: String = ""
+    @objc dynamic var Name: String = ""
+    @objc dynamic var Priority: String = ""
+    @objc dynamic var IsDone: Bool = false
+    @objc dynamic var Timestamp: Date = Date()
+    @objc dynamic var Occurrence: String = ""
+    @objc dynamic var Location: String = ""
 
     override static func primaryKey() -> String? {
         return "itemId"

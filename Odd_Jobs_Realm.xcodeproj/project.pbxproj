@@ -12,6 +12,7 @@
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
 		814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51B822D67E7500102E73 /* SettingsViewController.swift */; };
 		814B51BB22D6812000102E73 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51BA22D6812000102E73 /* Settings.swift */; };
+		814B51C322D79E5500102E73 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51C222D79E5500102E73 /* Colours.swift */; };
 		816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8AEF22D21EB200C630B9 /* AppDelegate.swift */; };
 		816B8AF522D21EB200C630B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816B8AF322D21EB200C630B9 /* Main.storyboard */; };
 		816B8AFA22D21EB200C630B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816B8AF822D21EB200C630B9 /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 		812859AC22D655C500F1A406 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		814B51B822D67E7500102E73 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		814B51BA22D6812000102E73 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		814B51C222D79E5500102E73 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		816B8AEC22D21EB200C630B9 /* Odd_Jobs_Realm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Odd_Jobs_Realm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		816B8AEF22D21EB200C630B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816B8AF422D21EB200C630B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				816B8B0222D21FA400C630B9 /* Constants.swift */,
 				816B8B0722D2209F00C630B9 /* OddJobItem.swift */,
 				814B51BA22D6812000102E73 /* Settings.swift */,
+				814B51C222D79E5500102E73 /* Colours.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RSSelectionMenu/RSSelectionMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
@@ -233,6 +237,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSelectionMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -250,6 +255,7 @@
 			files = (
 				8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
+				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
 				816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */,
 				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
 				814B51BB22D6812000102E73 /* Settings.swift in Sources */,

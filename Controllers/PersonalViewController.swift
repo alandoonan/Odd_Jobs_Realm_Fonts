@@ -8,18 +8,20 @@
 
 import UIKit
 import RealmSwift
+import RSSelectionMenu
 class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let realm: Realm
-    let items: Results<OddJobItem>
+    var items: Results<OddJobItem>
     let tableView = UITableView()
     var notificationToken: NotificationToken?
-    
+    var sorts : Results<OddJobItem>!
+    var sortDirectionButtonItem: UIBarButtonItem!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "timestamp", ascending: false)
+        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,8 +35,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        tableView.backgroundColor = UIColor.navyTheme
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        navigationItem.leftBarButtonItems = [add,search]
+        navigationItem.rightBarButtonItems = [logout,sort]
         title = "Personal Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
@@ -44,10 +51,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
-                // Results are now populated and can be accessed without blocking the UI
                 tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
-                // Query results have changed, so apply them to the UITableView
                 tableView.beginUpdates()
                 tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
                                      with: .automatic)
@@ -57,7 +62,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
                                      with: .automatic)
                 tableView.endUpdates()
             case .error(let error):
-                // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
             }
         }
@@ -74,8 +78,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(alertController, animated: true, completion: nil)
     }
     
-   
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -83,7 +85,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         try! realm.write {
-            item.isDone = !item.isDone
+            item.IsDone = !item.IsDone
         }
     }
     
@@ -91,11 +93,62 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
         let item = items[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = ("Priority: " + item.priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.occurrence)
-        cell.accessoryType = item.isDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel?.text = item.Name
+        cell.tintColor = .white
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        cell.backgroundColor = UIColor.orangeTheme
+        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
+        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
+        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         return cell
+    }
+    
+    @objc func searchOddJobs() {
+        print("Search Button Pressed")
+    }
+    
+    @objc func selectSortField() {
+        print("Sort Button Pressed")
+        let data: [String] = ["Name", "Priority", "Occurrence"]
+        var selectedNames: [String] = []
+        // create menu with data source -> here [String]
+        let menu = RSSelectionMenu(dataSource: data) { (cell, name, indexPath) in
+            cell.textLabel?.text = name
+            cell.textLabel?.textColor = .white
+            cell.backgroundColor = UIColor.navyTheme
+        }
+        // provide selected items
+        menu.setSelectedItems(items: selectedNames) { (name, index, selected, selectedItems) in
+            selectedNames = selectedItems
+            print(selectedItems)
+            print(selectedItems[0])
+            self.sortOddJobs(sort: String(selectedItems[0]))
+        }
+        menu.show(style: .push, from: self)
+        
+    }
+    
+    @objc func sortOddJobs(sort:String) {
+        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: sort, ascending: true)
+        notificationToken = items.observe { [weak self] (changes) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
     }
     
     @objc func addButtonDidClick() {
@@ -106,10 +159,12 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             let oddJobName = alertController.textFields![0] as UITextField
             let oddJobPriority = alertController.textFields![1] as UITextField
             let oddJobOccurrence = alertController.textFields![2] as UITextField
+            let oddJobLocation = alertController.textFields![3] as UITextField
             let item = OddJobItem()
-            item.name = oddJobName.text ?? ""
-            item.priority = oddJobPriority.text ?? ""
-            item.occurrence = oddJobOccurrence.text ?? ""
+            item.Name = oddJobName.text ?? ""
+            item.Priority = oddJobPriority.text ?? ""
+            item.Occurrence = oddJobOccurrence.text ?? ""
+            item.Location = oddJobLocation.text ?? ""
             try! self.realm.write {
                 self.realm.add(item)
             }
@@ -125,6 +180,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         alertController.addTextField(configurationHandler: {(oddJobOccurrence : UITextField!) -> Void in
             oddJobOccurrence.placeholder = "Odd Job Occurrence"
         })
+        alertController.addTextField(configurationHandler: {(oddJobLocation : UITextField!) -> Void in
+            oddJobLocation.placeholder = "Odd Job Location"
+        })
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -136,5 +194,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
+    //MARK:- PickerView Delegate & DataSource
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
 }

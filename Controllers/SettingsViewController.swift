@@ -10,16 +10,16 @@ import UIKit
 import RealmSwift
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    var categories: [Any] = []
     let realm: Realm
     let items: Results<OddJobItem>
     let tableView = UITableView()
     var notificationToken: NotificationToken?
     
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.SETTINGS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "timestamp", ascending: false)
+        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,8 +34,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        title = "Life Odd Jobs"
+        title = "Settings"
+        tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         try! realm.write {
-            item.isDone = !item.isDone
+            item.IsDone = !item.IsDone
         }
     }
     
@@ -91,10 +91,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
         let item = items[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = ("Priority: " + item.priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.occurrence)
-        cell.accessoryType = item.isDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel?.text = item.Name
+        cell.tintColor = .white
+        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
+        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
+        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         return cell
     }
     
@@ -107,9 +108,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let oddJobPriority = alertController.textFields![1] as UITextField
             let oddJobOccurrence = alertController.textFields![2] as UITextField
             let item = OddJobItem()
-            item.name = oddJobName.text ?? ""
-            item.priority = oddJobPriority.text ?? ""
-            item.occurrence = oddJobOccurrence.text ?? ""
+            item.Name = oddJobName.text ?? ""
+            item.Priority = oddJobPriority.text ?? ""
+            item.Occurrence = oddJobOccurrence.text ?? ""
             try! self.realm.write {
                 self.realm.add(item)
             }
