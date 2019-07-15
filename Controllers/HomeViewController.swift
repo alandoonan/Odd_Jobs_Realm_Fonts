@@ -27,8 +27,9 @@ class HomeViewController: UITabBarController {
         let groupTab = UINavigationController(rootViewController: GroupViewController())
         let lifeTab = UINavigationController(rootViewController: LifeViewController())
         let settingsTab = UINavigationController(rootViewController: SettingsViewController())
+        let scoreTab = UINavigationController(rootViewController: ScoreViewController())
         self.view.backgroundColor = UIColor.navyTheme
-        viewControllers = [groupTab,personalTab, lifeTab,settingsTab]
+        viewControllers = [groupTab,personalTab, lifeTab,settingsTab,scoreTab]
     }
     
     

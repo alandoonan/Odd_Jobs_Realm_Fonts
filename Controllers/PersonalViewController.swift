@@ -16,7 +16,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     let tableView = UITableView()
     var notificationToken: NotificationToken?
     var sorts : Results<OddJobItem>!
-    var sortDirectionButtonItem: UIBarButtonItem!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
@@ -83,9 +82,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
+        let oddJobitem = items[indexPath.row]
         try! realm.write {
-            item.IsDone = !item.IsDone
+            oddJobitem.IsDone = !oddJobitem.IsDone
         }
     }
     
@@ -192,10 +191,5 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         try! realm.write {
             realm.delete(item)
         }
-    }
-    
-    //MARK:- PickerView Delegate & DataSource
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
     }
 }

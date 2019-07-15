@@ -33,6 +33,8 @@ struct Constants {
     
     //Settings Realm URL
     static let SETTINGS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Settings")!
-
+    
+    //Settings Realm URL
+    static let SCORE_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Score")!
 
 }
