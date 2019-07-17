@@ -16,9 +16,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var notificationToken: NotificationToken?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.LIFE_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
+        self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Life")
+        self.items.sorted(byKeyPath: "Timestamp", ascending: false)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -48,10 +49,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
-                // Results are now populated and can be accessed without blocking the UI
                 tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
-                // Query results have changed, so apply them to the UITableView
                 tableView.beginUpdates()
                 tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
                                      with: .automatic)
@@ -61,7 +60,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                      with: .automatic)
                 tableView.endUpdates()
             case .error(let error):
-                // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
             }
         }
@@ -122,10 +120,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
             item.Name = oddJobName.text ?? ""
             item.Priority = oddJobPriority.text ?? ""
             item.Occurrence = oddJobOccurrence.text ?? ""
+            item.Category = "Life"
             try! self.realm.write {
                 self.realm.add(item)
             }
-            // do something with textField
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in

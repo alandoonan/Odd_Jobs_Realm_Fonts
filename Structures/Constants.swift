@@ -23,13 +23,13 @@ struct Constants {
     
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
     //Personal Lists Realm URL
-    static let PERSONAL_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Personal_Lists")!
+    static let PERSONAL_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Lists/Personal_Lists")!
     
     //Group Lists Realm URL
-    static let GROUP_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Group_Lists")!
+    static let GROUP_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Lists/Group_Lists")!
 
     //Life Lists Realm URL
-    static let LIFE_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Life_Lists")!
+    static let LIFE_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Lists/Life_Lists")!
     
     //Settings Realm URL
     static let SETTINGS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Settings")!

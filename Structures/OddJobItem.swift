@@ -17,6 +17,7 @@ class OddJobItem: Object {
     @objc dynamic var Timestamp: Date = Date()
     @objc dynamic var Occurrence: String = ""
     @objc dynamic var Location: String = ""
+    @objc dynamic var Category: String = ""
 
     override static func primaryKey() -> String? {
         return "itemId"

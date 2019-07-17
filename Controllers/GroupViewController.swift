@@ -52,10 +52,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
-                // Results are now populated and can be accessed without blocking the UI
                 tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
-                // Query results have changed, so apply them to the UITableView
                 tableView.beginUpdates()
                 tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
                                      with: .automatic)
@@ -65,7 +63,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                      with: .automatic)
                 tableView.endUpdates()
             case .error(let error):
-                // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
             }
         }
@@ -81,8 +78,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -125,7 +120,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             try! self.realm.write {
                 self.realm.add(item)
             }
-            // do something with textField
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in

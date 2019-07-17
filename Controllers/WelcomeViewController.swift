@@ -14,7 +14,6 @@ class WelcomeViewController: UIViewController {
         //super.viewDidAppear(animated)
         title = "Welcome"
         if let _ = SyncUser.current {
-            // We have already logged in here!
             self.navigationController?.pushViewController(HomeViewController(), animated: true)
         } else {
             let alertController = UIAlertController(title: "Login to Odd Jobs", message: "Enter a Username", preferredStyle: .alert)

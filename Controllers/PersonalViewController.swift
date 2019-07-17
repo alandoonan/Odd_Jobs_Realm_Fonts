@@ -11,8 +11,9 @@ import RealmSwift
 import RSSelectionMenu
 class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    let realm: Realm
+    var realm: Realm
     var items: Results<OddJobItem>
+    var scoreItems: Results<ScoreItem>
     let tableView = UITableView()
     var notificationToken: NotificationToken?
     var sorts : Results<OddJobItem>!
@@ -20,7 +21,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
+        self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
+        self.items.sorted(byKeyPath: "Timestamp", ascending: false)
+        self.scoreItems = realm.objects(ScoreItem.self)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -81,10 +84,22 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         return items.count
     }
     
+    fileprivate func updateScore() {
+        if (realm.objects(ScoreItem.self).count != 0) {
+            print("There is no score object")
+            print(realm.objects(ScoreItem.self).count)
+        }
+        else {
+            print("Score not updated")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let oddJobitem = items[indexPath.row]
         try! realm.write {
             oddJobitem.IsDone = !oddJobitem.IsDone
+            print("Is Done")
+            updateScore()
         }
     }
     
@@ -111,13 +126,11 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         print("Sort Button Pressed")
         let data: [String] = ["Name", "Priority", "Occurrence"]
         var selectedNames: [String] = []
-        // create menu with data source -> here [String]
         let menu = RSSelectionMenu(dataSource: data) { (cell, name, indexPath) in
             cell.textLabel?.text = name
             cell.textLabel?.textColor = .white
             cell.backgroundColor = UIColor.navyTheme
         }
-        // provide selected items
         menu.setSelectedItems(items: selectedNames) { (name, index, selected, selectedItems) in
             selectedNames = selectedItems
             print(selectedItems)
@@ -164,10 +177,12 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             item.Priority = oddJobPriority.text ?? ""
             item.Occurrence = oddJobOccurrence.text ?? ""
             item.Location = oddJobLocation.text ?? ""
+            item.Category = "Personal"
             try! self.realm.write {
                 self.realm.add(item)
             }
-            // do something with textField
+            let eventResults = self.realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
+            print(eventResults)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in

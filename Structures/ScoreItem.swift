@@ -18,4 +18,17 @@ class ScoreItem: Object {
         return "scoreId"
     }
     
+    func save() -> Bool {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(self)
+            }
+            return true
+        } catch let error as NSError {
+            print(">>> Realm Error: ", error.localizedDescription)
+            return false
+        }
+    }
+    
 }
