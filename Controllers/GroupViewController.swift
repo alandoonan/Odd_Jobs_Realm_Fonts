@@ -12,15 +12,14 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
 {
     let realm: Realm
     let items: Results<OddJobItem>
+    var sorts : Results<OddJobItem>!
     let tableView = UITableView()
     var notificationToken: NotificationToken?
     
-    var oddJobs = [OddJobItem]()
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.GROUP_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
+        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Group")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -117,6 +116,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             item.Name = oddJobName.text ?? ""
             item.Priority = oddJobPriority.text ?? ""
             item.Occurrence = oddJobOccurrence.text ?? ""
+            item.Category = "Group"
             try! self.realm.write {
                 self.realm.add(item)
             }

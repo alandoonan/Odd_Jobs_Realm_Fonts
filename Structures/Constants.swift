@@ -10,31 +10,12 @@ import Foundation
 import RealmSwift
 
 struct Constants {
-    // **** Realm Cloud Users:
-    // **** Replace MY_INSTANCE_ADDRESS with the hostname of your cloud instance
-    // **** e.g., "mycoolapp.us1.cloud.realm.io"
-    // ****
-    // ****
-    // **** ROS On-Premises Users
-    // **** Replace the AUTH_URL and REALM_URL strings with the fully qualified versions of
-    // **** address of your ROS server, e.g.: "http://127.0.0.1:9080" and "realm://127.0.0.1:9080"
-    
-    static let MY_INSTANCE_ADDRESS = "odd-jobs.de1a.cloud.realm.io" // <- update this
-    
+    //Realm URLs
+    static let MY_INSTANCE_ADDRESS = "odd-jobs.de1a.cloud.realm.io"
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
-    //Personal Lists Realm URL
-    static let PERSONAL_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Lists/Personal_Lists")!
+    static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
     
-    //Group Lists Realm URL
-    static let GROUP_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Lists/Group_Lists")!
-
-    //Life Lists Realm URL
-    static let LIFE_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Lists/Life_Lists")!
-    
-    //Settings Realm URL
-    static let SETTINGS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Settings")!
-    
-    //Settings Realm URL
-    static let SCORE_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Score")!
+    //Theme Colours
+    static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
 
 }

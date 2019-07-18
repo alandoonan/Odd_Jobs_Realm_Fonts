@@ -16,10 +16,9 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var notificationToken: NotificationToken?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Life")
-        self.items.sorted(byKeyPath: "Timestamp", ascending: false)
         super.init(nibName: nil, bundle: nil)
     }
     

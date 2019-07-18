@@ -13,17 +13,14 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
 {
     var realm: Realm
     var items: Results<OddJobItem>
-    var scoreItems: Results<ScoreItem>
+    var sorts : Results<OddJobItem>!
     let tableView = UITableView()
     var notificationToken: NotificationToken?
-    var sorts : Results<OddJobItem>!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.PERSONAL_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
-        self.items.sorted(byKeyPath: "Timestamp", ascending: false)
-        self.scoreItems = realm.objects(ScoreItem.self)
+        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
         super.init(nibName: nil, bundle: nil)
     }
     
