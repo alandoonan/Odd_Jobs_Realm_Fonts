@@ -10,17 +10,36 @@ import UIKit
 import RealmSwift
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    var categories: [Any] = []
     let realm: Realm
-    let items: Results<OddJobItem>
+    let settings: Results<SettingItem>
     let tableView = UITableView()
     var notificationToken: NotificationToken?
+    fileprivate func addSettings() {
+        if realm.objects(SettingItem.self).count != 0
+        {
+            print("Setting Item Exists")
+        }
+        else {
+            print("Settings Item Doesn't Exists")
+            print("Creating Setting Item")
+            for colour in Constants.themeColours {
+                let settingItem = SettingItem()
+                settingItem.settingType = "Theme"
+                settingItem.name = colour.key
+                settingItem.hexColour = colour.value
+                try! self.realm.write {
+                    self.realm.add(settingItem)
+                }
+            }
+        }
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.SETTINGS_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: "Timestamp", ascending: false)
+        self.settings = realm.objects(SettingItem.self).filter("Category contains[c] %@", "Setting")
         super.init(nibName: nil, bundle: nil)
+        addSettings()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,14 +52,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         title = "Settings"
         tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
         tableView.frame = self.view.frame
-        notificationToken = items.observe { [weak self] (changes) in
+        notificationToken = settings.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
@@ -60,74 +78,32 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    @objc func rightBarButtonDidClick() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.navigationController?.setViewControllers([WelcomeViewController()], animated: true)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return settings.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
+        let item = settings[indexPath.row]
         try! realm.write {
             item.IsDone = !item.IsDone
+            tableView.backgroundColor = UIColor().hexColor(item.hexColour)
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
-        let item = items[indexPath.row]
-        cell.textLabel?.text = item.Name
-        cell.tintColor = .white
-        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
+        let item = settings[indexPath.row]
+        cell.textLabel?.text = item.name
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = UIColor().hexColor(item.hexColour)
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         return cell
     }
     
-    @objc func addButtonDidClick() {
-        let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
-            alert -> Void in
-            let oddJobName = alertController.textFields![0] as UITextField
-            let oddJobPriority = alertController.textFields![1] as UITextField
-            let oddJobOccurrence = alertController.textFields![2] as UITextField
-            let item = OddJobItem()
-            item.Name = oddJobName.text ?? ""
-            item.Priority = oddJobPriority.text ?? ""
-            item.Occurrence = oddJobOccurrence.text ?? ""
-            try! self.realm.write {
-                self.realm.add(item)
-            }
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
-            oddJobName.placeholder = "Odd Job Name"
-        })
-        alertController.addTextField(configurationHandler: {(oddJobPriority : UITextField!) -> Void in
-            oddJobPriority.placeholder = "Odd Job Priority"
-        })
-        alertController.addTextField(configurationHandler: {(oddJobOccurrence : UITextField!) -> Void in
-            oddJobOccurrence.placeholder = "Odd Job Occurrence"
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        let item = items[indexPath.row]
+        let item = settings[indexPath.row]
         try! realm.write {
             realm.delete(item)
         }
