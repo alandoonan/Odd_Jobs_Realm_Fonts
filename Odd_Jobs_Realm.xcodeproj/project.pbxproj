@@ -10,6 +10,35 @@
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
+		8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */; };
+		8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */; };
+		8132C34F22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */; };
+		8132C35022E2506D00EC79F2 /* OddJobsLogo1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32D22E2506D00EC79F2 /* OddJobsLogo1x.png */; };
+		8132C35222E2506D00EC79F2 /* OddJobsLogo3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32F22E2506D00EC79F2 /* OddJobsLogo3x.png */; };
+		8132C35322E2506D00EC79F2 /* OddJobsLogo2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33022E2506D00EC79F2 /* OddJobsLogo2x.png */; };
+		8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33222E2506D00EC79F2 /* icon_83.5@2x-1.png */; };
+		8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33322E2506D00EC79F2 /* icon_20pt@2x-1.png */; };
+		8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33422E2506D00EC79F2 /* icon_20pt@2x-2.png */; };
+		8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33522E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png */; };
+		8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33622E2506D00EC79F2 /* icon_40pt@2x-1.png */; };
+		8132C35922E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33722E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png */; };
+		8132C35A22E2506D00EC79F2 /* iPhone App 60pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33822E2506D00EC79F2 /* iPhone App 60pt@3x.png */; };
+		8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33922E2506D00EC79F2 /* icon_29pt@2x-1.png */; };
+		8132C35C22E2506D00EC79F2 /* icon_40pt-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33A22E2506D00EC79F2 /* icon_40pt-1.png */; };
+		8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33C22E2506D00EC79F2 /* App Store iOS.png */; };
+		8132C35F22E2506D00EC79F2 /* icon_76pt-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33D22E2506D00EC79F2 /* icon_76pt-1.png */; };
+		8132C36022E2506D00EC79F2 /* iPhone App 60pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33E22E2506D00EC79F2 /* iPhone App 60pt@2x.png */; };
+		8132C36122E2506D00EC79F2 /* icon_76pt@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C33F22E2506D00EC79F2 /* icon_76pt@2x-1.png */; };
+		8132C36222E2506D00EC79F2 /* icon_29pt-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34022E2506D00EC79F2 /* icon_29pt-1.png */; };
+		8132C36322E2506D00EC79F2 /* iPhone Settings 29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34122E2506D00EC79F2 /* iPhone Settings 29pt@2x.png */; };
+		8132C36422E2506D00EC79F2 /* iPhone Settings 29pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34222E2506D00EC79F2 /* iPhone Settings 29pt@3x.png */; };
+		8132C36522E2506D00EC79F2 /* icon_29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34322E2506D00EC79F2 /* icon_29pt.png */; };
+		8132C36622E2506D00EC79F2 /* iPhone Notification 20pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34422E2506D00EC79F2 /* iPhone Notification 20pt@3x.png */; };
+		8132C36722E2506D00EC79F2 /* icon_20pt-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34522E2506D00EC79F2 /* icon_20pt-5.png */; };
+		8132C36822E2506D00EC79F2 /* Launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34722E2506D00EC79F2 /* Launchscreen.png */; };
+		8132C36A22E2506D00EC79F2 /* Launchscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34922E2506D00EC79F2 /* Launchscreen@3x.png */; };
+		8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */; };
+		8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8132C36D22E2511800EC79F2 /* Assets.xcassets */; };
 		814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51B822D67E7500102E73 /* SettingsViewController.swift */; };
 		814B51BB22D6812000102E73 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51BA22D6812000102E73 /* SettingItem.swift */; };
 		814B51C322D79E5500102E73 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51C222D79E5500102E73 /* Colours.swift */; };
@@ -32,7 +61,35 @@
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		812859AC22D655C500F1A406 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1.png"; sourceTree = "<group>"; };
+		8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x.png"; sourceTree = "<group>"; };
+		8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@2x.png"; sourceTree = "<group>"; };
+		8132C32D22E2506D00EC79F2 /* OddJobsLogo1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OddJobsLogo1x.png; sourceTree = "<group>"; };
+		8132C32F22E2506D00EC79F2 /* OddJobsLogo3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OddJobsLogo3x.png; sourceTree = "<group>"; };
+		8132C33022E2506D00EC79F2 /* OddJobsLogo2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OddJobsLogo2x.png; sourceTree = "<group>"; };
+		8132C33222E2506D00EC79F2 /* icon_83.5@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_83.5@2x-1.png"; sourceTree = "<group>"; };
+		8132C33322E2506D00EC79F2 /* icon_20pt@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_20pt@2x-1.png"; sourceTree = "<group>"; };
+		8132C33422E2506D00EC79F2 /* icon_20pt@2x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_20pt@2x-2.png"; sourceTree = "<group>"; };
+		8132C33522E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Spotlight 40pt@2x.png"; sourceTree = "<group>"; };
+		8132C33622E2506D00EC79F2 /* icon_40pt@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_40pt@2x-1.png"; sourceTree = "<group>"; };
+		8132C33722E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Spotlight 40pt@3x.png"; sourceTree = "<group>"; };
+		8132C33822E2506D00EC79F2 /* iPhone App 60pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone App 60pt@3x.png"; sourceTree = "<group>"; };
+		8132C33922E2506D00EC79F2 /* icon_29pt@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_29pt@2x-1.png"; sourceTree = "<group>"; };
+		8132C33A22E2506D00EC79F2 /* icon_40pt-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_40pt-1.png"; sourceTree = "<group>"; };
+		8132C33C22E2506D00EC79F2 /* App Store iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Store iOS.png"; sourceTree = "<group>"; };
+		8132C33D22E2506D00EC79F2 /* icon_76pt-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_76pt-1.png"; sourceTree = "<group>"; };
+		8132C33E22E2506D00EC79F2 /* iPhone App 60pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone App 60pt@2x.png"; sourceTree = "<group>"; };
+		8132C33F22E2506D00EC79F2 /* icon_76pt@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_76pt@2x-1.png"; sourceTree = "<group>"; };
+		8132C34022E2506D00EC79F2 /* icon_29pt-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_29pt-1.png"; sourceTree = "<group>"; };
+		8132C34122E2506D00EC79F2 /* iPhone Settings 29pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Settings 29pt@2x.png"; sourceTree = "<group>"; };
+		8132C34222E2506D00EC79F2 /* iPhone Settings 29pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Settings 29pt@3x.png"; sourceTree = "<group>"; };
+		8132C34322E2506D00EC79F2 /* icon_29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_29pt.png; sourceTree = "<group>"; };
+		8132C34422E2506D00EC79F2 /* iPhone Notification 20pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Notification 20pt@3x.png"; sourceTree = "<group>"; };
+		8132C34522E2506D00EC79F2 /* icon_20pt-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_20pt-5.png"; sourceTree = "<group>"; };
+		8132C34722E2506D00EC79F2 /* Launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen.png; sourceTree = "<group>"; };
+		8132C34922E2506D00EC79F2 /* Launchscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launchscreen@3x.png"; sourceTree = "<group>"; };
+		8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launchscreen@2x.png"; sourceTree = "<group>"; };
+		8132C36D22E2511800EC79F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		814B51B822D67E7500102E73 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		814B51BA22D6812000102E73 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		814B51C222D79E5500102E73 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -70,9 +127,78 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8132C32622E2506D00EC79F2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				8132C36D22E2511800EC79F2 /* Assets.xcassets */,
+				8132C32722E2506D00EC79F2 /* Logo */,
+				8132C32C22E2506D00EC79F2 /* LogoSmall */,
+				8132C33122E2506D00EC79F2 /* App Icons */,
+				8132C34622E2506D00EC79F2 /* Launch Screen */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		8132C32722E2506D00EC79F2 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */,
+				8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */,
+				8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */,
+			);
+			path = Logo;
+			sourceTree = "<group>";
+		};
+		8132C32C22E2506D00EC79F2 /* LogoSmall */ = {
+			isa = PBXGroup;
+			children = (
+				8132C32D22E2506D00EC79F2 /* OddJobsLogo1x.png */,
+				8132C32F22E2506D00EC79F2 /* OddJobsLogo3x.png */,
+				8132C33022E2506D00EC79F2 /* OddJobsLogo2x.png */,
+			);
+			path = LogoSmall;
+			sourceTree = "<group>";
+		};
+		8132C33122E2506D00EC79F2 /* App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8132C33222E2506D00EC79F2 /* icon_83.5@2x-1.png */,
+				8132C33322E2506D00EC79F2 /* icon_20pt@2x-1.png */,
+				8132C33422E2506D00EC79F2 /* icon_20pt@2x-2.png */,
+				8132C33522E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png */,
+				8132C33622E2506D00EC79F2 /* icon_40pt@2x-1.png */,
+				8132C33722E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png */,
+				8132C33822E2506D00EC79F2 /* iPhone App 60pt@3x.png */,
+				8132C33922E2506D00EC79F2 /* icon_29pt@2x-1.png */,
+				8132C33A22E2506D00EC79F2 /* icon_40pt-1.png */,
+				8132C33C22E2506D00EC79F2 /* App Store iOS.png */,
+				8132C33D22E2506D00EC79F2 /* icon_76pt-1.png */,
+				8132C33E22E2506D00EC79F2 /* iPhone App 60pt@2x.png */,
+				8132C33F22E2506D00EC79F2 /* icon_76pt@2x-1.png */,
+				8132C34022E2506D00EC79F2 /* icon_29pt-1.png */,
+				8132C34122E2506D00EC79F2 /* iPhone Settings 29pt@2x.png */,
+				8132C34222E2506D00EC79F2 /* iPhone Settings 29pt@3x.png */,
+				8132C34322E2506D00EC79F2 /* icon_29pt.png */,
+				8132C34422E2506D00EC79F2 /* iPhone Notification 20pt@3x.png */,
+				8132C34522E2506D00EC79F2 /* icon_20pt-5.png */,
+			);
+			path = "App Icons";
+			sourceTree = "<group>";
+		};
+		8132C34622E2506D00EC79F2 /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				8132C34722E2506D00EC79F2 /* Launchscreen.png */,
+				8132C34922E2506D00EC79F2 /* Launchscreen@3x.png */,
+				8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */,
+			);
+			path = "Launch Screen";
+			sourceTree = "<group>";
+		};
 		816B8AE322D21EB200C630B9 = {
 			isa = PBXGroup;
 			children = (
+				8132C32622E2506D00EC79F2 /* Images */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
 				816B8AEE22D21EB200C630B9 /* Odd_Jobs_Realm */,
@@ -116,7 +242,6 @@
 		816B8B0622D21FC900C630B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				812859AC22D655C500F1A406 /* Images.xcassets */,
 				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
@@ -196,8 +321,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8132C36022E2506D00EC79F2 /* iPhone App 60pt@2x.png in Resources */,
+				8132C35022E2506D00EC79F2 /* OddJobsLogo1x.png in Resources */,
+				8132C36822E2506D00EC79F2 /* Launchscreen.png in Resources */,
+				8132C36722E2506D00EC79F2 /* icon_20pt-5.png in Resources */,
 				816B8AFA22D21EB200C630B9 /* LaunchScreen.storyboard in Resources */,
 				816B8AF522D21EB200C630B9 /* Main.storyboard in Resources */,
+				8132C35922E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png in Resources */,
+				8132C36422E2506D00EC79F2 /* iPhone Settings 29pt@3x.png in Resources */,
+				8132C36622E2506D00EC79F2 /* iPhone Notification 20pt@3x.png in Resources */,
+				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
+				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
+				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
+				8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */,
+				8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */,
+				8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */,
+				8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */,
+				8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */,
+				8132C36122E2506D00EC79F2 /* icon_76pt@2x-1.png in Resources */,
+				8132C35322E2506D00EC79F2 /* OddJobsLogo2x.png in Resources */,
+				8132C35C22E2506D00EC79F2 /* icon_40pt-1.png in Resources */,
+				8132C36A22E2506D00EC79F2 /* Launchscreen@3x.png in Resources */,
+				8132C35F22E2506D00EC79F2 /* icon_76pt-1.png in Resources */,
+				8132C34F22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png in Resources */,
+				8132C36322E2506D00EC79F2 /* iPhone Settings 29pt@2x.png in Resources */,
+				8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */,
+				8132C35222E2506D00EC79F2 /* OddJobsLogo3x.png in Resources */,
+				8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */,
+				8132C36222E2506D00EC79F2 /* icon_29pt-1.png in Resources */,
+				8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */,
+				8132C35A22E2506D00EC79F2 /* iPhone App 60pt@3x.png in Resources */,
+				8132C36522E2506D00EC79F2 /* icon_29pt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +582,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.doonothin.Odd-Jobs-Realm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -447,7 +601,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.doonothin.Odd-Jobs-Realm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
