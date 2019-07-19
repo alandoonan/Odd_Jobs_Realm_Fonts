@@ -11,6 +11,7 @@ import Foundation
 class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Navigation bar appearance
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.tintColor = UIColor.orangeTheme

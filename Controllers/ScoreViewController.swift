@@ -108,5 +108,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
+        print("Score selected: " + item.Name)
     }
 }

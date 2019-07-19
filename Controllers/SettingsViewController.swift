@@ -13,27 +13,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let realm: Realm
     let settings: Results<SettingItem>
     let tableView = UITableView()
+    let personalVC = PersonalViewController()
     var notificationToken: NotificationToken?
-    fileprivate func addSettings() {
-        if realm.objects(SettingItem.self).count != 0
-        {
-            print("Setting Item Exists")
-        }
-        else {
-            print("Settings Item Doesn't Exists")
-            print("Creating Setting Item")
-            for colour in Constants.themeColours {
-                let settingItem = SettingItem()
-                settingItem.settingType = "Theme"
-                settingItem.name = colour.key
-                settingItem.hexColour = colour.value
-                try! self.realm.write {
-                    self.realm.add(settingItem)
-                }
-            }
-        }
-    }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -86,8 +68,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let item = settings[indexPath.row]
         try! realm.write {
             item.IsDone = !item.IsDone
-            tableView.backgroundColor = UIColor().hexColor(item.hexColour)
         }
+        tableView.backgroundColor = UIColor().hexColor(item.hexColour)
+        self.personalVC.tableView.backgroundColor =  UIColor().hexColor(item.hexColour)
+        self.personalVC.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,6 +90,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let item = settings[indexPath.row]
         try! realm.write {
             realm.delete(item)
+        }
+    }
+    
+    fileprivate func addSettings() {
+        if realm.objects(SettingItem.self).count != 0
+        {
+            print("Setting Item Exists")
+        }
+        else {
+            print("Settings Item Doesn't Exists")
+            print("Creating Setting Item")
+            for colour in Constants.themeColours {
+                let settingItem = SettingItem()
+                settingItem.settingType = "Theme"
+                settingItem.name = colour.key
+                settingItem.hexColour = colour.value
+                try! self.realm.write {
+                    self.realm.add(settingItem)
+                }
+            }
         }
     }
 }
