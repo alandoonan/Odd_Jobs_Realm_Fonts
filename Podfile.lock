@@ -1,0 +1,26 @@
+PODS:
+  - Realm (3.17.0):
+    - Realm/Headers (= 3.17.0)
+  - Realm/Headers (3.17.0)
+  - RealmSwift (3.17.0):
+    - Realm (= 3.17.0)
+  - RSSelectionMenu (6.0.3)
+
+DEPENDENCIES:
+  - RealmSwift
+  - RSSelectionMenu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
+    - RSSelectionMenu
+
+SPEC CHECKSUMS:
+  Realm: b30db41ff34fc858ffc25ba8d44a82c164e7ccd0
+  RealmSwift: fe733e459d60dc7b6971d4cbee2eb4854097d12c
+  RSSelectionMenu: decee83e020ee9d63e53995eb7f1ea5ca75f0667
+
+PODFILE CHECKSUM: cf3d9dc92c580e3130af52ac1f2d4b76c3760383
+
+COCOAPODS: 1.5.3
