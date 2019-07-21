@@ -69,9 +69,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         try! realm.write {
             item.IsDone = !item.IsDone
         }
+        print("Changing Table View Colour")
         tableView.backgroundColor = UIColor().hexColor(item.hexColour)
-        self.personalVC.tableView.backgroundColor =  UIColor().hexColor(item.hexColour)
-        self.personalVC.tableView.reloadData()
+//        print("Changing Personal Table View Colour")
+//        self.personalVC.tableView.backgroundColor =  UIColor().hexColor(item.hexColour)
+//        self.personalVC.tableView.reloadData()
+//        self.personalVC.viewDidLoad()
+//        print("Using Theme Struct")
+//        Colours.navyTheme()
+//        self.viewDidLoad()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

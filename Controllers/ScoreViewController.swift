@@ -29,9 +29,10 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         {
             print("There is a score object")
             print(realm.objects(ScoreItem.self).count)
-            try! realm.write {
-                scoreItem.Score += 1
-            }
+            print (scoreItem.Category)
+//            try! realm.write {
+//                scoreItem.Score += 1
+//            }
         } else {
             print("No first object!")
             print("Creating scoring object")
@@ -104,6 +105,12 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func updateScore() {
         print("Updating Scores")
+        if let scoreItem = realm.objects(ScoreItem.self).first
+        {
+        try! realm.write {
+            scoreItem.Score += 1
+        }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

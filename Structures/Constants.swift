@@ -17,5 +17,11 @@ struct Constants {
     
     //Theme Colours
     static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
+    
+    //Alert Fields
+    static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
+    
+    //Sort Fields
+    let sortFields: [String] = ["Name", "Priority", "Occurrence"]
 
 }

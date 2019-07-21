@@ -9,6 +9,50 @@
 import Foundation
 import UIKit
 
+struct Colours {
+    
+    static var tableViewColor:UIColor?
+    static var backgroundColor:UIColor?
+    static var buttonTextColor:UIColor?
+    static var buttonBackgroundColor:UIColor?
+    static var navigationBackgroundColor:UIColor?
+    
+    static public func blueTheme() {
+        self.tableViewColor = UIColor.blueTheme
+        self.backgroundColor = UIColor.blueTheme
+        self.buttonTextColor = UIColor.white
+        updateDisplay()
+    }
+    
+    static public func navyTheme() {
+        self.backgroundColor = UIColor.navyTheme
+        self.tableViewColor = UIColor.navyTheme
+        self.buttonTextColor = UIColor.white
+        updateDisplay()
+    }
+    
+    static public func updateDisplay() {
+        let proxyButton = UIButton.appearance()
+        proxyButton.setTitleColor(Colours.buttonTextColor, for: .normal)
+        proxyButton.backgroundColor = Colours.buttonBackgroundColor
+        
+        let proxyView = UIView.appearance()
+        proxyView.backgroundColor = backgroundColor
+        
+        let proxyNav = UINavigationBar.appearance()
+        proxyNav.backgroundColor = Colours.backgroundColor
+        proxyNav.barTintColor = Colours.backgroundColor
+        
+        let proxyTab = UITabBar.appearance()
+        proxyTab.barTintColor = Colours.backgroundColor
+        
+        let proxyNavCont = UINavigationController()
+        proxyNavCont.navigationBar.isTranslucent = true
+
+    }
+
+}
+
 extension UIColor {
     static let navyTheme = UIColor().hexColor("3D405B")
     static let orangeTheme = UIColor().hexColor("E07A5F")
