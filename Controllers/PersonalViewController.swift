@@ -35,18 +35,20 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor.navyTheme
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        
         navigationItem.leftBarButtonItems = [add,search]
         navigationItem.rightBarButtonItems = [logout,sort]
         title = "Personal Odd Jobs"
+        
+        tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
         tableView.frame = self.view.frame
+        view.addSubview(tableView)
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -110,6 +112,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func searchOddJobs() {
         print("Search Button Pressed")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
+        self.present(controller, animated: true, completion: nil)
     }
     
     @objc func selectSortField() {
@@ -159,14 +164,16 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let oddJobName = alertController.textFields![0] as UITextField
         let oddJobPriority = alertController.textFields![1] as UITextField
         let oddJobOccurrence = alertController.textFields![2] as UITextField
-        let oddJobLocation = alertController.textFields![3] as UITextField
-        
+//        let oddJobLongitude = alertController.textFields![4] as UITextField
+//        let oddJobLatitude = alertController.textFields![5] as UITextField
+
         //Realm
         let item = OddJobItem()
         item.Name = oddJobName.text ?? ""
         item.Priority = oddJobPriority.text ?? ""
         item.Occurrence = oddJobOccurrence.text ?? ""
-        item.Location = oddJobLocation.text ?? ""
+        item.Longitude = -7.386739
+        item.Latitude = 53.322185
         item.Category = "Personal"
         try! self.realm.write {
             self.realm.add(item)

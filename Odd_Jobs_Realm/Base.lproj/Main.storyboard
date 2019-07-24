@@ -13,7 +13,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="Odd_Jobs_Realm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="Odd_Jobs_Realm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,7 +87,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1109" y="115"/>
+            <point key="canvasLocation" x="-1596" y="115"/>
+        </scene>
+        <!--Map Tasks View Controller-->
+        <scene sceneID="nt1-os-Q1a">
+            <objects>
+                <viewController storyboardIdentifier="MapTasksViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0DB-Wp-r8S" customClass="MapTasksViewController" customModule="Odd_Jobs_Realm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NON-Ru-cB7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-PT-LT3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j8u-zR-NuC" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="NR5-Hq-Cfh"/>
+                            <constraint firstItem="j8u-zR-NuC" firstAttribute="bottom" secondItem="qvV-PT-LT3" secondAttribute="bottom" id="Yiy-Yq-GCi"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="leading" secondItem="j8u-zR-NuC" secondAttribute="leading" id="dW8-3N-oSP"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="rzM-k3-wv2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j8u-zR-NuC"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="qvV-PT-LT3" id="qxP-dF-hix"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1pE-st-UuU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-803" y="115"/>
         </scene>
     </scenes>
 </document>

@@ -18,7 +18,8 @@ class OddJobItem: Object {
     @objc dynamic var Occurrence: String = ""
     @objc dynamic var Location: String = ""
     @objc dynamic var Category: String = ""
-
+    @objc dynamic var Latitude = 0.0
+    @objc dynamic var Longitude = 0.0
     override static func primaryKey() -> String? {
         return "itemId"
     }

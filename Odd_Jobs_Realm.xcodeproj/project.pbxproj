@@ -40,6 +40,8 @@
 		8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */; };
 		8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8132C36D22E2511800EC79F2 /* Assets.xcassets */; };
 		8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */; };
+		8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132C37122E76F1E00EC79F2 /* Locations.swift */; };
+		8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */; };
 		814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51B822D67E7500102E73 /* SettingsViewController.swift */; };
 		814B51BB22D6812000102E73 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51BA22D6812000102E73 /* SettingItem.swift */; };
 		814B51C322D79E5500102E73 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51C222D79E5500102E73 /* Colours.swift */; };
@@ -92,6 +94,8 @@
 		8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launchscreen@2x.png"; sourceTree = "<group>"; };
 		8132C36D22E2511800EC79F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctions.swift; sourceTree = "<group>"; };
+		8132C37122E76F1E00EC79F2 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapTasksViewController.swift; path = /Users/alandoonan/Desktop/Odd_Jobs_Realm/Controllers/MapTasksViewController.swift; sourceTree = "<absolute>"; };
 		814B51B822D67E7500102E73 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		814B51BA22D6812000102E73 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		814B51C222D79E5500102E73 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				814B51C222D79E5500102E73 /* Colours.swift */,
 				814B51C622DCF4F300102E73 /* ScoreItem.swift */,
 				8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */,
+				8132C37122E76F1E00EC79F2 /* Locations.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 		816B8B0622D21FC900C630B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
 				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
@@ -419,6 +425,7 @@
 				8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
 				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
+				8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */,
 				816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */,
 				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
@@ -430,6 +437,7 @@
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
+				8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
