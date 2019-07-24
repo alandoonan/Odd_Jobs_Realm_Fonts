@@ -20,8 +20,10 @@ class MapTasksViewController: UIViewController {
         let realm = try! Realm(configuration: config!)
         let mapItems = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
         super.viewDidLoad()
+        mapView.delegate = self
         populateMap(mapItems)
         zoomLevel(location: locationString)
+
     }
 
     // MARK: - Navigation
@@ -45,19 +47,25 @@ class MapTasksViewController: UIViewController {
                     maxLongitude = mapItem.Longitude
                 }
                 
+                let mapArt = MapItem(title: mapItem.Name,
+                                      locationName: mapItem.Location,
+                                      discipline: "Test",
+                                      coordinate: CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude))
+                mapView.addAnnotation(mapArt)
+                
                 let location = CLLocationCoordinate2D(latitude: mapItem.Latitude,
                                                       longitude: mapItem.Longitude)
                 
                 let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
                 let region = MKCoordinateRegion(center: location, span: span)
-                let coord = CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude);
+                //let coord = CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude);
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = location
                 annotation.title = mapItem.Name
                 annotation.subtitle = mapItem.Location
                 mapView.setRegion(region, animated: true)
-                mapView.addAnnotation(annotation)
-                print(coord)
+                //mapView.addAnnotation(annotation)
+                //print(coord)
         print(maxLongitude,maxLatitude)
             }
         }
@@ -66,4 +74,38 @@ class MapTasksViewController: UIViewController {
         let mapCoords = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: distanceSpan, longitudinalMeters: distanceSpan)
         mapView.setRegion(mapCoords, animated: true)
     }
+    
+}
+
+extension MapTasksViewController: MKMapViewDelegate {
+    // 1
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 2
+        guard let annotation = annotation as? MapItem else { return nil }
+        // 3
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        // 4
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            // 5
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let location = view.annotation as! MapItem
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    
+    
 }

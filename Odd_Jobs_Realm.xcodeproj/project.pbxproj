@@ -54,6 +54,7 @@
 		816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0422D21FC600C630B9 /* WelcomeViewController.swift */; };
 		816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0722D2209F00C630B9 /* OddJobItem.swift */; };
 		816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0922D220B900C630B9 /* PersonalViewController.swift */; };
+		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		816B8B0422D21FC600C630B9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		816B8B0722D2209F00C630B9 /* OddJobItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
 		816B8B0922D220B900C630B9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 				814B51C622DCF4F300102E73 /* ScoreItem.swift */,
 				8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */,
 				8132C37122E76F1E00EC79F2 /* Locations.swift */,
+				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */,
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
+				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
 				8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */,
