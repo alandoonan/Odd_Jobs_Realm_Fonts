@@ -12,6 +12,8 @@ import RealmSwift
 class MapTasksViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    let locationString = CLLocation(latitude: 53.322191, longitude: -7.386739)
+    let distanceSpan: CLLocationDistance = 150000
     
     override func viewDidLoad() {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -19,6 +21,7 @@ class MapTasksViewController: UIViewController {
         let mapItems = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
         super.viewDidLoad()
         populateMap(mapItems)
+        zoomLevel(location: locationString)
     }
 
     // MARK: - Navigation
@@ -30,7 +33,7 @@ class MapTasksViewController: UIViewController {
     }
     
     
-    fileprivate func populateMap(_ mapItems: Results<OddJobItem>) {
+    func populateMap(_ mapItems: Results<OddJobItem>) {
         var maxLongitude = 0.0
         var maxLatitude = 0.0
         for mapItem in mapItems {
@@ -41,8 +44,7 @@ class MapTasksViewController: UIViewController {
                 if mapItem.Longitude > maxLongitude {
                     maxLongitude = mapItem.Longitude
                 }
-                let locationString = CLLocation(latitude: 53.322191, longitude: -7.386739)
-                let distanceSpan: CLLocationDistance = 5000
+                
                 let location = CLLocationCoordinate2D(latitude: mapItem.Latitude,
                                                       longitude: mapItem.Longitude)
                 
@@ -57,14 +59,11 @@ class MapTasksViewController: UIViewController {
                 mapView.addAnnotation(annotation)
                 print(coord)
         print(maxLongitude,maxLatitude)
-                
-                func zoomLevel(location: CLLocation) {
-                    let mapCoords = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: distanceSpan, longitudinalMeters: distanceSpan)
-                    mapView.setRegion(mapCoords, animated: true)
-                }
             }
-            
-            
         }
+    }
+    func zoomLevel(location: CLLocation) {
+        let mapCoords = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: distanceSpan, longitudinalMeters: distanceSpan)
+        mapView.setRegion(mapCoords, animated: true)
     }
 }
