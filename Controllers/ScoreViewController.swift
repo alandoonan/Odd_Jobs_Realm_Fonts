@@ -141,16 +141,13 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         DispatchQueue.main.async {
             self.percentageLabel.text = "\(Int(percentage * 100))"
+            self.percentageLabel.textColor = UIColor.greenTheme
             self.shapeLayer.strokeEnd = percentage
         }
         
         print(percentage)
     }
-    
-    
-    
-    
-    
+
     
     
     
