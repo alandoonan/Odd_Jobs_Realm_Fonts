@@ -55,6 +55,7 @@
 		816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0722D2209F00C630B9 /* OddJobItem.swift */; };
 		816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0922D220B900C630B9 /* PersonalViewController.swift */; };
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
+		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		816B8B0722D2209F00C630B9 /* OddJobItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
 		816B8B0922D220B900C630B9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
+		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 		816B8AE322D21EB200C630B9 = {
 			isa = PBXGroup;
 			children = (
+				8192CCE022E8ECB1001AC3A9 /* Other */,
 				8132C32622E2506D00EC79F2 /* Images */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
@@ -263,6 +266,14 @@
 				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8192CCE022E8ECB1001AC3A9 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				8192CCE122E8ECBD001AC3A9 /* home.gpx */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		FB1B6878DEC4E8D1201CE6FE /* Frameworks */ = {
@@ -347,6 +358,7 @@
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
 				8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */,
 				8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */,
+				8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */,
 				8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */,
 				8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */,
 				8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */,
