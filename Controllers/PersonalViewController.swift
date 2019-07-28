@@ -90,9 +90,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
         //SharedFunctions.removeTask(oddJobitem)
-        if oddJobitem.IsDone == true {
-            scoreVC.updateScore()
-        }
+//        if oddJobitem.IsDone == true {
+//            scoreVC.updateScore()
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
