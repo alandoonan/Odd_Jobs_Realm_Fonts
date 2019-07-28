@@ -131,35 +131,5 @@
             </objects>
             <point key="canvasLocation" x="-804.34782608695662" y="114.50892857142857"/>
         </scene>
-        <!--Progress Bar View Controller-->
-        <scene sceneID="eeL-Pq-gNU">
-            <objects>
-                <viewController id="SI8-5h-8zd" customClass="ProgressBarViewController" customModule="Odd_Jobs_Realm" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GJO-Jp-DYb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcy-Uq-mmQ" customClass="CircularProgressView" customModule="CircularProgressView_Tutorial" customModuleProvider="target">
-                                <rect key="frame" x="157" y="291" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="kcy-Uq-mmQ" firstAttribute="centerX" secondItem="GJO-Jp-DYb" secondAttribute="centerX" id="Fot-52-BPx"/>
-                            <constraint firstItem="kcy-Uq-mmQ" firstAttribute="top" secondItem="ZYj-Hq-GW7" secondAttribute="top" constant="247" id="c86-qI-E6G"/>
-                            <constraint firstItem="kcy-Uq-mmQ" firstAttribute="leading" secondItem="ZYj-Hq-GW7" secondAttribute="leading" constant="157" id="iRB-24-wVp"/>
-                            <constraint firstItem="ZYj-Hq-GW7" firstAttribute="bottom" secondItem="kcy-Uq-mmQ" secondAttribute="bottom" constant="471" id="jyg-S5-p04"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZYj-Hq-GW7"/>
-                    </view>
-                    <connections>
-                        <outlet property="ProgressCircles" destination="kcy-Uq-mmQ" id="Hbs-QN-kvQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aKO-pX-nlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="126" y="115"/>
-        </scene>
     </scenes>
 </document>

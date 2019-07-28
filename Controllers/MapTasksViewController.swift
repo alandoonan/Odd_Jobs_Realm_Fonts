@@ -16,6 +16,7 @@ class MapTasksViewController: UIViewController {
         performSegueToReturnBack()
     }
     @IBOutlet weak var mapView: MKMapView!
+    
     let locationString = CLLocation(latitude: 53.322191, longitude: -7.386739)
     let distanceSpan: CLLocationDistance = 150000
     
