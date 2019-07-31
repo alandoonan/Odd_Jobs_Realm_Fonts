@@ -11,9 +11,9 @@ import Realm
 
 class WelcomeViewController: UIViewController {
     
-//    let realm: Realm
-//    var items: Results<User>
-//    let nickname:String = ""
+    //    let realm: Realm
+    //    var items: Results<User>
+    //    let nickname:String = ""
     
     override func viewDidLoad() {
         title = "Welcome"
@@ -45,21 +45,21 @@ class WelcomeViewController: UIViewController {
             //addUserDetails()
         }
     }
-
+    
     //Score System Checks
-//    fileprivate func addUserDetails() {
-//        if let userItem = realm.objects(User.self).first
-//        {
-//            print("There is a user object")
-//            print(realm.objects(User.self).count)
-//        } else {
-//            print("No first object!")
-//            print("Creating user object")
-//            let userItem = User()
-//            userItem.Name = nickname
-//            try! self.realm.write {
-//                self.realm.add(userItem)
-//            }
-//        }
-//    }
+    //    fileprivate func addUserDetails() {
+    //        if let userItem = realm.objects(User.self).first
+    //        {
+    //            print("There is a user object")
+    //            print(realm.objects(User.self).count)
+    //        } else {
+    //            print("No first object!")
+    //            print("Creating user object")
+    //            let userItem = User()
+    //            userItem.Name = nickname
+    //            try! self.realm.write {
+    //                self.realm.add(userItem)
+    //            }
+    //        }
+    //    }
 }

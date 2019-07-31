@@ -14,8 +14,7 @@ class ScoreViewController: UIViewController {
     
     //Realm Items
     let realm: Realm
-    var items: Results<ScoreItem>
-    var sorts : Results<ScoreItem>!
+    var scoreItem: Results<ScoreItem>
     var shapeLayer: CAShapeLayer!
     var pulsatingLayer: CAShapeLayer!
     let scoreLabel: UILabel = {
@@ -44,7 +43,7 @@ class ScoreViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Score")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal Score")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -54,29 +53,31 @@ class ScoreViewController: UIViewController {
     
     //Score System Checks
     fileprivate func checkingScoreSystem() {
-        if let scoreItem = realm.objects(ScoreItem.self).first
+        if let checkItem = realm.objects(ScoreItem.self).first
         {
-            print("There is a score object")
-            print(realm.objects(ScoreItem.self).count)
-            print (scoreItem.Category)
+            print("Score already exists for list: " + String(checkItem.Name))
         } else {
-            print("No first object!")
-            print("Creating scoring object")
-            let scoreItem = ScoreItem()
-            scoreItem.Name = "Total Score"
-            scoreItem.Score = 0
-            try! self.realm.write {
-                self.realm.add(scoreItem)
+            for field in Constants.listTypes {
+                let newScore = ScoreItem()
+                newScore.Name = field
+                newScore.Score = 0
+                newScore.Category = field
+                try! self.realm.write {
+                    self.realm.add(scoreItem)
+                    print("Creating score for list: " + String(newScore.Category))
+                }
             }
         }
     }
     
     @objc func updateScore() {
         print("Updating Scores")
-        if let scoreItem = realm.objects(ScoreItem.self).first
-        {
-            try! realm.write {
-                scoreItem.Score += 1
+        for update in Constants.listTypes {
+            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
+            if let score = scores.first {
+                try! realm.write {
+                    score.Score += 1
+                }
             }
         }
     }

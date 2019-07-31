@@ -13,7 +13,7 @@ class ScoreItem: Object {
     @objc dynamic var scoreId: String = UUID().uuidString
     @objc dynamic var Name: String = ""
     @objc dynamic var Score: Int = 0
-    @objc dynamic var Category: String = "Score"
+    @objc dynamic var Category: String = ""
 
     
     override static func primaryKey() -> String? {

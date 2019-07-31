@@ -161,22 +161,22 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
-        let oddJobName = alertController.textFields![0] as UITextField
-        let oddJobPriority = alertController.textFields![1] as UITextField
-        let oddJobOccurrence = alertController.textFields![2] as UITextField
-//        let oddJobLongitude = alertController.textFields![4] as UITextField
-//        let oddJobLatitude = alertController.textFields![5] as UITextField
-
-        //Realm
-        let item = OddJobItem()
-        item.Name = oddJobName.text ?? ""
-        item.Priority = oddJobPriority.text ?? ""
-        item.Occurrence = oddJobOccurrence.text ?? ""
-        item.Longitude = -7.386739
-        item.Latitude = 53.322185
-        item.Category = "Personal"
-        try! self.realm.write {
-            self.realm.add(item)
+            let oddJobName = alertController.textFields![0] as UITextField
+            let oddJobPriority = alertController.textFields![1] as UITextField
+            let oddJobOccurrence = alertController.textFields![2] as UITextField
+            //        let oddJobLongitude = alertController.textFields![4] as UITextField
+            //        let oddJobLatitude = alertController.textFields![5] as UITextField
+            
+            //Realm
+            let item = OddJobItem()
+            item.Name = oddJobName.text ?? ""
+            item.Priority = oddJobPriority.text ?? ""
+            item.Occurrence = oddJobOccurrence.text ?? ""
+            item.Longitude = -7.386739
+            item.Latitude = 53.322185
+            item.Category = "Personal"
+            try! self.realm.write {
+                self.realm.add(item)
             }
         }))
         
@@ -185,7 +185,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
                 oddJobName.placeholder = field
             })
-    }
+        }
         self.present(alertController, animated: true, completion: nil)
     }
     

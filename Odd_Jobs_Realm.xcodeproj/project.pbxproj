@@ -57,7 +57,6 @@
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
 		8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCE722EE0422001AC3A9 /* Extensions.swift */; };
-		8192CCEA22EE13E4001AC3A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCE922EE13E4001AC3A9 /* User.swift */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,7 +116,6 @@
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 		8192CCE722EE0422001AC3A9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8192CCE922EE13E4001AC3A9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +251,6 @@
 				8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */,
 				8132C37122E76F1E00EC79F2 /* Locations.swift */,
 				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
-				8192CCE922EE13E4001AC3A9 /* User.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -461,7 +458,6 @@
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
 				8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */,
-				8192CCEA22EE13E4001AC3A9 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

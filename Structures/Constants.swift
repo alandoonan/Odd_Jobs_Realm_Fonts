@@ -23,5 +23,8 @@ struct Constants {
     
     //Sort Fields
     let sortFields: [String] = ["Name", "Priority", "Occurrence"]
+    
+    //List Types
+    static let listTypes = ["Group","Life","Personal"]
 
 }

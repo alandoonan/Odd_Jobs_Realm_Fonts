@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let tableView = UITableView()
     let personalVC = PersonalViewController()
     var notificationToken: NotificationToken?
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -71,13 +71,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         print("Changing Table View Colour")
         tableView.backgroundColor = UIColor().hexColor(item.hexColour)
-//        print("Changing Personal Table View Colour")
-//        self.personalVC.tableView.backgroundColor =  UIColor().hexColor(item.hexColour)
-//        self.personalVC.tableView.reloadData()
-//        self.personalVC.viewDidLoad()
-//        print("Using Theme Struct")
-//        Colours.navyTheme()
-//        self.viewDidLoad()
+        //        print("Changing Personal Table View Colour")
+        //        self.personalVC.tableView.backgroundColor =  UIColor().hexColor(item.hexColour)
+        //        self.personalVC.tableView.reloadData()
+        //        self.personalVC.viewDidLoad()
+        //        print("Using Theme Struct")
+        //        Colours.navyTheme()
+        //        self.viewDidLoad()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,7 +105,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             print("Setting Item Exists")
         }
         else {
-            print("Settings Item Doesn't Exists")
             print("Creating Setting Item")
             for colour in Constants.themeColours {
                 let settingItem = SettingItem()

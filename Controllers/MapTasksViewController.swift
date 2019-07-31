@@ -29,7 +29,7 @@ class MapTasksViewController: UIViewController {
         populateMap(mapItems)
         zoomLevel(location: locationString)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     
@@ -45,9 +45,9 @@ class MapTasksViewController: UIViewController {
                     maxLongitude = mapItem.Longitude
                 }
                 let mapArt = MapItem(title: mapItem.Name,
-                                      locationName: mapItem.Location,
-                                      discipline: "Test",
-                                      coordinate: CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude))
+                                     locationName: mapItem.Location,
+                                     discipline: "Test",
+                                     coordinate: CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude))
                 mapView.addAnnotation(mapArt)
                 let location = CLLocationCoordinate2D(latitude: mapItem.Latitude,
                                                       longitude: mapItem.Longitude)
@@ -61,7 +61,7 @@ class MapTasksViewController: UIViewController {
                 mapView.setRegion(region, animated: true)
                 //mapView.addAnnotation(annotation)
                 //print(coord)
-        print(maxLongitude,maxLatitude)
+                print(maxLongitude,maxLatitude)
             }
         }
     }
