@@ -84,6 +84,7 @@ class ScoreViewController: UIViewController {
     
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
+        //let postition = CGPoint(x: 100,y: 100)
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
         layer.path = circularPath.cgPath
         layer.strokeColor = strokeColor.cgColor
@@ -113,7 +114,7 @@ class ScoreViewController: UIViewController {
         view.addSubview(userLabel)
         userLabel.translatesAutoresizingMaskIntoConstraints = false
         userLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        userLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        userLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         userLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         userLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
@@ -133,7 +134,7 @@ class ScoreViewController: UIViewController {
     
     private func animatePulsatingLayer() {
         let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.toValue = 1.1
+        animation.toValue = 1.5
         animation.duration = 0.8
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         animation.autoreverses = true

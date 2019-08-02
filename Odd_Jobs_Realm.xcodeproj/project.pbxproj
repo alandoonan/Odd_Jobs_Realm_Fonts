@@ -10,6 +10,7 @@
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
+		8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8131015922F48B2800420AFE /* LoginViewController.swift */; };
 		8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */; };
 		8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */; };
 		8132C34F22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */; };
@@ -67,6 +68,7 @@
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8131015922F48B2800420AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1.png"; sourceTree = "<group>"; };
 		8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x.png"; sourceTree = "<group>"; };
 		8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@2x.png"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				814B51B822D67E7500102E73 /* SettingsViewController.swift */,
 				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
+				8131015922F48B2800420AFE /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
 				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
+				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */,
 				816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */,
 				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
