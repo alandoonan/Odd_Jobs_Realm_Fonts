@@ -17,6 +17,7 @@ class ScoreViewController: UIViewController {
     var scoreItem: Results<ScoreItem>
     var shapeLayer: CAShapeLayer!
     var pulsatingLayer: CAShapeLayer!
+    let userDetails = LoginViewController()
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -43,7 +44,7 @@ class ScoreViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal Score")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -53,9 +54,12 @@ class ScoreViewController: UIViewController {
     
     //Score System Checks
     fileprivate func checkingScoreSystem() {
-        if let checkItem = realm.objects(ScoreItem.self).first
+        print("Checking Scoring System.")
+        if realm.objects(ScoreItem.self).count != 0
+        //if let checkItem = realm.objects(ScoreItem.self).first
         {
-            print("Score already exists for list: " + String(checkItem.Name))
+            //print("Score already exists for list: " + String(checkItem.Name))
+            print("Score already exists.")
         } else {
             for field in Constants.listTypes {
                 let newScore = ScoreItem()
@@ -63,7 +67,7 @@ class ScoreViewController: UIViewController {
                 newScore.Score = 0
                 newScore.Category = field
                 try! self.realm.write {
-                    self.realm.add(scoreItem)
+                    self.realm.add(newScore)
                     print("Creating score for list: " + String(newScore.Category))
                 }
             }
@@ -97,14 +101,15 @@ class ScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkingScoreSystem()
         let scores = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(updateScore))
         navigationItem.rightBarButtonItems = [scores]
         title = "Odd Job Scores"
         view.backgroundColor = UIColor.navyTheme
+        checkingScoreSystem()
         setupCircleLayers()
         animateCircle()
-        setupUserLabels()        
+        setupUserLabels()
+        print("Shared User: " + userDetails.sharedUser)
     }
     
     private func setupUserLabels() {
@@ -117,7 +122,6 @@ class ScoreViewController: UIViewController {
         userLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         userLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         userLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        
     }
     
     private func setupCircleLayers() {
@@ -134,7 +138,7 @@ class ScoreViewController: UIViewController {
     
     private func animatePulsatingLayer() {
         let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.toValue = 1.5
+        animation.toValue = 1.3
         animation.duration = 0.8
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         animation.autoreverses = true
@@ -152,10 +156,7 @@ class ScoreViewController: UIViewController {
         basicAnimation.isRemovedOnCompletion = false
         shapeLayer.add(basicAnimation, forKey: "Personal")
         scoreLabel.text = String(points)
-        userLabel.text = "USER"
-    }
-    
-    @objc private func handleTap() {
-        print("Attempting to animate stroke")
+        userLabel.font = userLabel.font.withSize(16)
+        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
     }
 }

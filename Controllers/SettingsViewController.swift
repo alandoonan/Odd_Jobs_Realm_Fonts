@@ -21,7 +21,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.realm = try! Realm(configuration: config!)
         self.settings = realm.objects(SettingItem.self).filter("Category contains[c] %@", "Setting")
         super.init(nibName: nil, bundle: nil)
-        addSettings()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,11 +34,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
+        addSettings()
         tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
         tableView.frame = self.view.frame
+        view.addSubview(tableView)
         notificationToken = settings.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {

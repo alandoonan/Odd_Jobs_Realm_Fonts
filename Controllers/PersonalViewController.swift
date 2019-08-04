@@ -39,11 +39,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        
         navigationItem.leftBarButtonItems = [add,search]
         navigationItem.rightBarButtonItems = [logout,sort]
         title = "Personal Odd Jobs"
-        
         tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
@@ -74,7 +72,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in
             SyncUser.current?.logOut()
-            self.navigationController?.setViewControllers([WelcomeViewController()], animated: true)
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)

@@ -13,14 +13,9 @@ import Realm
 
 class LoginViewController: UIViewController {
     
-    
-    
-    var username: String = ""
-    
+    var sharedUser: String = ""
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passTextField: UITextField!
-    
     @IBAction func loginButtonPressed(_ sender: Any) {
         print("Login Button Pressed")
         let username = emailTextField.text!
@@ -30,6 +25,7 @@ class LoginViewController: UIViewController {
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
+                self!.transition()
             } else if let error = err {
                 print("Error Logging In.")
                 print(error)
@@ -40,22 +36,27 @@ class LoginViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         })
+        sharedUser = username
+        UserDefaults.standard.set(username, forKey: "Name")
+        print("Shared User Login VC: " + sharedUser)
     }
     
     @IBAction func newUserButtonPressed(_ sender: Any) {
         print("New User Button Pressed")
-        username = emailTextField.text!
+        let username = emailTextField.text!
         let password = passTextField.text!
         let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: true)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
-                print(self!.username + " has been created with password " + password)
+                print(username + " has been created with password " + password)
             } else if let error = err {
                 fatalError(error.localizedDescription)
             }
         })
     }
+    
+    
     
     // Change Current User Password
     @IBAction func changePassButtonPressed(_ sender: Any) {
@@ -103,27 +104,19 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         for u in SyncUser.all {
+            print("Logging out user: " + String(u.value.identity!))
             u.value.logOut()
         }
         view.backgroundColor = UIColor.navyTheme
-        title = "Login"
         if let _ = SyncUser.current {
+            print("Already Logged In.")
             self.navigationController?.pushViewController(HomeViewController(), animated: true)
-        } else {
-            let alertController = UIAlertController(title: "Login to Odd Jobs", message: "Enter a Username", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Login", style: .default, handler: { [unowned self]
-                alert -> Void in
-                let nickname = alertController.textFields![0] as UITextField
-                let creds = SyncCredentials.nickname(nickname.text!, isAdmin: true)
-                SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
-                    if let _ = user {
-                        self?.navigationController?.pushViewController(HomeViewController(), animated: true)
-                    } else if let error = err {
-                        fatalError(error.localizedDescription)
-                    }
-                })
-            }))
-            }
-    }
+}
+        print("Shared User Login VC: " + sharedUser)
+}
     
+    func transition() {
+        let homeVC:HomeViewController = HomeViewController()
+        self.present(homeVC, animated: true, completion: nil)
+    }
 }

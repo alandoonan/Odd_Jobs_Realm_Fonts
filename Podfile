@@ -8,7 +8,5 @@ target 'Odd_Jobs_Realm' do
   # Pods for Odd_Jobs_Realm
   pod 'RealmSwift'
   pod 'RSSelectionMenu'
-  pod 'RealmMapView'
-  pod 'RealmSwiftSFRestaurantData'
 
 end

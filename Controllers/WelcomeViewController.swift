@@ -11,10 +11,6 @@ import Realm
 
 class WelcomeViewController: UIViewController {
     
-    //    let realm: Realm
-    //    var items: Results<User>
-    //    let nickname:String = ""
-    
     override func viewDidLoad() {
         title = "Welcome"
         if let _ = SyncUser.current {
@@ -42,24 +38,6 @@ class WelcomeViewController: UIViewController {
                 textField.placeholder = "A Password for your user"
             })
             self.present(alertController, animated: true, completion: nil)
-            //addUserDetails()
         }
     }
-    
-    //Score System Checks
-    //    fileprivate func addUserDetails() {
-    //        if let userItem = realm.objects(User.self).first
-    //        {
-    //            print("There is a user object")
-    //            print(realm.objects(User.self).count)
-    //        } else {
-    //            print("No first object!")
-    //            print("Creating user object")
-    //            let userItem = User()
-    //            userItem.Name = nickname
-    //            try! self.realm.write {
-    //                self.realm.add(userItem)
-    //            }
-    //        }
-    //    }
 }

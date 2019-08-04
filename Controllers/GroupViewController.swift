@@ -72,7 +72,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in
             SyncUser.current?.logOut()
-            self.navigationController?.setViewControllers([WelcomeViewController()], animated: true)
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
