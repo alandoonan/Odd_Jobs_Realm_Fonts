@@ -101,12 +101,16 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    fileprivate func logOutUsers() {
         for u in SyncUser.all {
             print("Logging out user: " + String(u.value.identity!))
             u.value.logOut()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        logOutUsers()
         view.backgroundColor = UIColor.navyTheme
         if let _ = SyncUser.current {
             print("Already Logged In.")

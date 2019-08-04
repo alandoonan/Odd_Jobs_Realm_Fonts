@@ -53,7 +53,6 @@
 		816B8AF522D21EB200C630B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816B8AF322D21EB200C630B9 /* Main.storyboard */; };
 		816B8AFA22D21EB200C630B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816B8AF822D21EB200C630B9 /* LaunchScreen.storyboard */; };
 		816B8B0322D21FA400C630B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0222D21FA400C630B9 /* Constants.swift */; };
-		816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0422D21FC600C630B9 /* WelcomeViewController.swift */; };
 		816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0722D2209F00C630B9 /* OddJobItem.swift */; };
 		816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0922D220B900C630B9 /* PersonalViewController.swift */; };
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
@@ -114,7 +113,6 @@
 		816B8AF922D21EB200C630B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		816B8AFB22D21EB200C630B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		816B8B0222D21FA400C630B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		816B8B0422D21FC600C630B9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		816B8B0722D2209F00C630B9 /* OddJobItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
 		816B8B0922D220B900C630B9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
-				816B8B0422D21FC600C630B9 /* WelcomeViewController.swift */,
 				8128598822D5059200F1A406 /* HomeViewController.swift */,
 				814B51B822D67E7500102E73 /* SettingsViewController.swift */,
 				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
@@ -452,7 +449,6 @@
 				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */,
-				816B8B0522D21FC600C630B9 /* WelcomeViewController.swift in Sources */,
 				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
 				811B214622F7120A007425C0 /* UserItem.swift in Sources */,
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,

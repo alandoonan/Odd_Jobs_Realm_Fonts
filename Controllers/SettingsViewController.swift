@@ -105,16 +105,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             print("Setting Item Exists")
         }
         else {
+            if let scoreItem = realm.objects(ScoreItem.self).first {
             print("Creating Setting Item")
             for colour in Constants.themeColours {
-                let settingItem = SettingItem()
-                settingItem.settingType = "Theme"
-                settingItem.name = colour.key
-                settingItem.hexColour = colour.value
-                try! self.realm.write {
-                    self.realm.add(settingItem)
-                }
+                if scoreItem.TotalScore > Int(colour.value[1])!
+                {
+                    let settingItem = SettingItem()
+                    settingItem.settingType = "Theme"
+                    settingItem.name = colour.key
+                    settingItem.hexColour = colour.value[0]
+                    settingItem.UnlockLevel = Int(colour.value[1])!
+                    try! self.realm.write {
+                        self.realm.add(settingItem)
+                    }
             }
+                }
         }
     }
+}
 }

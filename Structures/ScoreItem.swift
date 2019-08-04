@@ -14,8 +14,9 @@ class ScoreItem: Object {
     @objc dynamic var Name: String = ""
     @objc dynamic var Score: Int = 0
     @objc dynamic var Category: String = ""
-
-    
+    @objc dynamic var Level: Int = 0
+    @objc dynamic var LevelCap: Int = 10
+    @objc dynamic var TotalScore: Int = 0
     override static func primaryKey() -> String? {
         return "scoreId"
     }

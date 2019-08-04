@@ -16,11 +16,20 @@ struct Constants {
     static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
     
     //Theme Colours
-    static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
+    //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
+    static let themeColours = ["Blue": ["20A4F3","10"], "Dark": ["453823","20"], "Green": ["31BC53","30"], "Orange": ["E07A5F","40"]]
+
+    //Theme Unlock Levels
+    static let themeLevels = ["Blue" : 10, "Dark": 20,"Green": 30,"Orange": 40]
     
     //Alert Fields
+    //Personal
     static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-    
+    //Group
+    static let groupAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
+    //Life
+    static let lifeAlertFields = ["Odd Job Name","Odd Job Occurrence","Life Area"]
+
     //Sort Fields
     let sortFields: [String] = ["Name", "Priority", "Occurrence"]
     

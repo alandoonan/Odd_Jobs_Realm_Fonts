@@ -18,6 +18,14 @@ class ScoreViewController: UIViewController {
     var shapeLayer: CAShapeLayer!
     var pulsatingLayer: CAShapeLayer!
     let userDetails = LoginViewController()
+    var scoreActive = true
+    let levelLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textColor = .white
+        return label
+    }()
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -28,7 +36,7 @@ class ScoreViewController: UIViewController {
     let userLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .white
         return label
     }()
@@ -56,15 +64,12 @@ class ScoreViewController: UIViewController {
     fileprivate func checkingScoreSystem() {
         print("Checking Scoring System.")
         if realm.objects(ScoreItem.self).count != 0
-        //if let checkItem = realm.objects(ScoreItem.self).first
         {
-            //print("Score already exists for list: " + String(checkItem.Name))
             print("Score already exists.")
         } else {
             for field in Constants.listTypes {
                 let newScore = ScoreItem()
                 newScore.Name = field
-                newScore.Score = 0
                 newScore.Category = field
                 try! self.realm.write {
                     self.realm.add(newScore)
@@ -79,11 +84,22 @@ class ScoreViewController: UIViewController {
         for update in Constants.listTypes {
             let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
             if let score = scores.first {
-                try! realm.write {
-                    score.Score += 1
+                if score.Score == score.LevelCap {
+                    try! realm.write {
+                        score.Score = 0
+                        score.Level += 1
+                        score.TotalScore += 1
+                    }
+                }
+                else {
+                    try! realm.write {
+                        score.Score += 1
+                        score.TotalScore += 1
+                    }
                 }
             }
         }
+        animateCircle()
     }
     
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
@@ -109,7 +125,7 @@ class ScoreViewController: UIViewController {
         setupCircleLayers()
         animateCircle()
         setupUserLabels()
-        print("Shared User: " + userDetails.sharedUser)
+        increaseLabel()
     }
     
     private func setupUserLabels() {
@@ -122,6 +138,13 @@ class ScoreViewController: UIViewController {
         userLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         userLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         userLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        view.addSubview(levelLabel)
+        levelLabel.translatesAutoresizingMaskIntoConstraints = false
+        levelLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        levelLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        levelLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        levelLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
     }
     
     private func setupCircleLayers() {
@@ -148,15 +171,27 @@ class ScoreViewController: UIViewController {
     
     fileprivate func animateCircle() {
         let scoreItem = realm.objects(ScoreItem.self).first
-        let points = scoreItem!.Score
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = CGFloat(points) / 100
+        basicAnimation.fromValue = CGFloat(scoreItem!.Score - 1) / CGFloat(scoreItem!.LevelCap)
+        basicAnimation.toValue = CGFloat(scoreItem!.Score) / CGFloat(scoreItem!.LevelCap)
         basicAnimation.duration = 2
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
         shapeLayer.add(basicAnimation, forKey: "Personal")
-        scoreLabel.text = String(points)
-        userLabel.font = userLabel.font.withSize(16)
+        scoreLabel.text = String(scoreItem!.Score)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        levelLabel.text = String("Level: " + String(scoreItem!.Level))
+    }
+    
+
+    func increaseLabel() {
+        let scoreItem = realm.objects(ScoreItem.self).first
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            if self.scoreActive {
+                self.scoreLabel.text = "\(scoreItem!.Score)"
+                self.levelLabel.text = "Level: " + "\(scoreItem!.Level)"
+                self.increaseLabel()
+            }
+        }
     }
 }
