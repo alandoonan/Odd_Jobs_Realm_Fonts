@@ -10,6 +10,7 @@
 		811B214622F7120A007425C0 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214522F7120A007425C0 /* UserItem.swift */; };
 		811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214922FD8320007425C0 /* HolidayItem.swift */; };
 		811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214B22FDB644007425C0 /* SummaryViewController.swift */; };
+		811B215022FDC910007425C0 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214F22FDC910007425C0 /* MenuBar.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -70,6 +71,7 @@
 		811B214522F7120A007425C0 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		811B214922FD8320007425C0 /* HolidayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayItem.swift; sourceTree = "<group>"; };
 		811B214B22FDB644007425C0 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		811B214F22FDC910007425C0 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		811B214E22FDC902007425C0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				811B214F22FDC910007425C0 /* MenuBar.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +226,7 @@
 		816B8AE322D21EB200C630B9 = {
 			isa = PBXGroup;
 			children = (
+				811B214E22FDC902007425C0 /* UI */,
 				8192CCE022E8ECB1001AC3A9 /* Other */,
 				8132C32622E2506D00EC79F2 /* Images */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
@@ -426,6 +437,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/MMDrawerController/MMDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/RSSelectionMenu/RSSelectionMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -436,6 +448,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSelectionMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -473,6 +486,7 @@
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
+				811B215022FDC910007425C0 /* MenuBar.swift in Sources */,
 				8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

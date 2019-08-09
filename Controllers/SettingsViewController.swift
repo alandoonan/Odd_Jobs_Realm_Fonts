@@ -100,7 +100,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     fileprivate func addSettings() {
-        if realm.objects(SettingItem.self).count != 0
+        if realm.objects(SettingItem.self).count >= Constants.themeColours.count
         {
             print("Setting Item Exists")
         }
@@ -108,6 +108,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             if let scoreItem = realm.objects(ScoreItem.self).first {
             print("Creating Setting Item")
             for colour in Constants.themeColours {
+                print(colour)
+                print(scoreItem.TotalScore)
+                print(colour.value[1])
                 if scoreItem.TotalScore > Int(colour.value[1])!
                 {
                     let settingItem = SettingItem()

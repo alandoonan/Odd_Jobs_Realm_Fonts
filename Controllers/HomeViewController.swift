@@ -25,6 +25,8 @@ class HomeViewController: UITabBarController {
         tabBarAppearance.tintColor = UIColor.orangeTheme
         tabBarAppearance.barTintColor = UIColor.navyTheme
         
+        // Background
+        view.backgroundColor = UIColor.navyTheme
         // List Controllers
         let personalTab = UINavigationController(rootViewController: PersonalViewController())
         let groupTab = UINavigationController(rootViewController: GroupViewController())
@@ -32,12 +34,34 @@ class HomeViewController: UITabBarController {
         let summaryTab = UINavigationController(rootViewController: SummaryViewController())
         let settingsTab = UINavigationController(rootViewController: SettingsViewController())
         let scoreTab = UINavigationController(rootViewController: ScoreViewController())
+        scoreTab.view.backgroundColor = UIColor.navyTheme
         self.view.backgroundColor = UIColor.navyTheme
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        navigationItem.leftBarButtonItems = [search]
         viewControllers = [groupTab,personalTab,lifeTab,summaryTab,settingsTab,scoreTab]
 
     }
     
+    @objc func searchOddJobs () {
+        print("Search Odd Jobs")
+    
+    }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print("Test")
+        print("Tab Bar Touch Test")
     }
 }
+//extension HomeViewController: UITabBarControllerDelegate  {
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//
+//        guard let fromView = selectedViewController?.view, let toView = viewController.view else {
+//            return false // Make sure you want this as false
+//        }
+//
+//        if fromView != toView {
+//            UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+//        }
+//
+//        return true
+//    }
+//}

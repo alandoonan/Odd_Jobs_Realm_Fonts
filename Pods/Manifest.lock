@@ -1,5 +1,17 @@
 PODS:
   - Alamofire (4.8.2)
+  - MMDrawerController (0.6.0):
+    - MMDrawerController/Core (= 0.6.0)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
+    - MMDrawerController/MMDrawerVisualStates (= 0.6.0)
+    - MMDrawerController/Subclass (= 0.6.0)
+  - MMDrawerController/Core (0.6.0)
+  - MMDrawerController/MMDrawerBarButtonItem (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.6.0):
+    - MMDrawerController/Core
   - Realm (3.17.3):
     - Realm/Headers (= 3.17.3)
   - Realm/Headers (3.17.3)
@@ -10,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - MMDrawerController
   - RealmSwift
   - RSSelectionMenu
   - SwiftyJSON
@@ -17,6 +30,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - MMDrawerController
     - Realm
     - RealmSwift
     - RSSelectionMenu
@@ -24,11 +38,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
   RSSelectionMenu: 1dc497c68e81aa09e6c7f91432403cc2bc5ad816
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 13678e20f6186aa7eb05e505f86426bb288e5d96
+PODFILE CHECKSUM: 37834f2853a375fc9198d9119c0d13e5ae12fb54
 
 COCOAPODS: 1.5.3

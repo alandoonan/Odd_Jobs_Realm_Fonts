@@ -195,4 +195,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             realm.delete(item)
         }
     }
+    
+    func sideMenu () {
+        print("Side Menu")
+    }
 }
