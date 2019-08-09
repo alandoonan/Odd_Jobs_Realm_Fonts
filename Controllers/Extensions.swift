@@ -20,7 +20,6 @@ extension UIColor {
     static let pulsatingFillColor = UIColor.rgb(r: 86, g: 30, b: 63)
 }
 
-
 // Shake Function for indicating wrong field
 extension UITextField {
     func shake() {

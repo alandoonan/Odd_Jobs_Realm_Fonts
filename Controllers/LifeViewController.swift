@@ -8,13 +8,19 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
+import SwiftyJSON
 class LifeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let realm: Realm
     let items: Results<OddJobItem>
+    var holidayDictionary:[String:String] = [:]
     let tableView = UITableView()
+    let loginVC = LoginViewController()
     var notificationToken: NotificationToken?
-    
+    let calendar = Calendar.current
+    let date = Date()
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -32,6 +38,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getHolidayData()
         tableView.backgroundColor = UIColor.navyTheme
         tableView.backgroundColor = UIColor.navyTheme
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
@@ -43,7 +50,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         view.addSubview(tableView)
         tableView.frame = self.view.frame
-        
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -75,8 +81,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(alertController, animated: true, completion: nil)
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -102,7 +106,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
         cell.detailTextLabel?.text = ("Priority: " + item.Priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
+        cell.detailTextLabel?.text = ("Date: " + String(item.HolidayDate))
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         return cell
     }
@@ -144,4 +148,68 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
             realm.delete(item)
         }
     }
+    
+    func addHolidayData () {
+        /*
+         Create life tasks based on holiday data pulled from
+         Holiday API. If data already exists in users list ensure
+         it is not duplicated
+        */
+        print("Adding Holiday Data to Life Lists")
+        for holiday in holidayDictionary.sorted(by: { $0.1 < $1.1 }) {
+            print(holiday)
+            let found = findObjectsByName(holiday.key)
+            if found .isEmpty{
+                let item = OddJobItem()
+                item.Name = holiday.key
+                item.Priority = "High"
+                item.Occurrence = "Yearly"
+                item.Category = "Life"
+                item.HolidayDate = holiday.value
+                try! self.realm.write {
+                    self.realm.add(item)
+                }
+            }
+            else {
+                print("Found. Do Nothing")
+            }
+        }
+    }
+    
+    func getHolidayData () {
+        print("Getting Holiday Data")
+        let locale = Locale.current.regionCode!
+        let params = [
+            "key": HolidayItem.key,
+            "country": "IE",
+            "year" : HolidayItem.year,
+            "upcoming" : HolidayItem.upcoming,
+            "pretty": HolidayItem.pretty,
+            "public": false,
+            "month" : calendar.component(.month, from: date)
+            ] as [String : Any]
+        
+        Alamofire.request(HolidayItem.url!, parameters: params).responseJSON { response in
+            if let result = response.result.value {
+                let json = JSON(result)
+                for holiday in json["holidays"].arrayValue
+                {
+                    if  let name = holiday["name"].string,
+                        let date = holiday["date"].string {
+                        self.holidayDictionary[name] = date
+                    }
+                }
+                self.addHolidayData()
+            }
+        }
+    }
+    
+    public func findObjectsByName(_ Name: String) -> Results<OddJobItem>
+    {
+        let predicate = NSPredicate(format: "Name = %@", Name)
+        return realm.objects(OddJobItem.self).filter(predicate)
+    }
+    
+    
+    
 }

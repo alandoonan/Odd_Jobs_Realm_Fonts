@@ -8,11 +8,8 @@
 
 import UIKit
 import RealmSwift
-import Realm
-
 
 class LoginViewController: UIViewController {
-    
     var sharedUser: String = ""
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
@@ -51,12 +48,10 @@ class LoginViewController: UIViewController {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has been created with password " + password)
             } else if let error = err {
-                fatalError(error.localizedDescription)
+                print(error)
             }
         })
     }
-    
-    
     
     // Change Current User Password
     @IBAction func changePassButtonPressed(_ sender: Any) {

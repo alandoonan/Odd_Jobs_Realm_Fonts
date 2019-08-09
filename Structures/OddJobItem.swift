@@ -21,6 +21,7 @@ class OddJobItem: Object {
     @objc dynamic var Category: String = ""
     @objc dynamic var Latitude = 0.0
     @objc dynamic var Longitude = 0.0
+    @objc dynamic var HolidayDate = ""
     override static func primaryKey() -> String? {
         return "itemId"
     }
