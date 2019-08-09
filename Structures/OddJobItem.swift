@@ -11,6 +11,7 @@ import RealmSwift
 class OddJobItem: Object {
     
     @objc dynamic var itemId: String = UUID().uuidString
+    @objc dynamic var ListID: Int = 0
     @objc dynamic var Name: String = ""
     @objc dynamic var Priority: String = ""
     @objc dynamic var IsDone: Bool = false

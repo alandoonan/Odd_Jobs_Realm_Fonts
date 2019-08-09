@@ -15,8 +15,8 @@ class ScoreViewController: UIViewController {
     //Realm Items
     let realm: Realm
     var scoreItem: Results<ScoreItem>
-    var shapeLayer: CAShapeLayer!
-    var pulsatingLayer: CAShapeLayer!
+    var shapeLayer = CAShapeLayer()
+    var pulsatingLayer = CAShapeLayer()
     let userDetails = LoginViewController()
     var scoreActive = true
     let levelLabel: UILabel = {
@@ -123,7 +123,7 @@ class ScoreViewController: UIViewController {
         view.backgroundColor = UIColor.navyTheme
         checkingScoreSystem()
         setupCircleLayers()
-        animateCircle()
+        //animateCircle()
         setupUserLabels()
         increaseLabel()
     }
@@ -169,7 +169,7 @@ class ScoreViewController: UIViewController {
         pulsatingLayer.add(animation, forKey: "pulsing")
     }
     
-    fileprivate func animateCircle() {
+    func animateCircle() {
         let scoreItem = realm.objects(ScoreItem.self).first
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.fromValue = CGFloat(scoreItem!.Score - 1) / CGFloat(scoreItem!.LevelCap)
@@ -183,7 +183,6 @@ class ScoreViewController: UIViewController {
         levelLabel.text = String("Level: " + String(scoreItem!.Level))
     }
     
-
     func increaseLabel() {
         let scoreItem = realm.objects(ScoreItem.self).first
         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -191,6 +190,7 @@ class ScoreViewController: UIViewController {
                 self.scoreLabel.text = "\(scoreItem!.Score)"
                 self.levelLabel.text = "Level: " + "\(scoreItem!.Level)"
                 self.increaseLabel()
+                self.animateCircle()
             }
         }
     }

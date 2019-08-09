@@ -1,26 +1,34 @@
 PODS:
-  - Realm (3.17.0):
-    - Realm/Headers (= 3.17.0)
-  - Realm/Headers (3.17.0)
-  - RealmSwift (3.17.0):
-    - Realm (= 3.17.0)
-  - RSSelectionMenu (6.0.3)
+  - Alamofire (4.8.2)
+  - Realm (3.17.3):
+    - Realm/Headers (= 3.17.3)
+  - Realm/Headers (3.17.3)
+  - RealmSwift (3.17.3):
+    - Realm (= 3.17.3)
+  - RSSelectionMenu (6.0.4)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - RealmSwift
   - RSSelectionMenu
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Realm
     - RealmSwift
     - RSSelectionMenu
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Realm: b30db41ff34fc858ffc25ba8d44a82c164e7ccd0
-  RealmSwift: fe733e459d60dc7b6971d4cbee2eb4854097d12c
-  RSSelectionMenu: decee83e020ee9d63e53995eb7f1ea5ca75f0667
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
+  RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
+  RSSelectionMenu: 1dc497c68e81aa09e6c7f91432403cc2bc5ad816
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: cf3d9dc92c580e3130af52ac1f2d4b76c3760383
+PODFILE CHECKSUM: 13678e20f6186aa7eb05e505f86426bb288e5d96
 
 COCOAPODS: 1.5.3

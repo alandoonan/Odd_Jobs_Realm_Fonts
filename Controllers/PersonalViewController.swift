@@ -90,6 +90,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         //SharedFunctions.removeTask(oddJobitem)
         if oddJobitem.IsDone == true {
             scoreVC.updateScore()
+            scoreVC.increaseLabel()
         }
     }
     
