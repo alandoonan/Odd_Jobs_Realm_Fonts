@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 {
     let realm: Realm
     let settings: Results<SettingItem>
+    let scoreItem: Results<ScoreItem>
     let tableView = UITableView()
     let personalVC = PersonalViewController()
     var notificationToken: NotificationToken?
@@ -20,6 +21,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.settings = realm.objects(SettingItem.self).filter("Category contains[c] %@", "Setting")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,12 +35,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Settings"
+        navigationItem.title = "Settings"
         addSettings()
         tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
         notificationToken = settings.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
@@ -100,30 +103,32 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     fileprivate func addSettings() {
-        if realm.objects(SettingItem.self).count >= Constants.themeColours.count
+        if settings.count <= Constants.themeColours.count
         {
-            print("Setting Item Exists")
-        }
-        else {
-            if let scoreItem = realm.objects(ScoreItem.self).first {
-            print("Creating Setting Item")
             for colour in Constants.themeColours {
-                print(colour)
-                print(scoreItem.TotalScore)
-                print(colour.value[1])
-                if scoreItem.TotalScore > Int(colour.value[1])!
-                {
-                    let settingItem = SettingItem()
-                    settingItem.settingType = "Theme"
-                    settingItem.name = colour.key
-                    settingItem.hexColour = colour.value[0]
-                    settingItem.UnlockLevel = Int(colour.value[1])!
-                    try! self.realm.write {
-                        self.realm.add(settingItem)
+                let found = findObjectsByName(colour.key)
+                if found .isEmpty {
+                    for score in scoreItem {
+                        if score.TotalScore > Int(colour.value[1])!
+                        {
+                            let settingItem = SettingItem()
+                            settingItem.settingType = "Theme"
+                            settingItem.name = colour.key
+                            settingItem.hexColour = colour.value[0]
+                            settingItem.UnlockLevel = Int(colour.value[1])!
+                            try! self.realm.write {
+                                self.realm.add(settingItem)
+                            }
+                        }
                     }
-            }
                 }
+            }
         }
     }
-}
+    
+    public func findObjectsByName(_ Name: String) -> Results<SettingItem>
+    {
+        let predicate = NSPredicate(format: "name = %@", Name)
+        return realm.objects(SettingItem.self).filter(predicate)
+    }
 }

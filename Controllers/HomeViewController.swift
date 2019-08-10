@@ -25,21 +25,28 @@ class HomeViewController: UITabBarController {
         tabBarAppearance.tintColor = UIColor.orangeTheme
         tabBarAppearance.barTintColor = UIColor.navyTheme
         
-        // Background
-        view.backgroundColor = UIColor.navyTheme
         // List Controllers
         let personalTab = UINavigationController(rootViewController: PersonalViewController())
+        personalTab.tabBarItem.image = UIImage(named: "icon_20pt@2x-2.png")
+        personalTab.title = "Personal"
         let groupTab = UINavigationController(rootViewController: GroupViewController())
+        groupTab.tabBarItem.image = UIImage(named: "icon_20pt@2x-2.png")
+        groupTab.title = "Group"
         let lifeTab = UINavigationController(rootViewController: LifeViewController())
+        lifeTab.tabBarItem.image = UIImage(named: "icon_20pt@2x-2.png")
+        lifeTab.title = "Life"
         let summaryTab = UINavigationController(rootViewController: SummaryViewController())
+        summaryTab.tabBarItem.image = UIImage(named: "icon_20pt@2x-2.png")
+        summaryTab.title = "Summary"
         let settingsTab = UINavigationController(rootViewController: SettingsViewController())
+        settingsTab.tabBarItem.image = UIImage(named: "icon_20pt@2x-2.png")
+        settingsTab.title = "Settings"
         let scoreTab = UINavigationController(rootViewController: ScoreViewController())
-        scoreTab.view.backgroundColor = UIColor.navyTheme
+        scoreTab.tabBarItem.image = UIImage(named: "icon_20pt@2x-2.png")
+        scoreTab.title = "Score"
+        
         self.view.backgroundColor = UIColor.navyTheme
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        navigationItem.leftBarButtonItems = [search]
         viewControllers = [groupTab,personalTab,lifeTab,summaryTab,settingsTab,scoreTab]
-
     }
     
     @objc func searchOddJobs () {

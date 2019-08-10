@@ -18,109 +18,98 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alandoonan@gmail.com" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BtJ-PE-8Sf">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alandoonan@gmail.com" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BtJ-PE-8Sf">
                                 <rect key="frame" x="66" y="359" width="282" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0Ea-U0-qyO"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" textContentType="username"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVR-qL-HKy">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVR-qL-HKy">
                                 <rect key="frame" x="66" y="416" width="282" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="cQ5-Qg-7p3"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-dm-Aqd">
-                                <rect key="frame" x="0.0" y="454" width="414" height="50"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OddJobsLogo3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-u8-l9I">
+                                <rect key="frame" x="72" y="78" width="270" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-dm-Aqd" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
+                                <rect key="frame" x="7" y="454" width="400" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bX1-zs-bLi"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="tintColor" red="0.33421441909999999" green="0.67285645009999995" blue="0.40778017039999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D7n-K4-Gpm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZr-hy-bhC">
-                                <rect key="frame" x="0.0" y="553" width="414" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZr-hy-bhC" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
+                                <rect key="frame" x="7" y="553" width="400" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="KrB-O8-LS1"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="tintColor" red="0.33421441909999999" green="0.67285645009999995" blue="0.40778017039999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Change Password">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="changePassButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G0R-wI-gK2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4J-rE-Vxr">
-                                <rect key="frame" x="0.0" y="503" width="414" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4J-rE-Vxr" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
+                                <rect key="frame" x="7" y="503" width="400" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="tintColor" red="0.33421441909999999" green="0.67285645009999995" blue="0.40778017039999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="New User">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="newUserButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q1q-br-6fo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-wq-jJA">
-                                <rect key="frame" x="0.0" y="602" width="414" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-wq-jJA" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
+                                <rect key="frame" x="7" y="602" width="400" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="tintColor" red="0.33421441909999999" green="0.67285645009999995" blue="0.40778017039999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Request Password Reset">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="resetPassButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pc5-vR-23G"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OddJobsLogo3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-u8-l9I">
-                                <rect key="frame" x="72" y="78" width="270" height="230"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="BtJ-PE-8Sf" firstAttribute="top" secondItem="jbe-u8-l9I" secondAttribute="bottom" constant="51" id="0W6-li-O2u"/>
-                            <constraint firstItem="gUU-dm-Aqd" firstAttribute="leading" secondItem="X4J-rE-Vxr" secondAttribute="leading" id="Ahs-k5-488"/>
-                            <constraint firstItem="AVR-qL-HKy" firstAttribute="centerX" secondItem="gUU-dm-Aqd" secondAttribute="centerX" id="I0G-JR-9KP"/>
-                            <constraint firstItem="BtJ-PE-8Sf" firstAttribute="trailing" secondItem="AVR-qL-HKy" secondAttribute="trailing" id="J9Q-XF-e1a"/>
-                            <constraint firstItem="F3p-wq-jJA" firstAttribute="top" secondItem="X4J-rE-Vxr" secondAttribute="bottom" constant="49" id="JBw-LB-bnL"/>
-                            <constraint firstItem="BZr-hy-bhC" firstAttribute="leading" secondItem="F3p-wq-jJA" secondAttribute="leading" id="JRh-0A-ftv"/>
-                            <constraint firstItem="AVR-qL-HKy" firstAttribute="top" secondItem="BtJ-PE-8Sf" secondAttribute="bottom" constant="27" id="KQH-9f-FD1"/>
-                            <constraint firstItem="X4J-rE-Vxr" firstAttribute="trailing" secondItem="BZr-hy-bhC" secondAttribute="trailing" id="LpA-rP-AhL"/>
-                            <constraint firstItem="BZr-hy-bhC" firstAttribute="trailing" secondItem="F3p-wq-jJA" secondAttribute="trailing" id="NfC-2v-Zfp"/>
-                            <constraint firstItem="BtJ-PE-8Sf" firstAttribute="leading" secondItem="AVR-qL-HKy" secondAttribute="leading" id="Npu-1f-Q4S"/>
-                            <constraint firstItem="X4J-rE-Vxr" firstAttribute="leading" secondItem="BZr-hy-bhC" secondAttribute="leading" id="PZC-hM-JFc"/>
-                            <constraint firstItem="BZr-hy-bhC" firstAttribute="top" secondItem="X4J-rE-Vxr" secondAttribute="bottom" id="TP4-P9-bai"/>
-                            <constraint firstItem="jbe-u8-l9I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="72" id="TR1-IO-Mat"/>
-                            <constraint firstAttribute="trailing" secondItem="gUU-dm-Aqd" secondAttribute="trailing" id="Wfo-vj-BTr"/>
-                            <constraint firstItem="BZr-hy-bhC" firstAttribute="top" secondItem="gUU-dm-Aqd" secondAttribute="bottom" constant="49" id="Y6u-wO-eCB"/>
-                            <constraint firstItem="BtJ-PE-8Sf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="YTp-Io-NuY"/>
-                            <constraint firstItem="X4J-rE-Vxr" firstAttribute="top" secondItem="AVR-qL-HKy" secondAttribute="bottom" constant="57" id="asS-Ii-WcQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BZr-hy-bhC" secondAttribute="bottom" constant="259" id="cMI-SS-2rg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F3p-wq-jJA" secondAttribute="bottom" constant="210" id="cnV-pT-yLK"/>
-                            <constraint firstItem="gUU-dm-Aqd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cpJ-hn-4uB"/>
-                            <constraint firstItem="jbe-u8-l9I" firstAttribute="centerX" secondItem="BtJ-PE-8Sf" secondAttribute="centerX" id="dkD-dB-zht"/>
-                            <constraint firstItem="gUU-dm-Aqd" firstAttribute="top" secondItem="AVR-qL-HKy" secondAttribute="bottom" constant="8" symbolic="YES" id="nka-52-irI"/>
-                            <constraint firstItem="jbe-u8-l9I" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="qio-Hz-62Y"/>
-                            <constraint firstItem="gUU-dm-Aqd" firstAttribute="trailing" secondItem="X4J-rE-Vxr" secondAttribute="trailing" id="yFY-oZ-95x"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -140,12 +129,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-PT-LT3">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-PT-LT3">
                                 <rect key="frame" x="0.0" y="188" width="414" height="674"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="674" id="oJf-VC-KB1"/>
+                                </constraints>
                             </mapView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laX-Rq-d3N">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laX-Rq-d3N">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Odd Jobs Map" id="fBs-v7-W3A">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="Up0-NI-CXO">
@@ -159,10 +150,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="j8u-zR-NuC" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="NR5-Hq-Cfh"/>
-                            <constraint firstItem="j8u-zR-NuC" firstAttribute="bottom" secondItem="qvV-PT-LT3" secondAttribute="bottom" id="Yiy-Yq-GCi"/>
-                            <constraint firstItem="qvV-PT-LT3" firstAttribute="leading" secondItem="j8u-zR-NuC" secondAttribute="leading" id="dW8-3N-oSP"/>
-                            <constraint firstItem="qvV-PT-LT3" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="rzM-k3-wv2"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="CA3-Nx-Ifx"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="NON-Ru-cB7" secondAttribute="leading" id="ECs-Ib-aty"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="aFP-U5-IiP"/>
+                            <constraint firstAttribute="trailing" secondItem="laX-Rq-d3N" secondAttribute="trailing" id="j87-64-sik"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="qvV-PT-LT3" secondAttribute="leading" id="juh-6p-oWv"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="bottom" secondItem="j8u-zR-NuC" secondAttribute="bottom" id="l5j-oL-4Fk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j8u-zR-NuC"/>
                     </view>

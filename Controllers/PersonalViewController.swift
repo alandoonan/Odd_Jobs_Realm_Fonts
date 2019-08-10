@@ -41,12 +41,14 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         navigationItem.leftBarButtonItems = [add,search]
         navigationItem.rightBarButtonItems = [logout,sort]
-        title = "Personal Odd Jobs"
+        navigationItem.title = "Personal Odd Jobs"
         tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
+        
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {

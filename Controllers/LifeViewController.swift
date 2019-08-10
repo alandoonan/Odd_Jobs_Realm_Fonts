@@ -45,9 +45,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         navigationItem.rightBarButtonItems = [logout,search]
-        title = "Life Odd Jobs"
+        navigationItem.title = "Life Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
         tableView.frame = self.view.frame
         notificationToken = items.observe { [weak self] (changes) in

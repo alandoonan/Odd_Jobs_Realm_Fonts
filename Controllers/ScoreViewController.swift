@@ -119,7 +119,7 @@ class ScoreViewController: UIViewController {
         super.viewDidLoad()
         let scores = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(updateScore))
         navigationItem.rightBarButtonItems = [scores]
-        title = "Odd Job Scores"
+        navigationItem.title = "Scores"
         view.backgroundColor = UIColor.navyTheme
         checkingScoreSystem()
         setupCircleLayers()
@@ -183,6 +183,9 @@ class ScoreViewController: UIViewController {
         levelLabel.text = String("Level: " + String(scoreItem!.Level))
     }
     
+    /*
+     Constantly check for updates to scores
+    */
     func increaseLabel() {
         let scoreItem = realm.objects(ScoreItem.self).first
         DispatchQueue.main.asyncAfter(deadline: .now()) {

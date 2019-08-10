@@ -46,6 +46,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }

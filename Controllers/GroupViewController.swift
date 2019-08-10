@@ -42,9 +42,10 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         navigationItem.rightBarButtonItems = [logout,search]
-        title = "Group Odd Jobs"
+        navigationItem.title = "Group Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
         tableView.frame = self.view.frame
         notificationToken = items.observe { [weak self] (changes) in
