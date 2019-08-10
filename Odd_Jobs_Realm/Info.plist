@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Odd Jobs wants to use your location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Odd Jobs wants to use your location.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

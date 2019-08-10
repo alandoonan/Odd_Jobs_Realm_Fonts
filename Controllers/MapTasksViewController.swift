@@ -11,6 +11,9 @@ import RealmSwift
 
 class MapTasksViewController: UIViewController {
     
+    let initialLocation = CLLocation(latitude: 53.322065, longitude: -6.386767)
+    let searchRadius: CLLocationDistance = 2000
+    
     @IBAction func backToPersonalButton(_ sender: Any) {
         print("Back to Personal Button Pressed")
         performSegueToReturnBack()
@@ -21,13 +24,20 @@ class MapTasksViewController: UIViewController {
     let distanceSpan: CLLocationDistance = 150000
     
     override func viewDidLoad() {
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
-        let realm = try! Realm(configuration: config!)
-        let mapItems = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
         super.viewDidLoad()
         mapView.delegate = self
-        populateMap(mapItems)
-        zoomLevel(location: locationString)
+        let coordinateRegion = MKCoordinateRegion.init(center: initialLocation.coordinate, latitudinalMeters: searchRadius * 2.0, longitudinalMeters: searchRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+        searchInMap()
+
+//
+//        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+//        let realm = try! Realm(configuration: config!)
+//        let mapItems = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
+//        super.viewDidLoad()
+//        mapView.delegate = self
+//        populateMap(mapItems)
+//        zoomLevel(location: locationString)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,6 +104,38 @@ extension MapTasksViewController: MKMapViewDelegate {
         let location = view.annotation as! MapItem
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    
+    func searchInMap() {
+        // 1
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "Chinese"
+        // 2
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        request.region = MKCoordinateRegion(center: initialLocation.coordinate, span: span)
+        // 3
+        let search = MKLocalSearch(request: request)
+        search.start { response, error in
+            guard let response = response else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error").")
+                return
+            }
+            for item in response.mapItems {
+                print(item.name!)
+                print(item.phoneNumber ?? "No phone number.")
+            }
+        }
+    }
+    
+    func addPinToMapView(title: String?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        if let title = title {
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = title
+            
+            mapView.addAnnotation(annotation)
+        }
     }
 }
 

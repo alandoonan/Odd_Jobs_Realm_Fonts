@@ -32,10 +32,6 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OddJobsLogo3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-u8-l9I">
-                                <rect key="frame" x="72" y="78" width="270" height="230"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-dm-Aqd" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
                                 <rect key="frame" x="7" y="454" width="400" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -55,7 +51,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZr-hy-bhC" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
-                                <rect key="frame" x="7" y="553" width="400" height="50"/>
+                                <rect key="frame" x="7" y="570" width="400" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -73,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4J-rE-Vxr" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
-                                <rect key="frame" x="7" y="503" width="400" height="50"/>
+                                <rect key="frame" x="7" y="512" width="400" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -90,8 +86,12 @@
                                     <action selector="newUserButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q1q-br-6fo"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OddJobsLogo3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-u8-l9I">
+                                <rect key="frame" x="72" y="78" width="270" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3p-wq-jJA" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
-                                <rect key="frame" x="7" y="602" width="400" height="50"/>
+                                <rect key="frame" x="7" y="628" width="400" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -129,11 +129,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-PT-LT3">
-                                <rect key="frame" x="0.0" y="188" width="414" height="674"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="674" id="oJf-VC-KB1"/>
-                                </constraints>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-PT-LT3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laX-Rq-d3N">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -150,12 +147,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="CA3-Nx-Ifx"/>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="NON-Ru-cB7" secondAttribute="leading" id="ECs-Ib-aty"/>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="aFP-U5-IiP"/>
-                            <constraint firstAttribute="trailing" secondItem="laX-Rq-d3N" secondAttribute="trailing" id="j87-64-sik"/>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="qvV-PT-LT3" secondAttribute="leading" id="juh-6p-oWv"/>
-                            <constraint firstItem="qvV-PT-LT3" firstAttribute="bottom" secondItem="j8u-zR-NuC" secondAttribute="bottom" id="l5j-oL-4Fk"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="C9d-4d-Wl7"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="NON-Ru-cB7" secondAttribute="leading" id="PMv-Nk-B2M"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="ic2-Ml-UAy"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="bottom" secondItem="j8u-zR-NuC" secondAttribute="bottom" id="nqY-iX-PbU"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="qvV-PT-LT3" secondAttribute="leading" id="oaB-2u-b3J"/>
+                            <constraint firstAttribute="trailing" secondItem="laX-Rq-d3N" secondAttribute="trailing" id="ofd-Mc-hU7"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="top" secondItem="laX-Rq-d3N" secondAttribute="bottom" id="owE-RG-6eV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j8u-zR-NuC"/>
                     </view>

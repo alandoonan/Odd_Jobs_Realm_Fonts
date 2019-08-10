@@ -12,6 +12,12 @@
 		811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214B22FDB644007425C0 /* SummaryViewController.swift */; };
 		811B215022FDC910007425C0 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214F22FDC910007425C0 /* MenuBar.swift */; };
 		811B215422FEEEE3007425C0 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B215322FEEEE3007425C0 /* UI.swift */; };
+		811B218722FF3ECA007425C0 /* L.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B215922FF3EC9007425C0 /* L.png */; };
+		811B218822FF3ECA007425C0 /* P.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B215A22FF3EC9007425C0 /* P.png */; };
+		811B218F22FF3ECA007425C0 /* G.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B216122FF3EC9007425C0 /* G.png */; };
+		811B21C822FF4187007425C0 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B21B922FF4186007425C0 /* settings.png */; };
+		811B21ED22FF426B007425C0 /* summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B21DE22FF426A007425C0 /* summary.png */; };
+		811B224F22FF437B007425C0 /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B221322FF436F007425C0 /* goal.png */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -74,6 +80,12 @@
 		811B214B22FDB644007425C0 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		811B214F22FDC910007425C0 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		811B215322FEEEE3007425C0 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		811B215922FF3EC9007425C0 /* L.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L.png; sourceTree = "<group>"; };
+		811B215A22FF3EC9007425C0 /* P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P.png; sourceTree = "<group>"; };
+		811B216122FF3EC9007425C0 /* G.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = G.png; sourceTree = "<group>"; };
+		811B21B922FF4186007425C0 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		811B21DE22FF426A007425C0 /* summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary.png; sourceTree = "<group>"; };
+		811B221322FF436F007425C0 /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -158,10 +170,24 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		811B215522FF3EC9007425C0 /* iOS Icons */ = {
+			isa = PBXGroup;
+			children = (
+				811B215922FF3EC9007425C0 /* L.png */,
+				811B215A22FF3EC9007425C0 /* P.png */,
+				811B21DE22FF426A007425C0 /* summary.png */,
+				811B221322FF436F007425C0 /* goal.png */,
+				811B21B922FF4186007425C0 /* settings.png */,
+				811B216122FF3EC9007425C0 /* G.png */,
+			);
+			path = "iOS Icons";
+			sourceTree = "<group>";
+		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				8132C36D22E2511800EC79F2 /* Assets.xcassets */,
+				811B215522FF3EC9007425C0 /* iOS Icons */,
 				8132C32722E2506D00EC79F2 /* Logo */,
 				8132C32C22E2506D00EC79F2 /* LogoSmall */,
 				8132C33122E2506D00EC79F2 /* App Icons */,
@@ -379,7 +405,10 @@
 				8132C35922E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png in Resources */,
 				8132C36422E2506D00EC79F2 /* iPhone Settings 29pt@3x.png in Resources */,
 				8132C36622E2506D00EC79F2 /* iPhone Notification 20pt@3x.png in Resources */,
+				811B224F22FF437B007425C0 /* goal.png in Resources */,
 				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
+				811B218822FF3ECA007425C0 /* P.png in Resources */,
+				811B218722FF3ECA007425C0 /* L.png in Resources */,
 				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
 				8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */,
@@ -388,6 +417,8 @@
 				8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */,
 				8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */,
 				8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */,
+				811B21C822FF4187007425C0 /* settings.png in Resources */,
+				811B218F22FF3ECA007425C0 /* G.png in Resources */,
 				8132C36122E2506D00EC79F2 /* icon_76pt@2x-1.png in Resources */,
 				8132C35322E2506D00EC79F2 /* OddJobsLogo2x.png in Resources */,
 				8132C35C22E2506D00EC79F2 /* icon_40pt-1.png in Resources */,
@@ -402,6 +433,7 @@
 				8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */,
 				8132C35A22E2506D00EC79F2 /* iPhone App 60pt@3x.png in Resources */,
 				8132C36522E2506D00EC79F2 /* icon_29pt.png in Resources */,
+				811B21ED22FF426B007425C0 /* summary.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
