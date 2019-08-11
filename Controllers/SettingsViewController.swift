@@ -82,17 +82,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func switchStateDidChange(_ sender:UISwitch){
         if (sender.isOn == true){
-            print(sender)
-            print("UISwitch state is now ON")
-            Themes.current = LightTheme()
+            for colour1 in Constants.themeColours {
+                if Int(colour1.value[2]) == sender.tag {
+                    print(colour1.value[3])
+                    for colour2 in Constants.themeLevels {
+                        if colour2.key == colour1.key {
+                            Themes.current = colour2.value as! ThemeProtocol
+                        }
+                    }
+                }
+            }
         }
         else{
             print("UISwitch state is now Off")
-            print(sender)
-            Themes.current = DarkTheme()
+            Themes.current = PersonalTheme()
         }
         applyTheme()
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
@@ -166,3 +174,5 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return realm.objects(SettingItem.self).filter(predicate)
     }
 }
+
+

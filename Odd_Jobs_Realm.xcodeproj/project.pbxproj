@@ -21,8 +21,11 @@
 		811B22C523002A0E007425C0 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22C423002A0E007425C0 /* Themes.swift */; };
 		811B22D123002FE0007425C0 /* Arial Rounded Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */; };
 		811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D423003946007425C0 /* ThemeProtocol.swift */; };
-		811B22D72300398B007425C0 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D62300398B007425C0 /* LightTheme.swift */; };
-		811B22D923003A02007425C0 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D823003A02007425C0 /* DarkTheme.swift */; };
+		811B22D72300398B007425C0 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D62300398B007425C0 /* DarkTheme.swift */; };
+		811B22D923003A02007425C0 /* PersonalTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D823003A02007425C0 /* PersonalTheme.swift */; };
+		811B22DD230096A0007425C0 /* OrangeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22DC230096A0007425C0 /* OrangeTheme.swift */; };
+		811B22DF230096AD007425C0 /* GreenTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22DE230096AD007425C0 /* GreenTheme.swift */; };
+		811B22E123009A23007425C0 /* BlueTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22E023009A23007425C0 /* BlueTheme.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -94,8 +97,11 @@
 		811B22C423002A0E007425C0 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arial Rounded Bold.ttf"; path = "../../../../../../Library/Fonts/Arial Rounded Bold.ttf"; sourceTree = "<group>"; };
 		811B22D423003946007425C0 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
-		811B22D62300398B007425C0 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
-		811B22D823003A02007425C0 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
+		811B22D62300398B007425C0 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
+		811B22D823003A02007425C0 /* PersonalTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTheme.swift; sourceTree = "<group>"; };
+		811B22DC230096A0007425C0 /* OrangeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTheme.swift; sourceTree = "<group>"; };
+		811B22DE230096AD007425C0 /* GreenTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenTheme.swift; sourceTree = "<group>"; };
+		811B22E023009A23007425C0 /* BlueTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTheme.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -180,8 +186,11 @@
 				811B215322FEEEE3007425C0 /* UI.swift */,
 				811B22C423002A0E007425C0 /* Themes.swift */,
 				811B22D423003946007425C0 /* ThemeProtocol.swift */,
-				811B22D62300398B007425C0 /* LightTheme.swift */,
-				811B22D823003A02007425C0 /* DarkTheme.swift */,
+				811B22D62300398B007425C0 /* DarkTheme.swift */,
+				811B22D823003A02007425C0 /* PersonalTheme.swift */,
+				811B22DC230096A0007425C0 /* OrangeTheme.swift */,
+				811B22DE230096AD007425C0 /* GreenTheme.swift */,
+				811B22E023009A23007425C0 /* BlueTheme.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -527,13 +536,15 @@
 				8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
 				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
-				811B22D923003A02007425C0 /* DarkTheme.swift in Sources */,
-				811B22D72300398B007425C0 /* LightTheme.swift in Sources */,
+				811B22D923003A02007425C0 /* PersonalTheme.swift in Sources */,
+				811B22E123009A23007425C0 /* BlueTheme.swift in Sources */,
+				811B22D72300398B007425C0 /* DarkTheme.swift in Sources */,
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */,
 				8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */,
 				811B215422FEEEE3007425C0 /* UI.swift in Sources */,
 				811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */,
+				811B22DD230096A0007425C0 /* OrangeTheme.swift in Sources */,
 				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
 				811B214622F7120A007425C0 /* UserItem.swift in Sources */,
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
@@ -546,6 +557,7 @@
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
+				811B22DF230096AD007425C0 /* GreenTheme.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
 				811B215022FDC910007425C0 /* MenuBar.swift in Sources */,

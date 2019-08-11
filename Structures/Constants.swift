@@ -17,10 +17,10 @@ struct Constants {
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
-    static let themeColours = ["Blue": ["20A4F3","10","1"], "Dark": ["453823","20","2"], "Green": ["31BC53","30","3"], "Orange": ["E07A5F","40","4"]]
+    static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme"], "Dark": ["453823","20","2","DarkTheme"], "Green": ["31BC53","30","3","GreenTheme"], "Orange": ["E07A5F","40","4","OrangeTheme"]]
 
     //Theme Unlock Levels
-    static let themeLevels = ["Blue" : 10, "Dark": 20,"Green": 30,"Orange": 40]
+    static let themeLevels = ["Blue" : BlueTheme(), "Dark": DarkTheme(),"Green": GreenTheme(),"Orange": OrangeTheme()] as [String : Any]
     
     //Alert Fields
     //Personal

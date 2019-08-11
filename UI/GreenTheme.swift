@@ -1,5 +1,5 @@
 //
-//  LightTheme.swift
+//  GreenTheme.swift
 //  Odd_Jobs_Realm
 //
 //  Created by Alan Doonan on 11/08/2019.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class LightTheme: ThemeProtocol {
+class GreenTheme: ThemeProtocol {
     var mainFontName: String = ""
     var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = UIColor.white
+    var background: UIColor = UIColor.green
     var tint: UIColor = UIColor.greenTheme
 }

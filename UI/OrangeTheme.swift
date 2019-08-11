@@ -1,5 +1,5 @@
 //
-//  LightTheme.swift
+//  OrangeTheme.swift
 //  Odd_Jobs_Realm
 //
 //  Created by Alan Doonan on 11/08/2019.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DarkTheme: ThemeProtocol {
+class OrangeTheme: ThemeProtocol {
     var mainFontName: String = ""
     var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = UIColor.black
+    var background: UIColor = UIColor.orange
     var tint: UIColor = UIColor.greenTheme
 }
