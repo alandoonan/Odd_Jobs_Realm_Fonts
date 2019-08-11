@@ -42,7 +42,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         navigationItem.leftBarButtonItems = [add,search]
         navigationItem.rightBarButtonItems = [logout,sort]
         navigationItem.title = "Personal Odd Jobs"
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
@@ -108,6 +108,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         cell.detailTextLabel?.text = ("Priority: " + item.Priority)
         cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         return cell
     }
     

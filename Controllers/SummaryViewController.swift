@@ -42,7 +42,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationItem.leftBarButtonItems = [search]
         navigationItem.rightBarButtonItems = [logout,sort]
         title = "Summary"
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
@@ -115,6 +115,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.detailTextLabel?.text = ("Priority: " + item.Priority)
         cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+
         return cell
     }
     

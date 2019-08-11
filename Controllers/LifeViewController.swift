@@ -39,8 +39,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         getHolidayData()
-        tableView.backgroundColor = UIColor.navyTheme
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = UIColor.clear
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
@@ -109,6 +108,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.detailTextLabel?.text = ("Priority: " + item.Priority)
         cell.detailTextLabel?.text = ("Date: " + String(item.HolidayDate))
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         return cell
     }
     

@@ -33,16 +33,24 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         notificationToken?.invalidate()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = "Settings"
-        addSettings()
-        tableView.backgroundColor = UIColor.navyTheme
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        tableView.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    fileprivate func addTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.allowsSelection = false
         view.addSubview(tableView)
+    }
+    
+    fileprivate func addNotificationToken() {
         notificationToken = settings.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -63,35 +71,60 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "Settings"
+        applyTheme()
+        addSettings()
+        addTableView()
+        addNotificationToken()
+    }
+    
+    @objc func switchStateDidChange(_ sender:UISwitch){
+        if (sender.isOn == true){
+            print(sender)
+            print("UISwitch state is now ON")
+            Themes.current = LightTheme()
+        }
+        else{
+            print("UISwitch state is now Off")
+            print(sender)
+            Themes.current = DarkTheme()
+        }
+        applyTheme()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    fileprivate func setDoneStatus(_ indexPath: IndexPath) {
         let item = settings[indexPath.row]
         try! realm.write {
             item.IsDone = !item.IsDone
         }
         print("Changing Table View Colour")
-        tableView.backgroundColor = UIColor().hexColor(item.hexColour)
-        //        print("Changing Personal Table View Colour")
-        //        self.personalVC.tableView.backgroundColor =  UIColor().hexColor(item.hexColour)
-        //        self.personalVC.tableView.reloadData()
-        //        self.personalVC.viewDidLoad()
-        //        print("Using Theme Struct")
-        //        Colours.navyTheme()
-        //        self.viewDidLoad()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
+        let switchView = UISwitch(frame: .zero)
         let item = settings[indexPath.row]
         cell.textLabel?.text = item.name
         cell.textLabel?.textColor = .white
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
-        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        switchView.setOn(false, animated: true)
+        switchView.tag = indexPath.row
+        cell.accessoryView = switchView
+        switchView.tintColor = Themes.current.background
+        switchView.tag = item.tag
+        switchView.addTarget(self, action: #selector(SettingsViewController.switchStateDidChange(_:)), for: .valueChanged)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -116,6 +149,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                             settingItem.name = colour.key
                             settingItem.hexColour = colour.value[0]
                             settingItem.UnlockLevel = Int(colour.value[1])!
+                            settingItem.tag = Int(colour.value[2])!
                             try! self.realm.write {
                                 self.realm.add(settingItem)
                             }

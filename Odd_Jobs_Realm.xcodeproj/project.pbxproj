@@ -18,6 +18,11 @@
 		811B21C822FF4187007425C0 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B21B922FF4186007425C0 /* settings.png */; };
 		811B21ED22FF426B007425C0 /* summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B21DE22FF426A007425C0 /* summary.png */; };
 		811B224F22FF437B007425C0 /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B221322FF436F007425C0 /* goal.png */; };
+		811B22C523002A0E007425C0 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22C423002A0E007425C0 /* Themes.swift */; };
+		811B22D123002FE0007425C0 /* Arial Rounded Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */; };
+		811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D423003946007425C0 /* ThemeProtocol.swift */; };
+		811B22D72300398B007425C0 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D62300398B007425C0 /* LightTheme.swift */; };
+		811B22D923003A02007425C0 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D823003A02007425C0 /* DarkTheme.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -86,6 +91,11 @@
 		811B21B922FF4186007425C0 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		811B21DE22FF426A007425C0 /* summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary.png; sourceTree = "<group>"; };
 		811B221322FF436F007425C0 /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
+		811B22C423002A0E007425C0 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arial Rounded Bold.ttf"; path = "../../../../../../Library/Fonts/Arial Rounded Bold.ttf"; sourceTree = "<group>"; };
+		811B22D423003946007425C0 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		811B22D62300398B007425C0 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
+		811B22D823003A02007425C0 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -164,8 +174,14 @@
 		811B214E22FDC902007425C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				811B22CE23002FAD007425C0 /* Fonts */,
+				8132C32622E2506D00EC79F2 /* Images */,
 				811B214F22FDC910007425C0 /* MenuBar.swift */,
 				811B215322FEEEE3007425C0 /* UI.swift */,
+				811B22C423002A0E007425C0 /* Themes.swift */,
+				811B22D423003946007425C0 /* ThemeProtocol.swift */,
+				811B22D62300398B007425C0 /* LightTheme.swift */,
+				811B22D823003A02007425C0 /* DarkTheme.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -181,6 +197,14 @@
 				811B216122FF3EC9007425C0 /* G.png */,
 			);
 			path = "iOS Icons";
+			sourceTree = "<group>";
+		};
+		811B22CE23002FAD007425C0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
@@ -257,7 +281,6 @@
 			children = (
 				811B214E22FDC902007425C0 /* UI */,
 				8192CCE022E8ECB1001AC3A9 /* Other */,
-				8132C32622E2506D00EC79F2 /* Images */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
 				816B8AEE22D21EB200C630B9 /* Odd_Jobs_Realm */,
@@ -408,6 +431,7 @@
 				811B224F22FF437B007425C0 /* goal.png in Resources */,
 				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
 				811B218822FF3ECA007425C0 /* P.png in Resources */,
+				811B22D123002FE0007425C0 /* Arial Rounded Bold.ttf in Resources */,
 				811B218722FF3ECA007425C0 /* L.png in Resources */,
 				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
@@ -503,6 +527,8 @@
 				8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
 				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
+				811B22D923003A02007425C0 /* DarkTheme.swift in Sources */,
+				811B22D72300398B007425C0 /* LightTheme.swift in Sources */,
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */,
 				8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */,
@@ -512,12 +538,14 @@
 				811B214622F7120A007425C0 /* UserItem.swift in Sources */,
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
 				814B51BB22D6812000102E73 /* SettingItem.swift in Sources */,
+				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,
 				816B8B0322D21FA400C630B9 /* Constants.swift in Sources */,
 				816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */,
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
+				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
 				811B215022FDC910007425C0 /* MenuBar.swift in Sources */,

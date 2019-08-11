@@ -10,6 +10,7 @@ import RealmSwift
 
 class SettingItem: Object {
     @objc dynamic var themeID: String = UUID().uuidString
+    @objc dynamic var tag: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var IsDone: Bool = false
     @objc dynamic var settingType: String = ""

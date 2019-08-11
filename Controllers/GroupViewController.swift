@@ -37,7 +37,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = UIColor.clear
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
@@ -102,6 +102,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.detailTextLabel?.text = ("Priority: " + item.Priority)
         cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         return cell
     }
     
