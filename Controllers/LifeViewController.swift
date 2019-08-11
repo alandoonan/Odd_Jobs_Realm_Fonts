@@ -199,6 +199,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func getHolidayData () {
         print("Getting Holiday Data")
         let locale = Locale.current.regionCode!
+        print(locale)
         let params = [
             "key": HolidayItem.key,
             "country": "IE",
