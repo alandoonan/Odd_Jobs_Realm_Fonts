@@ -34,20 +34,22 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         notificationToken?.invalidate()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+    fileprivate func addNavItem(_ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
         navigationItem.leftBarButtonItems = [search]
         navigationItem.rightBarButtonItems = [logout,sort]
-        title = "Summary"
+        navigationItem.title = "Summary"
+    }
+    
+    fileprivate func addTableView() {
         tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
+    }
+    
+    fileprivate func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -68,7 +70,17 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    @objc func rightBarButtonDidClick() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        addNavItem(search, logout, sort)
+        addTableView()
+        addNotificationToken()
+    }
+    
+    fileprivate func logoutAlert() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in
@@ -79,23 +91,30 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @objc func rightBarButtonDidClick() {
+        logoutAlert()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    fileprivate func isDoneUpdate(_ indexPath: IndexPath) {
         let oddJobitem = items[indexPath.row]
         try! realm.write {
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
-        //SharedFunctions.removeTask(oddJobitem)
         if oddJobitem.IsDone == true {
             scoreVC.updateScore()
             scoreVC.increaseLabel()
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        isDoneUpdate(indexPath)
+    }
+    
+    fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
         let item = items[indexPath.row]
@@ -116,18 +135,25 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
-
         return cell
     }
     
-    @objc func searchOddJobs() {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath)
+    }
+    
+    fileprivate func showMapView() {
         print("Search Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
         self.present(controller, animated: true, completion: nil)
     }
     
-    @objc func selectSortField() {
+    @objc func searchOddJobs() {
+        showMapView()
+    }
+    
+    fileprivate func rssSelectionSort() {
         print("Sort Button Pressed")
         let sortFields: [String] = ["Name", "Priority", "Occurrence"]
         var selectedNames: [String] = []
@@ -143,9 +169,12 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         menu.show(style: .push, from: self)
     }
     
-    @objc func sortOddJobs(sort:String) {
+    @objc func selectSortField() {
+        rssSelectionSort()
+    }
+    
+    fileprivate func sortTableView(_ sort: String) {
         self.items = self.items.sorted(byKeyPath: sort, ascending: true)
-        //self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: sort, ascending: true)
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -164,6 +193,10 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 fatalError("\(error)")
             }
         }
+    }
+    
+    @objc func sortOddJobs(sort:String) {
+        sortTableView(sort)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

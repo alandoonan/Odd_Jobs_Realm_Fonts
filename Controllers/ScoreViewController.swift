@@ -60,7 +60,6 @@ class ScoreViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //Score System Checks
     fileprivate func checkingScoreSystem() {
         print("Checking Scoring System.")
         if realm.objects(ScoreItem.self).count != 0
@@ -128,55 +127,87 @@ class ScoreViewController: UIViewController {
         increaseLabel()
     }
     
-    private func setupUserLabels() {
+    fileprivate func addScoreLabel() {
         view.addSubview(scoreLabel)
         scoreLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         scoreLabel.center = view.center
+    }
+    
+    fileprivate func addUserLabel() {
         view.addSubview(userLabel)
         userLabel.translatesAutoresizingMaskIntoConstraints = false
         userLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         userLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         userLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         userLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    }
+    
+    fileprivate func addLevelLabel() {
         view.addSubview(levelLabel)
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
         levelLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         levelLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         levelLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         levelLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    }
+    
+    private func setupUserLabels() {
+        addScoreLabel()
+        addUserLabel()
+        addLevelLabel()
         
     }
     
-    private func setupCircleLayers() {
+    fileprivate func addPulsatiingLayer() {
         pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: UIColor.pulsatingFillColor)
         view.layer.addSublayer(pulsatingLayer)
         animatePulsatingLayer()
+    }
+    
+    fileprivate func addTrackLayer() {
         let trackLayer = createCircleShapeLayer(strokeColor: .trackStrokeColor, fillColor: .backgroundColor)
         view.layer.addSublayer(trackLayer)
+    }
+    
+    fileprivate func addShapeLayer() {
         shapeLayer = createCircleShapeLayer(strokeColor: .outlineStrokeColor, fillColor: .clear)
         shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
         shapeLayer.strokeEnd = 0
         view.layer.addSublayer(shapeLayer)
     }
     
-    private func animatePulsatingLayer() {
-        let animation = CABasicAnimation(keyPath: "transform.scale")
+    private func setupCircleLayers() {
+        addPulsatiingLayer()
+        addTrackLayer()
+        addShapeLayer()
+    }
+    
+    fileprivate func animationSettings(_ animation: CABasicAnimation) {
         animation.toValue = 1.3
         animation.duration = 0.8
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         animation.autoreverses = true
         animation.repeatCount = Float.infinity
+    }
+    
+    private func animatePulsatingLayer() {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animationSettings(animation)
         pulsatingLayer.add(animation, forKey: "pulsing")
     }
     
-    func animateCircle() {
-        let scoreItem = realm.objects(ScoreItem.self).first
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+    fileprivate func basicAnimationSettings(_ basicAnimation: CABasicAnimation, _ scoreItem: ScoreItem?) {
         basicAnimation.fromValue = CGFloat(scoreItem!.Score - 1) / CGFloat(scoreItem!.LevelCap)
         basicAnimation.toValue = CGFloat(scoreItem!.Score) / CGFloat(scoreItem!.LevelCap)
         basicAnimation.duration = 2
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
+    }
+    
+    func animateCircle() {
+        let scoreItem = realm.objects(ScoreItem.self).first
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimationSettings(basicAnimation, scoreItem)
         shapeLayer.add(basicAnimation, forKey: "Personal")
         scoreLabel.text = String(scoreItem!.Score)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
