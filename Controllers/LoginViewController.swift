@@ -13,10 +13,8 @@ class LoginViewController: UIViewController {
     var sharedUser: String = ""
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        print("Login Button Pressed")
-        let username = emailTextField.text!
-        let password = passTextField.text!
+    
+    fileprivate func currentUserSync(_ username: String, _ password: String) {
         let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: false)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
@@ -33,15 +31,19 @@ class LoginViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         })
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        print("Login Button Pressed")
+        let username = emailTextField.text!
+        let password = passTextField.text!
+        currentUserSync(username, password)
         sharedUser = username
         UserDefaults.standard.set(username, forKey: "Name")
         print("Shared User Login VC: " + sharedUser)
     }
     
-    @IBAction func newUserButtonPressed(_ sender: Any) {
-        print("New User Button Pressed")
-        let username = emailTextField.text!
-        let password = passTextField.text!
+    fileprivate func newUserSync(_ username: String, _ password: String) {
         let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: true)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
@@ -51,6 +53,13 @@ class LoginViewController: UIViewController {
                 print(error)
             }
         })
+    }
+    
+    @IBAction func newUserButtonPressed(_ sender: Any) {
+        print("New User Button Pressed")
+        let username = emailTextField.text!
+        let password = passTextField.text!
+        newUserSync(username, password)
     }
     
     // Change Current User Password

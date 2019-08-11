@@ -35,19 +35,22 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("Search Button Pressed")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.backgroundColor = UIColor.clear
+    fileprivate func addNavItem(_ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         navigationItem.rightBarButtonItems = [logout,search]
         navigationItem.title = "Group Odd Jobs"
+    }
+    
+    fileprivate func addTableView() {
+        tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        view.addSubview(tableView)
         tableView.frame = self.view.frame
+        view.addSubview(tableView)
+    }
+    
+    fileprivate func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -68,7 +71,16 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    @objc func rightBarButtonDidClick() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        addNavItem(logout, search)
+        addTableView()
+        addNotificationToken()
+    }
+    
+    fileprivate func logoutAlert() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in
@@ -77,6 +89,10 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func rightBarButtonDidClick() {
+        logoutAlert()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,10 +106,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+    fileprivate func addTableCell(_ cell: UITableViewCell, _ item: OddJobItem) -> UITableViewCell {
         cell.selectionStyle = .none
-        let item = items[indexPath.row]
         cell.backgroundColor = UIColor.blueTheme
         cell.textLabel?.text = item.Name
         cell.tintColor = .white
@@ -106,9 +120,14 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    @objc func addButtonDidClick() {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        let item = items[indexPath.row]
+        return addTableCell(cell, item)
+    }
+    
+    fileprivate func addAlert() {
         let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-        
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
             let oddJobName = alertController.textFields![0] as UITextField
@@ -134,6 +153,10 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             oddJobOccurrence.placeholder = "Odd Job Occurrence"
         })
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func addButtonDidClick() {
+        addAlert()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

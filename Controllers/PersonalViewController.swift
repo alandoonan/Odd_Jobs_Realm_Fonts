@@ -33,22 +33,22 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         notificationToken?.invalidate()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        navigationItem.leftBarButtonItems = [add,search]
-        navigationItem.rightBarButtonItems = [logout,sort]
-        navigationItem.title = "Personal Odd Jobs"
+    fileprivate func addTableView() {
         tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.addSubview(tableView)
-        
+    }
+    
+    fileprivate func addNavBar(_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
+        navigationItem.leftBarButtonItems = [add,search]
+        navigationItem.rightBarButtonItems = [logout,sort]
+        navigationItem.title = "Personal Odd Jobs"
+    }
+    
+    fileprivate func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -67,6 +67,17 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
                 fatalError("\(error)")
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        addNavBar(add, search, logout, sort)
+        addTableView()
+        addNotificationToken()
     }
     
     @objc func rightBarButtonDidClick() {
@@ -89,14 +100,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         try! realm.write {
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
-        //SharedFunctions.removeTask(oddJobitem)
         if oddJobitem.IsDone == true {
             scoreVC.updateScore()
             scoreVC.increaseLabel()
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
         let item = items[indexPath.row]
@@ -112,6 +122,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath)
+    }
+    
     @objc func searchOddJobs() {
         print("Search Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -119,25 +133,30 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(controller, animated: true, completion: nil)
     }
     
-    @objc func selectSortField() {
-        print("Sort Button Pressed")
-        let sortFields: [String] = ["Name", "Priority", "Occurrence"]
+    fileprivate func rssSelectionMenuSort() {
         var selectedNames: [String] = []
-        let menu = RSSelectionMenu(dataSource: sortFields) { (cell, name, indexPath) in
+        let menu = RSSelectionMenu(dataSource: Constants.sortFields) { (cell, name, indexPath) in
             cell.textLabel?.text = name
             cell.textLabel?.textColor = .white
             cell.backgroundColor = UIColor.navyTheme
+            
         }
         menu.setSelectedItems(items: selectedNames) { (name, index, selected, selectedItems) in
             selectedNames = selectedItems
             self.sortOddJobs(sort: String(selectedItems[0]))
         }
+        
+        
         menu.show(style: .push, from: self)
+    }
+    
+    @objc func selectSortField() {
+        print("Sort Button Pressed")
+        rssSelectionMenuSort()
     }
     
     @objc func sortOddJobs(sort:String) {
         self.items = self.items.sorted(byKeyPath: sort, ascending: true)
-        //self.items = realm.objects(OddJobItem.self).sorted(byKeyPath: sort, ascending: true)
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -157,23 +176,19 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    @objc func addButtonDidClick() {
-        
-        //Alert
+    fileprivate func personalAddAlert() {
         let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
             let oddJobName = alertController.textFields![0] as UITextField
             let oddJobPriority = alertController.textFields![1] as UITextField
             let oddJobOccurrence = alertController.textFields![2] as UITextField
-            //        let oddJobLongitude = alertController.textFields![4] as UITextField
-            //        let oddJobLatitude = alertController.textFields![5] as UITextField
-            
-            //Realm
+            let oddJobLocation = alertController.textFields![3] as UITextField
             let item = OddJobItem()
             item.Name = oddJobName.text ?? ""
             item.Priority = oddJobPriority.text ?? ""
             item.Occurrence = oddJobOccurrence.text ?? ""
+            item.Location = oddJobLocation.text ?? ""
             item.Longitude = -7.386739
             item.Latitude = 53.322185
             item.Category = "Personal"
@@ -189,6 +204,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             })
         }
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func addButtonDidClick() {
+        personalAddAlert()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

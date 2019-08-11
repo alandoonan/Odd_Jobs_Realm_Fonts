@@ -31,7 +31,7 @@ struct Constants {
     static let lifeAlertFields = ["Odd Job Name","Odd Job Occurrence","Life Area"]
 
     //Sort Fields
-    let sortFields: [String] = ["Name", "Priority", "Occurrence"]
+    static let sortFields: [String] = ["Name", "Priority", "Occurrence"]
     
     //List Types
     static let listTypes = ["Group","Life","Personal"]

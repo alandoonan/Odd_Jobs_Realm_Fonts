@@ -20,7 +20,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var notificationToken: NotificationToken?
     let calendar = Calendar.current
     let date = Date()
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -36,20 +36,16 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         notificationToken?.invalidate()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        getHolidayData()
+    fileprivate func addTableView() {
         tableView.backgroundColor = UIColor.clear
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        navigationItem.rightBarButtonItems = [logout,search]
-        navigationItem.title = "Life Odd Jobs"
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        view.addSubview(tableView)
         tableView.frame = self.view.frame
+        view.addSubview(tableView)
+    }
+    
+    fileprivate func         addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -68,6 +64,22 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 fatalError("\(error)")
             }
         }
+    }
+    
+    fileprivate func addNavItem(_ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        navigationItem.rightBarButtonItems = [logout,search]
+        navigationItem.title = "Life Odd Jobs"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        getHolidayData()
+        addNavItem(logout, search)
+        addTableView()
+        addNotificationToken()
     }
     
     @objc func rightBarButtonDidClick() {
@@ -96,10 +108,9 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("Search Button Pressed")
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    fileprivate func addTableCell(_ tableView: UITableView, _ item: OddJobItem) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
-        let item = items[indexPath.row]
         cell.textLabel?.text = item.Name
         cell.backgroundColor = UIColor.greenTheme
         cell.tintColor = .white
@@ -112,9 +123,13 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    @objc func addButtonDidClick() {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.row]
+        return addTableCell(tableView, item)
+    }
+    
+    fileprivate func addAlert() {
         let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-        
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
             let oddJobName = alertController.textFields![0] as UITextField
@@ -142,6 +157,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @objc func addButtonDidClick() {
+        addAlert()
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let item = items[indexPath.row]
@@ -155,7 +174,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
          Create life tasks based on holiday data pulled from
          Holiday API. If data already exists in users list ensure
          it is not duplicated
-        */
+         */
         print("Adding Holiday Data to Life Lists")
         for holiday in holidayDictionary.sorted(by: { $0.1 < $1.1 }) {
             print(holiday)
