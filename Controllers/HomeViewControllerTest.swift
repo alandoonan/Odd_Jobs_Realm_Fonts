@@ -14,7 +14,7 @@ class HomeControllerTest: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.navyTheme
         configureNavigationBar()
     }
         
@@ -23,8 +23,9 @@ class HomeControllerTest: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationController?.navigationBar.barTintColor = .darkGray
+        navigationController?.navigationBar.barTintColor = UIColor.navyTheme
         navigationController?.navigationBar.barStyle = .black
+        navigationController?.view.backgroundColor = UIColor.navyTheme
         
         navigationItem.title = "Odd Jobs"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenuToggle))

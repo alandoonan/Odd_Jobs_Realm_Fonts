@@ -35,14 +35,15 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("Search Button Pressed")
     }
     
-    fileprivate func addNavItem(_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
+    fileprivate func addNavItem(_ add: UIBarButtonItem,_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        navigationItem.rightBarButtonItems = [sideBar, logout,search]
+        //navigationItem.rightBarButtonItems = [sideBar] //, logout,search
+        navigationItem.leftBarButtonItems = [sideBar, add] //, logout,search
         navigationItem.title = "Group Odd Jobs"
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -76,7 +77,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addNavItem(sideBar, logout, search)
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        addNavItem(add, sideBar, logout, search)
         addTableView()
         addNotificationToken()
     }

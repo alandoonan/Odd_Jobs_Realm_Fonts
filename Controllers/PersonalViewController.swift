@@ -37,7 +37,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
@@ -46,8 +46,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     fileprivate func addNavBar(_ sidebar: UIBarButtonItem,_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
-        navigationItem.leftBarButtonItems = [sidebar, add,search]
-        navigationItem.rightBarButtonItems = [logout,sort]
+        navigationItem.leftBarButtonItems = [sidebar, add] //, add ,search
+        navigationItem.rightBarButtonItems = [logout] //,sort
         navigationItem.title = "Personal Odd Jobs"
     }
     

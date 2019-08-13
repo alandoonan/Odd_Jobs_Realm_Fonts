@@ -42,7 +42,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame

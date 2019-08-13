@@ -37,7 +37,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.navyTheme
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
