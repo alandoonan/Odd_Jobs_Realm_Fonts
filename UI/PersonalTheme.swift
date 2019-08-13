@@ -11,6 +11,6 @@ class PersonalTheme: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = UIColor.navyTheme
+    var background: UIColor = UIColor.greenTheme
     var tint: UIColor = UIColor.greenTheme
 }

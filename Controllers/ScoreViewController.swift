@@ -124,7 +124,7 @@ class ScoreViewController: UIViewController {
         setupCircleLayers()
         //animateCircle()
         setupUserLabels()
-        increaseLabel()
+        autoRefreshScores(scoreCategory: "Personal")
     }
     
     fileprivate func addScoreLabel() {
@@ -217,13 +217,13 @@ class ScoreViewController: UIViewController {
     /*
      Constantly check for updates to scores
     */
-    func increaseLabel() {
-        let scoreItem = realm.objects(ScoreItem.self).first
+    func autoRefreshScores(scoreCategory:String) {
+        let scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", scoreCategory)
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             if self.scoreActive {
-                self.scoreLabel.text = "\(scoreItem!.Score)"
-                self.levelLabel.text = "Level: " + "\(scoreItem!.Level)"
-                self.increaseLabel()
+                self.scoreLabel.text = "\(scoreItem[0].Score)"
+                self.levelLabel.text = "Level: " + "\(scoreItem[0].Level)"
+                self.autoRefreshScores(scoreCategory: scoreCategory)
                 self.animateCircle()
             }
         }

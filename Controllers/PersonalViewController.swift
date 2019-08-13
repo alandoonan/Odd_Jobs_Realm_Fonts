@@ -17,6 +17,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     var scoreVC = ScoreViewController()
     let tableView = UITableView()
     var notificationToken: NotificationToken?
+    var scoreCateogry = "Personal"
+    var delegate: HomeControllerDelegate?
+
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -42,8 +45,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         view.addSubview(tableView)
     }
     
-    fileprivate func addNavBar(_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
-        navigationItem.leftBarButtonItems = [add,search]
+    fileprivate func addNavBar(_ sidebar: UIBarButtonItem,_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
+        navigationItem.leftBarButtonItems = [sidebar, add,search]
         navigationItem.rightBarButtonItems = [logout,sort]
         navigationItem.title = "Personal Odd Jobs"
     }
@@ -75,7 +78,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        addNavBar(add, search, logout, sort)
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        addNavBar(sideBar, add, search, logout, sort)
         addTableView()
         addNotificationToken()
     }
@@ -102,7 +106,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
         if oddJobitem.IsDone == true {
             scoreVC.updateScore()
-            scoreVC.increaseLabel()
+            scoreVC.autoRefreshScores(scoreCategory: scoreCateogry)
         }
     }
     
@@ -218,7 +222,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func sideMenu () {
-        print("Side Menu")
+    @objc func handleDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helper Functions
+    
+    func configureUI() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
     }
 }

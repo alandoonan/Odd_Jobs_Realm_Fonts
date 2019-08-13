@@ -11,7 +11,7 @@ import UIKit
 class BlueTheme: ThemeProtocol {
     var mainFontName: String = ""
     var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = UIColor.blue
+    var background: UIColor = UIColor.blueTheme
     var tint: UIColor = UIColor.greenTheme
 }
 

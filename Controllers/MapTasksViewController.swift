@@ -10,7 +10,6 @@ import MapKit
 import RealmSwift
 
 class MapTasksViewController: UIViewController {
-    
     let initialLocation = CLLocation(latitude: 53.322065, longitude: -6.386767)
     let searchRadius: CLLocationDistance = 2000
     

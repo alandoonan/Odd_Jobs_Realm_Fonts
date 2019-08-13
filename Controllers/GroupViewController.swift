@@ -35,9 +35,9 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("Search Button Pressed")
     }
     
-    fileprivate func addNavItem(_ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
+    fileprivate func addNavItem(_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        navigationItem.rightBarButtonItems = [logout,search]
+        navigationItem.rightBarButtonItems = [sideBar, logout,search]
         navigationItem.title = "Group Odd Jobs"
     }
     
@@ -75,7 +75,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        addNavItem(logout, search)
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        addNavItem(sideBar, logout, search)
         addTableView()
         addNotificationToken()
     }
@@ -165,5 +166,21 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         try! realm.write {
             realm.delete(item)
         }
+    }
+    @objc func handleDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helper Functions
+    
+    func configureUI() {
+        view.backgroundColor = .white
+        
+        navigationController?.navigationBar.barTintColor = .darkGray
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Settings"
+        navigationController?.navigationBar.barStyle = .black
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
     }
 }

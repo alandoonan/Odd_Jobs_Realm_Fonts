@@ -18,6 +18,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var scoreVC = ScoreViewController()
     let tableView = UITableView()
     var notificationToken: NotificationToken?
+    var scoreCategory = "Personal"
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -106,7 +107,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         if oddJobitem.IsDone == true {
             scoreVC.updateScore()
-            scoreVC.increaseLabel()
+            scoreVC.autoRefreshScores(scoreCategory: scoreCategory)
         }
     }
     

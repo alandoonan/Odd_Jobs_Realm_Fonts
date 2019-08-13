@@ -33,6 +33,25 @@ class LoginViewController: UIViewController {
         })
     }
     
+//    fileprivate func currentUserSync(_ username: String, _ password: String) {
+//        let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: false)
+//        SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
+//            if let _ = user {
+//                self?.navigationController?.pushViewController(SideBarController(), animated: true)
+//                print(username + " has logged in with password " + password)
+//                self!.transition()
+//            } else if let error = err {
+//                print("Error Logging In.")
+//                print(error)
+//                self?.passTextField.shake()
+//                let alertController = UIAlertController(title: "Oops!", message: "Incorrect username or password. Try again.", preferredStyle: .alert)
+//                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                alertController.addAction(defaultAction)
+//                self?.present(alertController, animated: true, completion: nil)
+//            }
+//        })
+//    }
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
         print("Login Button Pressed")
         let username = emailTextField.text!
@@ -123,8 +142,13 @@ class LoginViewController: UIViewController {
         print("Shared User Login VC: " + sharedUser)
 }
     
+//    func transition() {
+//        let homeVC:HomeViewController = HomeViewController()
+//        self.present(homeVC, animated: true, completion: nil)
+//    }
+    
     func transition() {
-        let homeVC:HomeViewController = HomeViewController()
+        let homeVC:SideBarController    = SideBarController()
         self.present(homeVC, animated: true, completion: nil)
     }
 }

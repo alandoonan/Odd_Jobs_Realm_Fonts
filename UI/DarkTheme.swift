@@ -11,6 +11,6 @@ import UIKit
 class DarkTheme: ThemeProtocol {
     var mainFontName: String = ""
     var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = UIColor.black
+    var background: UIColor = UIColor.darkTheme
     var tint: UIColor = UIColor.greenTheme
 }
