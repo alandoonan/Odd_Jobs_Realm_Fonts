@@ -37,13 +37,13 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     fileprivate func addNavItem(_ add: UIBarButtonItem,_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        //navigationItem.rightBarButtonItems = [sideBar] //, logout,search
+        navigationItem.rightBarButtonItems = [logout] //, logout,search
         navigationItem.leftBarButtonItems = [sideBar, add] //, logout,search
         navigationItem.title = "Group Odd Jobs"
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = Themes.current.background
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -168,21 +168,5 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         try! realm.write {
             realm.delete(item)
         }
-    }
-    @objc func handleDismiss() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Helper Functions
-    
-    func configureUI() {
-        view.backgroundColor = .white
-        
-        navigationController?.navigationBar.barTintColor = .darkGray
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Settings"
-        navigationController?.navigationBar.barStyle = .black
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
     }
 }

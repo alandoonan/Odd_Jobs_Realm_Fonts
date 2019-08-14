@@ -192,17 +192,11 @@
 		811B214E22FDC902007425C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				81208AC42304716300F6548E /* Themes */,
 				811B22CE23002FAD007425C0 /* Fonts */,
 				8132C32622E2506D00EC79F2 /* Images */,
 				811B214F22FDC910007425C0 /* MenuBar.swift */,
 				811B215322FEEEE3007425C0 /* UI.swift */,
-				811B22C423002A0E007425C0 /* Themes.swift */,
-				811B22D423003946007425C0 /* ThemeProtocol.swift */,
-				811B22D62300398B007425C0 /* DarkTheme.swift */,
-				811B22D823003A02007425C0 /* PersonalTheme.swift */,
-				811B22DC230096A0007425C0 /* OrangeTheme.swift */,
-				811B22DE230096AD007425C0 /* GreenTheme.swift */,
-				811B22E023009A23007425C0 /* BlueTheme.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -250,6 +244,20 @@
 				81208ABE2303392900F6548E /* MenuOptionCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		81208AC42304716300F6548E /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				811B22C423002A0E007425C0 /* Themes.swift */,
+				811B22D423003946007425C0 /* ThemeProtocol.swift */,
+				811B22D62300398B007425C0 /* DarkTheme.swift */,
+				811B22D823003A02007425C0 /* PersonalTheme.swift */,
+				811B22DC230096A0007425C0 /* OrangeTheme.swift */,
+				811B22DE230096AD007425C0 /* GreenTheme.swift */,
+				811B22E023009A23007425C0 /* BlueTheme.swift */,
+			);
+			path = Themes;
 			sourceTree = "<group>";
 		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
@@ -377,16 +385,16 @@
 		816B8B0622D21FC900C630B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
+				8131015922F48B2800420AFE /* LoginViewController.swift */,
 				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
-				8128598822D5059200F1A406 /* HomeViewController.swift */,
+				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 				814B51B822D67E7500102E73 /* SettingsViewController.swift */,
+				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
+				8128598822D5059200F1A406 /* HomeViewController.swift */,
 				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
-				8131015922F48B2800420AFE /* LoginViewController.swift */,
-				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 				81208AAE2303312600F6548E /* SideBarController.swift */,
 				81208AB0230331F800F6548E /* HomeViewControllerTest.swift */,
 				81208AC02303397E00F6548E /* MenuController.swift */,

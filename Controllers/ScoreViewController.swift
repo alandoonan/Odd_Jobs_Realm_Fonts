@@ -114,17 +114,35 @@ class ScoreViewController: UIViewController {
         return layer
     }
     
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem, _ scores: UIBarButtonItem, _ logout: UIBarButtonItem) {
+        navigationItem.rightBarButtonItems = [logout,scores]
+        navigationItem.leftBarButtonItems = [sideBar]
+        navigationItem.title = "Scores"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         let scores = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(updateScore))
-        navigationItem.rightBarButtonItems = [scores]
-        navigationItem.title = "Scores"
-        view.backgroundColor = UIColor.navyTheme
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        view.backgroundColor = Themes.current.background
+        addNavBar(sideBar, scores, logout)
         checkingScoreSystem()
         setupCircleLayers()
         //animateCircle()
         setupUserLabels()
         autoRefreshScores(scoreCategory: "Personal")
+    }
+    
+    @objc func rightBarButtonDidClick() {
+        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
+        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
+            alert -> Void in
+            SyncUser.current?.logOut()
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     fileprivate func addScoreLabel() {

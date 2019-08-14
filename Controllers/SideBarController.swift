@@ -25,7 +25,7 @@ class SideBarController: UIViewController {
         // Navigation bar appearance
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.tintColor = UIColor.orangeTheme
-        navigationAppearance.barTintColor = UIColor.navyTheme
+        navigationAppearance.barTintColor = Themes.current.background
         navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     

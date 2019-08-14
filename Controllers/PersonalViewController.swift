@@ -37,7 +37,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = Themes.current.background
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
@@ -45,8 +45,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         view.addSubview(tableView)
     }
     
-    fileprivate func addNavBar(_ sidebar: UIBarButtonItem,_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
-        navigationItem.leftBarButtonItems = [sidebar, add] //, add ,search
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
+        navigationItem.leftBarButtonItems = [sideBar, add] //, add ,search
         navigationItem.rightBarButtonItems = [logout] //,sort
         navigationItem.title = "Personal Odd Jobs"
     }
@@ -142,8 +142,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let menu = RSSelectionMenu(dataSource: Constants.sortFields) { (cell, name, indexPath) in
             cell.textLabel?.text = name
             cell.textLabel?.textColor = .white
-            cell.backgroundColor = UIColor.navyTheme
-            
+            cell.backgroundColor = Themes.current.background
         }
         menu.setSelectedItems(items: selectedNames) { (name, index, selected, selectedItems) in
             selectedNames = selectedItems
@@ -220,15 +219,5 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         try! realm.write {
             realm.delete(item)
         }
-    }
-    
-    @objc func handleDismiss() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Helper Functions
-    
-    func configureUI() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
     }
 }

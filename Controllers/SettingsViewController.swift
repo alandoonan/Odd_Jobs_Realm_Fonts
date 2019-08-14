@@ -71,9 +71,29 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ logout: UIBarButtonItem, title: String) {
+        navigationItem.leftBarButtonItems = [sideBar] //, add ,search
+        navigationItem.rightBarButtonItems = [logout] //,sort
+        navigationItem.title = title
+    }
+    
+    @objc func rightBarButtonDidClick() {
+        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
+        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
+            alert -> Void in
+            SyncUser.current?.logOut()
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        addNavBar(sideBar, logout, title: "Settings")
         applyTheme()
         addSettings()
         addTableView()
@@ -87,7 +107,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     print(colour1.value[3])
                     for colour2 in Constants.themeLevels {
                         if colour2.key == colour1.key {
-                            Themes.current = colour2.value as! ThemeProtocol
+                            print("Changing colour")
+                            //Change colours here
+                            //Themes.current = colour2.value as! ThemeProtocol
                         }
                     }
                 }
@@ -95,7 +117,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         else{
             print("UISwitch state is now Off")
-            Themes.current = PersonalTheme()
+            Themes.current = BlueTheme()
         }
         applyTheme()
     }

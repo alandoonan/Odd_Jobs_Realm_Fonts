@@ -33,3 +33,10 @@ extension UITextField {
     }
 }
 
+extension UIViewController {
+    
+    @objc func handleDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}

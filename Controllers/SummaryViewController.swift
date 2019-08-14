@@ -35,14 +35,14 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         notificationToken?.invalidate()
     }
     
-    fileprivate func addNavItem(_ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
-        navigationItem.leftBarButtonItems = [search]
-        navigationItem.rightBarButtonItems = [logout,sort]
+    fileprivate func addNavItem(_ sideBar: UIBarButtonItem,_ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
+        navigationItem.leftBarButtonItems = [sideBar]
+        navigationItem.rightBarButtonItems = [logout]
         navigationItem.title = "Summary"
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = Themes.current.background
         tableView.dataSource = self
         tableView.delegate = self
         tableView.frame = self.view.frame
@@ -76,7 +76,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        addNavItem(search, logout, sort)
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        addNavItem(sideBar, search, logout, sort)
         addTableView()
         addNotificationToken()
     }
@@ -161,7 +162,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let menu = RSSelectionMenu(dataSource: sortFields) { (cell, name, indexPath) in
             cell.textLabel?.text = name
             cell.textLabel?.textColor = .white
-            cell.backgroundColor = UIColor.navyTheme
+            cell.backgroundColor = Themes.current.background
         }
         menu.setSelectedItems(items: selectedNames) { (name, index, selected, selectedItems) in
             selectedNames = selectedItems

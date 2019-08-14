@@ -22,7 +22,7 @@ class HomeViewController: UITabBarController {
         // Navigation bar appearance
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.tintColor = UIColor.orangeTheme
-        navigationAppearance.barTintColor = UIColor.navyTheme
+        navigationAppearance.barTintColor = Themes.current.background
         navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     
@@ -30,7 +30,7 @@ class HomeViewController: UITabBarController {
         // Tab bar appearance
         let tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.tintColor = UIColor.orangeTheme
-        tabBarAppearance.barTintColor = UIColor.navyTheme
+        tabBarAppearance.barTintColor = Themes.current.background
     }
     
     fileprivate func setupPersonalTab(_ personalTab: UINavigationController) {
@@ -64,7 +64,7 @@ class HomeViewController: UITabBarController {
     }
     
     fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController, _ settingsTab: UINavigationController, _ scoreTab: UINavigationController) {
-        self.view.backgroundColor = UIColor.navyTheme
+        self.view.backgroundColor = Themes.current.background
         viewControllers = [groupTab,personalTab,lifeTab,summaryTab,settingsTab,scoreTab]
     }
     

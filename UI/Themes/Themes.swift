@@ -14,5 +14,5 @@ class Themes {
 //    static let accent = UIColor.orangeTheme
 //    static let background = UIColor.navyTheme
 //    static let tint = UIColor.greenTheme
-    static var current: ThemeProtocol  = PersonalTheme()
+    static var current: ThemeProtocol  = BlueTheme()
 }

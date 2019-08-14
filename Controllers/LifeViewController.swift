@@ -37,7 +37,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     fileprivate func addTableView() {
-        tableView.backgroundColor = UIColor.navyTheme
+        tableView.backgroundColor = Themes.current.background
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -66,9 +66,9 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    fileprivate func addNavItem(_ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        navigationItem.rightBarButtonItems = [logout,search]
+    fileprivate func addNavItem( _ sideBar: UIBarButtonItem, _ add: UIBarButtonItem, _ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
+        navigationItem.rightBarButtonItems = [logout]
+        navigationItem.leftBarButtonItems = [sideBar, add]
         navigationItem.title = "Life Odd Jobs"
     }
     
@@ -76,8 +76,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
-        addNavItem(logout, search)
+        addNavItem(sideBar,add, logout, search)
         addTableView()
         addNotificationToken()
     }
@@ -230,7 +232,4 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let predicate = NSPredicate(format: "Name = %@", Name)
         return realm.objects(OddJobItem.self).filter(predicate)
     }
-    
-    
-    
 }
