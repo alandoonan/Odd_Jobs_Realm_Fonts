@@ -10,13 +10,10 @@ import UIKit
 import Foundation
 
 class HomeViewController: UITabBarController {
-    let scoreVC = ScoreViewController()
     let personalTab = UINavigationController(rootViewController: PersonalViewController())
     let groupTab = UINavigationController(rootViewController: GroupViewController())
     let lifeTab = UINavigationController(rootViewController: LifeViewController())
     let summaryTab = UINavigationController(rootViewController: SummaryViewController())
-    let settingsTab = UINavigationController(rootViewController: SettingsViewController())
-    let scoreTab = UINavigationController(rootViewController: ScoreViewController())
     
     fileprivate func setupNavBar() {
         // Navigation bar appearance
@@ -53,19 +50,9 @@ class HomeViewController: UITabBarController {
         summaryTab.title = "Summary"
     }
     
-    fileprivate func setupSettingsTab(_ settingsTab: UINavigationController) {
-        settingsTab.tabBarItem.image = UIImage(named: "settings.png")
-        settingsTab.title = "Settings"
-    }
-    
-    fileprivate func setupScoreTab(_ scoreTab: UINavigationController) {
-        scoreTab.tabBarItem.image = UIImage(named: "goal.png")
-        scoreTab.title = "Score"
-    }
-    
-    fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController, _ settingsTab: UINavigationController, _ scoreTab: UINavigationController) {
+    fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController) {
         self.view.backgroundColor = Themes.current.background
-        viewControllers = [groupTab,personalTab,lifeTab,summaryTab,settingsTab,scoreTab]
+        viewControllers = [groupTab,personalTab,lifeTab,summaryTab]
     }
     
     override func viewDidLoad() {
@@ -76,9 +63,7 @@ class HomeViewController: UITabBarController {
         setupGroupTab(groupTab)
         setupLifeTab(lifeTab)
         setupSummaryTab(summaryTab)
-        setupSettingsTab(settingsTab)
-        setupScoreTab(scoreTab)
-        setupView(groupTab, personalTab, lifeTab, summaryTab, settingsTab, scoreTab)
+        setupView(groupTab, personalTab, lifeTab, summaryTab)
     }
     
     @objc func searchOddJobs () {
@@ -90,7 +75,6 @@ class HomeViewController: UITabBarController {
         print("Tab Bar Touch Test")
         if tabBar.selectedItem?.title == "Score" {
             print("Score")
-            scoreVC.viewDidLoad()
         }
     }
 }

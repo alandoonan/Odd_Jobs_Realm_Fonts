@@ -32,6 +32,7 @@
 		81208ABC2303386C00F6548E /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ABB2303386C00F6548E /* MenuOption.swift */; };
 		81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ABE2303392900F6548E /* MenuOptionCell.swift */; };
 		81208AC12303397E00F6548E /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC02303397E00F6548E /* MenuController.swift */; };
+		81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -114,6 +115,7 @@
 		81208ABB2303386C00F6548E /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		81208ABE2303392900F6548E /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		81208AC02303397E00F6548E /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen_NO_CR.png; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		8132C32722E2506D00EC79F2 /* Logo */ = {
 			isa = PBXGroup;
 			children = (
+				81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */,
 				8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */,
 				8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */,
 				8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */,
@@ -498,6 +501,7 @@
 				8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */,
 				8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */,
 				8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */,
+				81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */,
 				8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */,
 				8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */,
 				811B21C822FF4187007425C0 /* settings.png in Resources */,

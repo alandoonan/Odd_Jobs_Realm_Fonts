@@ -25,12 +25,10 @@ class MenuController: UIViewController {
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.register(MenuOptionCell.self, forCellReuseIdentifier: reuseIdentifer)
         tableView.backgroundColor = UIColor.orangeTheme
         tableView.separatorStyle = .none
         tableView.rowHeight = 80
-        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -42,7 +40,7 @@ class MenuController: UIViewController {
 
 extension MenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

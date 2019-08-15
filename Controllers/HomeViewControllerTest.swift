@@ -21,12 +21,20 @@ class HomeControllerTest: UIViewController {
         delegate?.handleMenuToggle(forMenuOption: nil)
     }
     
+    fileprivate func createHomeBackGround() {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "Launchscreen_NO_CR.png")?.draw(in: self.view.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
+    }
+    
     func configureNavigationBar() {
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.barStyle = .black
         navigationController?.view.backgroundColor = Themes.current.background
         navigationItem.title = "Odd Jobs"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenuToggle))
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "iPhone App 60pt@2x.png")!)
+        createHomeBackGround()
     }
 }

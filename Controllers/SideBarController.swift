@@ -11,12 +11,6 @@ import UIKit
 class SideBarController: UIViewController {
     
     let scoreVC = ScoreViewController()
-    let personalTab = UINavigationController(rootViewController: PersonalViewController())
-    let groupTab = UINavigationController(rootViewController: GroupViewController())
-    let lifeTab = UINavigationController(rootViewController: LifeViewController())
-    let summaryTab = UINavigationController(rootViewController: SummaryViewController())
-    let settingsTab = UINavigationController(rootViewController: SettingsViewController())
-    let scoreTab = UINavigationController(rootViewController: ScoreViewController())
     var menuController: MenuController!
     var centerController: UIViewController!
     var isExpanded = false
@@ -51,13 +45,10 @@ class SideBarController: UIViewController {
         return isExpanded
     }
     
-    // MARK: - Handlers
-    
     func configureHomeController() {
         let homeController = HomeControllerTest()
         homeController.delegate = self
         centerController = UINavigationController(rootViewController: homeController)
-        
         view.addSubview(centerController.view)
         addChild(centerController)
         centerController.didMove(toParent: self)
@@ -91,35 +82,26 @@ class SideBarController: UIViewController {
                 self.didSelectMenuOption(menuOption: menuOption)
             }
         }
-        
         animateStatusBar()
     }
     
     func didSelectMenuOption(menuOption: MenuOption) {
         switch menuOption {
-        case .Personal:
-            print("Personal")
-            let controller = PersonalViewController()
+        case .Lists:
+            print("Lists")
+            let tabBar = HomeViewController()
+            present(tabBar, animated: true, completion: nil)
+        case .Score:
+            print("Score")
+            let controller = ScoreViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .Group:
-            print("Group")
-            let controller = GroupViewController()
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .Life:
-            print("Life")
-            let controller = LifeViewController()
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .Summary:
-            print("Summary")
-            let controller = SummaryViewController()
+        case .Themes:
+            print("Themes")
+            let controller = SettingsViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .Settings:
             print("Settings")
             let controller = SettingsViewController()
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .Score:
-            print("Score")
-            let controller = ScoreViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         }
     }
@@ -136,7 +118,6 @@ extension SideBarController: HomeControllerDelegate {
         if !isExpanded {
             configureMenuController()
         }
-        
         isExpanded = !isExpanded
         animatePanel(shouldExpand: isExpanded, menuOption: menuOption)
     }

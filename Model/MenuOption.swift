@@ -10,32 +10,27 @@ import UIKit
 
 enum MenuOption: Int, CustomStringConvertible {
     
-    case Personal
-    case Group
-    case Life
-    case Summary
-    case Settings
+    case Lists
     case Score
+    case Themes
+    case Settings
     
     var description: String {
         switch self {
-        case .Personal: return "Personal"
-        case .Group: return "Group"
-        case .Life: return "Life"
-        case .Summary: return "Summary"
-        case .Settings: return "Settings"
+        case .Lists: return "Lists"
         case .Score: return "Score"
+        case .Themes: return "Themes"
+        case .Settings: return "Settings"
         }
     }
     
     var image: UIImage {
         switch self {
-        case .Personal: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Group: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Life: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Summary: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Settings: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .Lists: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Score: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .Themes: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .Settings: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+
         }
     }
 }
