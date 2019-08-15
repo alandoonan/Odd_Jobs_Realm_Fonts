@@ -14,14 +14,29 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
+    fileprivate func storeUserInformation(username: String) {
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let realm = try! Realm(configuration: config!)
+        print(realm)
+        let item = UserItem()
+        item.UserID = (SyncUser.current?.identity!)!
+        item.Name = username
+        item.Category = "User"
+        try! realm.write {
+            realm.add(item)
+        }
+    }
+    
     fileprivate func currentUserSync(_ username: String, _ password: String) {
         let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: false)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
+                self!.storeUserInformation(username: username)
                 self!.transition()
-            } else if let error = err {
+            }
+            else if let error = err {
                 print("Error Logging In.")
                 print(error)
                 self?.passTextField.shake()
@@ -32,25 +47,6 @@ class LoginViewController: UIViewController {
             }
         })
     }
-    
-//    fileprivate func currentUserSync(_ username: String, _ password: String) {
-//        let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: false)
-//        SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
-//            if let _ = user {
-//                self?.navigationController?.pushViewController(SideBarController(), animated: true)
-//                print(username + " has logged in with password " + password)
-//                self!.transition()
-//            } else if let error = err {
-//                print("Error Logging In.")
-//                print(error)
-//                self?.passTextField.shake()
-//                let alertController = UIAlertController(title: "Oops!", message: "Incorrect username or password. Try again.", preferredStyle: .alert)
-//                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                alertController.addAction(defaultAction)
-//                self?.present(alertController, animated: true, completion: nil)
-//            }
-//        })
-//    }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         print("Login Button Pressed")
@@ -68,6 +64,8 @@ class LoginViewController: UIViewController {
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has been created with password " + password)
+                self!.storeUserInformation(username: username)
+                self!.transition()
             } else if let error = err {
                 print(error)
             }

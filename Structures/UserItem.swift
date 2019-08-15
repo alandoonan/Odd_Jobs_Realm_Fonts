@@ -10,11 +10,12 @@ import RealmSwift
 
 class UserItem: Object {
     
-    @objc dynamic var userID: String = UUID().uuidString
+    @objc dynamic var UserTag: String = UUID().uuidString
+    @objc dynamic var UserID: String = ""
     @objc dynamic var Name: String = ""
-    @objc dynamic var Category: String = "User"
+    @objc dynamic var Category: String = ""
 
     override static func primaryKey() -> String? {
-        return "userID"
+        return "UserTag"
 }
 }

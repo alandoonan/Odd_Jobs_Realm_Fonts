@@ -10,5 +10,7 @@ target 'Odd_Jobs_Realm' do
   pod 'RSSelectionMenu'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
+  pod 'RealmSearchViewController'
+
 #  pod 'MMDrawerController'
 end

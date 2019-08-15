@@ -8,9 +8,14 @@
 
 import UIKit
 import RealmSwift
+import RealmSearchViewController
 import RSSelectionMenu
-class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate
 {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("Search Results Updating")
+    }
+    
     var realm: Realm
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
@@ -19,8 +24,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     var notificationToken: NotificationToken?
     var scoreCateogry = "Personal"
     var delegate: HomeControllerDelegate?
+    var filteredTableData = [String]()
+    var resultSearchController = UISearchController()
+    var animalArray = [OddJobItem]()
+    var currentAnimalArray = [OddJobItem]() //update table
+    var searchBar = UISearchBar()
+    var products: Results<OddJobItem>?
 
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -34,6 +44,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     deinit {
         notificationToken?.invalidate()
+    }
+    
+    private func setUpSearchBar() {
+        searchBar.delegate = self
     }
     
     fileprivate func addTableView() {
@@ -74,6 +88,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.titleView = searchBar
+        searchBar.showsScopeBar = false // you can show/hide this dependant on your layout
+        searchBar.placeholder = "Search Animal by Name"
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
@@ -82,6 +99,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         addNavBar(sideBar, add, search, logout, sort)
         addTableView()
         addNotificationToken()
+        setUpSearchBar()
+        tableView.reloadData()
+
     }
     
     @objc func rightBarButtonDidClick() {
@@ -92,7 +112,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: false, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,6 +148,70 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return addTableCell(tableView, indexPath)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(self.items)
+        print("typing in search bar: term = \(searchText)")
+        if searchText != "" {
+            let predicate = NSPredicate(format:"Name CONTAINS[c] %@", searchText)
+            products = realm.objects(OddJobItem.self).filter(predicate)
+            print(products!)
+        } else {
+            print("Sorting")
+        }
+        tableView.reloadData()
+//        currentAnimalArray = self.items { OddJobItem -> Bool in
+//            switch searchBar.selectedScopeButtonIndex {
+//            case 0:
+//                print("Search bar pressed 0 1")
+//
+//                print(searchText)
+//
+//                if searchText.isEmpty { return true }
+//                return OddJobItem.Name.lowercased().contains(searchText.lowercased())
+//            case 1:
+//                print("Search bar pressed 1 1")
+//                print(searchText)
+//
+//                if searchText.isEmpty { return OddJobItem.Category == "Personal" }
+//                return OddJobItem.Name.lowercased().contains(searchText.lowercased()) &&
+//                    OddJobItem.Category == "Personal"
+//            case 2:
+//                print("Search bar pressed 2 1")
+//                print(searchText)
+//
+//                if searchText.isEmpty { return OddJobItem.Category == "Group" }
+//                return OddJobItem.Name.lowercased().contains(searchText.lowercased()) &&
+//                    OddJobItem.Category == "Group"
+//            default:
+//                return false
+//            }
+//        }
+        tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+
+        case 0:
+            print("Search bar pressed 2 0")
+            currentAnimalArray = animalArray
+        case 1:
+            print("Search bar pressed 2 1")
+            currentAnimalArray = items.filter({ animal -> Bool in
+                animal.Category == "Personal"
+            })
+        case 2:
+            print("Search bar pressed 2 2")
+
+            currentAnimalArray = items.filter({ animal -> Bool in
+                animal.Category == "Group"
+            })
+        default:
+            break
+        }
+        tableView.reloadData()
     }
     
     @objc func searchOddJobs() {
