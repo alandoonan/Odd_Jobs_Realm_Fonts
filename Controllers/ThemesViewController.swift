@@ -8,10 +8,10 @@
 
 import UIKit
 import RealmSwift
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let realm: Realm
-    let settings: Results<SettingItem>
+    let themes: Results<ThemeItem>
     let scoreItem: Results<ScoreItem>
     let tableView = UITableView()
     let personalVC = PersonalViewController()
@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.settings = realm.objects(SettingItem.self).filter("Category contains[c] %@", "Setting")
+        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
         self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal")
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,7 +51,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     fileprivate func addNotificationToken() {
-        notificationToken = settings.observe { [weak self] (changes) in
+        notificationToken = themes.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
@@ -90,12 +90,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Settings"
+        navigationItem.title = "Themes"
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addNavBar(sideBar, logout, title: "Settings")
+        addNavBar(sideBar, logout, title: "Themes")
         applyTheme()
-        addSettings()
+        addThemes()
         addTableView()
         addNotificationToken()
     }
@@ -122,24 +122,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         applyTheme()
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.count
-    }
-    
-    fileprivate func setDoneStatus(_ indexPath: IndexPath) {
-        let item = settings[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-        print("Changing Table View Colour")
+        return themes.count
     }
     
     fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let switchView = UISwitch(frame: .zero)
-        let item = settings[indexPath.row]
+        let item = themes[indexPath.row]
         cell.textLabel?.text = item.name
         cell.textLabel?.textColor = .white
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
@@ -149,7 +139,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.accessoryView = switchView
         switchView.tintColor = Themes.current.background
         switchView.tag = item.tag
-        switchView.addTarget(self, action: #selector(SettingsViewController.switchStateDidChange(_:)), for: .valueChanged)
+        switchView.addTarget(self, action: #selector(ThemesViewController.switchStateDidChange(_:)), for: .valueChanged)
         return cell
     }
     
@@ -157,16 +147,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return addTableCell(tableView, indexPath)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        let item = settings[indexPath.row]
-        try! realm.write {
-            realm.delete(item)
-        }
-    }
-    
-    fileprivate func addSettings() {
-        if settings.count <= Constants.themeColours.count
+    fileprivate func addThemes() {
+        if themes.count <= Constants.themeColours.count
         {
             for colour in Constants.themeColours {
                 let found = findObjectsByName(colour.key)
@@ -174,14 +156,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     for score in scoreItem {
                         if score.TotalScore > Int(colour.value[1])!
                         {
-                            let settingItem = SettingItem()
-                            settingItem.settingType = "Theme"
-                            settingItem.name = colour.key
-                            settingItem.hexColour = colour.value[0]
-                            settingItem.UnlockLevel = Int(colour.value[1])!
-                            settingItem.tag = Int(colour.value[2])!
+                            let themeItem = ThemeItem()
+                            themeItem.Category = "Theme"
+                            themeItem.name = colour.key
+                            themeItem.hexColour = colour.value[0]
+                            themeItem.UnlockLevel = Int(colour.value[1])!
+                            themeItem.tag = Int(colour.value[2])!
                             try! self.realm.write {
-                                self.realm.add(settingItem)
+                                self.realm.add(themeItem)
                             }
                         }
                     }
@@ -190,10 +172,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    public func findObjectsByName(_ Name: String) -> Results<SettingItem>
+    public func findObjectsByName(_ Name: String) -> Results<ThemeItem>
     {
         let predicate = NSPredicate(format: "name = %@", Name)
-        return realm.objects(SettingItem.self).filter(predicate)
+        return realm.objects(ThemeItem.self).filter(predicate)
     }
 }
 

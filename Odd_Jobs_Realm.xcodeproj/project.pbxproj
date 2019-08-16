@@ -33,6 +33,7 @@
 		81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ABE2303392900F6548E /* MenuOptionCell.swift */; };
 		81208AC12303397E00F6548E /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC02303397E00F6548E /* MenuController.swift */; };
 		81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */; };
+		81208AC82307318B00F6548E /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC72307318B00F6548E /* ThemeItem.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -69,7 +70,7 @@
 		8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */; };
 		8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132C37122E76F1E00EC79F2 /* Locations.swift */; };
 		8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */; };
-		814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51B822D67E7500102E73 /* SettingsViewController.swift */; };
+		814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51B822D67E7500102E73 /* ThemesViewController.swift */; };
 		814B51BB22D6812000102E73 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51BA22D6812000102E73 /* SettingItem.swift */; };
 		814B51C322D79E5500102E73 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51C222D79E5500102E73 /* Colours.swift */; };
 		814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B51C622DCF4F300102E73 /* ScoreItem.swift */; };
@@ -116,6 +117,7 @@
 		81208ABE2303392900F6548E /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		81208AC02303397E00F6548E /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen_NO_CR.png; sourceTree = "<group>"; };
+		81208AC72307318B00F6548E /* ThemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeItem.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +154,7 @@
 		8132C36F22E4E26B00EC79F2 /* SharedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctions.swift; sourceTree = "<group>"; };
 		8132C37122E76F1E00EC79F2 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapTasksViewController.swift; path = /Users/alandoonan/Desktop/Odd_Jobs_Realm/Controllers/MapTasksViewController.swift; sourceTree = "<absolute>"; };
-		814B51B822D67E7500102E73 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		814B51B822D67E7500102E73 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		814B51BA22D6812000102E73 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		814B51C222D79E5500102E73 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		814B51C622DCF4F300102E73 /* ScoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreItem.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
 				811B214522F7120A007425C0 /* UserItem.swift */,
 				811B214922FD8320007425C0 /* HolidayItem.swift */,
+				81208AC72307318B00F6548E /* ThemeItem.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -393,7 +396,7 @@
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
 				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
-				814B51B822D67E7500102E73 /* SettingsViewController.swift */,
+				814B51B822D67E7500102E73 /* ThemesViewController.swift */,
 				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
 				8128598822D5059200F1A406 /* HomeViewController.swift */,
 				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
@@ -589,6 +592,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */,
+				81208AC82307318B00F6548E /* ThemeItem.swift in Sources */,
 				81208AAF2303312600F6548E /* SideBarController.swift in Sources */,
 				8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */,
 				81208ABC2303386C00F6548E /* MenuOption.swift in Sources */,
@@ -620,7 +624,7 @@
 				811B22DF230096AD007425C0 /* GreenTheme.swift in Sources */,
 				81208AB92303382200F6548E /* HomeControllerDelegate.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
-				814B51B922D67E7500102E73 /* SettingsViewController.swift in Sources */,
+				814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */,
 				811B215022FDC910007425C0 /* MenuBar.swift in Sources */,
 				8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */,
 				81208AB1230331F800F6548E /* HomeViewControllerTest.swift in Sources */,

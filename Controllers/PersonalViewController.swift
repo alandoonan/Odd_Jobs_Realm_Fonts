@@ -90,7 +90,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         navigationItem.titleView = searchBar
         searchBar.showsScopeBar = false // you can show/hide this dependant on your layout
-        searchBar.placeholder = "Search Animal by Name"
+        searchBar.placeholder = "Search Odd Jobs"
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
@@ -125,8 +125,30 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
         if oddJobitem.IsDone == true {
-            scoreVC.updateScore()
-            scoreVC.autoRefreshScores(scoreCategory: scoreCateogry)
+            print("+1")
+            updateScore()
+        }
+    }
+    
+    @objc func updateScore() {
+        print("Updating Scores")
+        for update in Constants.listTypes {
+            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
+            if let score = scores.first {
+                if score.Score == score.LevelCap {
+                    try! realm.write {
+                        score.Score = 0
+                        score.Level += 1
+                        score.TotalScore += 1
+                    }
+                }
+                else {
+                    try! realm.write {
+                        score.Score += 1
+                        score.TotalScore += 1
+                    }
+                }
+            }
         }
     }
     
@@ -151,65 +173,15 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(self.items)
+        let listType = "Personal"
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:"Name CONTAINS[c] %@", searchText)
-            products = realm.objects(OddJobItem.self).filter(predicate)
-            print(products!)
+            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category CONTAINS[c] %@", searchText, searchText, listType)
+            self.items = realm.objects(OddJobItem.self).filter(predicate)
+            tableView.reloadData()
         } else {
-            print("Sorting")
-        }
-        tableView.reloadData()
-//        currentAnimalArray = self.items { OddJobItem -> Bool in
-//            switch searchBar.selectedScopeButtonIndex {
-//            case 0:
-//                print("Search bar pressed 0 1")
-//
-//                print(searchText)
-//
-//                if searchText.isEmpty { return true }
-//                return OddJobItem.Name.lowercased().contains(searchText.lowercased())
-//            case 1:
-//                print("Search bar pressed 1 1")
-//                print(searchText)
-//
-//                if searchText.isEmpty { return OddJobItem.Category == "Personal" }
-//                return OddJobItem.Name.lowercased().contains(searchText.lowercased()) &&
-//                    OddJobItem.Category == "Personal"
-//            case 2:
-//                print("Search bar pressed 2 1")
-//                print(searchText)
-//
-//                if searchText.isEmpty { return OddJobItem.Category == "Group" }
-//                return OddJobItem.Name.lowercased().contains(searchText.lowercased()) &&
-//                    OddJobItem.Category == "Group"
-//            default:
-//                return false
-//            }
-//        }
-        tableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        switch selectedScope {
-
-        case 0:
-            print("Search bar pressed 2 0")
-            currentAnimalArray = animalArray
-        case 1:
-            print("Search bar pressed 2 1")
-            currentAnimalArray = items.filter({ animal -> Bool in
-                animal.Category == "Personal"
-            })
-        case 2:
-            print("Search bar pressed 2 2")
-
-            currentAnimalArray = items.filter({ animal -> Bool in
-                animal.Category == "Group"
-            })
-        default:
-            break
+            self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
+            tableView.reloadData()
         }
         tableView.reloadData()
     }

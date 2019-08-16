@@ -78,29 +78,6 @@ class ScoreViewController: UIViewController {
         }
     }
     
-    @objc func updateScore() {
-        print("Updating Scores")
-        for update in Constants.listTypes {
-            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
-            if let score = scores.first {
-                if score.Score == score.LevelCap {
-                    try! realm.write {
-                        score.Score = 0
-                        score.Level += 1
-                        score.TotalScore += 1
-                    }
-                }
-                else {
-                    try! realm.write {
-                        score.Score += 1
-                        score.TotalScore += 1
-                    }
-                }
-            }
-        }
-        animateCircle()
-    }
-    
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
         //let postition = CGPoint(x: 100,y: 100)
@@ -114,8 +91,8 @@ class ScoreViewController: UIViewController {
         return layer
     }
     
-    fileprivate func addNavBar(_ sideBar: UIBarButtonItem, _ scores: UIBarButtonItem, _ logout: UIBarButtonItem) {
-        navigationItem.rightBarButtonItems = [logout,scores]
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem) {
+        navigationItem.rightBarButtonItems = [logout]
         navigationItem.leftBarButtonItems = [sideBar]
         navigationItem.title = "Scores"
     }
@@ -123,10 +100,9 @@ class ScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        let scores = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(updateScore))
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
         view.backgroundColor = Themes.current.background
-        addNavBar(sideBar, scores, logout)
+        addNavBar(sideBar, logout)
         checkingScoreSystem()
         setupCircleLayers()
         //animateCircle()

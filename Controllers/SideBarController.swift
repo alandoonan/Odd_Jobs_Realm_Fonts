@@ -65,16 +65,11 @@ class SideBarController: UIViewController {
     }
     
     func animatePanel(shouldExpand: Bool, menuOption: MenuOption?) {
-        
         if shouldExpand {
-            // show menu
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 80
             }, completion: nil)
-            
         } else {
-            // hide menu
-            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.centerController.view.frame.origin.x = 0
             }) { (_) in
@@ -97,13 +92,9 @@ class SideBarController: UIViewController {
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .Themes:
             print("Themes")
-            let controller = SettingsViewController()
+            let controller = ThemesViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .Settings:
-            print("Settings")
-            let controller = SettingsViewController()
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        }
+    }
     }
     
     func animateStatusBar() {

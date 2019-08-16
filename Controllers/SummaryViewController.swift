@@ -107,8 +107,29 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
         if oddJobitem.IsDone == true {
-            scoreVC.updateScore()
-            scoreVC.autoRefreshScores(scoreCategory: scoreCategory)
+            updateScore()
+        }
+    }
+    
+    @objc func updateScore() {
+        print("Updating Scores")
+        for update in Constants.listTypes {
+            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
+            if let score = scores.first {
+                if score.Score == score.LevelCap {
+                    try! realm.write {
+                        score.Score = 0
+                        score.Level += 1
+                        score.TotalScore += 1
+                    }
+                }
+                else {
+                    try! realm.write {
+                        score.Score += 1
+                        score.TotalScore += 1
+                    }
+                }
+            }
         }
     }
     

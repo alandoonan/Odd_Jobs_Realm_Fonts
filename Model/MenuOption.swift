@@ -13,14 +13,12 @@ enum MenuOption: Int, CustomStringConvertible {
     case Lists
     case Score
     case Themes
-    case Settings
     
     var description: String {
         switch self {
         case .Lists: return "Lists"
         case .Score: return "Score"
         case .Themes: return "Themes"
-        case .Settings: return "Settings"
         }
     }
     
@@ -29,8 +27,6 @@ enum MenuOption: Int, CustomStringConvertible {
         case .Lists: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Score: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Themes: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Settings: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-
         }
     }
 }
