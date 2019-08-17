@@ -54,6 +54,11 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         searchBar.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme()
+    }
+    
     fileprivate func addTableView() {
         tableView.backgroundColor = Themes.current.background
         tableView.dataSource = self

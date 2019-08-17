@@ -80,6 +80,11 @@ class HomeViewController: UITabBarController {
         applyTheme()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme()
+    }
+    
     @objc func searchOddJobs () {
         print("Search Odd Jobs")
     

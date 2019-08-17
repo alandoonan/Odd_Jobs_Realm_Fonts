@@ -37,6 +37,11 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         notificationToken?.invalidate()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme()
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {

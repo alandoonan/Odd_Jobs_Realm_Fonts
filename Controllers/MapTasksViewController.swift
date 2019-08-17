@@ -55,6 +55,11 @@ class MapTasksViewController: UIViewController {
         return Themes.current.preferredStatusBarStyle
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     

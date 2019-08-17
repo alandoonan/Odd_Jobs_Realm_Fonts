@@ -38,12 +38,17 @@ class HomeControllerTest: UIViewController {
         navigationController?.navigationBar.backgroundColor = Themes.current.background
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        configureNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Themes.current.background
-        configureNavigationBar()
+        //view.backgroundColor = Themes.current.background
         applyTheme()
     }
         
@@ -53,7 +58,7 @@ class HomeControllerTest: UIViewController {
     
     fileprivate func createHomeBackGround() {
         UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "Launchscreen_NO_CR.png")?.draw(in: self.view.bounds)
+        UIImage(named: "iPhone X-XS – 1@3x NO_CR.png")?.draw(in: self.view.bounds)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.view.backgroundColor = UIColor(patternImage: image)
@@ -62,7 +67,6 @@ class HomeControllerTest: UIViewController {
     func configureNavigationBar() {
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
-        navigationController?.navigationBar.barStyle = .black
         navigationController?.view.backgroundColor = Themes.current.background
         navigationItem.title = "Odd Jobs"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenuToggle))

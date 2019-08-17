@@ -112,7 +112,8 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         if colour2.key == colour1.key {
                             print("Changing colour")
                             //Change colours here
-                            //Themes.current = colour2.value as! ThemeProtocol
+                            Themes.current = BlueTheme()
+                            viewDidAppear(true)
                         }
                     }
                 }
@@ -122,6 +123,11 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("UISwitch state is now Off")
             Themes.current = BlueTheme()
         }
+        applyTheme()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         applyTheme()
     }
     

@@ -117,6 +117,11 @@ class ScoreViewController: UIViewController {
         return Themes.current.preferredStatusBarStyle
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+         applyTheme()
+    }
+    
     @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {

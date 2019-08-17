@@ -28,6 +28,11 @@ class SideBarController: UIViewController {
         return Themes.current.preferredStatusBarStyle
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()

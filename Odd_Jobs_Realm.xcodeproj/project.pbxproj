@@ -34,6 +34,7 @@
 		81208AC12303397E00F6548E /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC02303397E00F6548E /* MenuController.swift */; };
 		81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */; };
 		81208AC82307318B00F6548E /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC72307318B00F6548E /* ThemeItem.swift */; };
+		81208ACD23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -118,6 +119,7 @@
 		81208AC02303397E00F6548E /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen_NO_CR.png; sourceTree = "<group>"; };
 		81208AC72307318B00F6548E /* ThemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeItem.swift; sourceTree = "<group>"; };
+		81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x NO_CR.png"; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,25 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		81208AC92308558100F6548E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		81208ACB2308564800F6548E /* Tab Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
+				8128598422D3D73500F1A406 /* GroupViewController.swift */,
+				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
+				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
+			);
+			path = "Tab Controllers";
+			sourceTree = "<group>";
+		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */,
+				81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */,
 				8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */,
 				8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */,
 				8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */,
@@ -337,11 +359,13 @@
 		816B8AE322D21EB200C630B9 = {
 			isa = PBXGroup;
 			children = (
+				81208AC92308558100F6548E /* Extensions */,
 				81208ABD2303391E00F6548E /* Views */,
 				81208ABA2303385900F6548E /* Model */,
 				81208AB72303380D00F6548E /* Protocols */,
 				811B214E22FDC902007425C0 /* UI */,
 				8192CCE022E8ECB1001AC3A9 /* Other */,
+				81208ACB2308564800F6548E /* Tab Controllers */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
 				816B8AEE22D21EB200C630B9 /* Odd_Jobs_Realm */,
@@ -393,14 +417,9 @@
 			children = (
 				8131015922F48B2800420AFE /* LoginViewController.swift */,
 				8128598822D5059200F1A406 /* HomeViewController.swift */,
-				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
-				8128598422D3D73500F1A406 /* GroupViewController.swift */,
-				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
-				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				814B51B822D67E7500102E73 /* ThemesViewController.swift */,
 				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
-				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
 				81208AAE2303312600F6548E /* SideBarController.swift */,
 				81208AB0230331F800F6548E /* HomeViewControllerTest.swift */,
 				81208AC02303397E00F6548E /* MenuController.swift */,
@@ -518,6 +537,7 @@
 				8132C36322E2506D00EC79F2 /* iPhone Settings 29pt@2x.png in Resources */,
 				8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */,
 				8132C35222E2506D00EC79F2 /* OddJobsLogo3x.png in Resources */,
+				81208ACD23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png in Resources */,
 				8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */,
 				8132C36222E2506D00EC79F2 /* icon_29pt-1.png in Resources */,
 				8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */,
