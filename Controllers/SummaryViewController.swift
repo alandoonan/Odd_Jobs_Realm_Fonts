@@ -10,7 +10,7 @@
 import UIKit
 import RealmSwift
 import RSSelectionMenu
-class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
 {
     var realm: Realm
     var items: Results<OddJobItem>
@@ -18,7 +18,9 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var scoreVC = ScoreViewController()
     let tableView = UITableView()
     var notificationToken: NotificationToken?
-    var scoreCategory = "Personal"
+    var delegate: HomeControllerDelegate?
+    var searchBar = UISearchBar()
+    var scoreCategory = ["Personal","Life","Group"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -35,10 +37,27 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         notificationToken?.invalidate()
     }
     
-    fileprivate func addNavItem(_ sideBar: UIBarButtonItem,_ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
-        navigationItem.leftBarButtonItems = [sideBar]
-        navigationItem.rightBarButtonItems = [logout]
-        navigationItem.title = "Summary"
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("typing in search bar: term = \(searchText)")
+        if searchText != "" {
+            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(predicate)
+            tableView.reloadData()
+        } else {
+            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
+            tableView.reloadData()
+        }
+        tableView.reloadData()
+    }
+    
+    private func setUpSearchBar() {
+        searchBar.delegate = self
+    }
+    
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, scoreCategory: [String]) {
+        navigationItem.leftBarButtonItems = [sideBar] //, add ,search
+        navigationItem.rightBarButtonItems = [logout] //,sort
+        navigationItem.title = scoreCategory.joined(separator:" ")
     }
     
     fileprivate func addTableView() {
@@ -73,13 +92,26 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        //let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
+        //let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addNavItem(sideBar, search, logout, sort)
+        addSearchBar(scoreCategory: scoreCategory)
+        addNavBar(sideBar, logout, scoreCategory: scoreCategory)
         addTableView()
         addNotificationToken()
+        setUpSearchBar()
+        applyTheme()
+        tableView.reloadData()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    fileprivate func addSearchBar(scoreCategory: [String]) {
+        navigationItem.titleView = searchBar
+        searchBar.showsScopeBar = false
+        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
     }
     
     fileprivate func logoutAlert() {
@@ -93,7 +125,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func rightBarButtonDidClick() {
+    @objc func logOutButtonPress() {
         logoutAlert()
     }
     
@@ -165,17 +197,6 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return addTableCell(tableView, indexPath)
     }
     
-    fileprivate func showMapView() {
-        print("Search Button Pressed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
-        self.present(controller, animated: true, completion: nil)
-    }
-    
-    @objc func searchOddJobs() {
-        showMapView()
-    }
-    
     fileprivate func rssSelectionSort() {
         print("Sort Button Pressed")
         let sortFields: [String] = ["Name", "Priority", "Occurrence"]
@@ -195,7 +216,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func selectSortField() {
         rssSelectionSort()
     }
-    
+
     fileprivate func sortTableView(_ sort: String) {
         self.items = self.items.sorted(byKeyPath: sort, ascending: true)
         notificationToken = items.observe { [weak self] (changes) in
@@ -220,6 +241,14 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc func sortOddJobs(sort:String) {
         sortTableView(sort)
+    }
+    
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        tableView.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

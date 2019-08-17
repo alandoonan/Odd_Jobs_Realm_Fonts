@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SideBarController: UIViewController {
     
@@ -18,23 +19,26 @@ class SideBarController: UIViewController {
     fileprivate func setupNavBar() {
         // Navigation bar appearance
         let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.tintColor = UIColor.orangeTheme
+        navigationAppearance.tintColor = Themes.current.accent
         navigationAppearance.barTintColor = Themes.current.background
         navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     
-    @objc func searchOddJobs () {
-        print("Search Odd Jobs")
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         configureHomeController()
+        applyTheme()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -94,7 +98,35 @@ class SideBarController: UIViewController {
             print("Themes")
             let controller = ThemesViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .Locations:
+            print("Locations")
+            showMapView()
+        case .Logout:
+            print("Log Out")
+            logOutButtonPress()
     }
+    }
+    
+    @objc func logOutButtonPress() {
+        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
+        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
+            alert -> Void in
+            SyncUser.current?.logOut()
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: false, completion: nil)
+    }
+    
+    fileprivate func showMapView() {
+        print("Search Button Pressed")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    @objc func searchOddJobs() {
+        showMapView()
     }
     
     func animateStatusBar() {

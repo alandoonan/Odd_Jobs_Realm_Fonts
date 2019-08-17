@@ -41,10 +41,6 @@ class ScoreViewController: UIViewController {
         return label
     }()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     @objc private func handleEnterForeground() {
         animatePulsatingLayer()
     }
@@ -97,20 +93,31 @@ class ScoreViewController: UIViewController {
         navigationItem.title = "Scores"
     }
     
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         view.backgroundColor = Themes.current.background
         addNavBar(sideBar, logout)
         checkingScoreSystem()
         setupCircleLayers()
         //animateCircle()
         setupUserLabels()
+        applyTheme()
         autoRefreshScores(scoreCategory: "Personal")
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
     
-    @objc func rightBarButtonDidClick() {
+    @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in

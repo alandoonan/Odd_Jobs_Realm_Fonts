@@ -392,14 +392,14 @@
 			isa = PBXGroup;
 			children = (
 				8131015922F48B2800420AFE /* LoginViewController.swift */,
+				8128598822D5059200F1A406 /* HomeViewController.swift */,
 				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
 				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
+				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				814B51B822D67E7500102E73 /* ThemesViewController.swift */,
 				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
-				8128598822D5059200F1A406 /* HomeViewController.swift */,
-				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
 				81208AAE2303312600F6548E /* SideBarController.swift */,
 				81208AB0230331F800F6548E /* HomeViewControllerTest.swift */,

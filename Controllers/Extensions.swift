@@ -38,5 +38,11 @@ extension UIViewController {
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension UINavigationController {
     
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return topViewController?.preferredStatusBarStyle ?? .default
+    }
 }

@@ -22,14 +22,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     var scoreVC = ScoreViewController()
     let tableView = UITableView()
     var notificationToken: NotificationToken?
-    var scoreCateogry = "Personal"
+    var scoreCategory = ["Personal"]
     var delegate: HomeControllerDelegate?
-    var filteredTableData = [String]()
-    var resultSearchController = UISearchController()
-    var animalArray = [OddJobItem]()
-    var currentAnimalArray = [OddJobItem]() //update table
     var searchBar = UISearchBar()
-    var products: Results<OddJobItem>?
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -40,6 +35,15 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        tableView.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
     }
     
     deinit {
@@ -59,10 +63,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         view.addSubview(tableView)
     }
     
-    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ add: UIBarButtonItem, _ search: UIBarButtonItem, _ logout: UIBarButtonItem, _ sort: UIBarButtonItem) {
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ add: UIBarButtonItem, _ logout: UIBarButtonItem, scoreCategory: [String]) {
         navigationItem.leftBarButtonItems = [sideBar, add] //, add ,search
         navigationItem.rightBarButtonItems = [logout] //,sort
-        navigationItem.title = "Personal Odd Jobs"
+        navigationItem.title = scoreCategory.joined(separator:" ")
     }
     
     fileprivate func addNotificationToken() {
@@ -86,25 +90,31 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    fileprivate func addSearchBar(scoreCategory: [String]) {
+        navigationItem.titleView = searchBar
+        searchBar.showsScopeBar = false
+        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false // you can show/hide this dependant on your layout
-        searchBar.placeholder = "Search Odd Jobs"
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addNavBar(sideBar, add, search, logout, sort)
+        addSearchBar(scoreCategory: scoreCategory)
+        addNavBar(sideBar, add, logout, scoreCategory: scoreCategory)
         addTableView()
         addNotificationToken()
         setUpSearchBar()
+        applyTheme()
         tableView.reloadData()
-
     }
     
-    @objc func rightBarButtonDidClick() {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in
@@ -173,14 +183,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let listType = "Personal"
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category CONTAINS[c] %@", searchText, searchText, listType)
+            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
+            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
             tableView.reloadData()
         }
         tableView.reloadData()

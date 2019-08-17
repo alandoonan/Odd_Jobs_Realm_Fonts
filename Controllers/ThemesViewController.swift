@@ -32,7 +32,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     deinit {
         notificationToken?.invalidate()
     }
-    
+
     fileprivate func applyTheme() {
         view.backgroundColor = Themes.current.background
         tableView.backgroundColor = Themes.current.background
@@ -77,7 +77,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.title = title
     }
     
-    @objc func rightBarButtonDidClick() {
+    @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in
@@ -91,13 +91,16 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Themes"
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         addNavBar(sideBar, logout, title: "Themes")
         applyTheme()
         addThemes()
         addTableView()
         addNotificationToken()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
     }
     
     @objc func switchStateDidChange(_ sender:UISwitch){

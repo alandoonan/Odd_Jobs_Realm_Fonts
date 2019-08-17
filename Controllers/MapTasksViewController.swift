@@ -10,25 +10,37 @@ import MapKit
 import RealmSwift
 
 class MapTasksViewController: UIViewController {
+    
+    //Test Data
     let initialLocation = CLLocation(latitude: 53.322065, longitude: -6.386767)
     let searchRadius: CLLocationDistance = 2000
+    let locationString = CLLocation(latitude: 53.322191, longitude: -7.386739)
+    let distanceSpan: CLLocationDistance = 150000
     
     @IBAction func backToPersonalButton(_ sender: Any) {
         print("Back to Personal Button Pressed")
         performSegueToReturnBack()
     }
+    
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
     @IBOutlet weak var mapView: MKMapView!
-    
-    let locationString = CLLocation(latitude: 53.322191, longitude: -7.386739)
-    let distanceSpan: CLLocationDistance = 150000
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
         let coordinateRegion = MKCoordinateRegion.init(center: initialLocation.coordinate, latitudinalMeters: searchRadius * 2.0, longitudinalMeters: searchRadius * 2.0)
+        mapView.delegate = self
         mapView.setRegion(coordinateRegion, animated: true)
+        mapView.backgroundColor = Themes.current.background
+        view.backgroundColor = Themes.current.background
+        UINavigationBar.appearance().barTintColor = Themes.current.background
         searchInMap()
-
+        applyTheme()
+        
 //
 //        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
 //        let realm = try! Realm(configuration: config!)
@@ -37,6 +49,10 @@ class MapTasksViewController: UIViewController {
 //        mapView.delegate = self
 //        populateMap(mapItems)
 //        zoomLevel(location: locationString)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

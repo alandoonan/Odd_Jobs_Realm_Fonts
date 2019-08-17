@@ -33,7 +33,6 @@ class LoginViewController: UIViewController {
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
-                self!.storeUserInformation(username: username)
                 self!.transition()
             }
             else if let error = err {
@@ -46,6 +45,17 @@ class LoginViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         })
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -131,19 +141,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        applyTheme()
         logOutUsers()
         view.backgroundColor = Themes.current.background
         if let _ = SyncUser.current {
             print("Already Logged In.")
             self.navigationController?.pushViewController(HomeViewController(), animated: true)
-}
+        }
         print("Shared User Login VC: " + sharedUser)
-}
-    
-//    func transition() {
-//        let homeVC:HomeViewController = HomeViewController()
-//        self.present(homeVC, animated: true, completion: nil)
-//    }
+    }
     
     func transition() {
         let homeVC:SideBarController    = SideBarController()

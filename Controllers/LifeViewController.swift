@@ -10,16 +10,18 @@ import UIKit
 import RealmSwift
 import Alamofire
 import SwiftyJSON
-class LifeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class LifeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate
 {
     let realm: Realm
-    let items: Results<OddJobItem>
+    var items: Results<OddJobItem>
     var holidayDictionary:[String:String] = [:]
     let tableView = UITableView()
     let loginVC = LoginViewController()
     var notificationToken: NotificationToken?
     let calendar = Calendar.current
     let date = Date()
+    var searchBar = UISearchBar()
+    var scoreCategory = ["Life"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -45,6 +47,12 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.addSubview(tableView)
     }
     
+    fileprivate func addSearchBar(scoreCategory: [String]) {
+        navigationItem.titleView = searchBar
+        searchBar.showsScopeBar = false
+        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
+    }
+    
     fileprivate func         addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
@@ -66,25 +74,57 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    fileprivate func addNavItem( _ sideBar: UIBarButtonItem, _ add: UIBarButtonItem, _ logout: UIBarButtonItem, _ search: UIBarButtonItem) {
-        navigationItem.rightBarButtonItems = [logout]
-        navigationItem.leftBarButtonItems = [sideBar, add]
-        navigationItem.title = "Life Odd Jobs"
+    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ add: UIBarButtonItem, _ logout: UIBarButtonItem, scoreCategory: [String]) {
+        navigationItem.leftBarButtonItems = [sideBar, add] //, add ,search
+        navigationItem.rightBarButtonItems = [logout] //,sort
+        navigationItem.title = scoreCategory.joined(separator:" ")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(rightBarButtonDidClick))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
-        addNavItem(sideBar,add, logout, search)
+        addSearchBar(scoreCategory: scoreCategory)
+        addNavBar(sideBar, add, logout, scoreCategory: scoreCategory)
         addTableView()
         addNotificationToken()
+        setUpSearchBar()
+        applyTheme()
+        tableView.reloadData()
     }
     
-    @objc func rightBarButtonDidClick() {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("typing in search bar: term = \(searchText)")
+        if searchText != "" {
+            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(predicate)
+            tableView.reloadData()
+        } else {
+            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
+            tableView.reloadData()
+        }
+        tableView.reloadData()
+    }
+    
+    private func setUpSearchBar() {
+        searchBar.delegate = self
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        tableView.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
             alert -> Void in

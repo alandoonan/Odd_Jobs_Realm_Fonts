@@ -29,11 +29,22 @@ class HomeControllerTest: UIViewController {
         notificationToken?.invalidate()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    fileprivate func applyTheme() {
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(SyncUser.current?.identity!)
         view.backgroundColor = Themes.current.background
         configureNavigationBar()
+        applyTheme()
     }
         
     @objc func handleMenuToggle() {
@@ -50,10 +61,12 @@ class HomeControllerTest: UIViewController {
     
     func configureNavigationBar() {
         navigationController?.navigationBar.barTintColor = Themes.current.background
+        navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.navigationBar.barStyle = .black
         navigationController?.view.backgroundColor = Themes.current.background
         navigationItem.title = "Odd Jobs"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenuToggle))
         createHomeBackGround()
     }
+    
 }

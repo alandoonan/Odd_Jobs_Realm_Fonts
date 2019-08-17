@@ -10,8 +10,12 @@ import UIKit
 
 class BlueTheme: ThemeProtocol {
     var mainFontName: String = ""
+    var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.orangeTheme
     var background: UIColor = UIColor.navyTheme
     var tint: UIColor = UIColor.greenTheme
+    var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
