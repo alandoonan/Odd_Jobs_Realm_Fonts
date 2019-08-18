@@ -58,22 +58,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func setUpSearchBar() {
         searchBar.delegate = self
     }
-    
-    fileprivate func addNavBar(_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, scoreCategory: [String]) {
-        navigationItem.leftBarButtonItems = [sideBar] //, add ,search
-        navigationItem.rightBarButtonItems = [logout] //,sort
-        navigationItem.title = scoreCategory.joined(separator:" ")
-    }
-    
-    fileprivate func addTableView() {
-        tableView.backgroundColor = Themes.current.background
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.frame = self.view.frame
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        view.addSubview(tableView)
-    }
-    
+
     fileprivate func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
@@ -102,8 +87,11 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         //let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: scoreCategory)
-        addNavBar(sideBar, logout, scoreCategory: scoreCategory)
-        addTableView()
+        addNavBar([sideBar], [logout], scoreCategory: scoreCategory)
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
         addNotificationToken()
         setUpSearchBar()
         applyTheme()

@@ -43,15 +43,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         applyTheme()
     }
     
-    fileprivate func addTableView() {
-        tableView.backgroundColor = Themes.current.background
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        tableView.frame = self.view.frame
-        view.addSubview(tableView)
-    }
-    
     fileprivate func addSearchBar(scoreCategory: [String]) {
         navigationItem.titleView = searchBar
         searchBar.showsScopeBar = false
@@ -79,12 +70,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ add: UIBarButtonItem, _ logout: UIBarButtonItem, scoreCategory: [String]) {
-        navigationItem.leftBarButtonItems = [sideBar, add] //, add ,search
-        navigationItem.rightBarButtonItems = [logout] //,sort
-        navigationItem.title = scoreCategory.joined(separator:" ")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
@@ -92,8 +77,11 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
         addSearchBar(scoreCategory: scoreCategory)
-        addNavBar(sideBar, add, logout, scoreCategory: scoreCategory)
-        addTableView()
+        addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
         addNotificationToken()
         setUpSearchBar()
         applyTheme()

@@ -42,21 +42,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         applyTheme()
     }
     
-    fileprivate func addNavBar(_ add: UIBarButtonItem,_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem, scoreCategory: [String]) {
-        navigationItem.rightBarButtonItems = [logout] //, logout,search
-        navigationItem.leftBarButtonItems = [sideBar, add] //, logout,search
-        navigationItem.title = scoreCategory.joined(separator:" ")
-    }
-    
-    fileprivate func addTableView() {
-        tableView.backgroundColor = Themes.current.background
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        tableView.frame = self.view.frame
-        view.addSubview(tableView)
-    }
-    
     fileprivate func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
@@ -114,9 +99,12 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        addTableView()
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
         setUpSearchBar()
-        addNavBar(add, sideBar, logout, scoreCategory: scoreCategory)
+        addNavBar([add, sideBar],[logout],scoreCategory: scoreCategory)
         addSearchBar(scoreCategory: scoreCategory)
         addNotificationToken()
         applyTheme()

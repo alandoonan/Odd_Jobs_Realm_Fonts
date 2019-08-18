@@ -35,6 +35,8 @@
 		81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */; };
 		81208AC82307318B00F6548E /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC72307318B00F6548E /* ThemeItem.swift */; };
 		81208ACD23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */; };
+		81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ACE2308612B00F6548E /* SearchUsersViewController.swift */; };
+		81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD02309CFBB00F6548E /* RealmManager.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -120,6 +122,8 @@
 		81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen_NO_CR.png; sourceTree = "<group>"; };
 		81208AC72307318B00F6548E /* ThemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeItem.swift; sourceTree = "<group>"; };
 		81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x NO_CR.png"; sourceTree = "<group>"; };
+		81208ACE2308612B00F6548E /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
+		81208AD02309CFBB00F6548E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
+				81208AD02309CFBB00F6548E /* RealmManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -283,6 +288,13 @@
 				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 			);
 			path = "Tab Controllers";
+			sourceTree = "<group>";
+		};
+		81208AD22309D61C00F6548E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
@@ -359,12 +371,13 @@
 		816B8AE322D21EB200C630B9 = {
 			isa = PBXGroup;
 			children = (
-				81208AC92308558100F6548E /* Extensions */,
 				81208ABD2303391E00F6548E /* Views */,
 				81208ABA2303385900F6548E /* Model */,
 				81208AB72303380D00F6548E /* Protocols */,
 				811B214E22FDC902007425C0 /* UI */,
+				81208AD22309D61C00F6548E /* Classes */,
 				8192CCE022E8ECB1001AC3A9 /* Other */,
+				81208AC92308558100F6548E /* Extensions */,
 				81208ACB2308564800F6548E /* Tab Controllers */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
@@ -423,6 +436,7 @@
 				81208AAE2303312600F6548E /* SideBarController.swift */,
 				81208AB0230331F800F6548E /* HomeViewControllerTest.swift */,
 				81208AC02303397E00F6548E /* MenuController.swift */,
+				81208ACE2308612B00F6548E /* SearchUsersViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -632,10 +646,12 @@
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
 				814B51BB22D6812000102E73 /* SettingItem.swift in Sources */,
 				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
+				81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */,
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,
 				816B8B0322D21FA400C630B9 /* Constants.swift in Sources */,
 				816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */,
 				81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */,
+				81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */,
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,

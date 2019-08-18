@@ -14,6 +14,8 @@ struct Constants {
     static let MY_INSTANCE_ADDRESS = "odd-jobs.de1a.cloud.realm.io"
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
     static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
+    static let ODDJOBS_REALM_USERS_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/Users-Shared")!
+    
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
@@ -35,5 +37,15 @@ struct Constants {
     
     //List Types
     static let listTypes = ["Group","Life","Personal"]
+    
+    func commonRealmConfig(user: SyncUser) -> Realm.Configuration  {
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
+        return config!
+    }
+    
+    func tasksRealmConfig(user: SyncUser) -> Realm.Configuration  {
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        return config!
+    }
 
 }

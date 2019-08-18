@@ -106,6 +106,10 @@ class SideBarController: UIViewController {
         case .Locations:
             print("Locations")
             showMapView()
+        case .Users:
+            print("Users")
+            let controller = SearchUsersViewController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .Logout:
             print("Log Out")
             logOutButtonPress()

@@ -87,12 +87,6 @@ class ScoreViewController: UIViewController {
         return layer
     }
     
-    fileprivate func addNavBar(_ sideBar: UIBarButtonItem, _ logout: UIBarButtonItem) {
-        navigationItem.rightBarButtonItems = [logout]
-        navigationItem.leftBarButtonItems = [sideBar]
-        navigationItem.title = "Scores"
-    }
-    
     fileprivate func applyTheme() {
         view.backgroundColor = Themes.current.background
         navigationController?.navigationBar.backgroundColor = Themes.current.background
@@ -105,7 +99,7 @@ class ScoreViewController: UIViewController {
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         view.backgroundColor = Themes.current.background
-        addNavBar(sideBar, logout)
+        addNavBar([sideBar], [logout],scoreCategory: [""])
         checkingScoreSystem()
         setupCircleLayers()
         //animateCircle()

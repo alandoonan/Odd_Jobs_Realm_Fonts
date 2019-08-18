@@ -38,6 +38,20 @@ extension UIViewController {
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
+    func addNavBar(_ leftButtons: [UIBarButtonItem], _ rightButtons: [UIBarButtonItem], scoreCategory: [String]) {
+        navigationItem.leftBarButtonItems = leftButtons
+        navigationItem.rightBarButtonItems = rightButtons
+        navigationItem.title = scoreCategory.joined(separator:" ")
+    }
+}
+
+extension UITableView {
+    func addTableView(_ tableView: UITableView, _ view: UIView) {
+        tableView.backgroundColor = Themes.current.background
+        tableView.frame = view.frame
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        view.addSubview(tableView)
+    }
 }
 
 extension UINavigationController {

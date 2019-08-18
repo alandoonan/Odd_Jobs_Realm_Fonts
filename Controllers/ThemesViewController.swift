@@ -41,15 +41,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
-    fileprivate func addTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.frame = self.view.frame
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        tableView.allowsSelection = false
-        view.addSubview(tableView)
-    }
-    
     fileprivate func addNotificationToken() {
         notificationToken = themes.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
@@ -71,12 +62,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    fileprivate func addNavBar(_ sideBar: UIBarButtonItem,_ logout: UIBarButtonItem, title: String) {
-        navigationItem.leftBarButtonItems = [sideBar] //, add ,search
-        navigationItem.rightBarButtonItems = [logout] //,sort
-        navigationItem.title = title
-    }
-    
     @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
@@ -93,10 +78,13 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.title = "Themes"
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addNavBar(sideBar, logout, title: "Themes")
+        addNavBar([sideBar], [logout], scoreCategory: ["Themes"])
         applyTheme()
         addThemes()
-        addTableView()
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
         addNotificationToken()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
