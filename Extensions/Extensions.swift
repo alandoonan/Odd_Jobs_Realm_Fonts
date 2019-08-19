@@ -98,6 +98,32 @@ extension UIViewController {
             }
         }
     }
+    
+    func cellSetup(_ cell: UITableViewCell, _ item: OddJobItem, _ cellFields: [String]) {
+        cell.selectionStyle = .none
+        cell.tintColor = .white
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        cell.selectionStyle = .none
+        cell.tintColor = .white
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        if item.Category == "Personal" {
+            cell.backgroundColor = UIColor.orangeTheme
+        }
+        if item.Category == "Life" {
+            cell.backgroundColor = UIColor.greenTheme
+        }
+        if item.Category == "Group" {
+            cell.backgroundColor = UIColor.blueTheme
+        }
+        cell.textLabel?.text = item.Name
+        cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
+        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+    }
 }
 
 extension UITableView {

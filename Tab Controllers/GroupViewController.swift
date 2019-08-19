@@ -17,24 +17,19 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var notificationToken: NotificationToken?
     var searchBar = UISearchBar()
     var scoreCategory = ["Group"]
-    
+
+    // Initialize Methods
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Group")
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     deinit {
         notificationToken?.invalidate()
-    }
-    
-    @objc func searchOddJobs() {
-        print("Search Button Pressed")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,24 +114,15 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    fileprivate func addTableCell(_ cell: UITableViewCell, _ item: OddJobItem) -> UITableViewCell {
-        cell.selectionStyle = .none
-        cell.backgroundColor = UIColor.blueTheme
-        cell.textLabel?.text = item.Name
-        cell.tintColor = .white
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
-        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
-        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
-        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
+        let item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cellSetup(cell, item, Constants.cellFields)
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        let item = items[indexPath.row]
-        return addTableCell(cell, item)
+        return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
     fileprivate func addAlert() {
@@ -178,5 +164,10 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         try! realm.write {
             realm.delete(item)
         }
+    }
+    
+    //Not used yet
+    @objc func searchOddJobs() {
+        print("Search Button Pressed")
     }
 }

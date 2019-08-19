@@ -23,7 +23,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     var scoreCategory = ["Personal"]
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
-    var cellFields = ["Priority","Occurrence"]
 
     // Initialize Realm
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -87,22 +86,15 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             updateScore(realm: realm)
         }
     }
-    fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
+    
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
-        cell.tintColor = .white
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
-        cell.backgroundColor = UIColor.orangeTheme
-        cell.textLabel?.text = item.Name
-        cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
-        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
-        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        cellSetup(cell, item, Constants.cellFields)
         return cell
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, cellFields)
+        return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
     override func viewDidLoad() {
@@ -127,6 +119,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
         self.present(controller, animated: true, completion: nil)
     }
+    
     fileprivate func rssSelectionMenuSort() {
         var selectedNames: [String] = []
         let menu = RSSelectionMenu(dataSource: Constants.sortFields) { (cell, name, indexPath) in
@@ -140,6 +133,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
         menu.show(style: .push, from: self)
     }
+    
     @objc func selectSortField() {
         print("Sort Button Pressed")
         rssSelectionMenuSort()

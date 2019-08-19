@@ -38,6 +38,9 @@ struct Constants {
     //List Types
     static let listTypes = ["Group","Life","Personal"]
     
+    //Cell Fields
+    static let cellFields = ["Priority","Occurrence"]
+    
     func commonRealmConfig(user: SyncUser) -> Realm.Configuration  {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         return config!

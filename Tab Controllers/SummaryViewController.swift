@@ -126,32 +126,15 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         isDoneUpdate(indexPath)
     }
     
-    fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
         let item = items[indexPath.row]
-        cell.textLabel?.text = item.Name
-        cell.tintColor = .white
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
-        if item.Category == "Personal" {
-            cell.backgroundColor = UIColor.orangeTheme
-        }
-        if item.Category == "Life" {
-            cell.backgroundColor = UIColor.greenTheme
-        }
-        if item.Category == "Group" {
-            cell.backgroundColor = UIColor.blueTheme
-        }
-        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
-        cell.detailTextLabel?.text = ("Occurence: " + item.Occurrence)
-        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
-        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cellSetup(cell, item, Constants.cellFields)
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath)
+        return addTableCell(tableView, indexPath,Constants.cellFields)
     }
     
     fileprivate func rssSelectionSort() {

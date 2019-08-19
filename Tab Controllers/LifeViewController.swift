@@ -114,24 +114,15 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("Search Button Pressed")
     }
     
-    fileprivate func addTableCell(_ tableView: UITableView, _ item: OddJobItem) -> UITableViewCell {
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
+        let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
-        cell.textLabel?.text = item.Name
-        cell.backgroundColor = UIColor.greenTheme
-        cell.tintColor = .white
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
-        cell.detailTextLabel?.text = ("Priority: " + item.Priority)
-        cell.detailTextLabel?.text = ("Date: " + String(item.HolidayDate))
-        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
-        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        cellSetup(cell, item, Constants.cellFields)
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = items[indexPath.row]
-        return addTableCell(tableView, item)
+        return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
     fileprivate func addAlert() {
