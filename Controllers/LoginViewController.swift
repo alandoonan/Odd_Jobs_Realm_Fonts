@@ -11,6 +11,7 @@ import RealmSwift
 
 class LoginViewController: UIViewController {
     var sharedUser: String = ""
+    let tableView = UITableView()
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
@@ -49,13 +50,6 @@ class LoginViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
-    }
-    
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -132,16 +126,13 @@ class LoginViewController: UIViewController {
         }
     }
     
-    fileprivate func logOutUsers() {
-        for u in SyncUser.all {
-            print("Logging out user: " + String(u.value.identity!))
-            u.value.logOut()
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyTheme(tableView,view)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        applyTheme()
+        applyTheme(tableView, view)
         logOutUsers()
         view.backgroundColor = Themes.current.background
         if let _ = SyncUser.current {

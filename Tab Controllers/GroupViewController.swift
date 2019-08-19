@@ -39,7 +39,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyTheme(tableView,view)
     }
     
     fileprivate func addNotificationToken() {
@@ -63,18 +63,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        tableView.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
-    private func setUpSearchBar() {
-        searchBar.delegate = self
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
@@ -87,13 +75,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         tableView.reloadData()
     }
-    
-    fileprivate func addSearchBar(scoreCategory: [String]) {
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false
-        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
@@ -103,11 +85,11 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken()
-        setUpSearchBar()
-        addNavBar([add, sideBar],[logout],scoreCategory: scoreCategory)
-        addSearchBar(scoreCategory: scoreCategory)
+        setUpSearchBar(searchBar: searchBar)
+        addNavBar([sideBar,add],[logout],scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNotificationToken()
-        applyTheme()
+        applyTheme(tableView,view)
         tableView.reloadData()
     }
     
@@ -124,10 +106,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    @objc func logOutButtonPress() {
-        logoutAlert()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

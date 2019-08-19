@@ -40,13 +40,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
-    }
-    
-    fileprivate func addSearchBar(scoreCategory: [String]) {
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false
-        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
+        applyTheme(tableView,view)
     }
     
     fileprivate func         addNotificationToken() {
@@ -76,15 +70,15 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
-        addSearchBar(scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken()
         addNotificationToken()
-        setUpSearchBar()
-        applyTheme()
+        setUpSearchBar(searchBar: searchBar)
+        applyTheme(tableView,view)
         tableView.reloadData()
     }
     
@@ -101,31 +95,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.reloadData()
     }
     
-    private func setUpSearchBar() {
-        searchBar.delegate = self
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
-    }
-    
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        tableView.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
-    @objc func logOutButtonPress() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

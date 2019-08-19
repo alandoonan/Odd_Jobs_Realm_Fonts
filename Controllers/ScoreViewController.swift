@@ -116,17 +116,6 @@ class ScoreViewController: UIViewController {
          applyTheme()
     }
     
-    @objc func logOutButtonPress() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     fileprivate func addScoreLabel() {
         view.addSubview(scoreLabel)
         scoreLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)

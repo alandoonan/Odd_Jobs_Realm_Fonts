@@ -39,7 +39,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyTheme(tableView,view)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -53,10 +53,6 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.reloadData()
         }
         tableView.reloadData()
-    }
-    
-    private func setUpSearchBar() {
-        searchBar.delegate = self
     }
 
     fileprivate func addNotificationToken() {
@@ -86,25 +82,19 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         //let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
         //let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addSearchBar(scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNavBar([sideBar], [logout], scoreCategory: scoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken()
         addNotificationToken()
-        setUpSearchBar()
-        applyTheme()
+        setUpSearchBar(searchBar: searchBar)
+        applyTheme(tableView,view)
         tableView.reloadData()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
-    }
-    
-    fileprivate func addSearchBar(scoreCategory: [String]) {
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false
-        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
     }
     
     fileprivate func logoutAlert() {
@@ -118,10 +108,6 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func logOutButtonPress() {
-        logoutAlert()
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -132,29 +118,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
         if oddJobitem.IsDone == true {
-            updateScore()
-        }
-    }
-    
-    @objc func updateScore() {
-        print("Updating Scores")
-        for update in Constants.listTypes {
-            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
-            if let score = scores.first {
-                if score.Score == score.LevelCap {
-                    try! realm.write {
-                        score.Score = 0
-                        score.Level += 1
-                        score.TotalScore += 1
-                    }
-                }
-                else {
-                    try! realm.write {
-                        score.Score += 1
-                        score.TotalScore += 1
-                    }
-                }
-            }
+            updateScore(realm: realm)
         }
     }
     
@@ -234,14 +198,6 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc func sortOddJobs(sort:String) {
         sortTableView(sort)
-    }
-    
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        tableView.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

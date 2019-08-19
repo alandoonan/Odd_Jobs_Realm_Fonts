@@ -49,10 +49,6 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
         notificationToken?.invalidate()
     }
     
-    private func setUpSearchBar() {
-        searchBar.delegate = self
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme()
@@ -78,42 +74,25 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-    
-    fileprivate func addSearchBar(scoreCategory: [String]) {
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false
-        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addSearchBar(scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNavBar([sideBar], [logout], scoreCategory: scoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken()
         addNotificationToken()
-        setUpSearchBar()
+        setUpSearchBar(searchBar: searchBar)
         applyTheme()
         tableView.reloadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
-    }
-    
-    @objc func logOutButtonPress() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: false, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

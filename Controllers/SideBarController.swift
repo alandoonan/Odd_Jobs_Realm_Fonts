@@ -114,18 +114,7 @@ class SideBarController: UIViewController {
             print("Log Out")
             logOutButtonPress()
     }
-    }
-    
-    @objc func logOutButtonPress() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: false, completion: nil)
-    }
+}
     
     fileprivate func showMapView() {
         print("Search Button Pressed")

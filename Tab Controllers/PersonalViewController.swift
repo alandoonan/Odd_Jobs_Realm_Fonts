@@ -39,13 +39,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         notificationToken?.invalidate()
     }
     
-    private func setUpSearchBar() {
-        searchBar.delegate = self
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyTheme(tableView,view)
     }
     
      //Add UI & Customization Functions
@@ -69,21 +65,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    fileprivate func addSearchBar(scoreCategory: [String]) {
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false
-        searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
-    }
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        tableView.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
     func updateSearchResults(for searchController: UISearchController) {
         print("Search Results Updating")
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
     }
@@ -99,7 +84,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
         if oddJobitem.IsDone == true {
             print("+1")
-            updateScore()
+            updateScore(realm: realm)
         }
     }
     fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
@@ -119,74 +104,23 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return addTableCell(tableView, indexPath, cellFields)
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        let item = items[indexPath.row]
-        try! realm.write {
-            realm.delete(item)
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addSearchBar(scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken()
-        setUpSearchBar()
-        applyTheme()
+        setUpSearchBar(searchBar: searchBar)
+        applyTheme(tableView,view)
         tableView.reloadData()
     }
-    
-    // Button Press Functions
-    @objc func logOutButtonPress() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: false, completion: nil)
-    }
-    @objc func updateScore() {
-        print("Updating Scores")
-        for update in Constants.listTypes {
-            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
-            if let score = scores.first {
-                if score.Score == score.LevelCap {
-                    try! realm.write {
-                        score.Score = 0
-                        score.Level += 1
-                        score.TotalScore += 1
-                    }
-                }
-                else {
-                    try! realm.write {
-                        score.Score += 1
-                        score.TotalScore += 1
-                    }
-                }
-            }
-        }
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("typing in search bar: term = \(searchText)")
-        if searchText != "" {
-            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
-            self.items = realm.objects(OddJobItem.self).filter(predicate)
-            tableView.reloadData()
-        } else {
-            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
-            tableView.reloadData()
-        }
-        tableView.reloadData()
-    }
+
     @objc func searchOddJobs() {
         print("Search Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
