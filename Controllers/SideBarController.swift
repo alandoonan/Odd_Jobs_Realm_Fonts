@@ -30,20 +30,14 @@ class SideBarController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyThemeView(view)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         configureHomeController()
-        applyTheme()
-    }
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        applyThemeView(view)
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

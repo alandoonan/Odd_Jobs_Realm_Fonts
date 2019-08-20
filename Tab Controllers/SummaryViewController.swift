@@ -16,10 +16,14 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
     var scoreVC = ScoreViewController()
-    let tableView = UITableView()
     var notificationToken: NotificationToken?
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
+    let tableView = UITableView()
+    let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+    let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+    //let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
+    //let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
     var scoreCategory = ["Personal","Life","Group"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -78,10 +82,6 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        //let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
-        //let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNavBar([sideBar], [logout], scoreCategory: scoreCategory)
         tableView.addTableView(tableView, view)

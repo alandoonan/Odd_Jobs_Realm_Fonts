@@ -53,6 +53,13 @@ extension UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
+    func applyThemeView(_ view: UIView) {
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     func logOutUsers() {
         print("Logging out users.")
         for u in SyncUser.all {
@@ -98,6 +105,30 @@ extension UIViewController {
             }
         }
     }
+    func addTaskAlert(realm: Realm, scoreCategory: [String]) {
+        let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
+            alert -> Void in
+            let oddJobName = alertController.textFields![0] as UITextField
+            let oddJobPriority = alertController.textFields![1] as UITextField
+            let oddJobOccurrence = alertController.textFields![2] as UITextField
+            let item = OddJobItem()
+            item.Name = oddJobName.text ?? ""
+            item.Priority = oddJobPriority.text ?? ""
+            item.Occurrence = oddJobOccurrence.text ?? ""
+            item.Category = scoreCategory[0]
+            try! realm.write {
+                realm.add(item)
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        for field in Constants.sortFields {
+            alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
+                oddJobName.placeholder = field
+            })
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     func cellSetup(_ cell: UITableViewCell, _ item: OddJobItem, _ cellFields: [String]) {
         cell.selectionStyle = .none
@@ -124,6 +155,12 @@ extension UIViewController {
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
     }
+    @objc func mapTasks() {
+        print("Search Button Pressed")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
+        self.present(controller, animated: true, completion: nil)
+    }
 }
 
 extension UITableView {
@@ -148,6 +185,7 @@ extension UISearchBarDelegate {
     }
 }
 
+// This with work may be applicable to all classes
 extension PersonalViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")

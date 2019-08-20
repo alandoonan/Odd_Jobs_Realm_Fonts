@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import RealmSearchViewController
 import RSSelectionMenu
-class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate
+class PersonalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
 {
 
     // Class Variables
@@ -18,17 +18,20 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
     var scoreVC = ScoreViewController()
-    let tableView = UITableView()
     var notificationToken: NotificationToken?
-    var scoreCategory = ["Personal"]
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
+    let tableView = UITableView()
+    let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+    let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+    let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+    var scoreCategory = ["Personal"]
 
     // Initialize Realm
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Personal")
+        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", scoreCategory[0])
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -38,9 +41,23 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         notificationToken?.invalidate()
     }
     
+    // View Load & Appear
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
+        addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
+        setUpSearchBar(searchBar: searchBar)
+        applyTheme(tableView,view)
+        tableView.reloadData()
     }
     
      //Add UI & Customization Functions
@@ -64,18 +81,15 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    func updateSearchResults(for searchController: UISearchController) {
-        print("Search Results Updating")
-    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
     }
     
+    // Realm Class Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let oddJobitem = items[indexPath.row]
         try! realm.write {
@@ -86,7 +100,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             updateScore(realm: realm)
         }
     }
-    
     func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
@@ -97,29 +110,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
-        addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
-        tableView.addTableView(tableView, view)
-        tableView.dataSource = self
-        tableView.delegate = self
-        addNotificationToken()
-        setUpSearchBar(searchBar: searchBar)
-        applyTheme(tableView,view)
-        tableView.reloadData()
-    }
-
-    @objc func searchOddJobs() {
-        print("Search Button Pressed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
-        self.present(controller, animated: true, completion: nil)
-    }
-    
+    // Sorting Functions & Menu
     fileprivate func rssSelectionMenuSort() {
         var selectedNames: [String] = []
         let menu = RSSelectionMenu(dataSource: Constants.sortFields) { (cell, name, indexPath) in
@@ -133,7 +124,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         }
         menu.show(style: .push, from: self)
     }
-    
     @objc func selectSortField() {
         print("Sort Button Pressed")
         rssSelectionMenuSort()
@@ -159,36 +149,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    fileprivate func personalAddAlert() {
-        let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
-            alert -> Void in
-            let oddJobName = alertController.textFields![0] as UITextField
-            let oddJobPriority = alertController.textFields![1] as UITextField
-            let oddJobOccurrence = alertController.textFields![2] as UITextField
-            let oddJobLocation = alertController.textFields![3] as UITextField
-            let item = OddJobItem()
-            item.Name = oddJobName.text ?? ""
-            item.Priority = oddJobPriority.text ?? ""
-            item.Occurrence = oddJobOccurrence.text ?? ""
-            item.Location = oddJobLocation.text ?? ""
-            item.Longitude = -7.386739
-            item.Latitude = 53.322185
-            item.Category = "Personal"
-            try! self.realm.write {
-                self.realm.add(item)
-            }
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        for field in Constants.personalAlertFields {
-            alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
-                oddJobName.placeholder = field
-            })
-        }
-        self.present(alertController, animated: true, completion: nil)
-    }
     
-    @objc func addButtonDidClick() {
-        personalAddAlert()
+    @objc func addTaskPassThrough() {
+        addTaskAlert(realm: realm,scoreCategory: scoreCategory)
     }
 }

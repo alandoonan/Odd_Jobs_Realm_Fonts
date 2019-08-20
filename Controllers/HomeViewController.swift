@@ -36,13 +36,6 @@ class HomeViewController: UITabBarController {
         tabBarAppearance.barTintColor = Themes.current.background
     }
     
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
     fileprivate func setupPersonalTab(_ personalTab: UINavigationController) {
         personalTab.tabBarItem.image = UIImage(named: "P.png")
         personalTab.title = "Personal"
@@ -77,12 +70,7 @@ class HomeViewController: UITabBarController {
         setupLifeTab(lifeTab)
         setupSummaryTab(summaryTab)
         setupView(groupTab, personalTab, lifeTab, summaryTab)
-        applyTheme()
-    }
-    
-    @objc func searchOddJobs () {
-        print("Search Odd Jobs")
-    
+        applyThemeView(view)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

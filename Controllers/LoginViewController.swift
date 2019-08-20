@@ -128,13 +128,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme(tableView,view)
+        applyThemeView(view)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        applyTheme(tableView, view)
+        applyThemeView(view)
         logOutUsers()
-        view.backgroundColor = Themes.current.background
         if let _ = SyncUser.current {
             print("Already Logged In.")
             self.navigationController?.pushViewController(HomeViewController(), animated: true)

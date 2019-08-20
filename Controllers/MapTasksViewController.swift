@@ -21,13 +21,7 @@ class MapTasksViewController: UIViewController {
         print("Back to Personal Button Pressed")
         performSegueToReturnBack()
     }
-    
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
+
     @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
@@ -39,7 +33,7 @@ class MapTasksViewController: UIViewController {
         view.backgroundColor = Themes.current.background
         UINavigationBar.appearance().barTintColor = Themes.current.background
         searchInMap()
-        applyTheme()
+        applyThemeView(view)
         
 //
 //        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -57,7 +51,7 @@ class MapTasksViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyThemeView(view)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

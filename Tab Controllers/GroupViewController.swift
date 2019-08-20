@@ -13,16 +13,19 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let realm: Realm
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
-    let tableView = UITableView()
     var notificationToken: NotificationToken?
+    let tableView = UITableView()
     var searchBar = UISearchBar()
     var scoreCategory = ["Group"]
+    let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+    let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+    let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
 
     // Initialize Methods
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Group")
+        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", scoreCategory[0])
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -73,9 +76,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -125,37 +125,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
-    fileprivate func addAlert() {
-        let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
-            alert -> Void in
-            let oddJobName = alertController.textFields![0] as UITextField
-            let oddJobPriority = alertController.textFields![1] as UITextField
-            let oddJobOccurrence = alertController.textFields![2] as UITextField
-            let item = OddJobItem()
-            item.Name = oddJobName.text ?? ""
-            item.Priority = oddJobPriority.text ?? ""
-            item.Occurrence = oddJobOccurrence.text ?? ""
-            item.Category = "Group"
-            try! self.realm.write {
-                self.realm.add(item)
-            }
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
-            oddJobName.placeholder = "Odd Job Name"
-        })
-        alertController.addTextField(configurationHandler: {(oddJobPriority : UITextField!) -> Void in
-            oddJobPriority.placeholder = "Odd Job Priority"
-        })
-        alertController.addTextField(configurationHandler: {(oddJobOccurrence : UITextField!) -> Void in
-            oddJobOccurrence.placeholder = "Odd Job Occurrence"
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    @objc func addButtonDidClick() {
-        addAlert()
+    @objc func addTaskPassThrough() {
+        addTaskAlert(realm: realm,scoreCategory: scoreCategory)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -164,10 +135,5 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         try! realm.write {
             realm.delete(item)
         }
-    }
-    
-    //Not used yet
-    @objc func searchOddJobs() {
-        print("Search Button Pressed")
     }
 }

@@ -10,48 +10,33 @@ import UIKit
 import RealmSwift
 import RealmSearchViewController
 import RSSelectionMenu
-class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate
+class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
 {
-    func updateSearchResults(for searchController: UISearchController) {
-        print("Search Results Updating")
-    }
-    
     var realm: Realm
     var items: Results<UserItem>
     var scoreVC = ScoreViewController()
-    let tableView = UITableView()
     var notificationToken: NotificationToken?
-    var scoreCategory = ["User"]
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
-    
+    let tableView = UITableView()
+    var scoreCategory = ["User"]
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.items = realm.objects(UserItem.self).filter("Category contains[c] %@", "User")
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        tableView.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
-    }
-    
     deinit {
         notificationToken?.invalidate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyThemeView(view)
     }
     
     fileprivate func addNotificationToken() {
@@ -87,7 +72,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
         addNotificationToken()
         addNotificationToken()
         setUpSearchBar(searchBar: searchBar)
-        applyTheme()
+        applyThemeView(view)
         tableView.reloadData()
     }
     
@@ -102,8 +87,8 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     
     fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
         let item = items[indexPath.row]
+        cell.selectionStyle = .none
         cell.textLabel?.text = item.Name
         cell.tintColor = .white
         cell.textLabel?.textColor = .white
@@ -130,13 +115,6 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
             tableView.reloadData()
         }
         tableView.reloadData()
-    }
-    
-    @objc func searchOddJobs() {
-        print("Search Button Pressed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
-        self.present(controller, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

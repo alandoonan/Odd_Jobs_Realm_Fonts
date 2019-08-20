@@ -14,10 +14,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
 {
     let realm: Realm
     var items: Results<OddJobItem>
-    var holidayDictionary:[String:String] = [:]
-    let tableView = UITableView()
     let loginVC = LoginViewController()
     var notificationToken: NotificationToken?
+    var holidayDictionary:[String:String] = [:]
+    let tableView = UITableView()
     let calendar = Calendar.current
     let date = Date()
     var searchBar = UISearchBar()
@@ -26,14 +26,12 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", "Life")
+        self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", scoreCategory[0])
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     deinit {
         notificationToken?.invalidate()
     }
@@ -43,7 +41,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         applyTheme(tableView,view)
     }
     
-    fileprivate func         addNotificationToken() {
+    fileprivate func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -67,7 +65,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
         addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
@@ -110,10 +108,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    @objc func searchOddJobs() {
-        print("Search Button Pressed")
-    }
-    
     func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
@@ -125,37 +119,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
-    fileprivate func addAlert() {
-        let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
-            alert -> Void in
-            let oddJobName = alertController.textFields![0] as UITextField
-            let oddJobPriority = alertController.textFields![1] as UITextField
-            let oddJobOccurrence = alertController.textFields![2] as UITextField
-            let item = OddJobItem()
-            item.Name = oddJobName.text ?? ""
-            item.Priority = oddJobPriority.text ?? ""
-            item.Occurrence = oddJobOccurrence.text ?? ""
-            item.Category = "Life"
-            try! self.realm.write {
-                self.realm.add(item)
-            }
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addTextField(configurationHandler: {(oddJobName : UITextField!) -> Void in
-            oddJobName.placeholder = "Odd Job Name"
-        })
-        alertController.addTextField(configurationHandler: {(oddJobPriority : UITextField!) -> Void in
-            oddJobPriority.placeholder = "Odd Job Priority"
-        })
-        alertController.addTextField(configurationHandler: {(oddJobOccurrence : UITextField!) -> Void in
-            oddJobOccurrence.placeholder = "Odd Job Occurrence"
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    @objc func addButtonDidClick() {
-        addAlert()
+    @objc func addTaskPassThrough() {
+        addTaskAlert(realm: realm,scoreCategory: scoreCategory)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

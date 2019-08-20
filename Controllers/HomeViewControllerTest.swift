@@ -33,23 +33,16 @@ class HomeControllerTest: UIViewController {
         return Themes.current.preferredStatusBarStyle
     }
     
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        configureNavigationBar()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyThemeView(view)
+        configureNavigationBar()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = Themes.current.background
-        applyTheme()
+        applyThemeView(view)
     }
         
     @objc func handleMenuToggle() {

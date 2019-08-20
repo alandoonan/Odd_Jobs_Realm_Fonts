@@ -32,14 +32,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     deinit {
         notificationToken?.invalidate()
     }
-
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        tableView.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
     
     fileprivate func addNotificationToken() {
         notificationToken = themes.observe { [weak self] (changes) in
@@ -68,8 +60,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         addNavBar([sideBar], [logout], scoreCategory: ["Themes"])
-        applyTheme()
-        addThemes()
+        applyTheme(tableView,view)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -100,12 +91,12 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("UISwitch state is now Off")
             Themes.current = BlueTheme()
         }
-        applyTheme()
+        applyTheme(tableView,view)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyTheme()
+        applyTheme(tableView,view)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

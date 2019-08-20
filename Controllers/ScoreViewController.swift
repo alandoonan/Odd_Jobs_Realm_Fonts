@@ -87,25 +87,17 @@ class ScoreViewController: UIViewController {
         return layer
     }
     
-    fileprivate func applyTheme() {
-        view.backgroundColor = Themes.current.background
-        navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        view.backgroundColor = Themes.current.background
         addNavBar([sideBar], [logout],scoreCategory: [""])
         checkingScoreSystem()
         setupCircleLayers()
-        //animateCircle()
+        animateCircle()
         setupUserLabels()
-        applyTheme()
-        autoRefreshScores(scoreCategory: "Personal")
+        applyThemeView(view)
+        //autoRefreshScores(scoreCategory: "Personal")
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
@@ -113,7 +105,7 @@ class ScoreViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-         applyTheme()
+        applyThemeView(view)
     }
     
     fileprivate func addScoreLabel() {
@@ -144,7 +136,6 @@ class ScoreViewController: UIViewController {
         addScoreLabel()
         addUserLabel()
         addLevelLabel()
-        
     }
     
     fileprivate func addPulsatiingLayer() {
@@ -188,7 +179,7 @@ class ScoreViewController: UIViewController {
     fileprivate func basicAnimationSettings(_ basicAnimation: CABasicAnimation, _ scoreItem: ScoreItem?) {
         basicAnimation.fromValue = CGFloat(scoreItem!.Score - 1) / CGFloat(scoreItem!.LevelCap)
         basicAnimation.toValue = CGFloat(scoreItem!.Score) / CGFloat(scoreItem!.LevelCap)
-        basicAnimation.duration = 2
+        basicAnimation.duration = 1
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
     }
@@ -201,20 +192,5 @@ class ScoreViewController: UIViewController {
         scoreLabel.text = String(scoreItem!.Score)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         levelLabel.text = String("Level: " + String(scoreItem!.Level))
-    }
-    
-    /*
-     Constantly check for updates to scores
-    */
-    func autoRefreshScores(scoreCategory:String) {
-        let scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", scoreCategory)
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            if self.scoreActive {
-                self.scoreLabel.text = "\(scoreItem[0].Score)"
-                self.levelLabel.text = "Level: " + "\(scoreItem[0].Level)"
-                self.autoRefreshScores(scoreCategory: scoreCategory)
-                self.animateCircle()
-            }
-        }
     }
 }

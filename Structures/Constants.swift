@@ -16,7 +16,6 @@ struct Constants {
     static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
     static let ODDJOBS_REALM_USERS_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/Users-Shared")!
     
-    
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
     static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme"], "Dark": ["453823","20","2","DarkTheme"], "Green": ["31BC53","30","3","GreenTheme"], "Orange": ["E07A5F","40","4","OrangeTheme"]]
@@ -25,11 +24,8 @@ struct Constants {
     static let themeLevels = ["Blue" : BlueTheme(), "Dark": DarkTheme(),"Green": GreenTheme(),"Orange": OrangeTheme()] as [String : Any]
     
     //Alert Fields
-    //Personal
     static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-    //Group
     static let groupAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-    //Life
     static let lifeAlertFields = ["Odd Job Name","Odd Job Occurrence","Life Area"]
 
     //Sort Fields
