@@ -35,9 +35,9 @@ class SideBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        applyThemeView(view)
         setupNavBar()
         configureHomeController()
-        applyThemeView(view)
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

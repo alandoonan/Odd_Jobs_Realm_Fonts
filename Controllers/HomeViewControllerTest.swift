@@ -35,8 +35,8 @@ class HomeControllerTest: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        applyThemeView(view)
         configureNavigationBar()
+        applyThemeView(view)
 
     }
     

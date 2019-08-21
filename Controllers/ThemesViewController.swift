@@ -79,7 +79,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     for colour2 in Constants.themeLevels {
                         if colour2.key == colour1.key {
                             print("Changing colour")
-                            //Change colours here
                             Themes.current = BlueTheme()
                             viewDidAppear(true)
                         }
@@ -107,14 +106,14 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let switchView = UISwitch(frame: .zero)
         let item = themes[indexPath.row]
-        cell.textLabel?.text = item.name
         cell.textLabel?.textColor = .white
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
-        switchView.setOn(false, animated: true)
-        switchView.tag = indexPath.row
         cell.accessoryView = switchView
+        cell.textLabel?.text = item.name
+        switchView.setOn(false, animated: true)
         switchView.tintColor = Themes.current.background
+        switchView.tag = indexPath.row
         switchView.tag = item.tag
         switchView.addTarget(self, action: #selector(ThemesViewController.switchStateDidChange(_:)), for: .valueChanged)
         return cell

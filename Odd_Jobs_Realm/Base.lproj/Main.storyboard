@@ -176,6 +176,11 @@
                                                 <action selector="backToPersonalButton:" destination="0DB-Wp-r8S" id="3VC-r2-j5n"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="l6E-KC-nln">
+                                            <connections>
+                                                <action selector="searchButton:" destination="0DB-Wp-r8S" id="Ewf-jr-Vsj"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

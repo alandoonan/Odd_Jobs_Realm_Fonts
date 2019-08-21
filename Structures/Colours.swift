@@ -35,22 +35,16 @@ struct Colours {
         let proxyButton = UIButton.appearance()
         proxyButton.setTitleColor(Colours.buttonTextColor, for: .normal)
         proxyButton.backgroundColor = Colours.buttonBackgroundColor
-        
         let proxyView = UIView.appearance()
         proxyView.backgroundColor = backgroundColor
-        
         let proxyNav = UINavigationBar.appearance()
         proxyNav.backgroundColor = Colours.backgroundColor
         proxyNav.barTintColor = Colours.backgroundColor
-        
         let proxyTab = UITabBar.appearance()
         proxyTab.barTintColor = Colours.backgroundColor
-        
         let proxyNavCont = UINavigationController()
         proxyNavCont.navigationBar.isTranslucent = true
-
     }
-
 }
 
 extension UIColor {

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
+  - Eureka (5.0.0)
   - Realm (3.17.3):
     - Realm/Headers (= 3.17.3)
   - Realm/Headers (3.17.3)
@@ -12,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - Eureka
   - RealmSearchViewController
   - RealmSwift
   - RSSelectionMenu
@@ -20,6 +22,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Eureka
     - Realm
     - RealmSearchViewController
     - RealmSwift
@@ -28,12 +31,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
   RealmSearchViewController: 685a112c09c271d769bbf43911ac4d5f12dc8862
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
   RSSelectionMenu: 1dc497c68e81aa09e6c7f91432403cc2bc5ad816
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 5cef443405ca7b2c45d44148404d1fb3c72430fd
+PODFILE CHECKSUM: 99addfb0719f9f0276a4a10fcf03db4d53565da2
 
 COCOAPODS: 1.5.3

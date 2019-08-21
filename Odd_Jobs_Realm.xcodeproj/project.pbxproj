@@ -38,6 +38,8 @@
 		81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ACE2308612B00F6548E /* SearchUsersViewController.swift */; };
 		81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD02309CFBB00F6548E /* RealmManager.swift */; };
 		81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD3230B107100F6548E /* RealmProtocols.swift */; };
+		81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD5230DA66400F6548E /* OddJobViewController.swift */; };
+		81208ADF230DADA200F6548E /* OddJobTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ADE230DADA200F6548E /* OddJobTask.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -126,6 +128,8 @@
 		81208ACE2308612B00F6548E /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
 		81208AD02309CFBB00F6548E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		81208AD3230B107100F6548E /* RealmProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProtocols.swift; sourceTree = "<group>"; };
+		81208AD5230DA66400F6548E /* OddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobViewController.swift; sourceTree = "<group>"; };
+		81208ADE230DADA200F6548E /* OddJobTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobTask.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 				811B214522F7120A007425C0 /* UserItem.swift */,
 				811B214922FD8320007425C0 /* HolidayItem.swift */,
 				81208AC72307318B00F6548E /* ThemeItem.swift */,
+				81208ADE230DADA200F6548E /* OddJobTask.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 				81208AB0230331F800F6548E /* HomeViewControllerTest.swift */,
 				81208AC02303397E00F6548E /* MenuController.swift */,
 				81208ACE2308612B00F6548E /* SearchUsersViewController.swift */,
+				81208AD5230DA66400F6548E /* OddJobViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -599,6 +605,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/RSSelectionMenu/RSSelectionMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSearchViewController/RealmSearchViewController.framework",
@@ -610,6 +617,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSelectionMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSearchViewController.framework",
@@ -654,6 +662,8 @@
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,
 				816B8B0322D21FA400C630B9 /* Constants.swift in Sources */,
 				816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */,
+				81208ADF230DADA200F6548E /* OddJobTask.swift in Sources */,
+				81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */,
 				81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */,
 				81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */,
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
