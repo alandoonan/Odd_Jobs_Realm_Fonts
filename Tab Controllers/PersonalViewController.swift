@@ -22,9 +22,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
     let tableView = UITableView()
-    let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-    let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
-    let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
     var scoreCategory = ["Personal"]
 
     // Initialize Realm
@@ -49,6 +46,9 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
         tableView.addTableView(tableView, view)
