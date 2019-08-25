@@ -53,6 +53,7 @@ extension UIColor {
     static let greenTheme = UIColor().hexColor("31BC53")
     static let blueTheme = UIColor().hexColor("20A4F3")
     static let darkTheme = UIColor().hexColor("453823")
+    static let purpleTheme = UIColor().hexColor("34314C")
     
     func hexColor(_ hex : String) -> UIColor {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

@@ -19,10 +19,9 @@ class OddJobTaskViewController2: UIViewController{
     var taskList = ["No Smoking", "Drink Water"]
     var whenList = ["Daily","Weekly","Monthly","Years"]
     @IBOutlet weak var categoryButtonTitle: UIButton!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectTaskButton: UIButton!
     @IBOutlet weak var selectWhenButton: UIButton!
-    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
