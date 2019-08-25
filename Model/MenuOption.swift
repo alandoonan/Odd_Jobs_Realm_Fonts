@@ -15,6 +15,7 @@ enum MenuOption: Int, CustomStringConvertible {
     case Themes
     case Locations
     case Users
+    case CreateTask
     case Logout
     
     var description: String {
@@ -24,6 +25,7 @@ enum MenuOption: Int, CustomStringConvertible {
         case .Themes: return "Themes"
         case .Locations: return "Locations"
         case .Users: return "Users"
+        case . CreateTask: return "Create Task"
         case .Logout: return "Log Out"
 
         }
@@ -36,6 +38,7 @@ enum MenuOption: Int, CustomStringConvertible {
         case .Themes: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Locations: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Users: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .CreateTask: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Logout: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
 
         }

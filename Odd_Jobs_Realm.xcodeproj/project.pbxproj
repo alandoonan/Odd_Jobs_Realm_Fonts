@@ -39,7 +39,8 @@
 		81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD02309CFBB00F6548E /* RealmManager.swift */; };
 		81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD3230B107100F6548E /* RealmProtocols.swift */; };
 		81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD5230DA66400F6548E /* OddJobViewController.swift */; };
-		81208ADF230DADA200F6548E /* OddJobTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ADE230DADA200F6548E /* OddJobTask.swift */; };
+		81208ADF230DADA200F6548E /* OddJobTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ADE230DADA200F6548E /* OddJobTaskViewController.swift */; };
+		81208AE72312C5D700F6548E /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE62312C5D700F6548E /* DropDownCell.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -129,7 +130,8 @@
 		81208AD02309CFBB00F6548E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		81208AD3230B107100F6548E /* RealmProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProtocols.swift; sourceTree = "<group>"; };
 		81208AD5230DA66400F6548E /* OddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobViewController.swift; sourceTree = "<group>"; };
-		81208ADE230DADA200F6548E /* OddJobTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobTask.swift; sourceTree = "<group>"; };
+		81208ADE230DADA200F6548E /* OddJobTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobTaskViewController.swift; sourceTree = "<group>"; };
+		81208AE62312C5D700F6548E /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -428,7 +430,6 @@
 				811B214522F7120A007425C0 /* UserItem.swift */,
 				811B214922FD8320007425C0 /* HolidayItem.swift */,
 				81208AC72307318B00F6548E /* ThemeItem.swift */,
-				81208ADE230DADA200F6548E /* OddJobTask.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -446,6 +447,8 @@
 				81208AC02303397E00F6548E /* MenuController.swift */,
 				81208ACE2308612B00F6548E /* SearchUsersViewController.swift */,
 				81208AD5230DA66400F6548E /* OddJobViewController.swift */,
+				81208ADE230DADA200F6548E /* OddJobTaskViewController.swift */,
+				81208AE62312C5D700F6548E /* DropDownCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -662,7 +665,7 @@
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,
 				816B8B0322D21FA400C630B9 /* Constants.swift in Sources */,
 				816B8B0822D2209F00C630B9 /* OddJobItem.swift in Sources */,
-				81208ADF230DADA200F6548E /* OddJobTask.swift in Sources */,
+				81208ADF230DADA200F6548E /* OddJobTaskViewController.swift in Sources */,
 				81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */,
 				81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */,
 				81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */,
@@ -677,6 +680,7 @@
 				814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */,
 				811B215022FDC910007425C0 /* MenuBar.swift in Sources */,
 				8132C37822E77CD000EC79F2 /* MapTasksViewController.swift in Sources */,
+				81208AE72312C5D700F6548E /* DropDownCell.swift in Sources */,
 				81208AB1230331F800F6548E /* HomeViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
