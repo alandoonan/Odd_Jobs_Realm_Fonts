@@ -48,7 +48,7 @@ enum taskTypes: Int, CaseIterable {
 let button = UIButton(type: .system)
 var lifeCategoryList = ["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"]
 
-class OddJobTaskViewController: UIViewController {
+class OddJobTaskViewController1: UIViewController {
     
     var tableView: UITableView!
     var showMenu = false
@@ -112,7 +112,7 @@ class OddJobTaskViewController: UIViewController {
     }
 }
 
-extension OddJobTaskViewController: UITableViewDelegate, UITableViewDataSource {
+extension OddJobTaskViewController1: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return showMenu ? taskTypes.allCases.count : 0

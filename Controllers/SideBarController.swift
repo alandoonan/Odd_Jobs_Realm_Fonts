@@ -99,30 +99,29 @@ class SideBarController: UIViewController {
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .Locations:
             print("Locations")
-            showMapView()
+            showStoryBoardView(storyBoardID: "MapTasksViewController")
         case .Users:
             print("Users")
             let controller = SearchUsersViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .CreateTask:
             print("Create Task")
-            let controller = OddJobTaskViewController()
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            showStoryBoardView(storyBoardID: "OddJobTaskViewController2")
         case .Logout:
             print("Log Out")
             logOutButtonPress()
     }
 }
     
-    fileprivate func showMapView() {
-        print("Search Button Pressed")
+    func showStoryBoardView(storyBoardID: String) {
+        print("Go to Storyboard Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
+        let controller = storyboard.instantiateViewController(withIdentifier: storyBoardID)
         self.present(controller, animated: true, completion: nil)
     }
     
     @objc func searchOddJobs() {
-        showMapView()
+        showStoryBoardView(storyBoardID: "MapTasksViewController")
     }
     
     func animateStatusBar() {
