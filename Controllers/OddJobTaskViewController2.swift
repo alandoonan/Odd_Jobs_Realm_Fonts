@@ -11,22 +11,17 @@ import UIKit
 import RealmSwift
 
 class OddJobTaskViewController2: UIViewController{
+    var p: Int!
     
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var selectCategoryButton: UIButton!
-    
-    var p: Int!
-    
-    var taskGroups = ["Health": ["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal"], "Social": ["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody"], "Finance": ["Save Small Sum Of Money","Pay A Bill"], "Birthday": ["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday"], "Anniversary": ["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],"Custom": ["Test"]]
-    
-    var taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],["No Smoking", "Drink Water"],["Daily","Weekly","Monthly","Yearly"]]
-//    var taskList = ["No Smoking", "Drink Water"]
-//    var whenList = ["Daily","Weekly","Monthly","Years"]
     @IBOutlet weak var categoryButtonTitle: UIButton!
     @IBOutlet weak var selectTaskButton: UIButton!
     @IBOutlet weak var selectWhenButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBAction func doneTaskButtonPress(_ sender: Any) {
+        performSegueToReturnBack()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         p=0
@@ -54,7 +49,24 @@ class OddJobTaskViewController2: UIViewController{
     
     @IBAction func selectTaskButtonPress(_ sender: Any) {
         print("Select Task Pressed")
-        p=1
+        if categoryButtonTitle.titleLabel?.text == "Health" {
+            p=1
+        }
+        if categoryButtonTitle.titleLabel?.text == "Social" {
+            p=2
+        }
+        if categoryButtonTitle.titleLabel?.text == "Finance" {
+            p=3
+        }
+        if categoryButtonTitle.titleLabel?.text == "Birthday" {
+            p=4
+        }
+        if categoryButtonTitle.titleLabel?.text == "Anniversary" {
+            p=5
+        }
+        if categoryButtonTitle.titleLabel?.text == "Custom" {
+            p=6
+        }
         tableView.reloadData()
         if tableView.isHidden {
             buttonViewToggle(toggle: true)
@@ -62,11 +74,10 @@ class OddJobTaskViewController2: UIViewController{
         else {
             buttonViewToggle(toggle: false)
         }
-
     }
     @IBAction func selectWhenButtonPressed(_ sender: Any) {
         print("Select When Pressed")
-        p=2
+        p = 7
         tableView.reloadData()
         if tableView.isHidden {
             buttonViewToggle(toggle: true)
@@ -74,9 +85,7 @@ class OddJobTaskViewController2: UIViewController{
         else {
             buttonViewToggle(toggle: false)
         }
-
     }
-    
     
     @IBAction func createTaskButtonPress(_ sender: Any) {
         print("Create Task.")
@@ -97,27 +106,28 @@ class OddJobTaskViewController2: UIViewController{
         }
     }
 }
+
 extension OddJobTaskViewController2: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(taskData[p].count)
-        return taskData[p].count
+        print("TASK DATA COUNT: " + String(Constants.taskData[p].count))
+        return Constants.taskData[p].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = taskData[p][indexPath.row]
+        cell.textLabel?.text = Constants.taskData[p][indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if p == 0 {
-            categoryButtonTitle.setTitle("\(taskData[p][indexPath.row])", for: .normal)
+            categoryButtonTitle.setTitle("\(Constants.taskData[p][indexPath.row])", for: .normal)
         }
-        if p == 1 {
-            selectTaskButton.setTitle("\(taskData[p][indexPath.row])", for: .normal)
+        if [1,2,3,4,5,6].contains(p) {
+            selectTaskButton.setTitle("\(Constants.taskData[p][indexPath.row])", for: .normal)
         }
-        if p == 2 {
-            selectWhenButton.setTitle("\(taskData[p][indexPath.row])", for: .normal)
+        if p == 7 {
+            selectWhenButton.setTitle("\(Constants.taskData[p][indexPath.row])", for: .normal)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         buttonViewToggle(toggle: false)

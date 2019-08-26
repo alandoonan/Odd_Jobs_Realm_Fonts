@@ -379,6 +379,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneTaskButtonPress:" destination="XmC-i7-N3n" eventType="touchUpInside" id="QDA-ez-cEn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOV-xl-rbP">
                                 <rect key="frame" x="209" y="790" width="205" height="70"/>
