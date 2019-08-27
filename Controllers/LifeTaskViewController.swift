@@ -1,5 +1,5 @@
 //
-//  OddJobTaskViewController2.swift
+//  LifeTaskViewController.swift
 //  Odd_Jobs_Realm
 //
 //  Created by Alan Doonan on 25/08/2019.
@@ -10,7 +10,7 @@
 import UIKit
 import RealmSwift
 
-class OddJobTaskViewController2: UIViewController{
+class LifeTaskViewController: UIViewController{
     var p: Int!
     
     @IBOutlet weak var userLabel: UILabel!
@@ -22,17 +22,12 @@ class OddJobTaskViewController2: UIViewController{
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         performSegueToReturnBack()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         p=0
         applyThemeView(view)
-        tableView.isHidden = true
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        selectTaskButton.backgroundColor = Themes.current.accent
-        selectCategoryButton.backgroundColor = Themes.current.accent
-        selectWhenButton.backgroundColor = Themes.current.accent
-        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        applyTaskTheme(tableView: tableView, selectTaskButton: selectTaskButton, selectCategoryButton: selectCategoryButton, selectWhenButton: selectWhenButton, userLabel: userLabel)
     }
 
     @IBAction func selectCategoryButtonPress(_ sender: Any) {
@@ -107,9 +102,8 @@ class OddJobTaskViewController2: UIViewController{
     }
 }
 
-extension OddJobTaskViewController2: UITableViewDelegate, UITableViewDataSource {
+extension LifeTaskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("TASK DATA COUNT: " + String(Constants.taskData[p].count))
         return Constants.taskData[p].count
     }
     

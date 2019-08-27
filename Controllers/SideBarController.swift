@@ -104,9 +104,12 @@ class SideBarController: UIViewController {
             print("Users")
             let controller = SearchUsersViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .CreateLifeTask:
+            print("Create Life Task")
+            showStoryBoardView(storyBoardID: "LifeTaskViewController")
         case .CreateTask:
             print("Create Task")
-            showStoryBoardView(storyBoardID: "OddJobTaskViewController2")
+            showStoryBoardView(storyBoardID: "CreateTaskViewController")
         case .Logout:
             print("Log Out")
             logOutButtonPress()

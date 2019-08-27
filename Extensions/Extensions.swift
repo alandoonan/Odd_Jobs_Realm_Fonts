@@ -161,6 +161,21 @@ extension UIViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: "MapTasksViewController")
         self.present(controller, animated: true, completion: nil)
     }
+    
+    func applyTaskTheme(tableView: UITableView, selectTaskButton: UIButton, selectCategoryButton: UIButton, selectWhenButton: UIButton, userLabel: UILabel) {
+        tableView.isHidden = true
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        selectTaskButton.backgroundColor = Themes.current.accent
+        selectCategoryButton.backgroundColor = Themes.current.accent
+        selectWhenButton.backgroundColor = Themes.current.accent
+        selectTaskButton.titleLabel?.textColor = Themes.current.background
+        selectTaskButton.setTitleColor(Themes.current.background, for: .normal)
+        selectCategoryButton.setTitleColor(Themes.current.background, for: .normal)
+        selectWhenButton.setTitleColor(Themes.current.background, for: .normal)
+        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        userLabel.textColor = Themes.current.accent
+    }
 }
 
 extension UITableView {
