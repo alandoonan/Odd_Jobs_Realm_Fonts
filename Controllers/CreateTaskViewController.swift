@@ -17,6 +17,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet weak var dateTextField: UITextField!
     
+    @IBOutlet weak var priorityLabel: UITextField!
     private var datePickerB: UIDatePicker?
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -29,8 +30,6 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     var p: Int!
     @IBOutlet weak var priorityPicker: UIPickerView!
-    @IBOutlet weak var priorityLabel: UILabel!
-    
     @IBOutlet weak var userLabel: UILabel!
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         performSegueToReturnBack()

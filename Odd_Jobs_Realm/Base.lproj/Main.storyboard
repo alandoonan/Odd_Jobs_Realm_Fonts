@@ -435,24 +435,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4c-t4-S14">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4c-t4-S14">
                                 <rect key="frame" x="26" y="44" width="363" height="133"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HjG-I4-xjd">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HjG-I4-xjd">
                                 <rect key="frame" x="7" y="143" width="400" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYG-IY-5md">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYG-IY-5md">
                                 <rect key="frame" x="0.0" y="787" width="205" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="205" id="syU-fQ-Goj"/>
+                                    <constraint firstAttribute="height" constant="75" id="zJ2-QW-Ls6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -461,9 +462,8 @@
                                     <action selector="doneTaskButtonPress:" destination="heJ-5w-97a" eventType="touchUpInside" id="4Ij-T2-q8g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-Zo-9dR">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-Zo-9dR">
                                 <rect key="frame" x="209" y="787" width="205" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Create Life Task">
@@ -473,30 +473,55 @@
                                     <action selector="createTaskButtonPress:" destination="heJ-5w-97a" eventType="touchUpInside" id="tjS-vJ-QDj"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-Tx-jCa">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-Tx-jCa">
                                 <rect key="frame" x="0.0" y="523" width="414" height="103"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="103" id="6Hx-T8-dVj"/>
+                                </constraints>
                             </pickerView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMd-3B-IMa">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMd-3B-IMa">
                                 <rect key="frame" x="7" y="185" width="400" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Priority" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDe-c8-44g">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Priority" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDe-c8-44g">
                                 <rect key="frame" x="7" y="227" width="400" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="b9S-Tx-jCa" firstAttribute="leading" secondItem="RYG-IY-5md" secondAttribute="leading" id="1WW-4g-Bfd"/>
+                            <constraint firstItem="OMd-3B-IMa" firstAttribute="top" secondItem="c4c-t4-S14" secondAttribute="bottom" constant="8" symbolic="YES" id="3BA-UT-hG2"/>
+                            <constraint firstItem="HjG-I4-xjd" firstAttribute="leading" secondItem="OMd-3B-IMa" secondAttribute="leading" id="5Cn-BC-yeJ"/>
+                            <constraint firstItem="b9S-Tx-jCa" firstAttribute="leading" secondItem="HCG-Pc-8bb" secondAttribute="leading" id="6cM-vR-QJb"/>
+                            <constraint firstItem="RYG-IY-5md" firstAttribute="top" secondItem="Ouj-Zo-9dR" secondAttribute="top" id="9yx-li-4Hp"/>
+                            <constraint firstAttribute="trailing" secondItem="b9S-Tx-jCa" secondAttribute="trailing" id="Ac4-X0-ldA"/>
+                            <constraint firstItem="HjG-I4-xjd" firstAttribute="trailing" secondItem="OMd-3B-IMa" secondAttribute="trailing" id="GdB-AT-QwO"/>
+                            <constraint firstItem="aDe-c8-44g" firstAttribute="centerX" secondItem="b9S-Tx-jCa" secondAttribute="centerX" id="OZh-FC-LCi"/>
+                            <constraint firstItem="aDe-c8-44g" firstAttribute="top" secondItem="OMd-3B-IMa" secondAttribute="bottom" constant="8" symbolic="YES" id="OaB-zr-5Gh"/>
+                            <constraint firstItem="HjG-I4-xjd" firstAttribute="leading" secondItem="QJr-mB-xTA" secondAttribute="leading" constant="7" id="PUR-X8-idx"/>
+                            <constraint firstItem="RYG-IY-5md" firstAttribute="bottom" secondItem="QJr-mB-xTA" secondAttribute="bottom" id="Sf0-cQ-f0N"/>
+                            <constraint firstItem="OMd-3B-IMa" firstAttribute="top" secondItem="HjG-I4-xjd" secondAttribute="bottom" constant="8" symbolic="YES" id="Xmx-tz-MwP"/>
+                            <constraint firstItem="RYG-IY-5md" firstAttribute="baseline" secondItem="Ouj-Zo-9dR" secondAttribute="firstBaseline" id="Y9K-yl-fRM"/>
+                            <constraint firstItem="OMd-3B-IMa" firstAttribute="leading" secondItem="aDe-c8-44g" secondAttribute="leading" id="Zy3-dh-aKd"/>
+                            <constraint firstAttribute="bottom" secondItem="b9S-Tx-jCa" secondAttribute="bottom" constant="270" id="gVp-l2-TKe"/>
+                            <constraint firstItem="Ouj-Zo-9dR" firstAttribute="leading" secondItem="RYG-IY-5md" secondAttribute="trailing" constant="4" id="hwJ-iM-JEk"/>
+                            <constraint firstItem="HjG-I4-xjd" firstAttribute="top" secondItem="QJr-mB-xTA" secondAttribute="top" constant="99" id="jfh-YR-ndd"/>
+                            <constraint firstItem="c4c-t4-S14" firstAttribute="centerX" secondItem="HjG-I4-xjd" secondAttribute="centerX" id="m9W-Iw-Gji"/>
+                            <constraint firstItem="c4c-t4-S14" firstAttribute="top" secondItem="QJr-mB-xTA" secondAttribute="top" id="nBX-2B-wns"/>
+                            <constraint firstItem="b9S-Tx-jCa" firstAttribute="trailing" secondItem="Ouj-Zo-9dR" secondAttribute="trailing" id="s4u-YD-4Ex"/>
+                            <constraint firstItem="c4c-t4-S14" firstAttribute="leading" secondItem="QJr-mB-xTA" secondAttribute="leading" constant="26" id="tRN-ER-Bin"/>
+                            <constraint firstItem="OMd-3B-IMa" firstAttribute="trailing" secondItem="aDe-c8-44g" secondAttribute="trailing" id="xcj-k6-anb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QJr-mB-xTA"/>
                     </view>
                     <connections>
                         <outlet property="dateTextField" destination="OMd-3B-IMa" id="uMy-3m-q5e"/>
+                        <outlet property="priorityLabel" destination="aDe-c8-44g" id="CAE-0v-kI4"/>
                         <outlet property="priorityPicker" destination="b9S-Tx-jCa" id="O5H-Kd-0Ah"/>
                         <outlet property="userLabel" destination="c4c-t4-S14" id="Jn4-8k-YWG"/>
                     </connections>
