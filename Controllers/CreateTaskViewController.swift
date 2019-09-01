@@ -10,119 +10,66 @@
 import UIKit
 import RealmSwift
 
-class CreateTaskViewController: UIViewController{
+class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    @IBOutlet weak var dateTextField: UITextField!
+    
+    private var datePickerB: UIDatePicker?
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Constants.taskData[7].count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Constants.taskData[7][row]
+    }
+    
     var p: Int!
-
+    @IBOutlet weak var priorityPicker: UIPickerView!
+    @IBOutlet weak var priorityLabel: UILabel!
+    
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var selectCategoryButton: UIButton!
-    @IBOutlet weak var categoryButtonTitle: UIButton!
-    @IBOutlet weak var selectTaskButton: UIButton!
-    @IBOutlet weak var selectWhenButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         performSegueToReturnBack()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        p=0
-        applyThemeView(view)
-        applyTaskTheme(tableView: tableView, selectTaskButton: selectTaskButton, selectCategoryButton: selectCategoryButton, selectWhenButton: selectWhenButton, userLabel: userLabel)
-    }
-    
-    @IBAction func selectCategoryButtonPress(_ sender: Any) {
-        print("Select Category Pressed")
-        p = 0
-        tableView.reloadData()
-        if tableView.isHidden {
-            buttonViewToggle(toggle: true)
-        }
-        else {
-            buttonViewToggle(toggle: false)
-        }
-    }
-    
-    @IBAction func selectTaskButtonPress(_ sender: Any) {
-        print("Select Task Pressed")
-        if categoryButtonTitle.titleLabel?.text == "Health" {
-            p=1
-        }
-        if categoryButtonTitle.titleLabel?.text == "Social" {
-            p=2
-        }
-        if categoryButtonTitle.titleLabel?.text == "Finance" {
-            p=3
-        }
-        if categoryButtonTitle.titleLabel?.text == "Birthday" {
-            p=4
-        }
-        if categoryButtonTitle.titleLabel?.text == "Anniversary" {
-            p=5
-        }
-        if categoryButtonTitle.titleLabel?.text == "Custom" {
-            p=6
-        }
-        tableView.reloadData()
-        if tableView.isHidden {
-            buttonViewToggle(toggle: true)
-        }
-        else {
-            buttonViewToggle(toggle: false)
-        }
-    }
-    @IBAction func selectWhenButtonPressed(_ sender: Any) {
-        print("Select When Pressed")
-        p = 7
-        tableView.reloadData()
-        if tableView.isHidden {
-            buttonViewToggle(toggle: true)
-        }
-        else {
-            buttonViewToggle(toggle: false)
-        }
-    }
-    
     @IBAction func createTaskButtonPress(_ sender: Any) {
         print("Create Task.")
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        datePickerB = UIDatePicker()
+        datePickerB?.datePickerMode = .date
+        dateTextField.inputView = datePickerB
+        datePickerB?.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePickerB:)), for: .valueChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
+        
+        view.addGestureRecognizer(tapGesture)
+        priorityPicker.delegate = self
+        priorityPicker.dataSource = self
+        p=0
+        //applyThemeView(view)
+        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        view.backgroundColor = Themes.current.background
+        priorityLabel.textColor = Themes.current.accent
+        priorityPicker.backgroundColor = Themes.current.background
+        priorityPicker.tintColor = Themes.current.accent
+        priorityPicker.setValue(Themes.current.accent, forKeyPath: "textColor")
+    }
     
-    func buttonViewToggle(toggle: Bool) {
-        if toggle {
-            UIView.animate(withDuration: 0.3) {
-                self.tableView.isHidden = false;
-                self.view.layoutIfNeeded()
-            }
-        }
-        else {
-            UIView.animate(withDuration: 0.3) {
-                self.tableView.isHidden = true;
-                self.view.layoutIfNeeded()
-            }
-        }
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+        
+    }
+    
+    @objc func dateChanged(datePickerB: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        dateTextField.text = dateFormatter.string(from: datePickerB.date)
+        view.endEditing(true)
     }
 }
 
-extension CreateTaskViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Constants.taskData[p].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = Constants.taskData[p][indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if p == 0 {
-            categoryButtonTitle.setTitle("\(Constants.taskData[p][indexPath.row])", for: .normal)
-        }
-        if [1,2,3,4,5,6].contains(p) {
-            selectTaskButton.setTitle("\(Constants.taskData[p][indexPath.row])", for: .normal)
-        }
-        if p == 7 {
-            selectWhenButton.setTitle("\(Constants.taskData[p][indexPath.row])", for: .normal)
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-        buttonViewToggle(toggle: false)
-    }
-}
