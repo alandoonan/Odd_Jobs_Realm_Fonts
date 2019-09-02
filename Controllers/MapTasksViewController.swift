@@ -85,21 +85,6 @@ class MapTasksViewController: UIViewController {
 //        }
 //    }
     
-    func getCoordinates(address: String) {
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(address) { (placemarks, error) in
-            guard
-                let placemarks = placemarks,
-                let location = placemarks.first?.location
-                else {
-                    return
-            }
-            print("Printing Coords")
-            print(location.coordinate.latitude)
-            print(location.coordinate.longitude)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchCompleter.delegate = self
@@ -122,6 +107,23 @@ class MapTasksViewController: UIViewController {
 //        searchInMap()
 
     }
+    
+    
+    func getCoordinates(address: String) {
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+                else {
+                    return
+            }
+            print("Printing Coords")
+            print(location.coordinate.latitude)
+            print(location.coordinate.longitude)
+        }
+    }
+    
     
 //    override var preferredStatusBarStyle: UIStatusBarStyle {
 //        return Themes.current.preferredStatusBarStyle
@@ -272,7 +274,7 @@ extension MapTasksViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
-        print(searchResults)
+        //print(searchResults)
         searchLocationsResults.reloadData()
     }
     
@@ -296,10 +298,10 @@ extension MapTasksViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
 
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.backgroundColor = UIColor.orangeTheme
+        cell.backgroundColor = Themes.current.background
         cell.selectionStyle = .none
         cell.tintColor = .white
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = Themes.current.accent
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.textLabel?.text = searchResult.title
@@ -308,6 +310,7 @@ extension MapTasksViewController: UITableViewDataSource {
 
         return cell
     }
+
     
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        // Add animations here
@@ -326,6 +329,8 @@ extension MapTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        print("SELECTING ROW")
+
         let completion = searchResults[indexPath.row]
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)

@@ -41,6 +41,7 @@
 		81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD5230DA66400F6548E /* OddJobViewController.swift */; };
 		81208AE72312C5D700F6548E /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE62312C5D700F6548E /* DropDownCell.swift */; };
 		81208AE92312DFD900F6548E /* LifeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE82312DFD900F6548E /* LifeTaskViewController.swift */; };
+		8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -92,7 +93,6 @@
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
 		8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCE722EE0422001AC3A9 /* Extensions.swift */; };
 		81CF5F2C23159407003F12E7 /* BlackYellowTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF5F2B23159407003F12E7 /* BlackYellowTheme.swift */; };
-		81CF5F2E2315A1BC003F12E7 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF5F2D2315A1BC003F12E7 /* CreateTaskViewController.swift */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +134,7 @@
 		81208AD5230DA66400F6548E /* OddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobViewController.swift; sourceTree = "<group>"; };
 		81208AE62312C5D700F6548E /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		81208AE82312DFD900F6548E /* LifeTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTaskViewController.swift; sourceTree = "<group>"; };
+		8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -187,7 +188,6 @@
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 		8192CCE722EE0422001AC3A9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		81CF5F2B23159407003F12E7 /* BlackYellowTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackYellowTheme.swift; sourceTree = "<group>"; };
-		81CF5F2D2315A1BC003F12E7 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,7 +454,7 @@
 				81208AD5230DA66400F6548E /* OddJobViewController.swift */,
 				81208AE62312C5D700F6548E /* DropDownCell.swift */,
 				81208AE82312DFD900F6548E /* LifeTaskViewController.swift */,
-				81CF5F2D2315A1BC003F12E7 /* CreateTaskViewController.swift */,
+				8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -659,7 +659,7 @@
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */,
 				8132C37222E76F1E00EC79F2 /* Locations.swift in Sources */,
-				81CF5F2E2315A1BC003F12E7 /* CreateTaskViewController.swift in Sources */,
+				8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */,
 				811B215422FEEEE3007425C0 /* UI.swift in Sources */,
 				811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */,
 				811B22DD230096A0007425C0 /* OrangeTheme.swift in Sources */,

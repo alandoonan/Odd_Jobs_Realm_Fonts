@@ -539,7 +539,7 @@
                     <connections>
                         <outlet property="dateTextField" destination="OMd-3B-IMa" id="uMy-3m-q5e"/>
                         <outlet property="priorityLabel" destination="aDe-c8-44g" id="CAE-0v-kI4"/>
-                        <outlet property="searchLocationResults" destination="kN4-cb-LA5" id="pQf-df-Unm"/>
+                        <outlet property="searchLocationsResults" destination="kN4-cb-LA5" id="6al-Yi-HRY"/>
                         <outlet property="userLabel" destination="c4c-t4-S14" id="Jn4-8k-YWG"/>
                     </connections>
                 </viewController>
