@@ -175,12 +175,11 @@ extension CreateTaskViewController: UITableViewDelegate {
             let coordinate = response?.mapItems[0].placemark.coordinate
             let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
             print(String(itemAddress))
-            print(String(describing: coordinate))
+            let (destLat, destLong) = (coordinate?.latitude, coordinate?.longitude)
+            print(destLat!,destLong!)
             self.locationSearchBar.text = String(itemAddress)
             self.searchLocationsResults.isHidden = true
         }
-        
-        
     }
 }
 
