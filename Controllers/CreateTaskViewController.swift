@@ -12,13 +12,17 @@ import RealmSwift
 import MapKit
 
 
-class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateTaskViewController: UIViewController, UIPickerViewDelegate,
+
+    UIPickerViewDataSource
+{
     
-    private var datePicker: UIDatePicker?
-    private var priorityPicker: UIPickerView?
+    var datePicker: UIDatePicker?
+    var priorityPicker: UIPickerView?
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
+    @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var searchLocationsResults: UITableView!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var priorityLabel: UITextField!
@@ -28,6 +32,17 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     @IBAction func createTaskButtonPress(_ sender: Any) {
         print("Create Task.")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = Themes.current.background
+        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        searchLocationsResults.separatorStyle = .none
+        applyTheme(searchLocationsResults,view)
+        setupDatePicker()
+        setupPriorityPicker()
+        searchCompleter.delegate = self
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -46,7 +61,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         priorityLabel.text = Constants.taskPriority[row]
         self.view.endEditing(false)
     }
-
+    
     fileprivate func setupDatePicker() {
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
@@ -54,20 +69,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         datePicker?.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker:)), for: .valueChanged)
         datePicker?.setValue(Themes.current.background, forKey: "textColor")
         datePicker?.backgroundColor = Themes.current.accent
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        searchCompleter.delegate = self
-        view.backgroundColor = Themes.current.background
-        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
-        searchLocationsResults.separatorStyle = .none
-        applyTheme(searchLocationsResults,view)
-        setupDatePicker()
-        setupPriorityPicker()
-        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
+//        view.addGestureRecognizer(tapGesture)
     }
     
     fileprivate func setupPriorityPicker() {
@@ -110,6 +113,15 @@ extension CreateTaskViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
+        searchLocationsResults.isHidden = false
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchLocationsResults.isHidden = true
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchLocationsResults.isHidden = false
     }
 }
 
@@ -139,8 +151,6 @@ extension CreateTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let searchResult = searchResults[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        
-        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.backgroundColor = Themes.current.background
         cell.selectionStyle = .none
         cell.tintColor = .white
@@ -149,8 +159,6 @@ extension CreateTaskViewController: UITableViewDataSource {
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.textLabel?.text = searchResult.title
         cell.detailTextLabel?.text = searchResult.subtitle
-        //cell.accessoryType = searchResult. ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
-        
         return cell
     }
 }
@@ -168,7 +176,11 @@ extension CreateTaskViewController: UITableViewDelegate {
             let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
             print(String(itemAddress))
             print(String(describing: coordinate))
+            self.locationSearchBar.text = String(itemAddress)
+            self.searchLocationsResults.isHidden = true
         }
+        
+        
     }
 }
 
