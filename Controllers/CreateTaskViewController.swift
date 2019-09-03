@@ -12,26 +12,42 @@ import RealmSwift
 import MapKit
 
 
-class CreateTaskViewController: UIViewController, UIPickerViewDelegate,
-
-    UIPickerViewDataSource
+class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
-    
     var datePicker: UIDatePicker?
     var priorityPicker: UIPickerView?
+    var categoryPicker: UIPickerView?
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var searchLocationsResults: UITableView!
+    @IBOutlet weak var taskNameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var priorityLabel: UITextField!
+    @IBOutlet weak var priorityTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var userLabel: UILabel!
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         performSegueToReturnBack()
     }
     @IBAction func createTaskButtonPress(_ sender: Any) {
         print("Create Task.")
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let realm = try! Realm(configuration: config!)
+        let oddJobName = taskNameTextField.text
+        let oddJobDate = dateTextField.text
+        let oddJobPriority = priorityTextField.text
+        let oddJobCategory = categoryTextField.text
+        let oddJobLocationName = locationSearchBar.text
+        let item = OddJobItem()
+        item.Name = oddJobName!
+        item.HolidayDate = oddJobDate!
+        item.Priority = oddJobPriority!
+        item.Category = oddJobCategory!
+        item.Location = oddJobLocationName!
+        try! realm.write {
+            realm.add(item)
+        }
     }
     
     override func viewDidLoad() {
@@ -42,11 +58,19 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate,
         applyTheme(searchLocationsResults,view)
         setupDatePicker()
         setupPriorityPicker()
+        setupCategoryPicker()
         searchCompleter.delegate = self
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Constants.taskPriority.count
+        if pickerView == priorityPicker {
+            return Constants.taskPriority.count
+        }
+        else if pickerView == categoryPicker {
+            return Constants.listTypes.count
+        }
+        return 1
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -54,12 +78,24 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate,
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Constants.taskPriority[row]
+        if pickerView == priorityPicker {
+            return Constants.taskPriority[row]
+        }
+        else if pickerView == categoryPicker {
+            return Constants.listTypes[row]
+        }
+        return ""
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        priorityLabel.text = Constants.taskPriority[row]
-        self.view.endEditing(false)
+        if pickerView == priorityPicker {
+            priorityTextField.text = Constants.taskPriority[row]
+            self.view.endEditing(false)
+        }
+        else if pickerView == categoryPicker {
+            categoryTextField.text = Constants.listTypes[row]
+            self.view.endEditing(false)
+        }
     }
     
     fileprivate func setupDatePicker() {
@@ -77,8 +113,16 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate,
         priorityPicker = UIPickerView()
         priorityPicker?.delegate = self
         priorityPicker?.dataSource = self
-        priorityLabel.inputView = priorityPicker
+        priorityTextField.inputView = priorityPicker
         priorityPicker?.backgroundColor = Themes.current.accent
+    }
+    
+    fileprivate func setupCategoryPicker() {
+        categoryPicker = UIPickerView()
+        categoryPicker?.delegate = self
+        categoryPicker?.dataSource = self
+        categoryTextField.inputView = categoryPicker
+        categoryPicker?.backgroundColor = Themes.current.accent
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
