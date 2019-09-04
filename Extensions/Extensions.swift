@@ -36,6 +36,13 @@ extension UITextField {
 
 extension UIViewController {
     
+    func showStoryBoardView(storyBoardID: String) {
+        print("Go to Storyboard Button Pressed")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: storyBoardID)
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
@@ -151,7 +158,7 @@ extension UIViewController {
             cell.backgroundColor = UIColor.blueTheme
         }
         cell.textLabel?.text = item.Name
-        cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
+        cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Location)
         cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
     }

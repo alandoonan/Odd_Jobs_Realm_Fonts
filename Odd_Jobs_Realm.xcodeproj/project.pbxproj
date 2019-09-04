@@ -42,6 +42,11 @@
 		81208AE72312C5D700F6548E /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE62312C5D700F6548E /* DropDownCell.swift */; };
 		81208AE92312DFD900F6548E /* LifeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE82312DFD900F6548E /* LifeTaskViewController.swift */; };
 		8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */; };
+		8125F38223204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38123204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png */; };
+		8125F38423204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38323204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png */; };
+		8125F38623204DF3004869CA /* clear_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38523204DF3004869CA /* clear_logo.png */; };
+		8125F38823204F5B004869CA /* clear_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38723204F5B004869CA /* clear_small.png */; };
+		8125F38A23205075004869CA /* clear_logo 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38923205075004869CA /* clear_logo 2.png */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -135,6 +140,11 @@
 		81208AE62312C5D700F6548E /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		81208AE82312DFD900F6548E /* LifeTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTaskViewController.swift; sourceTree = "<group>"; };
 		8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		8125F38123204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x NO_CR.png"; sourceTree = "<group>"; };
+		8125F38323204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x NO_CR.png"; sourceTree = "<group>"; };
+		8125F38523204DF3004869CA /* clear_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear_logo.png; sourceTree = "<group>"; };
+		8125F38723204F5B004869CA /* clear_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear_small.png; sourceTree = "<group>"; };
+		8125F38923205075004869CA /* clear_logo 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear_logo 2.png"; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -327,9 +337,14 @@
 		8132C32722E2506D00EC79F2 /* Logo */ = {
 			isa = PBXGroup;
 			children = (
+				8125F38323204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png */,
 				81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */,
 				81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */,
+				8125F38123204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png */,
+				8125F38923205075004869CA /* clear_logo 2.png */,
 				8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */,
+				8125F38723204F5B004869CA /* clear_small.png */,
+				8125F38523204DF3004869CA /* clear_logo.png */,
 				8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */,
 				8132C32B22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png */,
 			);
@@ -539,22 +554,27 @@
 				8132C35022E2506D00EC79F2 /* OddJobsLogo1x.png in Resources */,
 				8132C36822E2506D00EC79F2 /* Launchscreen.png in Resources */,
 				8132C36722E2506D00EC79F2 /* icon_20pt-5.png in Resources */,
+				8125F38623204DF3004869CA /* clear_logo.png in Resources */,
 				816B8AFA22D21EB200C630B9 /* LaunchScreen.storyboard in Resources */,
 				816B8AF522D21EB200C630B9 /* Main.storyboard in Resources */,
 				8132C35922E2506D00EC79F2 /* iPhone Spotlight 40pt@3x.png in Resources */,
 				8132C36422E2506D00EC79F2 /* iPhone Settings 29pt@3x.png in Resources */,
 				8132C36622E2506D00EC79F2 /* iPhone Notification 20pt@3x.png in Resources */,
 				811B224F22FF437B007425C0 /* goal.png in Resources */,
+				8125F38823204F5B004869CA /* clear_small.png in Resources */,
 				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
 				811B218822FF3ECA007425C0 /* P.png in Resources */,
+				8125F38223204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */,
 				811B22D123002FE0007425C0 /* Arial Rounded Bold.ttf in Resources */,
 				811B218722FF3ECA007425C0 /* L.png in Resources */,
 				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
 				8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */,
+				8125F38423204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */,
 				8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */,
 				8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */,
 				8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */,
+				8125F38A23205075004869CA /* clear_logo 2.png in Resources */,
 				81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */,
 				8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */,
 				8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */,

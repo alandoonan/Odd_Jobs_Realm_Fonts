@@ -17,7 +17,6 @@ class SideBarController: UIViewController {
     var isExpanded = false
     
     fileprivate func setupNavBar() {
-        // Navigation bar appearance
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.tintColor = Themes.current.accent
         navigationAppearance.barTintColor = Themes.current.background
@@ -115,13 +114,6 @@ class SideBarController: UIViewController {
             logOutButtonPress()
     }
 }
-    
-    func showStoryBoardView(storyBoardID: String) {
-        print("Go to Storyboard Button Pressed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: storyBoardID)
-        self.present(controller, animated: true, completion: nil)
-    }
     
     @objc func searchOddJobs() {
         showStoryBoardView(storyBoardID: "MapTasksViewController")

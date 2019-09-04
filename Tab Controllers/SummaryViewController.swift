@@ -139,11 +139,10 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     fileprivate func rssSelectionSort() {
         print("Sort Button Pressed")
-        let sortFields: [String] = ["Name", "Priority", "Occurrence"]
         var selectedNames: [String] = []
-        let menu = RSSelectionMenu(dataSource: sortFields) { (cell, name, indexPath) in
+        let menu = RSSelectionMenu(dataSource: Constants.sortFields) { (cell, name, indexPath) in
             cell.textLabel?.text = name
-            cell.textLabel?.textColor = .white
+            cell.textLabel?.textColor = Themes.current.accent
             cell.backgroundColor = Themes.current.background
         }
         menu.setSelectedItems(items: selectedNames) { (name, index, selected, selectedItems) in

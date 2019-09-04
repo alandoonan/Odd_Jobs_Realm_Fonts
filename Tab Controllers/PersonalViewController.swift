@@ -151,6 +151,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func addTaskPassThrough() {
-        addTaskAlert(realm: realm,scoreCategory: scoreCategory)
+        showStoryBoardView(storyBoardID: "CreateTaskViewController")
+        //addTaskAlert(realm: realm,scoreCategory: scoreCategory)
     }
 }

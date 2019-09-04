@@ -11,7 +11,6 @@ import UIKit
 import RealmSwift
 import MapKit
 
-
 class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
     var datePicker: UIDatePicker?
@@ -19,6 +18,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var categoryPicker: UIPickerView?
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
+    var longitude = 0.0
+    var latitude = 0.0
     
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var searchLocationsResults: UITableView!
@@ -27,11 +28,13 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var priorityTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var taskButtonText: UIButton!
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         performSegueToReturnBack()
     }
     @IBAction func createTaskButtonPress(_ sender: Any) {
         print("Create Task.")
+        print(self.latitude,self.longitude)
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         let realm = try! Realm(configuration: config!)
         let oddJobName = taskNameTextField.text
@@ -45,6 +48,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         item.Priority = oddJobPriority!
         item.Category = oddJobCategory!
         item.Location = oddJobLocationName!
+        item.Latitude = self.latitude
+        item.Longitude = self.longitude
         try! realm.write {
             realm.add(item)
         }
@@ -60,7 +65,6 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         setupPriorityPicker()
         setupCategoryPicker()
         searchCompleter.delegate = self
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -68,7 +72,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
             return Constants.taskPriority.count
         }
         else if pickerView == categoryPicker {
-            return Constants.listTypes.count
+            return Constants.createTaskTypes.count
         }
         return 1
     }
@@ -82,7 +86,9 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
             return Constants.taskPriority[row]
         }
         else if pickerView == categoryPicker {
-            return Constants.listTypes[row]
+            taskButtonText.titleLabel?.adjustsFontSizeToFitWidth = true
+            taskButtonText.setTitle("Create " + String(Constants.createTaskTypes[row]) + " Task",for: .normal)
+            return Constants.createTaskTypes[row]
         }
         return ""
     }
@@ -93,7 +99,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
             self.view.endEditing(false)
         }
         else if pickerView == categoryPicker {
-            categoryTextField.text = Constants.listTypes[row]
+            categoryTextField.text = Constants.createTaskTypes[row]
             self.view.endEditing(false)
         }
     }
@@ -127,7 +133,6 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
-        
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {
@@ -135,21 +140,6 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateTextField.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
-    }
-}
-
-func getCoordinates(address: String) {
-    let geoCoder = CLGeocoder()
-    geoCoder.geocodeAddressString(address) { (placemarks, error) in
-        guard
-            let placemarks = placemarks,
-            let location = placemarks.first?.location
-            else {
-                return
-        }
-        print("Printing Coords")
-        print(location.coordinate.latitude)
-        print(location.coordinate.longitude)
     }
 }
 
@@ -211,19 +201,15 @@ extension CreateTaskViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("SELECTING ROW")
         let completion = searchResults[indexPath.row]
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
             let coordinate = response?.mapItems[0].placemark.coordinate
             let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
-            print(String(itemAddress))
-            let (destLat, destLong) = (coordinate?.latitude, coordinate?.longitude)
-            print(destLat!,destLong!)
+            (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
             self.locationSearchBar.text = String(itemAddress)
             self.searchLocationsResults.isHidden = true
         }
     }
 }
-
