@@ -12,11 +12,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
+        print("Shortcut tapped")
+        print(shortcutItem.type)
+        if( shortcutItem.type == "create_task.first" ) {
+            let targetVC = storyboard.instantiateViewController(withIdentifier :"CreateTaskViewController") as! CreateTaskViewController
+           window?.rootViewController = targetVC
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

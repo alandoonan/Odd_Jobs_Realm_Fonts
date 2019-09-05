@@ -49,5 +49,26 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Summary Screen</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>summary_screen.second</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>check_score.third</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Check Score</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Create Task</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>create_task.first</string>
+		</dict>
+	</array>
 </dict>
 </plist>
