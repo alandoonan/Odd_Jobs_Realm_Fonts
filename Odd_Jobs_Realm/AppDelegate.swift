@@ -33,12 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let targetVC = storyboard.instantiateViewController(withIdentifier :"CreateTaskViewController") as! CreateTaskViewController
            window?.rootViewController = targetVC
         }
-        else if ( shortcutItem.type == "summary_screen.second" ) {
-            let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
-            let realm = try! Realm(configuration: config!)
-            let targetVC = SummaryViewController()
-            window?.rootViewController = targetVC
-        }
+//        else if ( shortcutItem.type == "summary_screen.second" ) {
+//            let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+//            let realm = try! Realm(configuration: config!)
+//            let targetVC = SummaryViewController()
+//            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+//            window?.rootViewController = targetVC
+//        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
