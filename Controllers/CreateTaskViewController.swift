@@ -61,6 +61,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         searchLocationsResults.separatorStyle = .none
         applyTheme(searchLocationsResults,view)
+        let attributes = [NSAttributedString.Key.foregroundColor: Themes.current.accent]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         setupDatePicker()
         setupPriorityPicker()
         setupCategoryPicker()
@@ -148,6 +150,12 @@ extension CreateTaskViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
         searchLocationsResults.isHidden = false
+        if searchText.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                searchBar.resignFirstResponder()
+            }
+        }
+        
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

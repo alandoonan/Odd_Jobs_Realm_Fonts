@@ -55,6 +55,10 @@ extension UIViewController {
     func applyTheme(_ tableView: UITableView, _ view: UIView) {
         view.backgroundColor = Themes.current.background
         tableView.backgroundColor = Themes.current.background
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = Themes.current.background
         navigationController?.navigationBar.backgroundColor = Themes.current.background
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -140,6 +144,7 @@ extension UIViewController {
     func cellSetup(_ cell: UITableViewCell, _ item: OddJobItem, _ cellFields: [String]) {
         cell.selectionStyle = .none
         cell.tintColor = .white
+        cell.layer.cornerRadius = 10
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)

@@ -154,4 +154,12 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UITableView
         showStoryBoardView(storyBoardID: "CreateTaskViewController")
         //addTaskAlert(realm: realm,scoreCategory: scoreCategory)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let item = items[indexPath.row]
+        try! realm.write {
+            realm.delete(item)
+        }
+    }
 }
