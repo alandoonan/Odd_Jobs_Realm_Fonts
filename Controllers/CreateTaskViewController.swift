@@ -150,12 +150,6 @@ extension CreateTaskViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
         searchLocationsResults.isHidden = false
-        if searchText.isEmpty {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                searchBar.resignFirstResponder()
-            }
-        }
-        
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

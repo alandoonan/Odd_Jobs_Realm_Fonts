@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,8 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Shortcut tapped")
         print(shortcutItem.type)
         if( shortcutItem.type == "create_task.first" ) {
+            let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+            let realm = try! Realm(configuration: config!)
             let targetVC = storyboard.instantiateViewController(withIdentifier :"CreateTaskViewController") as! CreateTaskViewController
            window?.rootViewController = targetVC
+        }
+        else if ( shortcutItem.type == "summary_screen.second" ) {
+            let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+            let realm = try! Realm(configuration: config!)
+            let targetVC = SummaryViewController()
+            window?.rootViewController = targetVC
         }
     }
     
