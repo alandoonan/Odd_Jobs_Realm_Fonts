@@ -72,28 +72,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return Themes.current.preferredStatusBarStyle
     }
     
-    @objc func switchStateDidChange(_ sender:UISwitch){
-        if (sender.isOn == true){
-            for colour1 in Constants.themeColours {
-                if Int(colour1.value[2]) == sender.tag {
-                    print(colour1.value[3])
-                    for colour2 in Constants.themeLevels {
-                        if colour2.key == colour1.key {
-                            print("Changing colour")
-                            Themes.current = BlueTheme()
-                            viewDidAppear(true)
-                        }
-                    }
-                }
-            }
-        }
-        else{
-            print("UISwitch state is now Off")
-            Themes.current = BlueTheme()
-        }
-        applyTheme(tableView,view)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
@@ -105,22 +83,12 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        //let switchView = UISwitch(frame: .zero)
         let item = themes[indexPath.row]
         cell.textLabel?.textColor = .white
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.tintColor = Themes.current.accent
-        //cell.accessoryView = switchView
-        //cell.accessoryType = UITableViewCell.AccessoryType.checkmark
-        
-
         cell.textLabel?.text = item.name
-//        switchView.setOn(false, animated: true)
-//        switchView.tintColor = Themes.current.background
-//        switchView.tag = indexPath.row
-//        switchView.tag = item.tag
-//        switchView.addTarget(self, action: #selector(ThemesViewController.switchStateDidChange(_:)), for: .valueChanged)
         return cell
     }
     
@@ -129,19 +97,14 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.cellForRow(at:indexPath)!.accessoryType = .checkmark
-        
         for cellPath in tableView.indexPathsForVisibleRows!{
             if cellPath == indexPath{
                 continue
             }
             tableView.cellForRow(at: cellPath)!.accessoryType = .none
         }
-        
         let cell = tableView.cellForRow(at: indexPath)?.textLabel?.text
-        print(cell!)
-        
         if cell == "Blue" {
             Themes.current = BlueTheme()
         }
@@ -151,20 +114,8 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if cell == "Green" {
             Themes.current = GreenTheme()
         }
-        //        tableView.deselectRow(at: indexPath, animated: true)
-//
-//        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
-//            if cell.accessoryType == .checkmark {
-//                cell.accessoryType = .none
-//            } else {
-//                cell.accessoryType = .checkmark
-//            }
-//        }
     }
 
-    
-    
-    
     fileprivate func addThemes() {
         if themes.count <= Constants.themeColours.count
         {
