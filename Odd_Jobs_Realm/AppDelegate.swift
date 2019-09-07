@@ -24,22 +24,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-        
         print("Shortcut tapped")
         print(shortcutItem.type)
-        if( shortcutItem.type == "create_task.first" ) {
-            let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
-            let realm = try! Realm(configuration: config!)
-            let targetVC = storyboard.instantiateViewController(withIdentifier :"CreateTaskViewController") as! CreateTaskViewController
-           window?.rootViewController = targetVC
+        if (SyncUser.current?.identity! != nil) {
+            if( shortcutItem.type == "create_task.first" ) {
+                let targetVC = storyboard.instantiateViewController(withIdentifier :"CreateTaskViewController") as! CreateTaskViewController
+               window?.rootViewController = targetVC
+            }
+            else if ( shortcutItem.type == "summary_screen.second" ) {
+                let targetVC = SummaryViewController()
+                window?.rootViewController = UINavigationController(rootViewController: targetVC)
+            }
+            else if ( shortcutItem.type == "check_score.third" ) {
+                let targetVC = ScoreViewController()
+                window?.rootViewController = UINavigationController(rootViewController: targetVC)
+            }
+    }
+        else {
+            print("User not logged in. Going to login screen")
         }
-//        else if ( shortcutItem.type == "summary_screen.second" ) {
-//            let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
-//            let realm = try! Realm(configuration: config!)
-//            let targetVC = SummaryViewController()
-//            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-//            window?.rootViewController = targetVC
-//        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

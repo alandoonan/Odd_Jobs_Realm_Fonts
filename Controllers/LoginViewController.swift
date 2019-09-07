@@ -29,12 +29,12 @@ class LoginViewController: UIViewController {
     }
     
     fileprivate func currentUserSync(_ username: String, _ password: String) {
-        let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: false)
+        let creds = SyncCredentials.usernamePassword(username: username, password: password, register: false)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
-                self!.transition()
+                self?.transition()
             }
             else if let error = err {
                 print("Error Logging In.")
@@ -138,11 +138,5 @@ class LoginViewController: UIViewController {
             print("Already Logged In.")
             self.navigationController?.pushViewController(HomeViewController(), animated: true)
         }
-        print("Shared User Login VC: " + sharedUser)
-    }
-    
-    func transition() {
-        let homeVC:SideBarController    = SideBarController()
-        self.present(homeVC, animated: true, completion: nil)
     }
 }

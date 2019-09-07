@@ -36,6 +36,21 @@ extension UITextField {
 
 extension UIViewController {
     
+    func transition() {
+        let homeVC:SideBarController    = SideBarController()
+        present(homeVC, animated: true, completion: nil)
+    }
+
+    func performSegueToReturnBack()  {
+        if let nav = self.navigationController {
+            print("Return Home Pop")
+            nav.popViewController(animated: true)
+        } else {
+            print("Return Home Dismiss")
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     func showStoryBoardView(storyBoardID: String) {
         print("Go to Storyboard Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

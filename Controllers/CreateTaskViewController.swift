@@ -30,6 +30,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var taskButtonText: UIButton!
     @IBAction func doneTaskButtonPress(_ sender: Any) {
+        print("Done button tapped.")
         performSegueToReturnBack()
     }
     @IBAction func createTaskButtonPress(_ sender: Any) {
