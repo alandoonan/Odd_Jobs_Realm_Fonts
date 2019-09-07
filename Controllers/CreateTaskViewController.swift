@@ -159,6 +159,7 @@ extension CreateTaskViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchLocationsResults.isHidden = false
+        
     }
 }
 
@@ -213,6 +214,20 @@ extension CreateTaskViewController: UITableViewDelegate {
             (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
             self.locationSearchBar.text = String(itemAddress)
             self.searchLocationsResults.isHidden = true
+            self.hideKeyboardWhenTappedAround()
+
         }
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
