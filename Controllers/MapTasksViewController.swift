@@ -128,7 +128,7 @@ extension MapTasksViewController: CLLocationManagerDelegate {
         var maxLatitude = 0.0
         for mapItem in mapItems {
             if (mapItem.Latitude != 0) && (mapItem.Longitude != 0) {
-                var pin = ""
+                var pin = UIColor()
                 if mapItem.Latitude > maxLatitude {
                     maxLatitude = mapItem.Latitude
                 }
@@ -136,19 +136,19 @@ extension MapTasksViewController: CLLocationManagerDelegate {
                     maxLongitude = mapItem.Longitude
                 }
                 if mapItem.Category == "Personal" {
-                    pin = "P.png"
+                    pin = UIColor.orangeTheme
                 }
                 if mapItem.Category == "Group" {
-                    pin = "G.png"
+                    pin = UIColor.blueTheme
                 }
                 if mapItem.Category == "Life" {
-                    pin = "L.png"
+                    pin = UIColor.greenTheme
                 }
                 print(pin)
                 let mapArt = MapItem(title: mapItem.Name,
                                      locationName: mapItem.Location,
                                      discipline: "Test",
-                                     coordinate: CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude), pin: UIImage(named: pin)!)
+                                     coordinate: CLLocationCoordinate2D(latitude: mapItem.Latitude, longitude: mapItem.Longitude), pin: pin)
                 mapView.addAnnotation(mapArt)
             }
         }
@@ -159,21 +159,53 @@ extension MapTasksViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? MapItem else { return nil }
         let identifier = "marker"
-        var view: MKMarkerAnnotationView
+        var view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        
+
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            //view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
-        view.image = annotation.pin
-        print(annotation.pin)
+//        let size = CGSize(width: 20, height: 20)
+//        UIGraphicsBeginImageContext(size)
+//        annotation.pin.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+//        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        //view.image = resizedImage
+        view.markerTintColor = annotation.pin
+        
         return view
     }
+//
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        guard let annotation = annotation as? MapItem else { return nil }
+//        let identifier = "marker"
+//        var view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//
+//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//            as? MKMarkerAnnotationView {
+//            dequeuedView.annotation = annotation
+//            view = dequeuedView
+//        } else {
+//            //view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.calloutOffset = CGPoint(x: -5, y: 5)
+//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+//        }
+//        let size = CGSize(width: 20, height: 20)
+//        UIGraphicsBeginImageContext(size)
+//        annotation.pin.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+//        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+//        view.image = resizedImage
+//        return view
+//    }
+    
+    
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {

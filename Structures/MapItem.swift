@@ -14,9 +14,9 @@ class MapItem: NSObject, MKAnnotation {
     let locationName: String
     let discipline: String
     let coordinate: CLLocationCoordinate2D
-    let pin: UIImage
+    let pin: UIColor
     
-    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D, pin: UIImage) {
+    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D, pin: UIColor) {
         self.title = title
         self.locationName = locationName
         self.discipline = discipline
