@@ -64,6 +64,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsMultipleSelection = false
         addNotificationToken()
         addNotificationToken()
     }
@@ -104,24 +105,65 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        let switchView = UISwitch(frame: .zero)
+        //let switchView = UISwitch(frame: .zero)
         let item = themes[indexPath.row]
         cell.textLabel?.textColor = .white
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
-        cell.accessoryView = switchView
+        cell.tintColor = Themes.current.accent
+        //cell.accessoryView = switchView
+        //cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+        
+
         cell.textLabel?.text = item.name
-        switchView.setOn(false, animated: true)
-        switchView.tintColor = Themes.current.background
-        switchView.tag = indexPath.row
-        switchView.tag = item.tag
-        switchView.addTarget(self, action: #selector(ThemesViewController.switchStateDidChange(_:)), for: .valueChanged)
+//        switchView.setOn(false, animated: true)
+//        switchView.tintColor = Themes.current.background
+//        switchView.tag = indexPath.row
+//        switchView.tag = item.tag
+//        switchView.addTarget(self, action: #selector(ThemesViewController.switchStateDidChange(_:)), for: .valueChanged)
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return addTableCell(tableView, indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.cellForRow(at:indexPath)!.accessoryType = .checkmark
+        
+        for cellPath in tableView.indexPathsForVisibleRows!{
+            if cellPath == indexPath{
+                continue
+            }
+            tableView.cellForRow(at: cellPath)!.accessoryType = .none
+        }
+        
+        let cell = tableView.cellForRow(at: indexPath)?.textLabel?.text
+        print(cell!)
+        
+        if cell == "Blue" {
+            Themes.current = BlueTheme()
+        }
+        if cell == "Dark" {
+            Themes.current = DarkTheme()
+        }
+        if cell == "Green" {
+            Themes.current = GreenTheme()
+        }
+        //        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+//            if cell.accessoryType == .checkmark {
+//                cell.accessoryType = .none
+//            } else {
+//                cell.accessoryType = .checkmark
+//            }
+//        }
+    }
+
+    
+    
     
     fileprivate func addThemes() {
         if themes.count <= Constants.themeColours.count

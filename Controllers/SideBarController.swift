@@ -135,3 +135,8 @@ extension SideBarController: HomeControllerDelegate {
         animatePanel(shouldExpand: isExpanded, menuOption: menuOption)
     }
 }
+
+extension SideBarController: UIGestureRecognizerDelegate {
+    @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+    }
+}
