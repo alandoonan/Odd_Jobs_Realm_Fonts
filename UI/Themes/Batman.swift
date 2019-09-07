@@ -1,5 +1,5 @@
 //
-//  BlackYellowTheme.swift
+//  BatmanTheme.swift
 //  Odd_Jobs_Realm
 //
 //  Created by Alan Doonan on 27/08/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlackYellowTheme: ThemeProtocol {
+class BatmanTheme: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.yellow
     var accent: UIColor = UIColor.yellow
