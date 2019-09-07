@@ -173,60 +173,30 @@
                                                 <action selector="backToPersonalButton:" destination="0DB-Wp-r8S" id="3VC-r2-j5n"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="l6E-KC-nln">
-                                            <connections>
-                                                <action selector="searchButton:" destination="0DB-Wp-r8S" id="Ewf-jr-Vsj"/>
-                                            </connections>
-                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="f8J-7i-ySJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="N9q-Os-Jdf"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="0DB-Wp-r8S" id="i8p-vS-ySu"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UK3-FW-i5n">
-                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="0DB-Wp-r8S" id="M7F-f6-nTY"/>
-                                    <outlet property="delegate" destination="0DB-Wp-r8S" id="rRR-fS-qoR"/>
-                                </connections>
-                            </tableView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-PT-LT3">
-                                <rect key="frame" x="0.0" y="702" width="414" height="160"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="c75-v7-eyA"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0DB-Wp-r8S" id="Nml-U4-EX2"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="f8J-7i-ySJ" secondAttribute="leading" id="4Q1-sc-qhz"/>
-                            <constraint firstItem="f8J-7i-ySJ" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="7zo-aH-ynR"/>
-                            <constraint firstItem="UK3-FW-i5n" firstAttribute="bottom" secondItem="j8u-zR-NuC" secondAttribute="bottom" id="DlK-7f-gAv"/>
-                            <constraint firstAttribute="trailing" secondItem="laX-Rq-d3N" secondAttribute="trailing" id="JLP-Pd-Mwm"/>
-                            <constraint firstItem="UK3-FW-i5n" firstAttribute="top" secondItem="f8J-7i-ySJ" secondAttribute="bottom" id="KpP-Ov-BC2"/>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="PRY-ud-NtI"/>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="NON-Ru-cB7" secondAttribute="leading" id="QI9-tr-jRc"/>
-                            <constraint firstItem="UK3-FW-i5n" firstAttribute="leading" secondItem="qvV-PT-LT3" secondAttribute="leading" id="aDb-6b-AF0"/>
-                            <constraint firstItem="UK3-FW-i5n" firstAttribute="trailing" secondItem="qvV-PT-LT3" secondAttribute="trailing" id="cuh-rP-CWm"/>
-                            <constraint firstItem="f8J-7i-ySJ" firstAttribute="leading" secondItem="UK3-FW-i5n" secondAttribute="leading" id="k8R-yy-TPT"/>
-                            <constraint firstItem="UK3-FW-i5n" firstAttribute="bottom" secondItem="qvV-PT-LT3" secondAttribute="bottom" id="khC-d7-aNp"/>
-                            <constraint firstItem="laX-Rq-d3N" firstAttribute="trailing" secondItem="f8J-7i-ySJ" secondAttribute="trailing" id="oCr-PX-lxE"/>
-                            <constraint firstItem="f8J-7i-ySJ" firstAttribute="top" secondItem="laX-Rq-d3N" secondAttribute="bottom" id="wfn-RF-gfP"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="leading" secondItem="NON-Ru-cB7" secondAttribute="leading" id="15g-tW-gGS"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="bottom" secondItem="j8u-zR-NuC" secondAttribute="bottom" id="68O-L1-j9s"/>
+                            <constraint firstItem="laX-Rq-d3N" firstAttribute="top" secondItem="j8u-zR-NuC" secondAttribute="top" id="df0-cI-Fh7"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="leading" secondItem="laX-Rq-d3N" secondAttribute="leading" id="ecu-cl-tNR"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="top" secondItem="laX-Rq-d3N" secondAttribute="bottom" id="gLk-q8-z6G"/>
+                            <constraint firstItem="qvV-PT-LT3" firstAttribute="trailing" secondItem="laX-Rq-d3N" secondAttribute="trailing" id="keZ-vQ-dnM"/>
+                            <constraint firstAttribute="trailing" secondItem="laX-Rq-d3N" secondAttribute="trailing" id="zE5-91-PGn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j8u-zR-NuC"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="qvV-PT-LT3" id="qxP-dF-hix"/>
-                        <outlet property="searchLocationsResults" destination="UK3-FW-i5n" id="7Zv-B4-AE6"/>
+                        <outlet property="mapView" destination="qvV-PT-LT3" id="7Lg-v3-DUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pE-st-UuU" userLabel="First Responder" sceneMemberID="firstResponder"/>

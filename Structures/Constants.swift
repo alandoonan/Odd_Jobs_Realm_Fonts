@@ -37,6 +37,9 @@ struct Constants {
     //Create Task Categories
     static let createTaskTypes = ["Group","Personal"]
     
+    //Map Pin Icons
+    static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png"]
+    
     //Cell Fields
     static let cellFields = ["Priority","Location"]
     
