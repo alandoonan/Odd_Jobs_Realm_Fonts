@@ -66,7 +66,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.allowsMultipleSelection = false
         addNotificationToken()
-        addNotificationToken()
+        //addThemes()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
@@ -112,7 +112,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             Themes.current = DarkTheme()
         }
         if cell == "Green" {
-            Themes.current = GreenTheme()
+            Themes.current = HulkTheme()
         }
     }
 

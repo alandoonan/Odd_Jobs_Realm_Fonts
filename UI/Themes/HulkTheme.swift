@@ -1,5 +1,5 @@
 //
-//  GreenTheme.swift
+//  HulkTheme
 //  Odd_Jobs_Realm
 //
 //  Created by Alan Doonan on 11/08/2019.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class GreenTheme: ThemeProtocol {
+class HulkTheme: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.orangeTheme
     var background: UIColor = UIColor.greenTheme
-    var tint: UIColor = UIColor.greenTheme
+    var tint: UIColor = UIColor.orangeTheme
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

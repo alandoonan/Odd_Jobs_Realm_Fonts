@@ -24,7 +24,7 @@
 		811B22D72300398B007425C0 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D62300398B007425C0 /* DarkTheme.swift */; };
 		811B22D923003A02007425C0 /* PersonalTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D823003A02007425C0 /* PersonalTheme.swift */; };
 		811B22DD230096A0007425C0 /* OrangeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22DC230096A0007425C0 /* OrangeTheme.swift */; };
-		811B22DF230096AD007425C0 /* GreenTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22DE230096AD007425C0 /* GreenTheme.swift */; };
+		811B22DF230096AD007425C0 /* HulkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22DE230096AD007425C0 /* HulkTheme.swift */; };
 		811B22E123009A23007425C0 /* BlueTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22E023009A23007425C0 /* BlueTheme.swift */; };
 		81208AAF2303312600F6548E /* SideBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AAE2303312600F6548E /* SideBarController.swift */; };
 		81208AB1230331F800F6548E /* HomeViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AB0230331F800F6548E /* HomeViewControllerTest.swift */; };
@@ -125,7 +125,7 @@
 		811B22D62300398B007425C0 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		811B22D823003A02007425C0 /* PersonalTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTheme.swift; sourceTree = "<group>"; };
 		811B22DC230096A0007425C0 /* OrangeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTheme.swift; sourceTree = "<group>"; };
-		811B22DE230096AD007425C0 /* GreenTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenTheme.swift; sourceTree = "<group>"; };
+		811B22DE230096AD007425C0 /* HulkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HulkTheme.swift; sourceTree = "<group>"; };
 		811B22E023009A23007425C0 /* BlueTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTheme.swift; sourceTree = "<group>"; };
 		81208AAE2303312600F6548E /* SideBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarController.swift; sourceTree = "<group>"; };
 		81208AB0230331F800F6548E /* HomeViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTest.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 				811B22D62300398B007425C0 /* DarkTheme.swift */,
 				811B22D823003A02007425C0 /* PersonalTheme.swift */,
 				811B22DC230096A0007425C0 /* OrangeTheme.swift */,
-				811B22DE230096AD007425C0 /* GreenTheme.swift */,
+				811B22DE230096AD007425C0 /* HulkTheme.swift */,
 				811B22E023009A23007425C0 /* BlueTheme.swift */,
 				81CF5F2B23159407003F12E7 /* BlackYellowTheme.swift */,
 			);
@@ -714,7 +714,7 @@
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
 				81208AC12303397E00F6548E /* MenuController.swift in Sources */,
-				811B22DF230096AD007425C0 /* GreenTheme.swift in Sources */,
+				811B22DF230096AD007425C0 /* HulkTheme.swift in Sources */,
 				81208AB92303382200F6548E /* HomeControllerDelegate.swift in Sources */,
 				8132C37022E4E26B00EC79F2 /* SharedFunctions.swift in Sources */,
 				814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */,
