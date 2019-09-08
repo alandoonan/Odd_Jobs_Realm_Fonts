@@ -17,7 +17,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let tableView = UITableView()
     var searchBar = UISearchBar()
 
-    // Initialize Methods
+    // MARK: Initialize Functions & View Did Load
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -30,13 +30,31 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     deinit {
         notificationToken?.invalidate()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken(items: items, notificationToken: notificationToken)
+        setUpSearchBar(searchBar: searchBar)
+        addNavBar([sideBar,add],[logout],scoreCategory: Constants.groupScoreCategory)
+        addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
+        applyTheme(tableView,view)
+        tableView.reloadData()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
     
-    fileprivate func addNotificationToken(items: Results<OddJobItem>, notificationToken: NotificationToken?) {
+    // MARK: Notification Token
+    func addNotificationToken(items: Results<OddJobItem>, notificationToken: NotificationToken?) {
         self.notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -57,6 +75,36 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    // MARK: TableView Functions
+    // MARK: This is in all classes (REFACTOR)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        try! realm.write {
+            item.IsDone = !item.IsDone
+        }
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        deleteOddJob(indexPath, realm: realm, items: items)
+    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
+            completionHandler(true)
+            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items)
+        }
+        done.backgroundColor = Themes.current.done
+        let config = UISwipeActionsConfiguration(actions: [done])
+        config.performsFirstActionWithFullSwipe = false
+        return config
+    }
+    
+    //MARK: Search Bar Functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
@@ -69,77 +117,9 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         tableView.reloadData()
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
-        tableView.addTableView(tableView, view)
-        tableView.dataSource = self
-        tableView.delegate = self
-        addNotificationToken(items: items, notificationToken: notificationToken)
-        setUpSearchBar(searchBar: searchBar)
-        addNavBar([sideBar,add],[logout],scoreCategory: Constants.groupScoreCategory)
-        addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
-        applyTheme(tableView,view)
-        tableView.reloadData()
-    }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.preferredStatusBarStyle
-    }
-    
-    fileprivate func logoutAlert() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-    }
-    
-    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
-        let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cellSetup(cell, item, Constants.cellFields)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, Constants.cellFields)
-    }
-    
+    //MARK: Selector/Action Functions
     @objc func addTaskPassThrough() {
         addTaskAlert(realm: realm,scoreCategory: Constants.groupScoreCategory)
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        deleteOddJob(indexPath, realm: realm, items: items)
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
-            completionHandler(true)
-            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items)
-        }
-        done.backgroundColor = Themes.current.done
-        let config = UISwipeActionsConfiguration(actions: [done])
-        config.performsFirstActionWithFullSwipe = false
-        return config
     }
 }

@@ -56,7 +56,9 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(themes.count)
         navigationItem.title = "Themes"
+        addThemes()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         addNavBar([sideBar], [logout], scoreCategory: ["Themes"])
@@ -66,7 +68,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.allowsMultipleSelection = false
         addNotificationToken()
-        //addThemes()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
@@ -111,8 +112,17 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if cell == "Dark" {
             Themes.current = DarkTheme()
         }
-        if cell == "Green" {
+        if cell == "The Hulk" {
             Themes.current = HulkTheme()
+        }
+        if cell == "Orange" {
+            Themes.current = PersonalTheme()
+        }
+        if cell == "Batman" {
+            Themes.current = BatmanTheme()
+        }
+        else {
+            print("Theme not found")
         }
     }
 
@@ -120,7 +130,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if themes.count <= Constants.themeColours.count
         {
             for colour in Constants.themeColours {
-                let found = findObjectsByName(colour.key)
+                let found = findColourByName(colour.key, realm: realm)
                 if found .isEmpty {
                     for score in scoreItem {
                         if score.TotalScore > Int(colour.value[1])!
@@ -139,12 +149,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
-    }
-    
-    public func findObjectsByName(_ Name: String) -> Results<ThemeItem>
-    {
-        let predicate = NSPredicate(format: "name = %@", Name)
-        return realm.objects(ThemeItem.self).filter(predicate)
     }
 }
 

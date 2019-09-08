@@ -13,6 +13,7 @@ class RealmManager {
     
     let realm = try! Realm()
     
+    
     /**
      Delete local database
      */

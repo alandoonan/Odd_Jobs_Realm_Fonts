@@ -96,17 +96,6 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return Themes.current.preferredStatusBarStyle
     }
     
-    fileprivate func logoutAlert() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -125,15 +114,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         isDoneUpdate(indexPath)
     }
     
-    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
-        let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cellSetup(cell, item, Constants.cellFields)
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath,Constants.cellFields)
+        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
     }
     
     fileprivate func rssSelectionSort() {

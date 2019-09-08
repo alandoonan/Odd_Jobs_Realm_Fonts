@@ -51,6 +51,13 @@ extension UIViewController {
         }
     }
     
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String], items: Results<OddJobItem>) -> UITableViewCell {
+        let item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cellSetup(cell, item, Constants.cellFields)
+        return cell
+    }
+    
     func showStoryBoardView(storyBoardID: String) {
         print("Go to Storyboard Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -180,7 +187,7 @@ extension UIViewController {
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.selectionStyle = .none
         cell.tintColor = .white
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = Themes.current.accent
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         if item.Category == "Personal" {
@@ -197,6 +204,17 @@ extension UIViewController {
         //cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.isUserInteractionEnabled = false
+    }
+    
+    func findOddJobItemByName(_ Name: String, realm: Realm) -> Results<OddJobItem> {
+        let predicate = NSPredicate(format: "Name = %@", Name)
+        return realm.objects(OddJobItem.self).filter(predicate)
+    }
+    
+    func findColourByName(_ Name: String, realm: Realm) -> Results<ThemeItem>
+    {
+        let predicate = NSPredicate(format: "name = %@", Name)
+        return realm.objects(ThemeItem.self).filter(predicate)
     }
     
     @objc func mapTasks() {
@@ -242,6 +260,8 @@ extension UISearchBarDelegate {
         searchBar.delegate = self
     }
 }
+
+
 
 
 

@@ -13,7 +13,7 @@ import RSSelectionMenu
 class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource
 {
 
-    // Class Variables
+    // MARK: Class Variables
     var realm: Realm
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
@@ -23,7 +23,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     var searchBar = UISearchBar()
     let tableView = UITableView()
     
-    // Initialize Realm
+    // MARK: Initialize Functions & View Did Load
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -36,13 +36,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     deinit {
         notificationToken?.invalidate()
     }
-    
-    // View Load & Appear
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
@@ -58,9 +55,12 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         applyTheme(tableView,view)
         tableView.reloadData()
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
     
-     //Add UI & Customization Functions
-    fileprivate func addNotificationToken() {
+    //MARK: This is in all classes (REFACTOR)
+    func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -81,36 +81,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.preferredStatusBarStyle
-    }
-    
-    // Realm Class Functions
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let oddJobitem = items[indexPath.row]
-        try! realm.write {
-            oddJobitem.IsDone = !oddJobitem.IsDone
-        }
-        if oddJobitem.IsDone == true {
-            print("+1")
-            updateScore(realm: realm, value: 1, category: oddJobitem.Category)
-        }
-    }
-    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
-        let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cellSetup(cell, item, Constants.cellFields)
-        return cell
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, Constants.cellFields)
-    }
-    
-    // Sorting Functions & Menu
-    fileprivate func rssSelectionMenuSort() {
+    //MARK: Sorting Functions & Menu
+    func rssSelectionMenuSort() {
         var selectedNames: [String] = []
         let menu = RSSelectionMenu(dataSource: Constants.sortFields) { (cell, name, indexPath) in
             cell.textLabel?.text = name
@@ -123,10 +95,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         }
         menu.show(style: .push, from: self)
     }
+    
+    //MARK: Button Press Functions & Actions
     @objc func selectSortField() {
         print("Sort Button Pressed")
         rssSelectionMenuSort()
     }
+    
     @objc func sortOddJobs(sort:String) {
         self.items = self.items.sorted(byKeyPath: sort, ascending: true)
         notificationToken = items.observe { [weak self] (changes) in
@@ -149,16 +124,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         }
     }
     
-    @objc func addTaskPassThrough() {
-        showStoryBoardView(storyBoardID: "CreateTaskViewController")
-        //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        deleteOddJob(indexPath, realm: realm, items: items)
-    }
-
+    // MARK: TableView Functions
+    // MARK: This is in all classes (REFACTOR)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
@@ -170,6 +137,14 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         return config
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
+    }
+    
+    // MARK: SearchBar Functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
@@ -182,4 +157,11 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         }
         tableView.reloadData()
     }
+    
+    //MARK: Selector/Action Functions
+    @objc func addTaskPassThrough() {
+        showStoryBoardView(storyBoardID: "CreateTaskViewController")
+        //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
+    }
+    
 }

@@ -11,9 +11,9 @@ import UIKit
 class HulkTheme: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
-    var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = UIColor.greenTheme
-    var tint: UIColor = UIColor.orangeTheme
+    var accent: UIColor = UIColor.purpleTheme
+    var background: UIColor = UIColor.hulkTheme
+    var tint: UIColor = UIColor.purpleTheme
     var done: UIColor = UIColor.purpleTheme
     var undone: UIColor = .gray
     var preferredStatusBarStyle: UIStatusBarStyle {

@@ -107,15 +107,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
-        let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cellSetup(cell, item, Constants.cellFields)
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, Constants.cellFields)
+        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
     }
     
     @objc func addTaskPassThrough() {
@@ -126,7 +119,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("Adding Holiday Data to Life Lists")
         for holiday in holidayDictionary.sorted(by: { $0.1 < $1.1 }) {
             print(holiday)
-            let found = findObjectsByName(holiday.key)
+            let found = findOddJobItemByName(holiday.key, realm: realm)
             if found .isEmpty{
                 let item = OddJobItem()
                 item.Name = holiday.key
@@ -173,11 +166,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    public func findObjectsByName(_ Name: String) -> Results<OddJobItem>
-    {
-        let predicate = NSPredicate(format: "Name = %@", Name)
-        return realm.objects(OddJobItem.self).filter(predicate)
-    }
+    // MARK: TableView Functions
+    // MARK: This is in all classes (REFACTOR)
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
