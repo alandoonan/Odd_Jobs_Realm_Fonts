@@ -22,7 +22,6 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
     let tableView = UITableView()
-    var scoreCategory = ["Archive"]
     
     // Initialize Realm
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -48,8 +47,8 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
-        addNavBar([sideBar], [logout], scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: Constants.archiveScoreCategory, searchBar: searchBar)
+        addNavBar([sideBar], [logout], scoreCategory: Constants.archiveScoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -96,7 +95,7 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         }
         if oddJobitem.IsDone == true {
             print("+1")
-            updateScore(realm: realm, value: 1)
+            updateScore(realm: realm, value: 1, category: oddJobitem.Category)
         }
     }
     func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
@@ -109,31 +108,15 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         return addTableCell(tableView, indexPath, Constants.cellFields)
     }
     
-    func deleteOddJob(_ indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            realm.delete(item)
-        }
-    }
-    
-    func doneOddJob(_ indexPath: IndexPath, value: Int) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-        updateScore(realm: realm, value: value)
-    }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        deleteOddJob(indexPath)
+        deleteOddJob(indexPath, realm: realm, items: items)
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = UIContextualAction(style: .normal, title: "Undone") { (action, view, completionHandler) in
+        let done = UIContextualAction(style: .normal, title: Constants.undoneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
-            print("Undone")
-            self.doneOddJob(indexPath, value: -1)
+            self.doneOddJob(indexPath, value: Constants.descreaseScore, realm: self.realm, items: self.items)
         }
         done.backgroundColor = Themes.current.undone
         let config = UISwipeActionsConfiguration(actions: [done])
@@ -146,7 +129,7 @@ extension DoneViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.archiveScoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {

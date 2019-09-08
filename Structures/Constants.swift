@@ -50,6 +50,19 @@ struct Constants {
     
     //Cell Fields
     static let cellFields = ["Priority","Location"]
+    static let doneSwipe = "Done"
+    static let undoneSwipe = "Undone"
+    
+    //Score Updates
+    static let increaseScore = 1
+    static let descreaseScore = -1
+    
+    //Score Categories
+    static let archiveScoreCategory = ["Archive"]
+    static let personalScoreCategory = ["Personal"]
+    static let groupScoreCategory = ["Group"]
+    static let lifeScoreCategory = ["Life"]
+    
     
     //Task Data
     static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal"],["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody"],["Save Small Sum Of Money","Pay A Bill"],["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday"],["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],["Test"],["Daily","Weekly","Monthly","Yearly"]]

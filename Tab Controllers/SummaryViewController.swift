@@ -24,12 +24,11 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
     //let sort = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(selectSortField))
     //let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchOddJobs))
-    var scoreCategory = ["Personal","Life","Group"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
+        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.listTypes)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,11 +48,11 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.listTypes)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.listTypes)
             tableView.reloadData()
         }
         tableView.reloadData()
@@ -82,8 +81,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
-        addNavBar([sideBar], [logout], scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: Constants.listTypes, searchBar: searchBar)
+        addNavBar([sideBar], [logout], scoreCategory: Constants.listTypes)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -118,7 +117,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
         if oddJobitem.IsDone == true {
-            updateScore(realm: realm, value: 1)
+            updateScore(realm: realm, value: 1, category: oddJobitem.Category)
         }
     }
     
@@ -184,9 +183,17 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        let item = items[indexPath.row]
-        try! realm.write {
-            realm.delete(item)
+        deleteOddJob(indexPath, realm: realm, items: items)
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
+            completionHandler(true)
+            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items)
         }
+        done.backgroundColor = Themes.current.done
+        let config = UISwipeActionsConfiguration(actions: [done])
+        config.performsFirstActionWithFullSwipe = false
+        return config
     }
 }

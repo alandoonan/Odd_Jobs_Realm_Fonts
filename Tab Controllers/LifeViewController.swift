@@ -21,12 +21,11 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let calendar = Calendar.current
     let date = Date()
     var searchBar = UISearchBar()
-    var scoreCategory = ["Life"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items =  realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
+        self.items =  realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.lifeScoreCategory)
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -68,8 +67,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
-        addSearchBar(scoreCategory: scoreCategory, searchBar: searchBar)
-        addNavBar([sideBar, add], [logout], scoreCategory: scoreCategory)
+        addSearchBar(scoreCategory: Constants.lifeScoreCategory, searchBar: searchBar)
+        addNavBar([sideBar, add], [logout], scoreCategory: Constants.lifeScoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -83,11 +82,11 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, self.scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.lifeScoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             self.tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, self.scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.lifeScoreCategory)
             self.tableView.reloadData()
         }
         self.tableView.reloadData()
@@ -120,23 +119,10 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func addTaskPassThrough() {
-        addTaskAlert(realm: realm,scoreCategory: scoreCategory)
+        addTaskAlert(realm: realm,scoreCategory: Constants.lifeScoreCategory)
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        let item = items[indexPath.row]
-        try! realm.write {
-            realm.delete(item)
-        }
-    }
-    
+
     func addHolidayData () {
-        /*
-         Create life tasks based on holiday data pulled from
-         Holiday API. If data already exists in users list ensure
-         it is not duplicated
-         */
         print("Adding Holiday Data to Life Lists")
         for holiday in holidayDictionary.sorted(by: { $0.1 < $1.1 }) {
             print(holiday)
@@ -191,5 +177,21 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let predicate = NSPredicate(format: "Name = %@", Name)
         return realm.objects(OddJobItem.self).filter(predicate)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        deleteOddJob(indexPath, realm: realm, items: items)
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
+            completionHandler(true)
+            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items)
+        }
+        done.backgroundColor = Themes.current.done
+        let config = UISwipeActionsConfiguration(actions: [done])
+        config.performsFirstActionWithFullSwipe = false
+        return config
     }
 }

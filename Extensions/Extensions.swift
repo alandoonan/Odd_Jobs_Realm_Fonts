@@ -110,27 +110,42 @@ extension UIViewController {
         searchBar.showsScopeBar = false
         searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
     }
-    func updateScore(realm: Realm, value: Int) {
+    
+    func updateScore(realm: Realm, value: Int, category: String) {
         print("Updating Scores")
-        for update in Constants.listTypes {
-            let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
-            if let score = scores.first {
-                if score.Score == score.LevelCap {
-                    try! realm.write {
-                        score.Score = 0
-                        score.Level += value
-                        score.TotalScore += value
-                    }
+        let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", category)
+        if let score = scores.first {
+            if score.Score == score.LevelCap {
+                try! realm.write {
+                    score.Score = 0
+                    score.Level += value
+                    score.TotalScore += value
                 }
-                else {
-                    try! realm.write {
-                        score.Score += value
-                        score.TotalScore += value
-                    }
+            }
+            else {
+                try! realm.write {
+                    score.Score += value
+                    score.TotalScore += value
                 }
             }
         }
     }
+    
+    func deleteOddJob(_ indexPath: IndexPath, realm: Realm, items: Results<OddJobItem>) {
+        let item = items[indexPath.row]
+        try! realm.write {
+            realm.delete(item)
+        }
+    }
+    
+    func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>) {
+        let item = items[indexPath.row]
+        try! realm.write {
+            item.IsDone = !item.IsDone
+        }
+        updateScore(realm: realm, value: value, category: item.Category)
+    }
+    
     func addTaskAlert(realm: Realm, scoreCategory: [String]) {
         let alertController = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
@@ -159,7 +174,7 @@ extension UIViewController {
     func cellSetup(_ cell: UITableViewCell, _ item: OddJobItem, _ cellFields: [String]) {
         cell.selectionStyle = .none
         cell.tintColor = .white
-        cell.layer.cornerRadius = 10
+        //cell.layer.cornerRadius = 10
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
@@ -183,6 +198,7 @@ extension UIViewController {
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.isUserInteractionEnabled = false
     }
+    
     @objc func mapTasks() {
         print("Search Button Pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -227,20 +243,5 @@ extension UISearchBarDelegate {
     }
 }
 
-// This with work may be applicable to all classes
-extension PersonalViewController {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("typing in search bar: term = \(searchText)")
-        if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, scoreCategory)
-            self.items = realm.objects(OddJobItem.self).filter(predicate)
-            tableView.reloadData()
-        } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
-            tableView.reloadData()
-        }
-        tableView.reloadData()
-    }
-}
 
 
