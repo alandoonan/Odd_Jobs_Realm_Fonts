@@ -33,6 +33,13 @@ class ScoreViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+    let totalScoreLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textColor = .white
+        return label
+    }()
     let userLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -114,6 +121,16 @@ class ScoreViewController: UIViewController {
         scoreLabel.center = view.center
     }
     
+    fileprivate func addTotalScoreLabel() {
+        view.addSubview(totalScoreLabel)
+        totalScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        totalScoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        totalScoreLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        totalScoreLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        totalScoreLabel.adjustsFontSizeToFitWidth = true
+    }
+    
     fileprivate func addUserLabel() {
         view.addSubview(userLabel)
         userLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -136,6 +153,7 @@ class ScoreViewController: UIViewController {
         addScoreLabel()
         addUserLabel()
         addLevelLabel()
+        addTotalScoreLabel()
     }
     
     fileprivate func addPulsatiingLayer() {
@@ -192,5 +210,6 @@ class ScoreViewController: UIViewController {
         scoreLabel.text = String(scoreItem!.Score)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         levelLabel.text = String("Level: " + String(scoreItem!.Level))
+        totalScoreLabel.text = String("Total Score: " + String(scoreItem!.TotalScore))
     }
 }

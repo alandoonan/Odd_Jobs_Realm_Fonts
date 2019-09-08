@@ -14,6 +14,8 @@ class OrangeTheme: ThemeProtocol {
     var accent: UIColor = UIColor.orangeTheme
     var background: UIColor = UIColor.orangeTheme
     var tint: UIColor = UIColor.greenTheme
+    var done: UIColor = UIColor.greenTheme
+    var undone: UIColor = .gray
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

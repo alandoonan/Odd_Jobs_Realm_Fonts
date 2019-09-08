@@ -18,7 +18,7 @@ struct Constants {
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
-    static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme"], "Dark": ["453823","20","2","DarkTheme"], "The Hulk": ["31BC53","30","3","HulkTheme"], "Orange": ["E07A5F","40","4","OrangeTheme"],"Batman": ["31BC53","30","3","BatmanTheme"]]
+    static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme"], "Dark": ["453823","20","2","DarkTheme"], "The Hulk": ["9bc063","30","3","HulkTheme"], "Orange": ["E07A5F","40","4","OrangeTheme"],"Batman": ["FDFF00","50","5","BatmanTheme"]]
 
     //Theme Unlock Levels
     static let themeLevels = ["Blue" : BlueTheme(), "Dark": DarkTheme(),"The Hulk": HulkTheme(),"Orange": OrangeTheme(), "Batman": BatmanTheme()] as [String : Any]
@@ -39,6 +39,14 @@ struct Constants {
     
     //Map Pin Icons
     static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png"]
+    
+    //Task Filters
+    static let taskFilter = "Category in[c] %@ and IsDone == false"
+    static let taskDoneFilter = "Category in[c] %@ and IsDone == true"
+    
+    //Search Filter
+    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false"
+    static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true"
     
     //Cell Fields
     static let cellFields = ["Priority","Location"]

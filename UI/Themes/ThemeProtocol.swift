@@ -13,5 +13,7 @@ protocol ThemeProtocol {
     var accent: UIColor { get }
     var background: UIColor { get }
     var tint: UIColor { get }
+    var done: UIColor { get }
+    var undone: UIColor { get }
     var preferredStatusBarStyle: UIStatusBarStyle { get }
     }

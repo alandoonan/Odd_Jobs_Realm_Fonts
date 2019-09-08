@@ -13,6 +13,8 @@ class PersonalTheme: ThemeProtocol {
     var accent: UIColor = UIColor.orangeTheme
     var background: UIColor = UIColor.greenTheme
     var tint: UIColor = UIColor.greenTheme
+    var done: UIColor = UIColor.orangeTheme
+    var undone: UIColor = .gray
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

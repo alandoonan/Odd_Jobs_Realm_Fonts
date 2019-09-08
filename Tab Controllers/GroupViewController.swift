@@ -22,7 +22,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter("Category contains[c] %@", scoreCategory[0])
+        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -61,11 +61,11 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, scoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
             tableView.reloadData()
         }
         tableView.reloadData()

@@ -11,6 +11,7 @@ import UIKit
 enum MenuOption: Int, CustomStringConvertible {
     
     case Lists
+    case Archive
     case Score
     case Themes
     case Locations
@@ -22,6 +23,7 @@ enum MenuOption: Int, CustomStringConvertible {
     var description: String {
         switch self {
         case .Lists: return "Lists"
+        case .Archive: return "Archive"
         case .Score: return "Score"
         case .Themes: return "Themes"
         case .Locations: return "Locations"
@@ -36,6 +38,7 @@ enum MenuOption: Int, CustomStringConvertible {
     var image: UIImage {
         switch self {
         case .Lists: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .Archive: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Score: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Themes: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .Locations: return UIImage(named: "ic_menu_white_3x") ?? UIImage()

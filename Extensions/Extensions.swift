@@ -110,7 +110,7 @@ extension UIViewController {
         searchBar.showsScopeBar = false
         searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
     }
-    func updateScore(realm: Realm) {
+    func updateScore(realm: Realm, value: Int) {
         print("Updating Scores")
         for update in Constants.listTypes {
             let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", update)
@@ -118,14 +118,14 @@ extension UIViewController {
                 if score.Score == score.LevelCap {
                     try! realm.write {
                         score.Score = 0
-                        score.Level += 1
-                        score.TotalScore += 1
+                        score.Level += value
+                        score.TotalScore += value
                     }
                 }
                 else {
                     try! realm.write {
-                        score.Score += 1
-                        score.TotalScore += 1
+                        score.Score += value
+                        score.TotalScore += value
                     }
                 }
             }
@@ -179,8 +179,9 @@ extension UIViewController {
         }
         cell.textLabel?.text = item.Name
         cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Location)
-        cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        //cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        cell.isUserInteractionEnabled = false
     }
     @objc func mapTasks() {
         print("Search Button Pressed")
@@ -215,7 +216,6 @@ extension UITableView {
 }
 
 extension UINavigationController {
-    
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return topViewController?.preferredStatusBarStyle ?? .default
     }
@@ -232,13 +232,15 @@ extension PersonalViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, scoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
             tableView.reloadData()
         }
         tableView.reloadData()
     }
 }
+
+

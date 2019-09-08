@@ -1,14 +1,14 @@
 //
-//  OddJobItem.swift
+//  DoneOddJobItem.swift
 //  Odd_Jobs_Realm
 //
-//  Created by Alan Doonan on 07/07/2019.
+//  Created by Alan Doonan on 08/09/2019.
 //  Copyright © 2019 Alan Doonan. All rights reserved.
 //
 
 import RealmSwift
 
-class OddJobItem: Object {
+class DoneOddJobItem: Object {
     
     @objc dynamic var itemId: String = UUID().uuidString
     @objc dynamic var ListID: Int = 0

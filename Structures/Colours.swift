@@ -54,6 +54,8 @@ extension UIColor {
     static let blueTheme = UIColor().hexColor("20A4F3")
     static let darkTheme = UIColor().hexColor("453823")
     static let purpleTheme = UIColor().hexColor("34314C")
+    static let hulkTheme = UIColor().hexColor("9bc063")
+    static let batmanTheme = UIColor().hexColor("FDFF00")
     
     func hexColor(_ hex : String) -> UIColor {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

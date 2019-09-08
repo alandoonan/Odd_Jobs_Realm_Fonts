@@ -29,7 +29,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter("Category in %@", ["Personal","Life","Group"])
+        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,11 +49,11 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, scoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
             tableView.reloadData()
         }
         tableView.reloadData()
@@ -118,7 +118,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             oddJobitem.IsDone = !oddJobitem.IsDone
         }
         if oddJobitem.IsDone == true {
-            updateScore(realm: realm)
+            updateScore(realm: realm, value: 1)
         }
     }
     

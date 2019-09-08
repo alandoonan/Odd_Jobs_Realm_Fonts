@@ -26,7 +26,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items =  realm.objects(OddJobItem.self).filter("Category contains[c] %@", scoreCategory[0])
+        self.items =  realm.objects(OddJobItem.self).filter(Constants.taskFilter, scoreCategory)
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -83,14 +83,14 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:"(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@", searchText, searchText, scoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, self.scoreCategory)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
-            tableView.reloadData()
+            self.tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter("Category in %@", scoreCategory)
-            tableView.reloadData()
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, self.scoreCategory)
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
