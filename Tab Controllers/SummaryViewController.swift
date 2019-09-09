@@ -12,6 +12,7 @@ import RealmSwift
 import RSSelectionMenu
 class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
 {
+    // MARK: Class variables
     var realm: Realm
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
@@ -31,34 +32,34 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.listTypes)
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     deinit {
         notificationToken?.invalidate()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
     }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("typing in search bar: term = \(searchText)")
-        if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.listTypes)
-            self.items = realm.objects(OddJobItem.self).filter(predicate)
-            tableView.reloadData()
-        } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.listTypes)
-            tableView.reloadData()
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addSearchBar(scoreCategory: Constants.listTypes, searchBar: searchBar)
+        addNavBar([sideBar], [logout], scoreCategory: Constants.listTypes)
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
+        setUpSearchBar(searchBar: searchBar)
+        applyTheme(tableView,view)
         tableView.reloadData()
     }
-
-    fileprivate func addNotificationToken() {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    //MARK: Notifcation Token
+    func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -79,45 +80,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addSearchBar(scoreCategory: Constants.listTypes, searchBar: searchBar)
-        addNavBar([sideBar], [logout], scoreCategory: Constants.listTypes)
-        tableView.addTableView(tableView, view)
-        tableView.dataSource = self
-        tableView.delegate = self
-        addNotificationToken()
-        addNotificationToken()
-        setUpSearchBar(searchBar: searchBar)
-        applyTheme(tableView,view)
-        tableView.reloadData()
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.preferredStatusBarStyle
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    fileprivate func isDoneUpdate(_ indexPath: IndexPath) {
-        let oddJobitem = items[indexPath.row]
-        try! realm.write {
-            oddJobitem.IsDone = !oddJobitem.IsDone
-        }
-        if oddJobitem.IsDone == true {
-            updateScore(realm: realm, value: 1, category: oddJobitem.Category)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        isDoneUpdate(indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
-    }
-    
+    // MARK: Sort Functions
     fileprivate func rssSelectionSort() {
         print("Sort Button Pressed")
         var selectedNames: [String] = []
@@ -132,12 +95,10 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         menu.show(style: .push, from: self)
     }
-    
     @objc func selectSortField() {
         rssSelectionSort()
     }
-
-    fileprivate func sortTableView(_ sort: String) {
+    func sortTableView(_ sort: String) {
         self.items = self.items.sorted(byKeyPath: sort, ascending: true)
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
@@ -158,16 +119,33 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
-    
     @objc func sortOddJobs(sort:String) {
         sortTableView(sort)
     }
     
+    // MARK: Search Bar Functions
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("typing in search bar: term = \(searchText)")
+        if searchText != "" {
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.listTypes)
+            self.items = realm.objects(OddJobItem.self).filter(predicate)
+            tableView.reloadData()
+        } else {
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.listTypes)
+            tableView.reloadData()
+        }
+        tableView.reloadData()
+    }
+    
+    // MARK: TableView Functions
+    // MARK: This is in all classes (REFACTOR)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         deleteOddJob(indexPath, realm: realm, items: items)
     }
-    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
@@ -177,5 +155,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let config = UISwipeActionsConfiguration(actions: [done])
         config.performsFirstActionWithFullSwipe = false
         return config
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
     }
 }

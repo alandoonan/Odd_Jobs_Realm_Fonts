@@ -12,8 +12,8 @@ class DarkTheme: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.orangeTheme
-    var background: UIColor = .darkGray
-    var tint: UIColor = .darkGray
+    var background: UIColor = UIColor.darkTheme
+    var tint: UIColor = UIColor.darkTheme
     var done: UIColor = UIColor.greenTheme
     var undone: UIColor = .gray
     var preferredStatusBarStyle: UIStatusBarStyle {

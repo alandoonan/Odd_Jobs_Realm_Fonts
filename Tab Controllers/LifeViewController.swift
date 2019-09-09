@@ -22,6 +22,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let date = Date()
     var searchBar = UISearchBar()
     
+    // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -34,13 +35,32 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     deinit {
         notificationToken?.invalidate()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        getHolidayData()
+        addSearchBar(scoreCategory: Constants.lifeScoreCategory, searchBar: searchBar)
+        addNavBar([sideBar, add], [logout], scoreCategory: Constants.lifeScoreCategory)
+        tableView.addTableView(tableView, view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        addNotificationToken()
+        setUpSearchBar(searchBar: searchBar)
+        applyTheme(tableView,view)
+        tableView.reloadData()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
     
-    fileprivate func addNotificationToken() {
+    // MARK: Notification Token
+    func addNotificationToken() {
         notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -61,24 +81,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        getHolidayData()
-        addSearchBar(scoreCategory: Constants.lifeScoreCategory, searchBar: searchBar)
-        addNavBar([sideBar, add], [logout], scoreCategory: Constants.lifeScoreCategory)
-        tableView.addTableView(tableView, view)
-        tableView.dataSource = self
-        tableView.delegate = self
-        addNotificationToken()
-        addNotificationToken()
-        setUpSearchBar(searchBar: searchBar)
-        applyTheme(tableView,view)
-        tableView.reloadData()
-    }
-    
+    // MARK: Search Bar Functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
@@ -92,29 +95,39 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.reloadData()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.preferredStatusBarStyle
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
-    }
-    
     @objc func addTaskPassThrough() {
         addTaskAlert(realm: realm,scoreCategory: Constants.lifeScoreCategory)
     }
 
+    
+    //MARK: Holiday API Functions
+    func getHolidayData () {
+        print("Getting Holiday Data")
+        let locale = Locale.current.regionCode!
+        print(locale)
+        let params = [
+            "key": HolidayItem.key,
+            "country": "IE",
+            "year" : HolidayItem.year,
+            "upcoming" : HolidayItem.upcoming,
+            "pretty": HolidayItem.pretty,
+            "public": false,
+            "month" : calendar.component(.month, from: date)
+            ] as [String : Any]
+        Alamofire.request(HolidayItem.url!, parameters: params).responseJSON { response in
+            if let result = response.result.value {
+                let json = JSON(result)
+                for holiday in json["holidays"].arrayValue
+                {
+                    if  let name = holiday["name"].string,
+                        let date = holiday["date"].string {
+                        self.holidayDictionary[name] = date
+                    }
+                }
+                self.addHolidayData()
+            }
+        }
+    }
     func addHolidayData () {
         print("Adding Holiday Data to Life Lists")
         for holiday in holidayDictionary.sorted(by: { $0.1 < $1.1 }) {
@@ -137,43 +150,12 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func getHolidayData () {
-        print("Getting Holiday Data")
-        let locale = Locale.current.regionCode!
-        print(locale)
-        let params = [
-            "key": HolidayItem.key,
-            "country": "IE",
-            "year" : HolidayItem.year,
-            "upcoming" : HolidayItem.upcoming,
-            "pretty": HolidayItem.pretty,
-            "public": false,
-            "month" : calendar.component(.month, from: date)
-            ] as [String : Any]
-        
-        Alamofire.request(HolidayItem.url!, parameters: params).responseJSON { response in
-            if let result = response.result.value {
-                let json = JSON(result)
-                for holiday in json["holidays"].arrayValue
-                {
-                    if  let name = holiday["name"].string,
-                        let date = holiday["date"].string {
-                        self.holidayDictionary[name] = date
-                    }
-                }
-                self.addHolidayData()
-            }
-        }
-    }
-    
     // MARK: TableView Functions
     // MARK: This is in all classes (REFACTOR)
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         deleteOddJob(indexPath, realm: realm, items: items)
     }
-    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
@@ -183,5 +165,11 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let config = UISwipeActionsConfiguration(actions: [done])
         config.performsFirstActionWithFullSwipe = false
         return config
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
     }
 }

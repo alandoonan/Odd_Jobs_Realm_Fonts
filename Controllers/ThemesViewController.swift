@@ -56,7 +56,6 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(themes.count)
         navigationItem.title = "Themes"
         addThemes()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
@@ -82,7 +81,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return themes.count
     }
     
-    fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let item = themes[indexPath.row]
         cell.textLabel?.textColor = .white
@@ -116,7 +115,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             Themes.current = HulkTheme()
         }
         if cell == "Orange" {
-            Themes.current = PersonalTheme()
+            Themes.current = OrangeTheme()
         }
         if cell == "Batman" {
             Themes.current = BatmanTheme()

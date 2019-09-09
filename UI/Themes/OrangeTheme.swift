@@ -11,7 +11,7 @@ import UIKit
 class OrangeTheme: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
-    var accent: UIColor = UIColor.orangeTheme
+    var accent: UIColor = UIColor.darkTheme
     var background: UIColor = UIColor.orangeTheme
     var tint: UIColor = UIColor.greenTheme
     var done: UIColor = UIColor.greenTheme

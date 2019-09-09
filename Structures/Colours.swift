@@ -52,7 +52,7 @@ extension UIColor {
     static let orangeTheme = UIColor().hexColor("E07A5F")
     static let greenTheme = UIColor().hexColor("31BC53")
     static let blueTheme = UIColor().hexColor("20A4F3")
-    static let darkTheme = UIColor().hexColor("453823")
+    static let darkTheme = UIColor().hexColor("282b35")
     static let purpleTheme = UIColor().hexColor("34314C")
     static let hulkTheme = UIColor().hexColor("9bc063")
     static let batmanTheme = UIColor().hexColor("FDFF00")

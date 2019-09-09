@@ -9,20 +9,20 @@
 import UIKit
 import RealmSwift
 
+//MARK: UIColor Addtional Settings
 extension UIColor {
-    
     static func rgb(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
         return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
-    
     static let backgroundColor = UIColor.rgb(r: 21, g: 22, b: 33)
     static let outlineStrokeColor = UIColor.rgb(r: 234, g: 46, b: 111)
     static let trackStrokeColor = UIColor.rgb(r: 56, g: 25, b: 49)
     static let pulsatingFillColor = UIColor.rgb(r: 86, g: 30, b: 63)
 }
 
-// Shake Function for indicating wrong field
+//MARK: UITextfield customization
 extension UITextField {
+    //MARK: Shake Function for indicating wrong field
     func shake() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
@@ -34,10 +34,12 @@ extension UITextField {
     }
 }
 
+//MARK: UIViewController additional functions
 extension UIViewController {
     
+    //MARK: Sidebar transistion
     func transition() {
-        let homeVC:SideBarController    = SideBarController()
+        let homeVC:SideBarController = SideBarController()
         present(homeVC, animated: true, completion: nil)
     }
 
@@ -64,7 +66,7 @@ extension UIViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: storyBoardID)
         self.present(controller, animated: true, completion: nil)
     }
-    
+
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
@@ -72,6 +74,7 @@ extension UIViewController {
         navigationItem.leftBarButtonItems = leftButtons
         navigationItem.rightBarButtonItems = rightButtons
         navigationItem.title = scoreCategory.joined(separator:" ")
+        
     }
     
     func applyTheme(_ tableView: UITableView, _ view: UIView) {
@@ -187,7 +190,7 @@ extension UIViewController {
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.selectionStyle = .none
         cell.tintColor = .white
-        cell.textLabel?.textColor = Themes.current.accent
+        cell.textLabel?.textColor = Themes.current.background
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         if item.Category == "Personal" {

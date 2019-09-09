@@ -18,7 +18,7 @@ struct Constants {
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
-    static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme"], "Dark": ["453823","20","2","DarkTheme"], "The Hulk": ["9bc063","30","3","HulkTheme"], "Orange": ["E07A5F","40","4","OrangeTheme"],"Batman": ["FDFF00","50","5","BatmanTheme"]]
+    static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme"], "Dark": ["282b35","20","2","DarkTheme"], "The Hulk": ["9bc063","30","3","HulkTheme"], "Orange": ["E07A5F","40","4","OrangeTheme"],"Batman": ["FDFF00","50","5","BatmanTheme"]]
 
     //Theme Unlock Levels
     static let themeLevels = ["Blue" : BlueTheme(), "Dark": DarkTheme(),"The Hulk": HulkTheme(),"Orange": OrangeTheme(), "Batman": BatmanTheme()] as [String : Any]

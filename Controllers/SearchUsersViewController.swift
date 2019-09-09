@@ -70,7 +70,6 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken()
-        addNotificationToken()
         setUpSearchBar(searchBar: searchBar)
         applyThemeView(view)
         tableView.reloadData()

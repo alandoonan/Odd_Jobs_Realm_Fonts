@@ -17,7 +17,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let tableView = UITableView()
     var searchBar = UISearchBar()
 
-    // MARK: Initialize Functions & View Did Load
+    // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)

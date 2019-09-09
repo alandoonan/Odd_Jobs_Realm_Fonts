@@ -22,7 +22,6 @@ class HomeViewController: UITabBarController {
         navigationAppearance.barTintColor = Themes.current.background
         navigationController?.navigationBar.barStyle = .default
         navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -36,24 +35,9 @@ class HomeViewController: UITabBarController {
         tabBarAppearance.barTintColor = Themes.current.background
     }
     
-    fileprivate func setupPersonalTab(_ personalTab: UINavigationController) {
-        personalTab.tabBarItem.image = UIImage(named: "P.png")
-        personalTab.title = "Personal"
-    }
-    
-    fileprivate func setupGroupTab(_ groupTab: UINavigationController) {
-        groupTab.tabBarItem.image = UIImage(named: "G.png")
-        groupTab.title = "Group"
-    }
-    
-    fileprivate func setupLifeTab(_ lifeTab: UINavigationController) {
-        lifeTab.tabBarItem.image = UIImage(named: "L.png")
-        lifeTab.title = "Life"
-    }
-    
-    fileprivate func setupSummaryTab(_ summaryTab: UINavigationController) {
-        summaryTab.tabBarItem.image = UIImage(named: "summary.png")
-        summaryTab.title = "Summary"
+    fileprivate func setupTabBarButton(tab: UINavigationController, image: String, title: String) {
+        tab.tabBarItem.image = UIImage(named: image)
+        tab.title = title
     }
     
     fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController) {
@@ -65,10 +49,10 @@ class HomeViewController: UITabBarController {
         super.viewDidLoad()
         setupNavBar()
         setupTabBar()
-        setupPersonalTab(personalTab)
-        setupGroupTab(groupTab)
-        setupLifeTab(lifeTab)
-        setupSummaryTab(summaryTab)
+        setupTabBarButton(tab: personalTab, image: "P.png", title: "Personal")
+        setupTabBarButton(tab: groupTab, image: "G.png", title: "Group")
+        setupTabBarButton(tab: lifeTab, image: "L.png", title: "Life")
+        setupTabBarButton(tab: summaryTab, image: "summary.png", title: "Summary")
         setupView(groupTab, personalTab, lifeTab, summaryTab)
         applyThemeView(view)
     }

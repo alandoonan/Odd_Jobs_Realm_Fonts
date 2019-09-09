@@ -23,7 +23,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     var searchBar = UISearchBar()
     let tableView = UITableView()
     
-    // MARK: Initialize Functions & View Did Load
+    // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -101,7 +101,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         print("Sort Button Pressed")
         rssSelectionMenuSort()
     }
-    
     @objc func sortOddJobs(sort:String) {
         self.items = self.items.sorted(byKeyPath: sort, ascending: true)
         notificationToken = items.observe { [weak self] (changes) in
@@ -136,14 +135,13 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         config.performsFirstActionWithFullSwipe = false
         return config
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
     }
-    
+
     // MARK: SearchBar Functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
@@ -163,5 +161,4 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         showStoryBoardView(storyBoardID: "CreateTaskViewController")
         //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
     }
-    
 }

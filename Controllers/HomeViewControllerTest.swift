@@ -20,7 +20,6 @@ class HomeControllerTest: UIViewController {
         self.realm = try! Realm(configuration: config!)
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -28,18 +27,14 @@ class HomeControllerTest: UIViewController {
     deinit {
         notificationToken?.invalidate()
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         configureNavigationBar()
         applyThemeView(view)
-
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         applyThemeView(view)
@@ -47,6 +42,7 @@ class HomeControllerTest: UIViewController {
         
     @objc func handleMenuToggle() {
         delegate?.handleMenuToggle(forMenuOption: nil)
+        print("Sidebar button pressed")
     }
     
     fileprivate func createHomeBackGround() {

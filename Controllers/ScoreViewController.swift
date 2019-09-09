@@ -99,6 +99,7 @@ class ScoreViewController: UIViewController {
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         addNavBar([sideBar], [logout],scoreCategory: [""])
+        navigationController?.navigationBar.tintColor = Themes.current.accent
         checkingScoreSystem()
         setupCircleLayers()
         animateCircle()
