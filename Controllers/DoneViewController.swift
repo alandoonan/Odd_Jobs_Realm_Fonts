@@ -129,7 +129,7 @@ extension DoneViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.archiveScoreCategory)
+            let predicate = NSPredicate(format:Constants.doneSearchFilter, searchText, searchText, Constants.listTypes)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
