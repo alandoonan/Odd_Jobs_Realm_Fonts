@@ -37,15 +37,15 @@ enum MenuOption: Int, CustomStringConvertible {
     
     var image: UIImage {
         switch self {
-        case .Lists: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Archive: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Score: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Themes: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Locations: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Users: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .Lists: return UIImage(named: "oddjobs.png") ?? UIImage()
+        case .Archive: return UIImage(named: "archive.png") ?? UIImage()
+        case .Score: return UIImage(named: "trophy_sidebar.png") ?? UIImage()
+        case .Themes: return UIImage(named: "themes.png") ?? UIImage()
+        case .Locations: return UIImage(named: "location.png") ?? UIImage()
+        case .Users: return UIImage(named: "users.png") ?? UIImage()
         case .CreateLifeTask: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .CreateTask: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .Logout: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .Logout: return UIImage(named: "logout.png") ?? UIImage()
 
         }
     }

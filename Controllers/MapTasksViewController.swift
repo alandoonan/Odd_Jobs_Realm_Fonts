@@ -30,10 +30,12 @@ class MapTasksViewController: UIViewController {
         let mapItems = realm.objects(OddJobItem.self).filter("Category in %@ and IsDone == false", Constants.listTypes)
         checkLocationServices()
         populateMap(mapItems)
+        
         view.backgroundColor = Themes.current.background
         UINavigationBar.appearance().barTintColor = Themes.current.background
         mapView.backgroundColor = Themes.current.background
         applyThemeView(view)
+        UINavigationBar.appearance().tintColor = Themes.current.accent
         
         //searchInMap()
         }
