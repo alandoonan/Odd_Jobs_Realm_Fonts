@@ -15,6 +15,7 @@ class ThemeItem: Object {
     @objc dynamic var hexColour: String = ""
     @objc dynamic var Category: String = "Theme"
     @objc dynamic var UnlockLevel: Int = 0
+    @objc dynamic var CellColour: String = ""
     override static func primaryKey() -> String? {
         return "themeID"
     }

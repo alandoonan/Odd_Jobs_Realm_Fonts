@@ -59,13 +59,15 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.title = "Themes"
         addThemes()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addNavBar([sideBar], [logout], scoreCategory: ["Themes"])
         applyTheme(tableView,view)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsMultipleSelection = false
+        applyThemeView(view)
+        applyTheme(tableView,view)
         addNotificationToken()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -74,6 +76,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        applyThemeView(view)
         applyTheme(tableView,view)
     }
     
@@ -84,7 +87,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let item = themes[indexPath.row]
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = UIColor().hexColor(item.CellColour)
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.tintColor = Themes.current.accent
@@ -107,18 +110,34 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.cellForRow(at: indexPath)?.textLabel?.text
         if cell == "Blue" {
             Themes.current = BlueTheme()
+            applyTheme(tableView,view)
+            applyThemeView(view)
+            view.layoutIfNeeded()
         }
         if cell == "Dark" {
             Themes.current = DarkTheme()
+            applyTheme(tableView,view)
+            applyThemeView(view)
+            view.layoutIfNeeded()
         }
         if cell == "The Hulk" {
             Themes.current = HulkTheme()
+            applyTheme(tableView,view)
+            applyThemeView(view)
+            view.layoutIfNeeded()
         }
         if cell == "Orange" {
             Themes.current = OrangeTheme()
+            applyTheme(tableView,view)
+            applyThemeView(view)
+            view.layoutIfNeeded()
         }
         if cell == "Batman" {
             Themes.current = BatmanTheme()
+            applyTheme(tableView,view)
+            applyThemeView(view)
+            view.layoutIfNeeded()
+
         }
         else {
             print("Theme not found")
@@ -140,6 +159,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             themeItem.hexColour = colour.value[0]
                             themeItem.UnlockLevel = Int(colour.value[1])!
                             themeItem.tag = Int(colour.value[2])!
+                            themeItem.CellColour = colour.value[4]
                             try! self.realm.write {
                                 self.realm.add(themeItem)
                             }

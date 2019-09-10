@@ -46,7 +46,7 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: Constants.archiveScoreCategory, searchBar: searchBar)
         addNavBar([sideBar], [logout], scoreCategory: Constants.archiveScoreCategory)
         tableView.addTableView(tableView, view)

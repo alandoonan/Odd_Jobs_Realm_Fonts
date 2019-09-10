@@ -47,7 +47,7 @@ class HomeControllerTest: UIViewController {
     
     fileprivate func createHomeBackGround() {
         UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "iPhone X-XS – 1@3x NO_CR.png")?.draw(in: self.view.bounds)
+        UIImage(named: "sidebar.png")?.draw(in: self.view.bounds)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.view.backgroundColor = UIColor(patternImage: image)
@@ -58,7 +58,7 @@ class HomeControllerTest: UIViewController {
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.view.backgroundColor = Themes.current.background
         navigationItem.title = "Odd Jobs"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenuToggle))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleMenuToggle))
         createHomeBackGround()
     }
     

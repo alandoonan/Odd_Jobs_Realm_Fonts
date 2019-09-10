@@ -15,5 +15,7 @@ protocol ThemeProtocol {
     var tint: UIColor { get }
     var done: UIColor { get }
     var undone: UIColor { get }
+    var celltext: UIColor { get }
+    var themecelltext: UIColor { get }
     var preferredStatusBarStyle: UIStatusBarStyle { get }
     }

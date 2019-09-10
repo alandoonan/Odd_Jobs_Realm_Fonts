@@ -16,13 +16,6 @@ class SideBarController: UIViewController {
     var centerController: UIViewController!
     var isExpanded = false
     
-    fileprivate func setupNavBar() {
-        let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.tintColor = Themes.current.accent
-        navigationAppearance.barTintColor = Themes.current.background
-        navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
     }

@@ -16,6 +16,9 @@ class HulkTheme: ThemeProtocol {
     var tint: UIColor = UIColor.purpleTheme
     var done: UIColor = UIColor.purpleTheme
     var undone: UIColor = .gray
+    var celltext: UIColor = UIColor.purpleTheme
+    var themecelltext: UIColor = UIColor.purpleTheme
+
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

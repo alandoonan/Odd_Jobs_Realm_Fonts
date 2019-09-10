@@ -15,6 +15,9 @@ class PersonalTheme: ThemeProtocol {
     var tint: UIColor = UIColor.greenTheme
     var done: UIColor = UIColor.orangeTheme
     var undone: UIColor = .gray
+    var celltext: UIColor = UIColor.darkTheme
+    var themecelltext: UIColor = UIColor.darkTheme
+
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

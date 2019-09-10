@@ -22,6 +22,7 @@ enum MenuOption: Int, CustomStringConvertible {
     
     var description: String {
         switch self {
+            
         case .Lists: return "Lists"
         case .Archive: return "Archive"
         case .Score: return "Score"
@@ -35,6 +36,7 @@ enum MenuOption: Int, CustomStringConvertible {
         }
     }
     
+    
     var image: UIImage {
         switch self {
         case .Lists: return UIImage(named: "oddjobs.png") ?? UIImage()
@@ -43,8 +45,8 @@ enum MenuOption: Int, CustomStringConvertible {
         case .Themes: return UIImage(named: "themes.png") ?? UIImage()
         case .Locations: return UIImage(named: "location.png") ?? UIImage()
         case .Users: return UIImage(named: "users.png") ?? UIImage()
-        case .CreateLifeTask: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
-        case .CreateTask: return UIImage(named: "ic_menu_white_3x") ?? UIImage()
+        case .CreateLifeTask: return UIImage(named: "lifetask.png") ?? UIImage()
+        case .CreateTask: return UIImage(named: "task.png") ?? UIImage()
         case .Logout: return UIImage(named: "logout.png") ?? UIImage()
 
         }

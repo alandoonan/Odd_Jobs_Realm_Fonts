@@ -43,7 +43,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         getHolidayData()
         addSearchBar(scoreCategory: Constants.lifeScoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: Constants.lifeScoreCategory)

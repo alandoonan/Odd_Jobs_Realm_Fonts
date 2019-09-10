@@ -15,4 +15,17 @@ class Themes {
 //    static let background = UIColor.navyTheme
 //    static let tint = UIColor.greenTheme
     static var current: ThemeProtocol  = DarkTheme()
+    
+    static func applyTheme() {
+        // First persist the selected theme using NSUserDefaults.
+        UserDefaults.standard.synchronize()
+        
+        // You get your current (selected) theme and apply the main color to the tintColor property of your application’s window.
+        let sharedApplication = UIApplication.shared
+        sharedApplication.delegate?.window??.tintColor = Themes.current.background
+        
+        UINavigationBar.appearance().backgroundColor = Themes.current.background
+        UITabBar.appearance().backgroundColor = Themes.current.background
+        UIView.appearance().backgroundColor = Themes.current.background
+    }
 }

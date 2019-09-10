@@ -47,6 +47,7 @@ class MenuOptionCell: UITableViewCell {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 12).isActive = true
+        descriptionLabel.textColor = UIColor.darkTheme
     }
     
     required init?(coder aDecoder: NSCoder) {

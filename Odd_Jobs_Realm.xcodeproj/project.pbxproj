@@ -98,6 +98,8 @@
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
 		8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCE722EE0422001AC3A9 /* Extensions.swift */; };
+		81A91D4B2328188400426095 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */; };
+		81A91D4E232821F500426095 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A91D4D232821F500426095 /* sidebar.png */; };
 		81CF5F2C23159407003F12E7 /* Batman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF5F2B23159407003F12E7 /* Batman.swift */; };
 		81E0B91823252D98003AE595 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0B91723252D98003AE595 /* DoneViewController.swift */; };
 		81E0B91B23280547003AE595 /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B91A23280547003AE595 /* archive.png */; };
@@ -108,6 +110,8 @@
 		81E0B92623280961003AE595 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92523280961003AE595 /* location.png */; };
 		81E0B92823280A1F003AE595 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92723280A1F003AE595 /* users.png */; };
 		81E0B92A23280A50003AE595 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92923280A50003AE595 /* logout.png */; };
+		81E0B92E23281581003AE595 /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92D23281581003AE595 /* task.png */; };
+		81E0B930232815F5003AE595 /* lifetask.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92F232815F5003AE595 /* lifetask.png */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -208,6 +212,8 @@
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 		8192CCE722EE0422001AC3A9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		81A91D4D232821F500426095 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		81CF5F2B23159407003F12E7 /* Batman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batman.swift; sourceTree = "<group>"; };
 		81E0B91723252D98003AE595 /* DoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
 		81E0B91A23280547003AE595 /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archive.png; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 		81E0B92523280961003AE595 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		81E0B92723280A1F003AE595 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		81E0B92923280A50003AE595 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		81E0B92D23281581003AE595 /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
+		81E0B92F232815F5003AE595 /* lifetask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lifetask.png; path = ../../../../../Downloads/lifetask.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,22 +255,17 @@
 				81208AC42304716300F6548E /* Themes */,
 				811B22CE23002FAD007425C0 /* Fonts */,
 				8132C32622E2506D00EC79F2 /* Images */,
-				811B214F22FDC910007425C0 /* MenuBar.swift */,
-				811B215322FEEEE3007425C0 /* UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		811B215522FF3EC9007425C0 /* iOS Icons */ = {
+		811B215522FF3EC9007425C0 /* Other Icons */ = {
 			isa = PBXGroup;
 			children = (
-				8125F38D2323F3D2004869CA /* GroupPin.png */,
-				8125F38B2323F3D2004869CA /* LifePin.png */,
-				8125F38C2323F3D2004869CA /* PersonalPin.png */,
 				811B221322FF436F007425C0 /* goal.png */,
 				811B21B922FF4186007425C0 /* settings.png */,
 			);
-			path = "iOS Icons";
+			path = "Other Icons";
 			sourceTree = "<group>";
 		};
 		811B22CE23002FAD007425C0 /* Fonts */ = {
@@ -316,8 +319,12 @@
 		81208AC92308558100F6548E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				811B214F22FDC910007425C0 /* MenuBar.swift */,
+				811B215322FEEEE3007425C0 /* UI.swift */,
 				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
 				81208AD02309CFBB00F6548E /* RealmManager.swift */,
+				81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */,
+				814B51C222D79E5500102E73 /* Colours.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,20 +340,14 @@
 			path = "Tab Controllers";
 			sourceTree = "<group>";
 		};
-		81208AD22309D61C00F6548E /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81A91D4C2328214600426095 /* Location Icons */,
 				81E0B91C23280553003AE595 /* Tab Bar Icons */,
 				81E0B9192328052B003AE595 /* Sidebar Icons */,
 				8132C36D22E2511800EC79F2 /* Assets.xcassets */,
-				811B215522FF3EC9007425C0 /* iOS Icons */,
+				811B215522FF3EC9007425C0 /* Other Icons */,
 				8132C32722E2506D00EC79F2 /* Logo */,
 				8132C32C22E2506D00EC79F2 /* LogoSmall */,
 				8132C33122E2506D00EC79F2 /* App Icons */,
@@ -425,7 +426,6 @@
 				81208ABA2303385900F6548E /* Model */,
 				81208AB72303380D00F6548E /* Protocols */,
 				811B214E22FDC902007425C0 /* UI */,
-				81208AD22309D61C00F6548E /* Classes */,
 				8192CCE022E8ECB1001AC3A9 /* Other */,
 				81208AC92308558100F6548E /* Extensions */,
 				81208ACB2308564800F6548E /* Tab Controllers */,
@@ -462,7 +462,6 @@
 			children = (
 				816B8B0222D21FA400C630B9 /* Constants.swift */,
 				816B8B0722D2209F00C630B9 /* OddJobItem.swift */,
-				814B51C222D79E5500102E73 /* Colours.swift */,
 				814B51C622DCF4F300102E73 /* ScoreItem.swift */,
 				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
 				811B214522F7120A007425C0 /* UserItem.swift */,
@@ -502,10 +501,23 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		81A91D4C2328214600426095 /* Location Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8125F38D2323F3D2004869CA /* GroupPin.png */,
+				8125F38B2323F3D2004869CA /* LifePin.png */,
+				8125F38C2323F3D2004869CA /* PersonalPin.png */,
+			);
+			path = "Location Icons";
+			sourceTree = "<group>";
+		};
 		81E0B9192328052B003AE595 /* Sidebar Icons */ = {
 			isa = PBXGroup;
 			children = (
+				81A91D4D232821F500426095 /* sidebar.png */,
+				81E0B92D23281581003AE595 /* task.png */,
 				81E0B92923280A50003AE595 /* logout.png */,
+				81E0B92F232815F5003AE595 /* lifetask.png */,
 				81E0B92723280A1F003AE595 /* users.png */,
 				81E0B92523280961003AE595 /* location.png */,
 				81E0B92323280810003AE595 /* oddjobs.png */,
@@ -612,6 +624,7 @@
 				8125F3902323F3D2004869CA /* GroupPin.png in Resources */,
 				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
 				81E0B92423280810003AE595 /* oddjobs.png in Resources */,
+				81A91D4E232821F500426095 /* sidebar.png in Resources */,
 				8125F38F2323F3D2004869CA /* PersonalPin.png in Resources */,
 				81E0B91E232806BE003AE595 /* score.png in Resources */,
 				811B218822FF3ECA007425C0 /* P.png in Resources */,
@@ -638,6 +651,8 @@
 				8132C35C22E2506D00EC79F2 /* icon_40pt-1.png in Resources */,
 				8132C36A22E2506D00EC79F2 /* Launchscreen@3x.png in Resources */,
 				8132C35F22E2506D00EC79F2 /* icon_76pt-1.png in Resources */,
+				81E0B930232815F5003AE595 /* lifetask.png in Resources */,
+				81E0B92E23281581003AE595 /* task.png in Resources */,
 				8132C34F22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png in Resources */,
 				8132C36322E2506D00EC79F2 /* iPhone Settings 29pt@2x.png in Resources */,
 				8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */,
@@ -759,6 +774,7 @@
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
 				81208AC12303397E00F6548E /* MenuController.swift in Sources */,
+				81A91D4B2328188400426095 /* UIViewControllerExtensions.swift in Sources */,
 				811B22DF230096AD007425C0 /* HulkTheme.swift in Sources */,
 				81208AB92303382200F6548E /* HomeControllerDelegate.swift in Sources */,
 				814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */,

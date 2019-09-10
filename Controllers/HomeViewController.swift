@@ -15,15 +15,6 @@ class HomeViewController: UITabBarController {
     let lifeTab = UINavigationController(rootViewController: LifeViewController())
     let summaryTab = UINavigationController(rootViewController: SummaryViewController())
     
-    fileprivate func setupNavBar() {
-        // Navigation bar appearance
-        let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.tintColor = Themes.current.accent
-        navigationAppearance.barTintColor = Themes.current.background
-        navigationController?.navigationBar.barStyle = .default
-        navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
     }

@@ -16,6 +16,9 @@ class BatmanTheme: ThemeProtocol {
     var tint: UIColor = UIColor.yellow
     var done: UIColor = UIColor.purpleTheme
     var undone: UIColor = .gray
+    var celltext: UIColor = UIColor.darkTheme
+    var themecelltext: UIColor = UIColor.black
+
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
