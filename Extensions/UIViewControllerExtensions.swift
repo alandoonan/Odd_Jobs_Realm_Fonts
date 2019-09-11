@@ -170,7 +170,7 @@ extension UIViewController {
         cell.selectionStyle = .none
         cell.tintColor = .white
         cell.textLabel?.textColor = Themes.current.celltext
-        cell.detailTextLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = Themes.current.celltext
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         if item.Category == "Personal" {
             print(item.Category)
