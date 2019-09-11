@@ -96,9 +96,8 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func addTaskPassThrough() {
-        addTaskAlert(realm: realm,scoreCategory: Constants.lifeScoreCategory)
+        showStoryBoardView(storyBoardID: "LifeTaskViewController")
     }
-
     
     //MARK: Holiday API Functions
     func getHolidayData () {
@@ -139,7 +138,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 item.Priority = "High"
                 item.Occurrence = "Yearly"
                 item.Category = "Life"
-                item.HolidayDate = holiday.value
+                item.DueDate = holiday.value
                 try! self.realm.write {
                     self.realm.add(item)
                 }

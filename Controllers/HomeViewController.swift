@@ -26,24 +26,24 @@ class HomeViewController: UITabBarController {
         tabBarAppearance.barTintColor = Themes.current.background
     }
     
-    fileprivate func setupTabBarButton(tab: UINavigationController, image: String, title: String) {
-        tab.tabBarItem.image = UIImage(named: image)
+    fileprivate func setupTabBarButton(tab: UINavigationController, image: UIImage, title: String) {
+        tab.tabBarItem.image = image
         tab.title = title
     }
     
     fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController) {
         self.view.backgroundColor = Themes.current.background
-        viewControllers = [groupTab,personalTab,lifeTab,summaryTab]
+        viewControllers = [summaryTab,personalTab,lifeTab,groupTab]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         setupTabBar()
-        setupTabBarButton(tab: personalTab, image: "P.png", title: "Personal")
-        setupTabBarButton(tab: groupTab, image: "G.png", title: "Group")
-        setupTabBarButton(tab: lifeTab, image: "L.png", title: "Life")
-        setupTabBarButton(tab: summaryTab, image: "summary.png", title: "Summary")
+        setupTabBarButton(tab: personalTab, image:#imageLiteral(resourceName: "task").withRenderingMode(.automatic), title: "Personal")
+        setupTabBarButton(tab: groupTab, image:#imageLiteral(resourceName: "users").withRenderingMode(.automatic), title: "Group")
+        setupTabBarButton(tab: lifeTab, image:#imageLiteral(resourceName: "lifetask").withRenderingMode(.automatic), title: "Life")
+        setupTabBarButton(tab: summaryTab, image:#imageLiteral(resourceName: "oddjobs").withRenderingMode(.automatic), title: "Summary")
         setupView(groupTab, personalTab, lifeTab, summaryTab)
         applyThemeView(view)
     }

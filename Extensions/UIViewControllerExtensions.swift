@@ -64,9 +64,6 @@ extension UIViewController {
         navigationController?.navigationBar.backgroundColor = Themes.current.background
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.backgroundColor = Themes.current.background
-        navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     
     func applyThemeView(_ view: UIView) {
@@ -76,9 +73,6 @@ extension UIViewController {
         navigationController?.navigationBar.tintColor = Themes.current.accent
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.backgroundColor = Themes.current.background
-        navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     
     func logOutUsers() {
@@ -179,17 +173,22 @@ extension UIViewController {
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         if item.Category == "Personal" {
+            print(item.Category)
             cell.backgroundColor = UIColor.orangeTheme
+            cell.detailTextLabel?.text = (cellFields[0] + ": " + item.Location)
         }
         if item.Category == "Life" {
+            print(item.Category)
             cell.backgroundColor = UIColor.greenTheme
+            cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
         }
         if item.Category == "Group" {
+            print(item.Category)
             cell.backgroundColor = UIColor.blueTheme
+            cell.detailTextLabel?.text = (cellFields[2] + ": " + item.DueDate)
         }
         cell.textLabel?.text = item.Name
-        cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Location)
-        //cell.accessoryType = item.IsDone ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
+        
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.isUserInteractionEnabled = false
     }

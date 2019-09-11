@@ -18,6 +18,9 @@ class MapTasksViewController: UIViewController {
         performSegueToReturnBack()
     }
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapNavBar: UINavigationBar!
+    @IBOutlet weak var mapBackButton: UIBarButtonItem!
+    
 
     
     let locationManager = CLLocationManager()
@@ -35,8 +38,10 @@ class MapTasksViewController: UIViewController {
         UINavigationBar.appearance().barTintColor = Themes.current.background
         mapView.backgroundColor = Themes.current.background
         applyThemeView(view)
-        UINavigationBar.appearance().tintColor = Themes.current.accent
-        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        mapNavBar.titleTextAttributes = textAttributes
+        mapBackButton.tintColor = Themes.current.accent
         //searchInMap()
         }
     

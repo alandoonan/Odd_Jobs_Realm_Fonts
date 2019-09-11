@@ -45,7 +45,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let oddJobLocationName = locationSearchBar.text
         let item = OddJobItem()
         item.Name = oddJobName!
-        item.HolidayDate = oddJobDate!
+        item.DueDate = oddJobDate!
         item.Priority = oddJobPriority!
         item.Category = oddJobCategory!
         item.Location = oddJobLocationName!

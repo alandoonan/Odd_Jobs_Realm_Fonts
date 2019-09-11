@@ -196,6 +196,8 @@
                         <viewLayoutGuide key="safeArea" id="j8u-zR-NuC"/>
                     </view>
                     <connections>
+                        <outlet property="mapBackButton" destination="Up0-NI-CXO" id="Guc-vi-SPT"/>
+                        <outlet property="mapNavBar" destination="laX-Rq-d3N" id="tqZ-Wu-DJj"/>
                         <outlet property="mapView" destination="qvV-PT-LT3" id="7Lg-v3-DUp"/>
                     </connections>
                 </viewController>

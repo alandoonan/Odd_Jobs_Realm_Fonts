@@ -46,21 +46,31 @@ class LifeTaskViewController: UIViewController{
         print("Select Task Pressed")
         if categoryButtonTitle.titleLabel?.text == "Health" {
             p=1
+            print("Health")
         }
         if categoryButtonTitle.titleLabel?.text == "Social" {
             p=2
+            print("Social")
         }
         if categoryButtonTitle.titleLabel?.text == "Finance" {
             p=3
+            print("Finance")
+
         }
         if categoryButtonTitle.titleLabel?.text == "Birthday" {
             p=4
+            print("Birthday")
+
         }
         if categoryButtonTitle.titleLabel?.text == "Anniversary" {
             p=5
+            print("Anniversary")
+
         }
         if categoryButtonTitle.titleLabel?.text == "Custom" {
             p=6
+            print("Custom")
+
         }
         tableView.reloadData()
         if tableView.isHidden {
@@ -84,6 +94,20 @@ class LifeTaskViewController: UIViewController{
     
     @IBAction func createTaskButtonPress(_ sender: Any) {
         print("Create Task.")
+        print(selectCategoryButton.titleLabel!.text as Any)
+        print(selectTaskButton.titleLabel!.text as Any)
+        print(selectWhenButton.titleLabel!.text as Any)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let realm = try! Realm(configuration: config!)
+        let item = OddJobItem()
+        item.Category = "Life"
+        item.LifeCategory = selectCategoryButton.titleLabel!.text!
+        item.Name = selectTaskButton.titleLabel!.text!
+        item.Occurrence  = selectWhenButton.titleLabel!.text!
+        print(item)
+        try! realm.write {
+            realm.add(item)
+        }
     }
     
     func buttonViewToggle(toggle: Bool) {
@@ -99,6 +123,10 @@ class LifeTaskViewController: UIViewController{
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
     }
 }
 

@@ -49,7 +49,7 @@ struct Constants {
     static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true"
     
     //Cell Fields
-    static let cellFields = ["Priority","Location"]
+    static let cellFields = ["Location","Occurence","Due Date"]
     static let doneSwipe = "Done"
     static let undoneSwipe = "Undone"
     
