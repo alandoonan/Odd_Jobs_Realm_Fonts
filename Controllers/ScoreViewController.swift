@@ -55,7 +55,7 @@ class ScoreViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -208,7 +208,7 @@ class ScoreViewController: UIViewController {
         let scoreItem = realm.objects(ScoreItem.self).first
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimationSettings(basicAnimation, scoreItem)
-        shapeLayer.add(basicAnimation, forKey: "Personal")
+        shapeLayer.add(basicAnimation, forKey: "Life")
         scoreLabel.text = String(scoreItem!.Score)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         levelLabel.text = String("Level: " + String(scoreItem!.Level))

@@ -24,21 +24,21 @@ struct Constants {
     static let themeLevels = ["Blue" : BlueTheme(), "Dark": DarkTheme(),"The Hulk": HulkTheme(),"Orange": OrangeTheme(), "Batman": BatmanTheme()] as [String : Any]
     
     //Alert Fields
-    static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-    static let groupAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-    static let lifeAlertFields = ["Odd Job Name","Odd Job Occurrence","Life Area"]
+//    static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
+//    static let groupAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
+//    static let lifeAlertFields = ["Odd Job Name","Odd Job Occurrence","Life Area"]
 
     //Sort Fields
     static let sortFields: [String] = ["Name", "Priority", "Occurrence"]
     
     //List Types
-    static let listTypes = ["Group","Life","Personal"]
+    static let listTypes = ["Group","Life","Personal","Work"]
     
     //Create Task Categories
-    static let createTaskTypes = ["Group","Personal"]
+    static let createTaskTypes = ["Group","Personal","Work"]
     
     //Map Pin Icons
-    static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png"]
+    static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png", "Work" : "W.png"]
     
     //Task Filters
     static let taskFilter = "Category in[c] %@ and IsDone == false"
@@ -62,6 +62,7 @@ struct Constants {
     static let personalScoreCategory = ["Personal"]
     static let groupScoreCategory = ["Group"]
     static let lifeScoreCategory = ["Life"]
+    static let workScoreCategory = ["Work"]
     
     //Task Data
     static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal"],["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody"],["Save Small Sum Of Money","Pay A Bill"],["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday"],["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],["Test"],["Daily","Weekly","Monthly","Yearly"]]

@@ -103,6 +103,7 @@ extension UIViewController {
     func updateScore(realm: Realm, value: Int, category: String) {
         print("Updating Scores")
         let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", category)
+        print(category)
         if let score = scores.first {
             if score.Score == score.LevelCap {
                 try! realm.write {
@@ -112,9 +113,21 @@ extension UIViewController {
                 }
             }
             else {
-                try! realm.write {
-                    score.Score += value
-                    score.TotalScore += value
+                if (score.Score > 0) && (score.Level > 0) && (value > 0) {
+                    print("Greater than 0")
+                    print(score.Score)
+                    print(score.Level)
+                    print(value)
+                    try! realm.write {
+                        score.Score += value
+                        score.TotalScore += value
+                }
+                }
+                else {
+                    print("Level and Score is at 0")
+                    print(score.Score)
+                    print(score.Level)
+                    print(value)
                 }
             }
         }
@@ -224,15 +237,6 @@ extension UIViewController {
         selectWhenButton.setTitleColor(Themes.current.background, for: .normal)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         userLabel.textColor = Themes.current.accent
-        let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.tintColor = Themes.current.accent
-        navigationAppearance.barTintColor = Themes.current.background
-        navigationAppearance.backgroundColor = Themes.current.background
-        navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-    }
-    
-    func setupNavBar() {
-        // Navigation bar appearance
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.tintColor = Themes.current.accent
         navigationAppearance.barTintColor = Themes.current.background

@@ -38,7 +38,6 @@ class HomeViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
         setupTabBar()
         setupTabBarButton(tab: personalTab, image:#imageLiteral(resourceName: "task").withRenderingMode(.automatic), title: "Personal")
         setupTabBarButton(tab: groupTab, image:#imageLiteral(resourceName: "users").withRenderingMode(.automatic), title: "Group")

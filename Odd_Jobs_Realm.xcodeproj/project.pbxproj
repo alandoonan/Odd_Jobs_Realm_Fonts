@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810A6F7F232AB314007AB4A0 /* ScoreUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreUIExtensions.swift */; };
 		811B214622F7120A007425C0 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214522F7120A007425C0 /* UserItem.swift */; };
 		811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214922FD8320007425C0 /* HolidayItem.swift */; };
 		811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214B22FDB644007425C0 /* SummaryViewController.swift */; };
@@ -119,6 +120,7 @@
 		07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Odd_Jobs_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E2C0D59615800237B33C31 /* Pods-Odd_Jobs_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.release.xcconfig"; sourceTree = "<group>"; };
 		3E76AB4AA925A7D2984748F9 /* Pods-Odd_Jobs_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.debug.xcconfig"; sourceTree = "<group>"; };
+		810A6F7E232AB314007AB4A0 /* ScoreUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreUIExtensions.swift; sourceTree = "<group>"; };
 		811B214522F7120A007425C0 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		811B214922FD8320007425C0 /* HolidayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayItem.swift; sourceTree = "<group>"; };
 		811B214B22FDB644007425C0 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				81208AD02309CFBB00F6548E /* RealmManager.swift */,
 				81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */,
 				814B51C222D79E5500102E73 /* Colours.swift */,
+				810A6F7E232AB314007AB4A0 /* ScoreUIExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -460,8 +463,8 @@
 		816B8B0122D21F9500C630B9 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				81A91D512329815100426095 /* OddJobItem.swift */,
 				816B8B0222D21FA400C630B9 /* Constants.swift */,
+				81A91D512329815100426095 /* OddJobItem.swift */,
 				814B51C622DCF4F300102E73 /* ScoreItem.swift */,
 				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
 				811B214522F7120A007425C0 /* UserItem.swift */,
@@ -751,6 +754,7 @@
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */,
 				8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */,
+				810A6F7F232AB314007AB4A0 /* ScoreUIExtensions.swift in Sources */,
 				811B215422FEEEE3007425C0 /* UI.swift in Sources */,
 				81E0B91823252D98003AE595 /* DoneViewController.swift in Sources */,
 				811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */,

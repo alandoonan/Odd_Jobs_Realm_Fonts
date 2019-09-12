@@ -88,16 +88,6 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let oddJobitem = items[indexPath.row]
-        try! realm.write {
-            oddJobitem.IsDone = !oddJobitem.IsDone
-        }
-        if oddJobitem.IsDone == true {
-            print("+1")
-            updateScore(realm: realm, value: 1, category: oddJobitem.Category)
-        }
-    }
     func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
