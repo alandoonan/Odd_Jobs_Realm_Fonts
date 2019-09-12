@@ -63,24 +63,6 @@ class ScoreViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func checkingScoreSystem() {
-        print("Checking Scoring System.")
-        if realm.objects(ScoreItem.self).count != 0
-        {
-            print("Score already exists.")
-        } else {
-            for field in Constants.listTypes {
-                let newScore = ScoreItem()
-                newScore.Name = field
-                newScore.Category = field
-                try! self.realm.write {
-                    self.realm.add(newScore)
-                    print("Creating score for list: " + String(newScore.Category))
-                }
-            }
-        }
-    }
-    
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
         //let postition = CGPoint(x: 100,y: 100)
@@ -101,7 +83,7 @@ class ScoreViewController: UIViewController {
         addNavBar([sideBar], [logout],scoreCategory: [""])
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationItem.title = "Score"
-        checkingScoreSystem()
+        checkingScoreSystem(realm: realm)
         setupCircleLayers()
         animateCircle()
         setupUserLabels()

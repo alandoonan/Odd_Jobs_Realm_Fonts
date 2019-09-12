@@ -100,52 +100,11 @@ extension UIViewController {
         searchBar.placeholder = "Search " + scoreCategory.joined(separator:" ")
     }
     
-    func updateScore(realm: Realm, value: Int, category: String) {
-        print("Updating Scores")
-        let scores = realm.objects(ScoreItem.self).filter("Category contains[c] %@", category)
-        print(category)
-        if let score = scores.first {
-            if score.Score == score.LevelCap {
-                try! realm.write {
-                    score.Score = 0
-                    score.Level += value
-                    score.TotalScore += value
-                }
-            }
-            else {
-                if (score.Score > 0) && (score.Level > 0) && (value > 0) {
-                    print("Greater than 0")
-                    print(score.Score)
-                    print(score.Level)
-                    print(value)
-                    try! realm.write {
-                        score.Score += value
-                        score.TotalScore += value
-                }
-                }
-                else {
-                    print("Level and Score is at 0")
-                    print(score.Score)
-                    print(score.Level)
-                    print(value)
-                }
-            }
-        }
-    }
-    
     func deleteOddJob(_ indexPath: IndexPath, realm: Realm, items: Results<OddJobItem>) {
         let item = items[indexPath.row]
         try! realm.write {
             realm.delete(item)
         }
-    }
-    
-    func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-        updateScore(realm: realm, value: value, category: item.Category)
     }
     
     func addTaskAlert(realm: Realm, scoreCategory: [String]) {
@@ -186,17 +145,14 @@ extension UIViewController {
         cell.detailTextLabel?.textColor = Themes.current.celltext
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         if item.Category == "Personal" {
-            print(item.Category)
             cell.backgroundColor = UIColor.orangeTheme
             cell.detailTextLabel?.text = (cellFields[0] + ": " + item.Location)
         }
         if item.Category == "Life" {
-            print(item.Category)
             cell.backgroundColor = UIColor.greenTheme
             cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
         }
         if item.Category == "Group" {
-            print(item.Category)
             cell.backgroundColor = UIColor.blueTheme
             cell.detailTextLabel?.text = (cellFields[2] + ": " + item.DueDate)
         }

@@ -41,7 +41,7 @@ struct Constants {
     static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png", "Work" : "W.png"]
     
     //Task Filters
-    static let taskFilter = "Category in[c] %@ and IsDone == false"
+    static let taskFilter = "Category in [c] %@ and IsDone == false"
     static let taskDoneFilter = "Category in[c] %@ and IsDone == true"
     
     //Search Filter

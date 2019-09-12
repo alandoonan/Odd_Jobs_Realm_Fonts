@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		810A6F7F232AB314007AB4A0 /* ScoreUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreUIExtensions.swift */; };
+		810A6F7F232AB314007AB4A0 /* ScoreSystemRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */; };
 		811B214622F7120A007425C0 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214522F7120A007425C0 /* UserItem.swift */; };
 		811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214922FD8320007425C0 /* HolidayItem.swift */; };
 		811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214B22FDB644007425C0 /* SummaryViewController.swift */; };
@@ -52,6 +52,7 @@
 		8125F38F2323F3D2004869CA /* PersonalPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38C2323F3D2004869CA /* PersonalPin.png */; };
 		8125F3902323F3D2004869CA /* GroupPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38D2323F3D2004869CA /* GroupPin.png */; };
 		8125F39223258317004869CA /* Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8125F39123258317004869CA /* Trash.swift */; };
+		8125F394232ACC50004869CA /* lifetask.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F393232ACC50004869CA /* lifetask.png */; };
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
@@ -112,7 +113,6 @@
 		81E0B92823280A1F003AE595 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92723280A1F003AE595 /* users.png */; };
 		81E0B92A23280A50003AE595 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92923280A50003AE595 /* logout.png */; };
 		81E0B92E23281581003AE595 /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92D23281581003AE595 /* task.png */; };
-		81E0B930232815F5003AE595 /* lifetask.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92F232815F5003AE595 /* lifetask.png */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +120,7 @@
 		07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Odd_Jobs_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E2C0D59615800237B33C31 /* Pods-Odd_Jobs_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.release.xcconfig"; sourceTree = "<group>"; };
 		3E76AB4AA925A7D2984748F9 /* Pods-Odd_Jobs_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.debug.xcconfig"; sourceTree = "<group>"; };
-		810A6F7E232AB314007AB4A0 /* ScoreUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreUIExtensions.swift; sourceTree = "<group>"; };
+		810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystemRealm.swift; sourceTree = "<group>"; };
 		811B214522F7120A007425C0 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		811B214922FD8320007425C0 /* HolidayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayItem.swift; sourceTree = "<group>"; };
 		811B214B22FDB644007425C0 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +165,7 @@
 		8125F38C2323F3D2004869CA /* PersonalPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PersonalPin.png; sourceTree = "<group>"; };
 		8125F38D2323F3D2004869CA /* GroupPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GroupPin.png; sourceTree = "<group>"; };
 		8125F39123258317004869CA /* Trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trash.swift; sourceTree = "<group>"; };
+		8125F393232ACC50004869CA /* lifetask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lifetask.png; path = ../../../../lifetask.png; sourceTree = "<group>"; };
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -227,7 +228,6 @@
 		81E0B92723280A1F003AE595 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		81E0B92923280A50003AE595 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		81E0B92D23281581003AE595 /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
-		81E0B92F232815F5003AE595 /* lifetask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lifetask.png; path = ../../../../../Downloads/lifetask.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,7 +327,7 @@
 				81208AD02309CFBB00F6548E /* RealmManager.swift */,
 				81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */,
 				814B51C222D79E5500102E73 /* Colours.swift */,
-				810A6F7E232AB314007AB4A0 /* ScoreUIExtensions.swift */,
+				810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -520,7 +520,7 @@
 				81A91D4D232821F500426095 /* sidebar.png */,
 				81E0B92D23281581003AE595 /* task.png */,
 				81E0B92923280A50003AE595 /* logout.png */,
-				81E0B92F232815F5003AE595 /* lifetask.png */,
+				8125F393232ACC50004869CA /* lifetask.png */,
 				81E0B92723280A1F003AE595 /* users.png */,
 				81E0B92523280961003AE595 /* location.png */,
 				81E0B92323280810003AE595 /* oddjobs.png */,
@@ -654,7 +654,6 @@
 				8132C35C22E2506D00EC79F2 /* icon_40pt-1.png in Resources */,
 				8132C36A22E2506D00EC79F2 /* Launchscreen@3x.png in Resources */,
 				8132C35F22E2506D00EC79F2 /* icon_76pt-1.png in Resources */,
-				81E0B930232815F5003AE595 /* lifetask.png in Resources */,
 				81E0B92E23281581003AE595 /* task.png in Resources */,
 				8132C34F22E2506D00EC79F2 /* iPhone X-XS – 1@2x.png in Resources */,
 				8132C36322E2506D00EC79F2 /* iPhone Settings 29pt@2x.png in Resources */,
@@ -667,6 +666,7 @@
 				8125F38E2323F3D2004869CA /* LifePin.png in Resources */,
 				8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */,
 				8132C35A22E2506D00EC79F2 /* iPhone App 60pt@3x.png in Resources */,
+				8125F394232ACC50004869CA /* lifetask.png in Resources */,
 				81E0B92623280961003AE595 /* location.png in Resources */,
 				8132C36522E2506D00EC79F2 /* icon_29pt.png in Resources */,
 				81E0B92823280A1F003AE595 /* users.png in Resources */,
@@ -754,7 +754,7 @@
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */,
 				8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */,
-				810A6F7F232AB314007AB4A0 /* ScoreUIExtensions.swift in Sources */,
+				810A6F7F232AB314007AB4A0 /* ScoreSystemRealm.swift in Sources */,
 				811B215422FEEEE3007425C0 /* UI.swift in Sources */,
 				81E0B91823252D98003AE595 /* DoneViewController.swift in Sources */,
 				811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */,
