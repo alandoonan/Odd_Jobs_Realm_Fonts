@@ -29,7 +29,6 @@ extension UIViewController {
             }
         }
     }
-    
     // MARK: Task Completion Actions
     func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>) {
         let item = items[indexPath.row]
@@ -50,11 +49,13 @@ extension UIViewController {
     func getScore(realm: Realm, category: String) -> Int{
         print("Getting Score")
         let score = realm.objects(ScoreItem.self).filter("Category contains [c] %@", category)
+        print(score)
         return score.first!.Score
     }
     func getLevel(realm: Realm, category: String) -> Int{
         print("Getting Level")
         let level = realm.objects(ScoreItem.self).filter("Category contains [c] %@", category)
+        print(level)
         return level.first!.Level
     }
     func getScoreItem(realm: Realm, category: String) -> ScoreItem {
@@ -80,4 +81,5 @@ extension UIViewController {
             }
         }
     }
+    
 }

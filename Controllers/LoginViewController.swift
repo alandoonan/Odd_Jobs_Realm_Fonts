@@ -130,8 +130,10 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(true)
         applyThemeView(view)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         applyThemeView(view)
         logOutUsers()
         if let _ = SyncUser.current {

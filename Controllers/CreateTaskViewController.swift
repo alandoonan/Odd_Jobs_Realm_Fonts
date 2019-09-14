@@ -68,6 +68,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         setupPriorityPicker()
         setupCategoryPicker()
         searchCompleter.delegate = self
+        hideKeyboardWhenTappedAround()
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -217,17 +218,5 @@ extension CreateTaskViewController: UITableViewDelegate {
             self.hideKeyboardWhenTappedAround()
 
         }
-    }
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }

@@ -40,6 +40,14 @@ class ScoreViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+    let categoryLabel: UILabel = {
+    let label = UILabel()
+    label.textAlignment = .center
+    label.font = UIFont.boldSystemFont(ofSize: 32)
+    label.textColor = .white
+    return label
+    }()
+
     let userLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -85,7 +93,7 @@ class ScoreViewController: UIViewController {
         navigationItem.title = "Score"
         checkingScoreSystem(realm: realm)
         setupCircleLayers()
-        animateCircle()
+        animateCircle(category: "Life")
         setupUserLabels()
         applyThemeView(view)
         //autoRefreshScores(scoreCategory: "Personal")
@@ -99,72 +107,56 @@ class ScoreViewController: UIViewController {
         applyThemeView(view)
     }
     
-    fileprivate func addScoreLabel() {
+    func addScoreLabel() {
         view.addSubview(scoreLabel)
         scoreLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         scoreLabel.center = view.center
     }
     
-    fileprivate func addTotalScoreLabel() {
-        view.addSubview(totalScoreLabel)
-        totalScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        totalScoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        totalScoreLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        totalScoreLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        totalScoreLabel.adjustsFontSizeToFitWidth = true
+    func addLabel(label: UILabel, anchor: Int, width: Int) {
+        view.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(anchor)).isActive = true
+        label.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        label.adjustsFontSizeToFitWidth = true
+
     }
     
-    fileprivate func addUserLabel() {
-        view.addSubview(userLabel)
-        userLabel.translatesAutoresizingMaskIntoConstraints = false
-        userLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        userLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
-        userLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        userLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-    }
-    
-    fileprivate func addLevelLabel() {
-        view.addSubview(levelLabel)
-        levelLabel.translatesAutoresizingMaskIntoConstraints = false
-        levelLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        levelLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        levelLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        levelLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-    }
-    
-    private func setupUserLabels() {
+    func setupUserLabels() {
+        addLabel(label: userLabel, anchor: 10, width: 300)
+        addLabel(label: levelLabel, anchor: 50, width: 300)
+        addLabel(label: categoryLabel, anchor: 90, width: 300)
+        addLabel(label: totalScoreLabel, anchor: 140, width: 300)
         addScoreLabel()
-        addUserLabel()
-        addLevelLabel()
-        addTotalScoreLabel()
     }
     
-    fileprivate func addPulsatiingLayer() {
+    func addPulsatiingLayer() {
         pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: UIColor.pulsatingFillColor)
         view.layer.addSublayer(pulsatingLayer)
         animatePulsatingLayer()
     }
     
-    fileprivate func addTrackLayer() {
+    func addTrackLayer() {
         let trackLayer = createCircleShapeLayer(strokeColor: .trackStrokeColor, fillColor: .backgroundColor)
         view.layer.addSublayer(trackLayer)
     }
     
-    fileprivate func addShapeLayer() {
+    func addShapeLayer() {
         shapeLayer = createCircleShapeLayer(strokeColor: .outlineStrokeColor, fillColor: .clear)
         shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
         shapeLayer.strokeEnd = 0
         view.layer.addSublayer(shapeLayer)
     }
     
-    private func setupCircleLayers() {
+    func setupCircleLayers() {
         addPulsatiingLayer()
         addTrackLayer()
         addShapeLayer()
     }
     
-    fileprivate func animationSettings(_ animation: CABasicAnimation) {
+    func animationSettings(_ animation: CABasicAnimation) {
         animation.toValue = 1.3
         animation.duration = 0.8
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
@@ -172,28 +164,31 @@ class ScoreViewController: UIViewController {
         animation.repeatCount = Float.infinity
     }
     
-    private func animatePulsatingLayer() {
+    func animatePulsatingLayer() {
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animationSettings(animation)
         pulsatingLayer.add(animation, forKey: "pulsing")
     }
     
-    fileprivate func basicAnimationSettings(_ basicAnimation: CABasicAnimation, _ scoreItem: ScoreItem?) {
-        basicAnimation.fromValue = CGFloat(scoreItem!.Score - 1) / CGFloat(scoreItem!.LevelCap)
-        basicAnimation.toValue = CGFloat(scoreItem!.Score) / CGFloat(scoreItem!.LevelCap)
+    func basicAnimationSettings(_ basicAnimation: CABasicAnimation, scoreItem: ScoreItem) {
+        basicAnimation.fromValue = CGFloat(scoreItem.Score - 1) / CGFloat(scoreItem.LevelCap)
+        basicAnimation.toValue = CGFloat(scoreItem.Score) / CGFloat(scoreItem.LevelCap)
         basicAnimation.duration = 1
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
     }
     
-    func animateCircle() {
-        let scoreItem = realm.objects(ScoreItem.self).first
+    func animateCircle(category: String) {
+        let scoreItem = getScoreItem(realm: realm, category: "Life")
+        print("Score Item Animate Circle")
+        print(self.scoreItem)
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimationSettings(basicAnimation, scoreItem)
+        basicAnimationSettings(basicAnimation, scoreItem: scoreItem)
         shapeLayer.add(basicAnimation, forKey: "Life")
-        scoreLabel.text = String(scoreItem!.Score)
+        scoreLabel.text = String(scoreItem.Score)
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
-        levelLabel.text = String("Level: " + String(scoreItem!.Level))
-        totalScoreLabel.text = String("Total Score: " + String(scoreItem!.TotalScore))
+        levelLabel.text = String("Level: " + String(scoreItem.Level))
+        categoryLabel.text = String("Category: " + String(scoreItem.Category))
+        totalScoreLabel.text = String("Total Score: " + String(scoreItem.TotalScore))
     }
 }

@@ -57,7 +57,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Themes"
-        addThemes()
+        addThemes(realm: realm, themes: themes, scoreItem: scoreItem)
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addNavBar([sideBar], [logout], scoreCategory: ["Themes"])
@@ -69,6 +69,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         applyThemeView(view)
         applyTheme(tableView,view)
         addNotificationToken()
+        checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
@@ -137,38 +138,9 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             applyTheme(tableView,view)
             applyThemeView(view)
             view.layoutIfNeeded()
-
         }
         else {
             print("Theme not found")
         }
     }
-
-    fileprivate func addThemes() {
-        if themes.count <= Constants.themeColours.count
-        {
-            for colour in Constants.themeColours {
-                let found = findColourByName(colour.key, realm: realm)
-                if found .isEmpty {
-                    for score in scoreItem {
-                        if score.TotalScore > Int(colour.value[1])!
-                        {
-                            let themeItem = ThemeItem()
-                            themeItem.Category = "Theme"
-                            themeItem.name = colour.key
-                            themeItem.hexColour = colour.value[0]
-                            themeItem.UnlockLevel = Int(colour.value[1])!
-                            themeItem.tag = Int(colour.value[2])!
-                            themeItem.CellColour = colour.value[4]
-                            try! self.realm.write {
-                                self.realm.add(themeItem)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
-
-

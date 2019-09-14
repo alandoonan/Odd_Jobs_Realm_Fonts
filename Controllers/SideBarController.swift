@@ -40,7 +40,7 @@ class SideBarController: UIViewController {
     }
     
     func configureHomeController() {
-        let homeController = HomeControllerTest()
+        let homeController = HomeViewControllerTest()
         homeController.delegate = self
         centerController = UINavigationController(rootViewController: homeController)
         view.addSubview(centerController.view)

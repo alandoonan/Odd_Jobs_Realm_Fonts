@@ -28,6 +28,7 @@ class LifeTaskViewController: UIViewController{
         p=0
         applyThemeView(view)
         applyTaskTheme(tableView: tableView, selectTaskButton: selectTaskButton, selectCategoryButton: selectCategoryButton, selectWhenButton: selectWhenButton, userLabel: userLabel)
+        hideKeyboardWhenTappedAround()
     }
 
     @IBAction func selectCategoryButtonPress(_ sender: Any) {
@@ -109,6 +110,8 @@ class LifeTaskViewController: UIViewController{
             realm.add(item)
         }
     }
+    
+    
     
     func buttonViewToggle(toggle: Bool) {
         if toggle {

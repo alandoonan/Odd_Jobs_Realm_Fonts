@@ -56,6 +56,7 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         setUpSearchBar(searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
+        hideKeyboardWhenTappedAround()
     }
     
     //Add UI & Customization Functions

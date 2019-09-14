@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class HomeControllerTest: UIViewController {
+class HomeViewControllerTest: UIViewController {
     
     var realm: Realm
     var notificationToken: NotificationToken?
