@@ -29,6 +29,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var taskButtonText: UIButton!
+    
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         print("Done button tapped.")
         performSegueToReturnBack()
@@ -68,7 +69,14 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         setupPriorityPicker()
         setupCategoryPicker()
         searchCompleter.delegate = self
-        hideKeyboardWhenTappedAround()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

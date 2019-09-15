@@ -47,6 +47,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: Constants.personalScoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: Constants.personalScoreCategory)
+        searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,9 +55,14 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         setUpSearchBar(searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
+        hideKeyboardWhenTappedAround()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     //MARK: This is in all classes (REFACTOR)

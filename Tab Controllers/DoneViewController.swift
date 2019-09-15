@@ -57,6 +57,10 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         applyTheme(tableView,view)
         tableView.reloadData()
         hideKeyboardWhenTappedAround()
+
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     //Add UI & Customization Functions

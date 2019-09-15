@@ -44,6 +44,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.keyboardAppearance = .dark
         addSearchBar(scoreCategory: Constants.listTypes, searchBar: searchBar)
         addNavBar([sideBar], [logout], scoreCategory: Constants.listTypes)
         tableView.addTableView(tableView, view)
@@ -53,9 +54,14 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         setUpSearchBar(searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
+        hideKeyboardWhenTappedAround()
+
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     //MARK: Notifcation Token

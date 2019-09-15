@@ -44,6 +44,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
+        searchBar.keyboardAppearance = .dark
         getHolidayData()
         addSearchBar(scoreCategory: Constants.lifeScoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: Constants.lifeScoreCategory)
@@ -54,9 +55,15 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         setUpSearchBar(searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
+        hideKeyboardWhenTappedAround()
+
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     // MARK: Notification Token

@@ -73,7 +73,6 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
         setUpSearchBar(searchBar: searchBar)
         applyThemeView(view)
         tableView.reloadData()
-        hideKeyboardWhenTappedAround()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

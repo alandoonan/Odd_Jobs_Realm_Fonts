@@ -22,28 +22,28 @@ class ScoreViewController: UIViewController {
     let levelLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         return label
     }()
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textColor = .white
         return label
     }()
     let totalScoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         return label
     }()
     let categoryLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
-    label.font = UIFont.boldSystemFont(ofSize: 32)
+    label.font = UIFont.boldSystemFont(ofSize: 20)
     label.textColor = .white
     return label
     }()
@@ -125,10 +125,10 @@ class ScoreViewController: UIViewController {
     }
     
     func setupUserLabels() {
-        addLabel(label: userLabel, anchor: 10, width: 300)
-        addLabel(label: levelLabel, anchor: 50, width: 300)
-        addLabel(label: categoryLabel, anchor: 90, width: 300)
-        addLabel(label: totalScoreLabel, anchor: 140, width: 300)
+        addLabel(label: userLabel, anchor: 5, width: 300)
+        addLabel(label: categoryLabel, anchor: 35, width: 300)
+        addLabel(label: levelLabel, anchor: 65, width: 300)
+        addLabel(label: totalScoreLabel, anchor: 95, width: 300)
         addScoreLabel()
     }
     

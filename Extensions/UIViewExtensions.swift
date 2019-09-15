@@ -63,6 +63,7 @@ extension UIViewController {
     }
     
     func applyTheme(_ tableView: UITableView, _ view: UIView) {
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         view.backgroundColor = Themes.current.background
         tableView.backgroundColor = Themes.current.background
         tableView.layoutMargins = UIEdgeInsets.zero
@@ -72,17 +73,21 @@ extension UIViewController {
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.navigationBar.backgroundColor = Themes.current.background
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+//        UITextField.appearance().keyboardAppearance = .dark
+//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
+
     }
     
     func applyThemeView(_ view: UIView) {
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         view.backgroundColor = Themes.current.background
         navigationController?.navigationBar.backgroundColor = Themes.current.background
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
-        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+//        UITextField.appearance().keyboardAppearance = .dark
+//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
     }
     
     func logOutUsers() {

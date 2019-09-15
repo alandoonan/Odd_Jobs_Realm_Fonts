@@ -100,7 +100,7 @@
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
 		8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCE722EE0422001AC3A9 /* Extensions.swift */; };
-		81A91D4B2328188400426095 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */; };
+		81A91D4B2328188400426095 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIViewExtensions.swift */; };
 		81A91D4E232821F500426095 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A91D4D232821F500426095 /* sidebar.png */; };
 		81A91D522329815100426095 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D512329815100426095 /* OddJobItem.swift */; };
 		81CF5F2C23159407003F12E7 /* Batman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF5F2B23159407003F12E7 /* Batman.swift */; };
@@ -216,7 +216,7 @@
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 		8192CCE722EE0422001AC3A9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		81A91D4A2328188400426095 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		81A91D4D232821F500426095 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		81A91D512329815100426095 /* OddJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
 		81CF5F2B23159407003F12E7 /* Batman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batman.swift; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 				811B215322FEEEE3007425C0 /* UI.swift */,
 				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
 				81208AD02309CFBB00F6548E /* RealmManager.swift */,
-				81A91D4A2328188400426095 /* UIViewControllerExtensions.swift */,
+				81A91D4A2328188400426095 /* UIViewExtensions.swift */,
 				814B51C222D79E5500102E73 /* Colours.swift */,
 				810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */,
 				810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */,
@@ -342,6 +342,7 @@
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
 				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
+				81E0B91723252D98003AE595 /* DoneViewController.swift */,
 			);
 			path = "Tab Controllers";
 			sourceTree = "<group>";
@@ -493,7 +494,6 @@
 				81208AE62312C5D700F6548E /* DropDownCell.swift */,
 				81208AE82312DFD900F6548E /* LifeTaskViewController.swift */,
 				8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */,
-				81E0B91723252D98003AE595 /* DoneViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -782,7 +782,7 @@
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
 				81208AC12303397E00F6548E /* MenuController.swift in Sources */,
-				81A91D4B2328188400426095 /* UIViewControllerExtensions.swift in Sources */,
+				81A91D4B2328188400426095 /* UIViewExtensions.swift in Sources */,
 				811B22DF230096AD007425C0 /* HulkTheme.swift in Sources */,
 				81208AB92303382200F6548E /* HomeControllerDelegate.swift in Sources */,
 				814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */,

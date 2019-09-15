@@ -129,11 +129,11 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyThemeView(view)
+        UITextField.appearance().keyboardAppearance = .dark
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
         applyThemeView(view)
         logOutUsers()
         if let _ = SyncUser.current {

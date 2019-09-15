@@ -39,6 +39,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+        searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
@@ -48,9 +49,15 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
+        hideKeyboardWhenTappedAround()
+
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     // MARK: Notification Token
