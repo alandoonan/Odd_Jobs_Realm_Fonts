@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BatmanTheme: ThemeProtocol {
+class Batman: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.yellow
     var accent: UIColor = UIColor.yellow

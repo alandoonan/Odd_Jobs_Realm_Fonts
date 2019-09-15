@@ -30,7 +30,7 @@ extension UIViewController {
         }
     }
     // MARK: Task Completion Actions
-    func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>) {
+    func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>, tableView: UITableView) {
         let item = items[indexPath.row]
         let score = getScore(realm: realm, category: item.Category)
         let level = getLevel(realm: realm, category: item.Category)
@@ -43,9 +43,9 @@ extension UIViewController {
         try! realm.write {
             item.IsDone = !item.IsDone
         }
-        addThemes(realm: realm, themes: themes, scoreItem: scoreItem)
+        addThemes(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
         print("HERE NOW")
-        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
+        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
         print(unlocked)
         
     }

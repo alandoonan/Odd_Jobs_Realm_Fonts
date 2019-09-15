@@ -57,7 +57,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Themes"
-        addThemes(realm: realm, themes: themes, scoreItem: scoreItem)
+        addThemes(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addNavBar([sideBar], [logout], scoreCategory: ["Themes"])
@@ -69,7 +69,8 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         applyThemeView(view)
         applyTheme(tableView,view)
         addNotificationToken()
-        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
+        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
+        print(unlocked)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
@@ -101,6 +102,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
         tableView.cellForRow(at:indexPath)!.accessoryType = .checkmark
         for cellPath in tableView.indexPathsForVisibleRows!{
             if cellPath == indexPath{
@@ -109,38 +111,21 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tableView.cellForRow(at: cellPath)!.accessoryType = .none
         }
         let cell = tableView.cellForRow(at: indexPath)?.textLabel?.text
+        let cellTest = tableView.cellForRow(at: indexPath)?.textLabel?.text
         if cell == "Blue" {
-            Themes.current = BlueTheme()
-            applyTheme(tableView,view)
-            applyThemeView(view)
-            view.layoutIfNeeded()
+            applyBlueTheme(tableView)
         }
         if cell == "Dark" {
-            Themes.current = DarkTheme()
-            applyTheme(tableView,view)
-            applyThemeView(view)
-            view.layoutIfNeeded()
+            applyDarkTheme(tableView)
         }
-        if cell == "The Hulk" {
-            Themes.current = HulkTheme()
-            applyTheme(tableView,view)
-            applyThemeView(view)
-            view.layoutIfNeeded()
+        if cell == "Hulk" {
+            applyHulkTheme(tableView)
         }
         if cell == "Orange" {
-            Themes.current = OrangeTheme()
-            applyTheme(tableView,view)
-            applyThemeView(view)
-            view.layoutIfNeeded()
+            applyOrangeTheme(tableView)
         }
         if cell == "Batman" {
-            Themes.current = BatmanTheme()
-            applyTheme(tableView,view)
-            applyThemeView(view)
-            view.layoutIfNeeded()
-        }
-        else {
-            print("Theme not found")
+            applyBatmanTheme(tableView)
         }
     }
 }

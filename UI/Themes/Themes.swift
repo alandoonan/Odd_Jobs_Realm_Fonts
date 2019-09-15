@@ -14,7 +14,7 @@ class Themes {
 //    static let accent = UIColor.orangeTheme
 //    static let background = UIColor.navyTheme
 //    static let tint = UIColor.greenTheme
-    static var current: ThemeProtocol  = DarkTheme()
+    static var current: ThemeProtocol  = Dark()
     
     static func applyTheme() {
         // First persist the selected theme using NSUserDefaults.

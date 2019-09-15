@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlueTheme: ThemeProtocol {
+class Blue: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.orangeTheme
@@ -18,7 +18,6 @@ class BlueTheme: ThemeProtocol {
     var undone: UIColor = .gray
     var celltext: UIColor = UIColor.darkTheme
     var themecelltext: UIColor = UIColor.darkTheme
-
     var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

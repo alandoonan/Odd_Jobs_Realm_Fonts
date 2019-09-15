@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class PersonalTheme: ThemeProtocol {
+class Personal: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.orangeTheme

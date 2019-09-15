@@ -115,7 +115,7 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.undoneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
-            self.doneOddJob(indexPath, value: Constants.descreaseScore, realm: self.realm, items: self.items, themes: self.themes, scoreItem: self.scoreItem)
+            self.doneOddJob(indexPath, value: Constants.descreaseScore, realm: self.realm, items: self.items, themes: self.themes, scoreItem: self.scoreItem, tableView: self.tableView)
         }
         done.backgroundColor = Themes.current.undone
         let config = UISwipeActionsConfiguration(actions: [done])

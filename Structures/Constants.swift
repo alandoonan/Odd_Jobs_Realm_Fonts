@@ -18,10 +18,10 @@ struct Constants {
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
-    static let themeColours = ["Blue": ["20A4F3","10","1","BlueTheme","282b35"], "Dark": ["282b35","20","2","DarkTheme","E07A5F"], "The Hulk": ["9bc063","30","3","HulkTheme","34314C"], "Orange": ["E07A5F","40","4","OrangeTheme","282b35"],"Batman": ["FDFF00","50","5","BatmanTheme","000000"]]
+    static let themeColours = ["Blue": ["20A4F3","10","1","Blue","282b35"], "Dark": ["282b35","20","2","Dark","E07A5F"], "Hulk": ["9bc063","30","3","HulkTheme","34314C"], "Orange": ["E07A5F","40","4","OrangeTheme","282b35"],"Batman": ["FDFF00","50","5","Batman","000000"]]
 
     //Theme Unlock Levels
-    static let themeLevels = ["Blue" : BlueTheme(), "Dark": DarkTheme(),"The Hulk": HulkTheme(),"Orange": OrangeTheme(), "Batman": BatmanTheme()] as [String : Any]
+    static let themeLevels = ["Blue" : Blue(), "Dark": Dark(),"The Hulk": Hulk(),"Orange": Orange(), "Batman": Batman()] as [String : Any]
     
     //Alert Fields
 //    static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
@@ -69,8 +69,9 @@ struct Constants {
     
     static let taskPriority = ["Low","Medium","High","Urgent"]
     
-    var scoreItem: Results<ScoreItem>
-    var themes: Results<ThemeItem>
+    //Project Name
+    static let project_name = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
+    static let project_name_theme = String(Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "") + "."
     
     func commonRealmConfig(user: SyncUser) -> Realm.Configuration  {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)

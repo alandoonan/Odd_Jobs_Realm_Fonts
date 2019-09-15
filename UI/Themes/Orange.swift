@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrangeTheme: ThemeProtocol {
+class Orange: ThemeProtocol {
     var mainFontName: String = ""
     var textColour: UIColor = UIColor.white
     var accent: UIColor = UIColor.darkTheme
