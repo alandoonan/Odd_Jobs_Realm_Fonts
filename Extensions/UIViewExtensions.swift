@@ -74,6 +74,10 @@ extension UIViewController {
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.navigationBar.backgroundColor = Themes.current.background
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        tabBarController?.tabBar.backgroundColor = Themes.current.background
+        tabBarController?.tabBar.barTintColor = Themes.current.background
+        tabBarController?.tabBar.tintColor = Themes.current.accent
+
 //        UITextField.appearance().keyboardAppearance = .dark
 //        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
 
@@ -86,6 +90,9 @@ extension UIViewController {
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        tabBarController?.tabBar.backgroundColor = Themes.current.background
+        tabBarController?.tabBar.barTintColor = Themes.current.background
+        tabBarController?.tabBar.tintColor = Themes.current.accent
 //        UITextField.appearance().keyboardAppearance = .dark
 //        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
     }
