@@ -15,6 +15,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Class variables
     var realm: Realm
     var items: Results<OddJobItem>
+    let themes: Results<ThemeItem>
+    let scoreItem: Results<ScoreItem>
     var sorts : Results<OddJobItem>!
     var scoreVC = ScoreViewController()
     var notificationToken: NotificationToken?
@@ -30,6 +32,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.listTypes)
+        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -155,7 +159,7 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
-            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items)
+            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items, themes: self.themes, scoreItem: self.scoreItem)
         }
         done.backgroundColor = Themes.current.done
         let config = UISwipeActionsConfiguration(actions: [done])

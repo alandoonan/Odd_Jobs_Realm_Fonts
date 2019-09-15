@@ -11,38 +11,6 @@ import RealmSwift
 
 extension UIViewController {
     
-    func addThemess(realm: Realm, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>) {
-        print("Checking Themes")
-        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
-        print(unlocked)
-        if themes.count <= Constants.themeColours.count
-        {
-            for colour in Constants.themeColours {
-                let found = findColourByName(colour.key, realm: realm)
-                if found .isEmpty {
-                    for score in scoreItem {
-                        if score.TotalScore > Int(colour.value[1])!
-                        {
-                            let themeItem = ThemeItem()
-                            themeItem.Category = "Theme"
-                            themeItem.name = colour.key
-                            themeItem.hexColour = colour.value[0]
-                            themeItem.UnlockLevel = Int(colour.value[1])!
-                            themeItem.tag = Int(colour.value[2])!
-                            themeItem.CellColour = colour.value[4]
-                            try! realm.write {
-                                realm.add(themeItem)
-                            }
-                        }
-                    }
-                }
-                else {
-                    print("No new themes to unlock")
-                }
-            }
-        }
-    }
-    
     func addThemes(realm: Realm, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>) {
         print("Checking Themes")
         let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
@@ -90,6 +58,9 @@ extension UIViewController {
                 print("Theme Unlocked: " + themeSearch.first!.name)
                 try! realm.write {
                     themeSearch.first?.userAlerted = true
+                    print(themeSearch.first?.Category)
+                    print(themeSearch.first?.hexColour)
+                    print(themeSearch.first?.name)
                     themeUnlockedAlert()
                 }
                 unlocked = true

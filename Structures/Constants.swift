@@ -69,6 +69,9 @@ struct Constants {
     
     static let taskPriority = ["Low","Medium","High","Urgent"]
     
+    var scoreItem: Results<ScoreItem>
+    var themes: Results<ThemeItem>
+    
     func commonRealmConfig(user: SyncUser) -> Realm.Configuration  {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         return config!
@@ -78,5 +81,7 @@ struct Constants {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         return config!
     }
+    
+    
 
 }

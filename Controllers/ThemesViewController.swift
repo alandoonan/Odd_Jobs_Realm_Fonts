@@ -21,7 +21,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
-        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Personal")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,7 +69,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         applyThemeView(view)
         applyTheme(tableView,view)
         addNotificationToken()
-        checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
+        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
