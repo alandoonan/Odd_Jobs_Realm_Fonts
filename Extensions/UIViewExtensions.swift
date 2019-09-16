@@ -59,7 +59,6 @@ extension UIViewController {
         navigationItem.leftBarButtonItems = leftButtons
         navigationItem.rightBarButtonItems = rightButtons
         navigationItem.title = scoreCategory.joined(separator:" ")
-        
     }
     
     func applyTheme(_ tableView: UITableView, _ view: UIView) {
@@ -78,9 +77,6 @@ extension UIViewController {
         tabBarController?.tabBar.barTintColor = Themes.current.background
         tabBarController?.tabBar.tintColor = Themes.current.accent
 
-//        UITextField.appearance().keyboardAppearance = .dark
-//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
-
     }
     
     func applyThemeView(_ view: UIView) {
@@ -93,8 +89,6 @@ extension UIViewController {
         tabBarController?.tabBar.backgroundColor = Themes.current.background
         tabBarController?.tabBar.barTintColor = Themes.current.background
         tabBarController?.tabBar.tintColor = Themes.current.accent
-//        UITextField.appearance().keyboardAppearance = .dark
-//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
     }
     
     func logOutUsers() {
@@ -156,7 +150,6 @@ extension UIViewController {
     
     func cellSetup(_ cell: UITableViewCell, _ item: OddJobItem, _ cellFields: [String]) {
         cell.selectionStyle = .none
-        cell.tintColor = .white
         //cell.layer.cornerRadius = 10
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
