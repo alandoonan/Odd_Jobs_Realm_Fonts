@@ -22,6 +22,7 @@ extension UIViewController {
                 let newScore = ScoreItem()
                 newScore.Name = field
                 newScore.Category = field
+                newScore.User = UserDefaults.standard.string(forKey: "Name") ?? ""
                 try! realm.write {
                     realm.add(newScore)
                     print("Creating score for list: " + String(newScore.Category))

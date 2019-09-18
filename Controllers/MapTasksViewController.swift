@@ -185,7 +185,7 @@ extension MapTasksViewController: MKMapViewDelegate {
 //        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         //view.image = resizedImage
         view.markerTintColor = annotation.pin
-        
+        view.displayPriority = .required
         return view
     }
 //

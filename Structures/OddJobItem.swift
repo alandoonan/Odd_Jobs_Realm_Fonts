@@ -23,6 +23,7 @@ class OddJobItem: Object {
     @objc dynamic var Latitude = 0.0
     @objc dynamic var Longitude = 0.0
     @objc dynamic var DueDate = ""
+    @objc dynamic var User = ""
     override static func primaryKey() -> String? {
         return "itemId"
     }

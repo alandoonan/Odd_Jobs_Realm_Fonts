@@ -19,13 +19,6 @@ class ScoreViewController: UIViewController {
     var pulsatingLayer = CAShapeLayer()
     let userDetails = LoginViewController()
     var scoreActive = true
-    let levelLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .white
-        return label
-    }()
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -33,32 +26,6 @@ class ScoreViewController: UIViewController {
         label.textColor = .white
         return label
     }()
-    let totalScoreLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .white
-        return label
-    }()
-    let categoryLabel: UILabel = {
-    let label = UILabel()
-    label.textAlignment = .center
-    label.font = UIFont.boldSystemFont(ofSize: 20)
-    label.textColor = .white
-    return label
-    }()
-
-    let userLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = .white
-        return label
-    }()
-    
-    @objc private func handleEnterForeground() {
-        animatePulsatingLayer()
-    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -66,11 +33,35 @@ class ScoreViewController: UIViewController {
         self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        addNavBar([sideBar], [logout],scoreCategory: [""])
+        navigationController?.navigationBar.tintColor = Themes.current.accent
+        navigationItem.title = "Score"
+        checkingScoreSystem(realm: realm)
+        setupCircleLayers()
+        let (userLabel,levelLabel,categoryLabel,totalScoreLabel) = setupUserLabels()
+        animateCircle(category: "Life", userLabel: userLabel, levelLabel: levelLabel, categoryLabel: categoryLabel, totalScoreLabel: totalScoreLabel)
+        applyThemeView(view)
+        //autoRefreshScores(scoreCategory: "Personal")
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyThemeView(view)
+    }
+    
+    @objc private func handleEnterForeground() {
+        animatePulsatingLayer()
+    }
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
         //let postition = CGPoint(x: 100,y: 100)
@@ -84,33 +75,12 @@ class ScoreViewController: UIViewController {
         return layer
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        addNavBar([sideBar], [logout],scoreCategory: [""])
-        navigationController?.navigationBar.tintColor = Themes.current.accent
-        navigationItem.title = "Score"
-        checkingScoreSystem(realm: realm)
-        setupCircleLayers()
-        animateCircle(category: "Life")
-        setupUserLabels()
-        applyThemeView(view)
-        //autoRefreshScores(scoreCategory: "Personal")
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.preferredStatusBarStyle
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        applyThemeView(view)
-    }
-    
-    func addScoreLabel() {
-        view.addSubview(scoreLabel)
-        scoreLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        scoreLabel.center = view.center
+    func createScoreUILabel(fontSize: Int) -> UILabel {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .white
+        return label
     }
     
     func addLabel(label: UILabel, anchor: Int, width: Int) {
@@ -124,25 +94,33 @@ class ScoreViewController: UIViewController {
 
     }
     
-    func setupUserLabels() {
+    func setupUserLabels() -> (UILabel, UILabel, UILabel, UILabel) {
+        let userLabel = createScoreUILabel(fontSize: 20)
+        let categoryLabel = createScoreUILabel(fontSize: 20)
+        let levelLabel = createScoreUILabel(fontSize: 20)
+        let totalScoreLabel = createScoreUILabel(fontSize: 20)
         addLabel(label: userLabel, anchor: 5, width: 300)
         addLabel(label: categoryLabel, anchor: 35, width: 300)
         addLabel(label: levelLabel, anchor: 65, width: 300)
         addLabel(label: totalScoreLabel, anchor: 95, width: 300)
         addScoreLabel()
+        return (userLabel,levelLabel,categoryLabel,totalScoreLabel)
     }
     
+    func addScoreLabel() {
+        view.addSubview(scoreLabel)
+        scoreLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        scoreLabel.center = view.center
+    }
     func addPulsatiingLayer() {
         pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: UIColor.pulsatingFillColor)
         view.layer.addSublayer(pulsatingLayer)
         animatePulsatingLayer()
     }
-    
     func addTrackLayer() {
         let trackLayer = createCircleShapeLayer(strokeColor: .trackStrokeColor, fillColor: .backgroundColor)
         view.layer.addSublayer(trackLayer)
     }
-    
     func addShapeLayer() {
         shapeLayer = createCircleShapeLayer(strokeColor: .outlineStrokeColor, fillColor: .clear)
         shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
@@ -178,7 +156,7 @@ class ScoreViewController: UIViewController {
         basicAnimation.isRemovedOnCompletion = false
     }
     
-    func animateCircle(category: String) {
+    func animateCircle(category: String, userLabel: UILabel, levelLabel: UILabel, categoryLabel: UILabel, totalScoreLabel: UILabel) {
         let scoreItem = getScoreItem(realm: realm, category: "Life")
         print("Score Item Animate Circle")
         print(self.scoreItem)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810319332332B1A700D34AFB /* CreateTaskExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810319322332B1A700D34AFB /* CreateTaskExtensions.swift */; };
 		810A6F7F232AB314007AB4A0 /* ScoreSystemRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */; };
 		810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */; };
 		811B214622F7120A007425C0 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214522F7120A007425C0 /* UserItem.swift */; };
@@ -121,6 +122,7 @@
 		07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Odd_Jobs_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E2C0D59615800237B33C31 /* Pods-Odd_Jobs_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.release.xcconfig"; sourceTree = "<group>"; };
 		3E76AB4AA925A7D2984748F9 /* Pods-Odd_Jobs_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.debug.xcconfig"; sourceTree = "<group>"; };
+		810319322332B1A700D34AFB /* CreateTaskExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskExtensions.swift; sourceTree = "<group>"; };
 		810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystemRealm.swift; sourceTree = "<group>"; };
 		810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtensions.swift; sourceTree = "<group>"; };
 		811B214522F7120A007425C0 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				814B51C222D79E5500102E73 /* Colours.swift */,
 				810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */,
 				810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */,
+				810319322332B1A700D34AFB /* CreateTaskExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				811B214622F7120A007425C0 /* UserItem.swift in Sources */,
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
 				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
+				810319332332B1A700D34AFB /* CreateTaskExtensions.swift in Sources */,
 				81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */,
 				810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */,
 				81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */,

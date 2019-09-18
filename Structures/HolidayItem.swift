@@ -20,4 +20,5 @@ struct HolidayItem {
     static var year = "2018"
     static var upcoming = false
     static var pretty = true
+    static var User = ""
 }

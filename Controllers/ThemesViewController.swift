@@ -92,7 +92,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.textColor = UIColor().hexColor(item.CellColour)
         cell.backgroundColor = UIColor().hexColor(item.hexColour)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
-        cell.tintColor = Themes.current.accent
+        cell.tintColor = UIColor().hexColor(item.CellColour)
         cell.textLabel?.text = item.name
         return cell
     }
@@ -102,7 +102,7 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        tableView.deselectRow(at: indexPath, animated: false)
         tableView.cellForRow(at:indexPath)!.accessoryType = .checkmark
         for cellPath in tableView.indexPathsForVisibleRows!{
             if cellPath == indexPath{
@@ -111,21 +111,32 @@ class ThemesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tableView.cellForRow(at: cellPath)!.accessoryType = .none
         }
         let cell = tableView.cellForRow(at: indexPath)?.textLabel?.text
-        let cellTest = tableView.cellForRow(at: indexPath)?.textLabel?.text
         if cell == "Blue" {
-            applyBlueTheme(tableView)
+            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+                self.applyBlueTheme(self.tableView)
+            })
+            
         }
         if cell == "Dark" {
-            applyDarkTheme(tableView)
+            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+                self.applyDarkTheme(self.tableView)
+            })
         }
         if cell == "Hulk" {
-            applyHulkTheme(tableView)
+            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+                self.applyHulkTheme(self.tableView)
+            })
         }
         if cell == "Orange" {
-            applyOrangeTheme(tableView)
+            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+                self.applyOrangeTheme(self.tableView)
+            })
         }
         if cell == "Batman" {
-            applyBatmanTheme(tableView)
+            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+                self.applyBatmanTheme(self.tableView)
+            })
+            
         }
     }
 }

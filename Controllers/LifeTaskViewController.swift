@@ -12,7 +12,6 @@ import RealmSwift
 
 class LifeTaskViewController: UIViewController{
     var p: Int!
-    
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var categoryButtonTitle: UIButton!
@@ -94,24 +93,8 @@ class LifeTaskViewController: UIViewController{
     }
     
     @IBAction func createTaskButtonPress(_ sender: Any) {
-        print("Create Task.")
-        print(selectCategoryButton.titleLabel!.text as Any)
-        print(selectTaskButton.titleLabel!.text as Any)
-        print(selectWhenButton.titleLabel!.text as Any)
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
-        let realm = try! Realm(configuration: config!)
-        let item = OddJobItem()
-        item.Category = "Life"
-        item.LifeCategory = selectCategoryButton.titleLabel!.text!
-        item.Name = selectTaskButton.titleLabel!.text!
-        item.Occurrence  = selectWhenButton.titleLabel!.text!
-        print(item)
-        try! realm.write {
-            realm.add(item)
-        }
+        createLifeTaskOddJob(selectCategoryButton: selectCategoryButton, selectTaskButton: selectTaskButton, selectWhenButton: selectWhenButton)
     }
-    
-    
     
     func buttonViewToggle(toggle: Bool) {
         if toggle {

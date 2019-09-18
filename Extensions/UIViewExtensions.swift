@@ -135,6 +135,7 @@ extension UIViewController {
             item.Priority = oddJobPriority.text ?? ""
             item.Occurrence = oddJobOccurrence.text ?? ""
             item.Category = scoreCategory[0]
+            item.User = UserDefaults.standard.string(forKey: "Name") ?? ""
             try! realm.write {
                 realm.add(item)
             }
@@ -151,6 +152,8 @@ extension UIViewController {
     func cellSetup(_ cell: UITableViewCell, _ item: OddJobItem, _ cellFields: [String]) {
         cell.selectionStyle = .none
         //cell.layer.cornerRadius = 10
+        cell.textLabel!.numberOfLines = 0
+        cell.textLabel!.lineBreakMode = .byWordWrapping
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)

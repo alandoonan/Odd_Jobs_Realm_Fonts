@@ -18,10 +18,18 @@ struct Constants {
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
-    static let themeColours = ["Blue": ["20A4F3","10","1","Blue","282b35"], "Dark": ["282b35","20","2","Dark","E07A5F"], "Hulk": ["9bc063","30","3","HulkTheme","34314C"], "Orange": ["E07A5F","40","4","OrangeTheme","282b35"],"Batman": ["FDFF00","50","5","Batman","000000"]]
+    static let themeColours = ["Blue": ["20A4F3","10","1","Blue","282b35"],
+                               "Dark": ["282b35","20","2","Dark","E07A5F"],
+                               "Hulk": ["9bc063","30","3","HulkTheme","34314C"],
+                               "Orange": ["E07A5F","40","4","OrangeTheme","282b35"],
+                               "Batman": ["FDFF00","50","5","Batman","000000"]]
 
     //Theme Unlock Levels
-    static let themeLevels = ["Blue" : Blue(), "Dark": Dark(),"The Hulk": Hulk(),"Orange": Orange(), "Batman": Batman()] as [String : Any]
+    static let themeLevels = ["Blue" : Blue(),
+                              "Dark": Dark(),
+                              "The Hulk": Hulk(),
+                              "Orange": Orange(),
+                              "Batman": Batman()] as [String : Any]
     
     //Alert Fields
 //    static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
@@ -41,12 +49,12 @@ struct Constants {
     static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png", "Work" : "W.png"]
     
     //Task Filters
-    static let taskFilter = "Category in [c] %@ and IsDone == false"
-    static let taskDoneFilter = "Category in[c] %@ and IsDone == true"
+    static let taskFilter = "Category in [c] %@ and IsDone == false AND User in [c] %@"
+    static let taskDoneFilter = "Category in[c] %@ and IsDone == true AND User in [c] %@"
     
     //Search Filter
-    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false"
-    static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true"
+    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false AND User in [c] %@"
+    static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true in [c] %@"
     
     //Cell Fields
     static let cellFields = ["Location","Occurence","Due Date"]
@@ -65,7 +73,14 @@ struct Constants {
     static let workScoreCategory = ["Work"]
     
     //Task Data
-    static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal"],["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody"],["Save Small Sum Of Money","Pay A Bill"],["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday"],["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],["Test"],["Daily","Weekly","Monthly","Yearly"]]
+    static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],
+                           ["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal"],
+                           ["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody"],
+                           ["Save Small Sum Of Money","Pay A Bill"],
+                           ["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday"],
+                           ["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],
+                           ["Test"],
+                           ["Daily","Weekly","Monthly","Yearly"]]
     
     static let taskPriority = ["Low","Medium","High","Urgent"]
     
@@ -82,7 +97,4 @@ struct Constants {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         return config!
     }
-    
-    
-
 }

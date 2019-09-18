@@ -23,12 +23,14 @@ class SideBarController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyThemeView(view)
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         applyThemeView(view)
         configureHomeController()
+
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

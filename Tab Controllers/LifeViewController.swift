@@ -28,7 +28,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items =  realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.lifeScoreCategory)
+        self.items =  realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.lifeScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
         self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
         self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
@@ -96,11 +96,11 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.lifeScoreCategory)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.lifeScoreCategory,[UserDefaults.standard.string(forKey: "Name") ?? ""])
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             self.tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.lifeScoreCategory)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.lifeScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
             self.tableView.reloadData()
         }
         self.tableView.reloadData()
@@ -134,28 +134,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         self.holidayDictionary[name] = date
                     }
                 }
-                self.addHolidayData()
-            }
-        }
-    }
-    func addHolidayData () {
-        print("Adding Holiday Data to Life Lists")
-        for holiday in holidayDictionary.sorted(by: { $0.1 < $1.1 }) {
-            print(holiday)
-            let found = findOddJobItemByName(holiday.key, realm: realm)
-            if found .isEmpty{
-                let item = OddJobItem()
-                item.Name = holiday.key
-                item.Priority = "High"
-                item.Occurrence = "Yearly"
-                item.Category = "Life"
-                item.DueDate = holiday.value
-                try! self.realm.write {
-                    self.realm.add(item)
-                }
-            }
-            else {
-                print("Found. Do Nothing")
+                self.addHolidayData(holidayDictionary: self.holidayDictionary, realm: self.realm)
             }
         }
     }

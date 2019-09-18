@@ -30,6 +30,7 @@ extension UIViewController {
                             themeItem.UnlockLevel = Int(colour.value[1])!
                             themeItem.tag = Int(colour.value[2])!
                             themeItem.CellColour = colour.value[4]
+                            themeItem.User = UserDefaults.standard.string(forKey: "Name") ?? ""
                             try! realm.write {
                                 realm.add(themeItem)
                             }

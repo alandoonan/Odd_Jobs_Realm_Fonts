@@ -34,27 +34,10 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         print("Done button tapped.")
         performSegueToReturnBack()
     }
+    
     @IBAction func createTaskButtonPress(_ sender: Any) {
-        print("Create Task.")
-        print(self.latitude,self.longitude)
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
-        let realm = try! Realm(configuration: config!)
-        let oddJobName = taskNameTextField.text
-        let oddJobDate = dateTextField.text
-        let oddJobPriority = priorityTextField.text
-        let oddJobCategory = categoryTextField.text
-        let oddJobLocationName = locationSearchBar.text
-        let item = OddJobItem()
-        item.Name = oddJobName!
-        item.DueDate = oddJobDate!
-        item.Priority = oddJobPriority!
-        item.Category = oddJobCategory!
-        item.Location = oddJobLocationName!
-        item.Latitude = self.latitude
-        item.Longitude = self.longitude
-        try! realm.write {
-            realm.add(item)
-        }
+        createOddJobTask(latitude: latitude, longitude: longitude, taskNameTextField: taskNameTextField,
+                         dateTextField: dateTextField, priorityTextField: priorityTextField, categoryTextField: categoryTextField, locationSearchBar: locationSearchBar)
     }
     
     override func viewDidLoad() {
@@ -149,7 +132,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateTextField.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
     }

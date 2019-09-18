@@ -28,6 +28,18 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func animateCell(_ background: UIViewController) {
+        
+        UIView.animate(withDuration: 5.0, delay: 0.0, options: [.transitionCrossDissolve, .allowAnimatedContent], animations: {
+            self.view.backgroundColor = .red
+        }) { (_) in
+            UIView.animate(withDuration: 5.0, animations: {
+                self.view.backgroundColor = .black
+            })
+        }
+        
+    }
+    
     fileprivate func currentUserSync(_ username: String, _ password: String) {
         let creds = SyncCredentials.usernamePassword(username: username, password: password, register: false)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
