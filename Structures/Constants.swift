@@ -15,6 +15,7 @@ struct Constants {
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
     static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
     static let ODDJOBS_REALM_USERS_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/Users-Shared")!
+    static let ODDJOBS_REALM_OTHER_USER_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/e242b7f209e7eab3c013a3535a414ef1/Oddjobs")!
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]

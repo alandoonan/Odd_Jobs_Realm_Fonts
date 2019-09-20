@@ -90,9 +90,10 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
         cell.selectionStyle = .none
         cell.textLabel?.text = item.Name
         cell.tintColor = .white
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
+        cell.textLabel?.textColor = Themes.current.background
+        cell.detailTextLabel?.textColor = Themes.current.background
         cell.backgroundColor = UIColor.orangeTheme
+        cell.selectionStyle = .blue
         cell.detailTextLabel?.text = ("Name: " + item.Name)
         cell.detailTextLabel?.text = ("User ID: " + item.UserID)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
@@ -102,6 +103,38 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return addTableCell(tableView, indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("User Selected")
+        let permission = SyncPermission(realmPath: "/e027d9c9e9ed16991ae3acb067f4712d/Oddjobs",  // The remote Realm path on which to apply the changes
+            identity: "*", // The user ID for which these permission changes should be applied
+            accessLevel: .write)
+        SyncUser.current?.retrievePermissions { permissions, error in
+            if error != nil {
+                // handle error
+                print(error!)
+                return
+            }
+            // success! access permissions
+            print(permissions!)
+        }
+        SyncUser.current!.apply(permission) { error in
+        if error != nil {
+            print(error!)
+        }
+        }
+        
+        // The access level to be granted
+        SyncUser.current?.apply(permission) { error in
+            if error != nil {
+                print(error!)
+                return
+            }
+        }
+        print(permission)
+
+    }
+
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
