@@ -29,7 +29,7 @@ class DoneViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.taskDoneFilter, Constants.listTypes, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+        self.items = realm.objects(OddJobItem.self).filter(Constants.summaryGroupDoneTaskFilter, Constants.listTypes)
         self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
         self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
@@ -128,11 +128,11 @@ extension DoneViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.doneSearchFilter, searchText, searchText, Constants.listTypes,[UserDefaults.standard.string(forKey: "Name") ?? ""])
+            let predicate = NSPredicate(format:Constants.doneSearchFilter, searchText, searchText, Constants.listTypes)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskDoneFilter, Constants.listTypes, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+            self.items = realm.objects(OddJobItem.self).filter(Constants.summaryGroupDoneTaskFilter, Constants.listTypes)
             tableView.reloadData()
         }
         tableView.reloadData()

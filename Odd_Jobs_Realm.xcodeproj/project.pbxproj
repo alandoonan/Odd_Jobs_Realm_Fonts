@@ -37,7 +37,6 @@
 		81208AC12303397E00F6548E /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC02303397E00F6548E /* MenuController.swift */; };
 		81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208AC52305C28C00F6548E /* Launchscreen_NO_CR.png */; };
 		81208AC82307318B00F6548E /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC72307318B00F6548E /* ThemeItem.swift */; };
-		81208ACD23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */; };
 		81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ACE2308612B00F6548E /* SearchUsersViewController.swift */; };
 		81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD02309CFBB00F6548E /* RealmManager.swift */; };
 		81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD3230B107100F6548E /* RealmProtocols.swift */; };
@@ -46,7 +45,6 @@
 		81208AE92312DFD900F6548E /* LifeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE82312DFD900F6548E /* LifeTaskViewController.swift */; };
 		8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */; };
 		8125F38223204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38123204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png */; };
-		8125F38423204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38323204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png */; };
 		8125F38623204DF3004869CA /* clear_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38523204DF3004869CA /* clear_logo.png */; };
 		8125F38823204F5B004869CA /* clear_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38723204F5B004869CA /* clear_small.png */; };
 		8125F38A23205075004869CA /* clear_logo 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8125F38923205075004869CA /* clear_logo 2.png */; };
@@ -586,7 +584,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Alan Doonan";
 				TargetAttributes = {
 					816B8AEB22D21EB200C630B9 = {
@@ -643,7 +641,6 @@
 				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
 				8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */,
-				8125F38423204D4E004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */,
 				8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */,
 				8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */,
 				8132C35622E2506D00EC79F2 /* icon_20pt@2x-2.png in Resources */,
@@ -665,7 +662,6 @@
 				8132C36322E2506D00EC79F2 /* iPhone Settings 29pt@2x.png in Resources */,
 				8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */,
 				8132C35222E2506D00EC79F2 /* OddJobsLogo3x.png in Resources */,
-				81208ACD23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png in Resources */,
 				81E0B92A23280A50003AE595 /* logout.png in Resources */,
 				8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */,
 				8132C36222E2506D00EC79F2 /* icon_29pt-1.png in Resources */,

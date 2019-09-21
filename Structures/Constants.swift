@@ -52,13 +52,15 @@ struct Constants {
     //Task Filters
     static let taskFilter = "Category in [c] %@ and IsDone == false AND User in [c] %@"
     static let taskDoneFilter = "Category in[c] %@ and IsDone == true AND User in [c] %@"
+    static let summaryGroupTaskFilter = "Category in[c] %@ and IsDone == false"
+    static let summaryGroupDoneTaskFilter = "Category in[c] %@ and IsDone == true"
     
     //Search Filter
-    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false AND User in [c] %@"
-    static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true in [c] %@"
+    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false"
+    static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true"
     
     //Cell Fields
-    static let cellFields = ["Location","Occurence","Due Date"]
+    static let cellFields = ["Location","Occurence","Due Date","User"]
     static let doneSwipe = "Done"
     static let undoneSwipe = "Undone"
     

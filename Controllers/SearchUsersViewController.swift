@@ -20,7 +20,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     var searchBar = UISearchBar()
     let tableView = UITableView()
     var scoreCategory = ["User"]
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
@@ -59,7 +59,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
@@ -82,7 +82,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-
+    
     
     fileprivate func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
@@ -104,11 +104,35 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
         return addTableCell(tableView, indexPath)
     }
     
+    func commonRealmConfig(user: SyncUser) -> Realm.Configuration  {
+           let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
+           return config!
+       }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("User Selected")
-        let permission = SyncPermission(realmPath: "/e027d9c9e9ed16991ae3acb067f4712d/Oddjobs",  // The remote Realm path on which to apply the changes
-            identity: "*", // The user ID for which these permission changes should be applied
-            accessLevel: .write)
+        
+        
+//        let sharedConfig = commonRealmConfig(user: SyncUser.current!)
+//        let realm = try! Realm(configuration: sharedConfig)
+//        print(realm.configuration)
+//        print(sharedConfig.fileURL)
+
+        
+        let permission = SyncPermission(realmPath: "/e242b7f209e7eab3c013a3535a414ef1/Oddjobs",  // The remote Realm path on which to apply the changes
+            identity: "35e0ccb7ec234f9273990842d4deb59d", // The user ID for which these permission changes should be applied
+            accessLevel: .admin)
+        
+        print("Applying Permission")
+        SyncUser.current!.apply(permission) { error in
+            if error != nil {
+                print("Error applying permission")
+                print(error!)
+            }
+        }
+        print("Permission Being Applied")
+        print(permission)
+        print("User Configuration")
         SyncUser.current?.retrievePermissions { permissions, error in
             if error != nil {
                 // handle error
@@ -116,25 +140,12 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
                 return
             }
             // success! access permissions
+            print("User Current Permissions")
             print(permissions!)
         }
-        SyncUser.current!.apply(permission) { error in
-        if error != nil {
-            print(error!)
-        }
-        }
         
-        // The access level to be granted
-        SyncUser.current?.apply(permission) { error in
-            if error != nil {
-                print(error!)
-                return
-            }
-        }
-        print(permission)
-
+        
     }
-
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")

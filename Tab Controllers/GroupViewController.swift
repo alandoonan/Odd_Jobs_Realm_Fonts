@@ -23,7 +23,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.groupScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+        self.items = realm.objects(OddJobItem.self).filter(Constants.summaryGroupTaskFilter, Constants.groupScoreCategory)
         self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
         self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)

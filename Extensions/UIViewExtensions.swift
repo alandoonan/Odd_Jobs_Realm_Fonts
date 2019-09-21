@@ -172,7 +172,7 @@ extension UIViewController {
         }
         if item.Category == "Group" {
             cell.backgroundColor = UIColor.blueTheme
-            cell.detailTextLabel?.text = (cellFields[2] + ": " + item.DueDate)
+            cell.detailTextLabel?.text = (cellFields[3] + ": " + item.User)
         }
         cell.textLabel?.text = item.Name
         
