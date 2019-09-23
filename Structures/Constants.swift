@@ -11,11 +11,14 @@ import RealmSwift
 
 struct Constants {
     //Realm URLs
-    static let MY_INSTANCE_ADDRESS = "odd-jobs.de1a.cloud.realm.io"
+    static let MY_INSTANCE_ADDRESS = "odd-jobs-realm.de1a.cloud.realm.io"
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
     static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
-    static let ODDJOBS_REALM_USERS_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/Users-Shared")!
-    static let ODDJOBS_REALM_OTHER_USER_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/5453f03aef4409979f41df600956ede3/Oddjobs")!
+    static let ODDJOBS_REALM_USERS_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/Oddjobs_Users")!
+    static let ODDJOBS_REALM_OTHER_USER_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
+    
+    //Testing Realm Share
+    static let ODDJOBS_TEST_SHARE_TASK_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/7be9e24f2eb5b04e28439f886dbdd444/Oddjobs")!
     
     //Theme Colours
     //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]

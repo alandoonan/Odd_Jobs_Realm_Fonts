@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     
     fileprivate func storeUserInformation(username: String) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         let realm = try! Realm(configuration: config!)
         print(realm)
         let item = UserItem()
@@ -46,17 +46,11 @@ class LoginViewController: UIViewController {
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
+                if username == "alandoonan" {
+                    self!.openSharedRealm()
+                    self!.logOutButtonPress()
+                }
                 self?.transition()
-//                let permission = SyncPermission(realmPath: "/5453f03aef4409979f41df600956ede3/Oddjobs", identity: "*", accessLevel: .write)
-//                user?.apply(permission, callback: { (error) in
-//                    if let error = error {
-//                      // handle error
-//                      print(error)
-//                      return
-//                    }
-//                    
-//                })
-//                print("Permission applied")
             }
             else if let error = err {
                 print("Error Logging In.")
@@ -85,6 +79,50 @@ class LoginViewController: UIViewController {
         print("Shared User Login VC: " + sharedUser)
     }
     
+    func openRealmPermissions () {
+        let userRealm = "/~/Oddjobs"
+        let permission = SyncPermission(realmPath: userRealm.replacingOccurrences(of: "~", with: String((SyncUser.current?.identity)!)), identity: "*", accessLevel: .write)
+        print(permission)
+        print("Applying Permissions")
+        SyncUser.current?.apply(permission) { error in
+          if let error = error {
+            // handle error
+            print(error)
+            return
+          }
+            print("Permission applied")
+          // permission was successfully applied
+        }
+    }
+    
+    func openSharedRealm () {
+        let userRealm = "/Oddjobs_Users"
+        let permission = SyncPermission(realmPath: userRealm, identity: "*", accessLevel: .write)
+        print(permission)
+        print("Applying Permissions")
+        SyncUser.current?.apply(permission) { error in
+          if let error = error {
+            // handle error
+            print(error)
+            return
+          }
+            print("Permission applied")
+          // permission was successfully applied
+        }
+    }
+    
+    
+    func requestEmailConfirmation (_ username: String) {
+        let email = username
+        SyncUser.requestEmailConfirmation(forAuthServer: Constants.AUTH_URL, userEmail: email) { error in
+            if (error != nil) {
+                // something went wrong
+                print(error!)
+                print("ERROR GETTING EMAIL")
+            }
+        }
+    }
+    
     fileprivate func newUserSync(_ username: String, _ password: String) {
         let creds    = SyncCredentials.usernamePassword(username: username, password: password, register: true)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
@@ -92,6 +130,8 @@ class LoginViewController: UIViewController {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has been created with password " + password)
                 self!.storeUserInformation(username: username)
+                self!.requestEmailConfirmation(username)
+                self!.openRealmPermissions()
                 self!.transition()
             } else if let error = err {
                 print(error)

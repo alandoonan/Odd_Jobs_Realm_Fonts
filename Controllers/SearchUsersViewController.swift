@@ -22,7 +22,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     var scoreCategory = ["User"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         self.items = realm.objects(UserItem.self).filter("Category contains[c] %@", "User")
         super.init(nibName: nil, bundle: nil)
@@ -110,7 +110,9 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User Selected")
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)!
+        print(currentCell.textLabel!.text!)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
