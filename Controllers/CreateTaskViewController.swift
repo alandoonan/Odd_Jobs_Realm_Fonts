@@ -10,6 +10,8 @@
 import UIKit
 import RealmSwift
 import MapKit
+import RealmSearchViewController
+
 
 class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
@@ -22,6 +24,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var latitude = 0.0
     
     @IBOutlet weak var locationSearchBar: UISearchBar!
+    @IBOutlet weak var usersSearchBar: UISearchBar!
     @IBOutlet weak var searchLocationsResults: UITableView!
     @IBOutlet weak var taskNameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -38,6 +41,17 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBAction func createTaskButtonPress(_ sender: Any) {
         createOddJobTask(latitude: latitude, longitude: longitude, taskNameTextField: taskNameTextField,
                          dateTextField: dateTextField, priorityTextField: priorityTextField, categoryTextField: categoryTextField, locationSearchBar: locationSearchBar)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        applyThemeView(view)
+    }
+    
+    func setupUserRealm() -> Realm {
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
+        let realm = try! Realm(configuration: config!)
+        return realm
     }
     
     override func viewDidLoad() {
@@ -106,8 +120,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         datePicker?.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker:)), for: .valueChanged)
         datePicker?.setValue(Themes.current.background, forKey: "textColor")
         datePicker?.backgroundColor = Themes.current.accent
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
-//        view.addGestureRecognizer(tapGesture)
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
+        //        view.addGestureRecognizer(tapGesture)
     }
     
     fileprivate func setupPriorityPicker() {
@@ -143,6 +157,11 @@ extension CreateTaskViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
         searchLocationsResults.isHidden = false
+        if searchBar == self.locationSearchBar {
+            print("Locations")
+        } else if searchBar == self.usersSearchBar{
+            print("Users")
+        }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -191,6 +210,8 @@ extension CreateTaskViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = searchResult.subtitle
         return cell
     }
+    
+    
 }
 
 extension CreateTaskViewController: UITableViewDelegate {
@@ -207,7 +228,7 @@ extension CreateTaskViewController: UITableViewDelegate {
             self.locationSearchBar.text = String(itemAddress)
             self.searchLocationsResults.isHidden = true
             self.hideKeyboardWhenTappedAround()
-
+            
         }
     }
 }
