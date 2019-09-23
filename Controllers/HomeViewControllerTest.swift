@@ -38,6 +38,38 @@ class HomeViewControllerTest: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         applyThemeView(view)
+        //let newUser = createProfile()
+//        let permission = SyncPermission(realmPath: "/5453f03aef4409979f41df600956ede3/Oddjobs", identity: "*", accessLevel: .write)
+//        print(permission)
+//        print("Applying Permissions")
+//
+//
+//        SyncUser.current?.apply(permission) { error in
+//          if let error = error {
+//            // handle error
+//            print(error)
+//            return
+//          }
+//            print("Permission applied")
+//          // permission was successfully applied
+//        }
+    }
+    
+    func sharedRealmConfig(user: SyncUser) -> Realm.Configuration  {
+        let config = (SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true))!
+        return config
+    }
+    
+    func createProfile() -> UserItem? {
+        let commonRealm =  try! Realm(configuration: sharedRealmConfig(user:SyncUser.current!))
+        var profileRecord = commonRealm.objects(UserItem.self).filter(NSPredicate(format: "UserID = %@", SyncUser.current!.identity!)).first
+        if profileRecord == nil {
+            try! commonRealm.write {
+                profileRecord = commonRealm.create(UserItem.self, value:["UserID": SyncUser.current!.identity!, "Name": "Test",  "Category": "Test"])
+                commonRealm.add(profileRecord!)
+            }
+        }
+        return profileRecord
     }
         
     @objc func handleMenuToggle() {

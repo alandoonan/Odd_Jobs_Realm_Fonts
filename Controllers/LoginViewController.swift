@@ -40,13 +40,23 @@ class LoginViewController: UIViewController {
         
     }
     
-    fileprivate func currentUserSync(_ username: String, _ password: String) {
+    func currentUserSync(_ username: String, _ password: String) {
         let creds = SyncCredentials.usernamePassword(username: username, password: password, register: false)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
                 self?.transition()
+//                let permission = SyncPermission(realmPath: "/5453f03aef4409979f41df600956ede3/Oddjobs", identity: "*", accessLevel: .write)
+//                user?.apply(permission, callback: { (error) in
+//                    if let error = error {
+//                      // handle error
+//                      print(error)
+//                      return
+//                    }
+//                    
+//                })
+//                print("Permission applied")
             }
             else if let error = err {
                 print("Error Logging In.")
@@ -58,6 +68,7 @@ class LoginViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         })
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

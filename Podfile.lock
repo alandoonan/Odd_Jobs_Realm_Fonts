@@ -1,14 +1,14 @@
 PODS:
-  - Alamofire (4.8.2)
-  - Eureka (5.0.0)
-  - Realm (3.17.3):
-    - Realm/Headers (= 3.17.3)
-  - Realm/Headers (3.17.3)
+  - Alamofire (4.9.0)
+  - Eureka (5.0.1)
+  - Realm (3.18.0):
+    - Realm/Headers (= 3.18.0)
+  - Realm/Headers (3.18.0)
   - RealmSearchViewController (2.2.1):
     - RealmSwift (>= 1.0.0)
-  - RealmSwift (3.17.3):
-    - Realm (= 3.17.3)
-  - RSSelectionMenu (6.0.4)
+  - RealmSwift (3.18.0):
+    - Realm (= 3.18.0)
+  - RSSelectionMenu (6.0.6)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -30,12 +30,12 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654
-  Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Eureka: da9d2294da234eae40b22e7273b9fc2335502fc1
+  Realm: 7b3d04740facf45e958a514b466a32b04f1113d6
   RealmSearchViewController: 685a112c09c271d769bbf43911ac4d5f12dc8862
-  RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
-  RSSelectionMenu: 1dc497c68e81aa09e6c7f91432403cc2bc5ad816
+  RealmSwift: c817b5f374668cf08f649afb05f55d92a787649c
+  RSSelectionMenu: d41b6e31094283358c9d0b756b177d76b83066df
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
 PODFILE CHECKSUM: 99addfb0719f9f0276a4a10fcf03db4d53565da2

@@ -111,40 +111,6 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("User Selected")
-        
-        
-//        let sharedConfig = commonRealmConfig(user: SyncUser.current!)
-//        let realm = try! Realm(configuration: sharedConfig)
-//        print(realm.configuration)
-//        print(sharedConfig.fileURL)
-
-        
-        let permission = SyncPermission(realmPath: "/e242b7f209e7eab3c013a3535a414ef1/Oddjobs",  // The remote Realm path on which to apply the changes
-            identity: "35e0ccb7ec234f9273990842d4deb59d", // The user ID for which these permission changes should be applied
-            accessLevel: .admin)
-        
-        print("Applying Permission")
-        SyncUser.current!.apply(permission) { error in
-            if error != nil {
-                print("Error applying permission")
-                print(error!)
-            }
-        }
-        print("Permission Being Applied")
-        print(permission)
-        print("User Configuration")
-        SyncUser.current?.retrievePermissions { permissions, error in
-            if error != nil {
-                // handle error
-                print(error!)
-                return
-            }
-            // success! access permissions
-            print("User Current Permissions")
-            print(permissions!)
-        }
-        
-        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

@@ -8,8 +8,10 @@
 
 import UIKit
 import Foundation
+import RealmSwift
 
 class HomeViewController: UITabBarController {
+
     let personalTab = UINavigationController(rootViewController: PersonalViewController())
     let groupTab = UINavigationController(rootViewController: GroupViewController())
     let lifeTab = UINavigationController(rootViewController: LifeViewController())
