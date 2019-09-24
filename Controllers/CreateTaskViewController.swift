@@ -26,7 +26,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var realm: Realm!
     var items: Results<UserItem>?
     var notificationToken: NotificationToken?
-
+    var sharedUserName = ""
+    var sharedUserID = ""
 
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var usersSearchBar: UISearchBar!
@@ -45,7 +46,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBAction func createTaskButtonPress(_ sender: Any) {
         createOddJobTask(latitude: latitude, longitude: longitude, taskNameTextField: taskNameTextField,
-                         dateTextField: dateTextField, priorityTextField: priorityTextField, categoryTextField: categoryTextField, locationSearchBar: locationSearchBar)
+                         dateTextField: dateTextField, priorityTextField: priorityTextField, categoryTextField: categoryTextField, locationSearchBar: locationSearchBar, userSearchBar: usersSearchBar, sharedUserID: sharedUserID)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -226,7 +227,7 @@ extension CreateTaskViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.searchTextField.text = ""
+        searchBar.text = ""
         searchLocationsResults.isHidden = true
     }
 }
@@ -265,7 +266,7 @@ extension CreateTaskViewController: UITableViewDataSource {
         cell.backgroundColor = Themes.current.background
         cell.selectionStyle = .none
         cell.detailTextLabel?.text = ("Name: " + item.Name)
-        cell.detailTextLabel?.text = ("User ID: " + item.UserID)
+        cell.detailTextLabel?.text = (item.UserID)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         return cell
     }
@@ -304,8 +305,6 @@ extension CreateTaskViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if p == 0 {
-            print("0000000")
-            print(p!)
             let completion = searchResults[indexPath.row]
             let searchRequest = MKLocalSearch.Request(completion: completion)
             let search = MKLocalSearch(request: searchRequest)
@@ -315,15 +314,17 @@ extension CreateTaskViewController: UITableViewDelegate {
                 (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
                 self.locationSearchBar.text = String(itemAddress)
                 self.searchLocationsResults.isHidden = true
-                //self.hideKeyboardWhenTappedAround()
         }
     }
         else if p == 1 {
-            print("ELSE")
-            print(p!)
             searchLocationsResults.reloadData()
             let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
             usersSearchBar.text = cell.textLabel!.text
+            self.sharedUserName = cell.textLabel!.text!
+            self.sharedUserID = cell.detailTextLabel!.text!
+            print(cell)
+            print(self.sharedUserName)
+            print(self.sharedUserID)
         }
     }
 }
