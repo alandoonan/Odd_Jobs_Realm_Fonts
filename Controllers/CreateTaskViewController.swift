@@ -22,7 +22,12 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var searchResults = [MKLocalSearchCompletion]()
     var longitude = 0.0
     var latitude = 0.0
-    
+    var p : Int?
+    var realm: Realm!
+    var items: Results<UserItem>?
+    var notificationToken: NotificationToken?
+
+
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var usersSearchBar: UISearchBar!
     @IBOutlet weak var searchLocationsResults: UITableView!
@@ -48,24 +53,46 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         applyThemeView(view)
     }
     
-    func setupUserRealm() -> Realm {
+    func loadItems() {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
-        let realm = try! Realm(configuration: config!)
-        return realm
+        self.realm = try! Realm(configuration: config!)
+        self.items = realm.objects(UserItem.self).filter("Category contains[c] %@", "User")
+        //self.tableView?.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        p = 0
         view.backgroundColor = Themes.current.background
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         searchLocationsResults.separatorStyle = .none
         applyTheme(searchLocationsResults,view)
-        let attributes = [NSAttributedString.Key.foregroundColor: Themes.current.accent]
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         setupDatePicker()
         setupPriorityPicker()
         setupCategoryPicker()
         searchCompleter.delegate = self
+        self.loadItems()
+    }
+    
+    func addNotificationToken() {
+        notificationToken = self.items!.observe { [weak self] (changes) in
+            guard let tableView = self?.searchLocationsResults else { return }
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -124,7 +151,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //        view.addGestureRecognizer(tapGesture)
     }
     
-    fileprivate func setupPriorityPicker() {
+    func setupPriorityPicker() {
         priorityPicker = UIPickerView()
         priorityPicker?.delegate = self
         priorityPicker?.dataSource = self
@@ -132,7 +159,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         priorityPicker?.backgroundColor = Themes.current.accent
     }
     
-    fileprivate func setupCategoryPicker() {
+    func setupCategoryPicker() {
         categoryPicker = UIPickerView()
         categoryPicker?.delegate = self
         categoryPicker?.dataSource = self
@@ -155,22 +182,52 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
 extension CreateTaskViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchCompleter.queryFragment = searchText
-        searchLocationsResults.isHidden = false
+        searchLocationsResults.isHidden = true
         if searchBar == self.locationSearchBar {
             print("Locations")
+            print("CHANGING TEXT IN LOCATION SEARCH BAR")
+            print(p!)
+            p = 0
+            searchCompleter.queryFragment = searchText
+            searchLocationsResults.isHidden = false
         } else if searchBar == self.usersSearchBar{
             print("Users")
+            print("CHANGING TEXT IN USERS SEARCH BAR")
+            p = 1
+            searchLocationsResults.isHidden = false
+            print(p!)
+            print("typing in search bar: term = \(searchText)")
+            if searchText != "" {
+                let predicate = NSPredicate(format:"(Name CONTAINS[c] %@) AND Category in %@", searchText, ["User"])
+                self.items = realm.objects(UserItem.self).filter(predicate)
+                searchLocationsResults.reloadData()
+            } else {
+                searchLocationsResults.isHidden = true
+                self.items = realm.objects(UserItem.self).filter("Category in %@", ["User"])
+                searchLocationsResults.reloadData()
+            }
         }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchLocationsResults.isHidden = true
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchLocationsResults.isHidden = false
         
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if searchBar == self.locationSearchBar {
+            p = 0
+        }
+        else {
+            p = 1
+        }
+        searchLocationsResults.isHidden = true
+        searchLocationsResults.reloadData()
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.text = ""
+        searchLocationsResults.isHidden = true
     }
 }
 
@@ -178,12 +235,7 @@ extension CreateTaskViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
-        //print(searchResults)
         searchLocationsResults.reloadData()
-    }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        // handle error
     }
 }
 
@@ -194,12 +246,33 @@ extension CreateTaskViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
+        if p == 0 {
+            return searchResults.count
+        }
+        else {
+            return self.items!.count
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let item = self.items![indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
+        cell.selectionStyle = .none
+        cell.textLabel?.text = item.Name
+        cell.tintColor = .white
+        cell.textLabel?.textColor = Themes.current.accent
+        cell.detailTextLabel?.textColor = .white
+        cell.backgroundColor = Themes.current.background
+        cell.selectionStyle = .none
+        cell.detailTextLabel?.text = ("Name: " + item.Name)
+        cell.detailTextLabel?.text = ("User ID: " + item.UserID)
+        cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
+        return cell
+    }
+    
+    func addLocationCell(_ indexPath: IndexPath, _ tableView: UITableView) -> UITableViewCell {
         let searchResult = searchResults[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "locationCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "locationCell")
         cell.backgroundColor = Themes.current.background
         cell.selectionStyle = .none
         cell.tintColor = .white
@@ -211,24 +284,46 @@ extension CreateTaskViewController: UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if p == 0 {
+            return addLocationCell(indexPath, searchLocationsResults)
+    }
+        else if p == 1{
+            return addTableCell(searchLocationsResults, indexPath)
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+            return cell
+        }
+    }
 }
 
 extension CreateTaskViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let completion = searchResults[indexPath.row]
-        let searchRequest = MKLocalSearch.Request(completion: completion)
-        let search = MKLocalSearch(request: searchRequest)
-        search.start { (response, error) in
-            let coordinate = response?.mapItems[0].placemark.coordinate
-            let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
-            (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
-            self.locationSearchBar.text = String(itemAddress)
-            self.searchLocationsResults.isHidden = true
-            self.hideKeyboardWhenTappedAround()
-            
+
+        if p == 0 {
+            print("0000000")
+            print(p!)
+            let completion = searchResults[indexPath.row]
+            let searchRequest = MKLocalSearch.Request(completion: completion)
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { (response, error) in
+                let coordinate = response?.mapItems[0].placemark.coordinate
+                let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
+                (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
+                self.locationSearchBar.text = String(itemAddress)
+                self.searchLocationsResults.isHidden = true
+                //self.hideKeyboardWhenTappedAround()
+        }
+    }
+        else if p == 1 {
+            print("ELSE")
+            print(p!)
+            searchLocationsResults.reloadData()
+            let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
+            usersSearchBar.text = cell.textLabel!.text
         }
     }
 }

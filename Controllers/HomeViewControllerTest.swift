@@ -60,6 +60,7 @@ class HomeViewControllerTest: UIViewController {
         
     @objc func handleMenuToggle() {
         delegate?.handleMenuToggle(forMenuOption: nil)
+        dismissKeyboard()
         print("Sidebar button pressed")
     }
     

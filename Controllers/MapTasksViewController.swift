@@ -21,8 +21,6 @@ class MapTasksViewController: UIViewController {
     @IBOutlet weak var mapNavBar: UINavigationBar!
     @IBOutlet weak var mapBackButton: UIBarButtonItem!
     
-
-    
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 20000
     

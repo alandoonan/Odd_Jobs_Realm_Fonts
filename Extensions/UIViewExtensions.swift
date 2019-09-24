@@ -62,6 +62,8 @@ extension UIViewController {
     }
     
     func applyTheme(_ tableView: UITableView, _ view: UIView) {
+        let attributes = [NSAttributedString.Key.foregroundColor: Themes.current.accent]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         view.backgroundColor = Themes.current.background
         tableView.backgroundColor = Themes.current.background
@@ -80,6 +82,8 @@ extension UIViewController {
     }
     
     func applyThemeView(_ view: UIView) {
+        let attributes = [NSAttributedString.Key.foregroundColor: Themes.current.accent]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         view.backgroundColor = Themes.current.background
         navigationController?.navigationBar.backgroundColor = Themes.current.background

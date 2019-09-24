@@ -13,9 +13,10 @@ import RSSelectionMenu
 class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
 {
     var realm: Realm
-    var items: Results<UserItem>
-    var scoreVC = ScoreViewController()
     var notificationToken: NotificationToken?
+    var items: Results<UserItem>
+
+    var scoreVC = ScoreViewController()
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
     let tableView = UITableView()
