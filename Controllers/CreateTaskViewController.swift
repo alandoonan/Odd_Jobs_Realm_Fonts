@@ -64,7 +64,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         p = 0
-        view.backgroundColor = Themes.current.background
+        usersSearchBar.isHidden = true
+        //view.backgroundColor = Themes.current.background
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         searchLocationsResults.separatorStyle = .none
         applyTheme(searchLocationsResults,view)
@@ -138,10 +139,16 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         else if pickerView == categoryPicker {
             categoryTextField.text = Constants.createTaskTypes[row]
             self.view.endEditing(false)
+            if categoryTextField.text == "Group" {
+                usersSearchBar.isHidden = false
+            }
+            else {
+                usersSearchBar.isHidden = true
+            }
         }
     }
     
-    fileprivate func setupDatePicker() {
+    func setupDatePicker() {
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
         dateTextField.inputView = datePicker
@@ -185,18 +192,13 @@ extension CreateTaskViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchLocationsResults.isHidden = true
         if searchBar == self.locationSearchBar {
-            print("Locations")
-            print("CHANGING TEXT IN LOCATION SEARCH BAR")
             print(p!)
             p = 0
             searchCompleter.queryFragment = searchText
             searchLocationsResults.isHidden = false
         } else if searchBar == self.usersSearchBar{
-            print("Users")
-            print("CHANGING TEXT IN USERS SEARCH BAR")
             p = 1
             searchLocationsResults.isHidden = false
-            print(p!)
             print("typing in search bar: term = \(searchText)")
             if searchText != "" {
                 let predicate = NSPredicate(format:"(Name CONTAINS[c] %@) AND Category in %@", searchText, ["User"])
@@ -309,10 +311,11 @@ extension CreateTaskViewController: UITableViewDelegate {
             let searchRequest = MKLocalSearch.Request(completion: completion)
             let search = MKLocalSearch(request: searchRequest)
             search.start { (response, error) in
+                let itemAddressName = response?.mapItems[0].placemark.name
                 let coordinate = response?.mapItems[0].placemark.coordinate
-                let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
+                //let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
                 (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
-                self.locationSearchBar.text = String(itemAddress)
+                self.locationSearchBar.text = String(itemAddressName!)
                 self.searchLocationsResults.isHidden = true
         }
     }
