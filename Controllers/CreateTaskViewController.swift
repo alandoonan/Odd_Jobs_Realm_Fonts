@@ -337,19 +337,13 @@ extension CreateTaskViewController: UITableViewDelegate {
                     cell.accessoryType = .checkmark
                     print("Item selected")
                     print(item.Name)
-                    usersSearchBar.text = item.Name
+                    //usersSearchBar.text = item.Name
                     sharedUserList.append(item.UserID)
                     print(sharedUserList)
                 }
             }
-            //usersSearchBar.text = userList
-            //searchLocationsResults.isHidden = true
-            //sharedUserID = userList
-            
         }
     }
-    
-    
 }
 
 extension Array where Element: Equatable {
