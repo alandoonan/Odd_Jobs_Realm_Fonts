@@ -94,6 +94,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             item.IsDone = !item.IsDone
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

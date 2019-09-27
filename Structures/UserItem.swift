@@ -14,7 +14,6 @@ class UserItem: Object {
     @objc dynamic var UserID: String = ""
     @objc dynamic var Name: String = ""
     @objc dynamic var Category: String = ""
-
     override static func primaryKey() -> String? {
         return "UserTag"
 }

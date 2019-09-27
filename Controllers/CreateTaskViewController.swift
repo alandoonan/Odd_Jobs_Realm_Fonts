@@ -27,7 +27,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var items: Results<UserItem>?
     var notificationToken: NotificationToken?
     var sharedUserName = ""
-    var sharedUserID = ""
+    //var sharedUserID = ""
+    var sharedUserList = [String]()
 
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var usersSearchBar: UISearchBar!
@@ -46,7 +47,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBAction func createTaskButtonPress(_ sender: Any) {
         createOddJobTask(latitude: latitude, longitude: longitude, taskNameTextField: taskNameTextField,
-                         dateTextField: dateTextField, priorityTextField: priorityTextField, categoryTextField: categoryTextField, locationSearchBar: locationSearchBar, userSearchBar: usersSearchBar, sharedUserID: sharedUserID)
+                         dateTextField: dateTextField, priorityTextField: priorityTextField, categoryTextField: categoryTextField, locationSearchBar: locationSearchBar, userSearchBar: usersSearchBar, sharedUserList: sharedUserList)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -205,14 +206,10 @@ extension CreateTaskViewController: UISearchBarDelegate {
                 let predicate = NSPredicate(format:"(Name CONTAINS[c] %@) AND Category in %@", searchText, ["User"])
                 self.items = realm.objects(UserItem.self).filter(predicate)
                 searchLocationsResults.reloadData()
-                print("seaech users")
-                print(self.items!)
             } else {
                 searchLocationsResults.isHidden = true
                 self.items = realm.objects(UserItem.self).filter("Category in %@", ["User"])
                 searchLocationsResults.reloadData()
-                print("seaech empty")
-                print(self.items)
             }
             searchLocationsResults.reloadData()
         }
@@ -260,28 +257,24 @@ extension CreateTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if p == 0 {
-            print(searchResults.count)
             return searchResults.count
         }
         else {
-            
-            print(self.items!.count)
             return self.items!.count
         }
     }
     
-    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    func addUserCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
         let item = self.items![indexPath.row]
         cell.selectionStyle = .none
-        cell.textLabel?.text = item.Name
         cell.tintColor = .white
-        cell.textLabel?.textColor = Themes.current.accent
         cell.detailTextLabel?.textColor = .white
+        cell.textLabel?.textColor = Themes.current.accent
+        cell.textLabel?.text = item.Name
         cell.backgroundColor = Themes.current.background
-        cell.selectionStyle = .none
         cell.detailTextLabel?.text = ("Name: " + item.Name)
-        cell.detailTextLabel?.text = (item.UserID)
+        cell.detailTextLabel?.text = ("User ID" + item.UserID)
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         return cell
     }
@@ -289,11 +282,11 @@ extension CreateTaskViewController: UITableViewDataSource {
     func addLocationCell(_ indexPath: IndexPath, _ tableView: UITableView) -> UITableViewCell {
         let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "locationCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "locationCell")
         let searchResult = searchResults[indexPath.row]
-        cell.backgroundColor = Themes.current.background
         cell.selectionStyle = .none
         cell.tintColor = .white
-        cell.textLabel?.textColor = Themes.current.accent
         cell.detailTextLabel?.textColor = .white
+        cell.backgroundColor = Themes.current.background
+        cell.textLabel?.textColor = Themes.current.accent
         cell.textLabel!.font = UIFont(name: Themes.mainFontName,size: 18)
         cell.textLabel?.text = searchResult.title
         cell.detailTextLabel?.text = searchResult.subtitle
@@ -302,15 +295,12 @@ extension CreateTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if p == 0 {
-            print("Location: Cell For Row At.")
             return addLocationCell(indexPath, searchLocationsResults)
     }
         else if p == 1{
-            print("User: Cell For Row At.")
-            return addTableCell(searchLocationsResults, indexPath)
+            return addUserCell(searchLocationsResults, indexPath)
         }
         else {
-            print("Else: Cell For Row At.")
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
             return cell
         }
@@ -327,21 +317,47 @@ extension CreateTaskViewController: UITableViewDelegate {
             search.start { (response, error) in
                 let itemAddressName = response?.mapItems[0].placemark.name
                 let coordinate = response?.mapItems[0].placemark.coordinate
-                //let itemAddress = String(response?.mapItems[0].placemark.subThoroughfare ?? "") + " " + String(response?.mapItems[0].placemark.thoroughfare ?? "")
                 (self.latitude, self.longitude) = (coordinate?.latitude, coordinate?.longitude) as! (Double, Double)
                 self.locationSearchBar.text = String(itemAddressName!)
                 self.searchLocationsResults.isHidden = true
         }
     }
         else if p == 1 {
-            searchLocationsResults.reloadData()
-            let cell = self.items![indexPath.row]
-//            let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
-            usersSearchBar.text = cell.Name
-            print(cell)
-            print(self.sharedUserName)
-            print(self.sharedUserID)
-            print(self.items!)
+            
+            if let cell = searchLocationsResults.cellForRow(at: indexPath as IndexPath) {
+                if cell.accessoryType == .checkmark {
+                    let item = self.items![indexPath.row]
+                    cell.accessoryType = .none
+                    print("Item unselected")
+                    print(item.Name)
+                    sharedUserList.removeAll { $0 == item.UserID }
+                    print(sharedUserList)
+                } else {
+                    let item = self.items![indexPath.row]
+                    cell.accessoryType = .checkmark
+                    print("Item selected")
+                    print(item.Name)
+                    usersSearchBar.text = item.Name
+                    sharedUserList.append(item.UserID)
+                    print(sharedUserList)
+                }
+            }
+            //usersSearchBar.text = userList
+            //searchLocationsResults.isHidden = true
+            //sharedUserID = userList
+            
         }
     }
+    
+    
+}
+
+extension Array where Element: Equatable {
+
+    // Remove first collection element that is equal to the given `object`:
+    mutating func remove(object: Element) {
+        guard let index = firstIndex(of: object) else {return}
+        remove(at: index)
+    }
+
 }
