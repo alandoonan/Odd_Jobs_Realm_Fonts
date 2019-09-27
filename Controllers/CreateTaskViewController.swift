@@ -73,6 +73,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         setupPriorityPicker()
         setupCategoryPicker()
         searchCompleter.delegate = self
+        searchLocationsResults.reloadData()
         self.loadItems()
     }
     
@@ -204,11 +205,16 @@ extension CreateTaskViewController: UISearchBarDelegate {
                 let predicate = NSPredicate(format:"(Name CONTAINS[c] %@) AND Category in %@", searchText, ["User"])
                 self.items = realm.objects(UserItem.self).filter(predicate)
                 searchLocationsResults.reloadData()
+                print("seaech users")
+                print(self.items!)
             } else {
                 searchLocationsResults.isHidden = true
                 self.items = realm.objects(UserItem.self).filter("Category in %@", ["User"])
                 searchLocationsResults.reloadData()
+                print("seaech empty")
+                print(self.items)
             }
+            searchLocationsResults.reloadData()
         }
     }
     
@@ -219,18 +225,22 @@ extension CreateTaskViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if searchBar == self.locationSearchBar {
             p = 0
+            searchLocationsResults.reloadData()
+
         }
         else {
             p = 1
+            searchLocationsResults.reloadData()
+
         }
         searchLocationsResults.isHidden = true
-        searchLocationsResults.reloadData()
-        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchLocationsResults.isHidden = true
+        searchLocationsResults.reloadData()
+
     }
 }
 
@@ -250,16 +260,19 @@ extension CreateTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if p == 0 {
+            print(searchResults.count)
             return searchResults.count
         }
         else {
+            
+            print(self.items!.count)
             return self.items!.count
         }
     }
     
     func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        let item = self.items![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
+        let item = self.items![indexPath.row]
         cell.selectionStyle = .none
         cell.textLabel?.text = item.Name
         cell.tintColor = .white
@@ -274,8 +287,8 @@ extension CreateTaskViewController: UITableViewDataSource {
     }
     
     func addLocationCell(_ indexPath: IndexPath, _ tableView: UITableView) -> UITableViewCell {
-        let searchResult = searchResults[indexPath.row]
         let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "locationCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "locationCell")
+        let searchResult = searchResults[indexPath.row]
         cell.backgroundColor = Themes.current.background
         cell.selectionStyle = .none
         cell.tintColor = .white
@@ -289,12 +302,15 @@ extension CreateTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if p == 0 {
+            print("Location: Cell For Row At.")
             return addLocationCell(indexPath, searchLocationsResults)
     }
         else if p == 1{
+            print("User: Cell For Row At.")
             return addTableCell(searchLocationsResults, indexPath)
         }
         else {
+            print("Else: Cell For Row At.")
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
             return cell
         }
@@ -304,8 +320,6 @@ extension CreateTaskViewController: UITableViewDataSource {
 extension CreateTaskViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
         if p == 0 {
             let completion = searchResults[indexPath.row]
             let searchRequest = MKLocalSearch.Request(completion: completion)
@@ -321,13 +335,13 @@ extension CreateTaskViewController: UITableViewDelegate {
     }
         else if p == 1 {
             searchLocationsResults.reloadData()
-            let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
-            usersSearchBar.text = cell.textLabel!.text
-            self.sharedUserName = cell.textLabel!.text!
-            self.sharedUserID = cell.detailTextLabel!.text!
+            let cell = self.items![indexPath.row]
+//            let cell = searchLocationsResults.dequeueReusableCell(withIdentifier: "userCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "userCell")
+            usersSearchBar.text = cell.Name
             print(cell)
             print(self.sharedUserName)
             print(self.sharedUserID)
+            print(self.items!)
         }
     }
 }
