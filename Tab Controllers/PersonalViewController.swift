@@ -47,7 +47,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        //let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: Constants.newLifeSC, searchBar: searchBar)

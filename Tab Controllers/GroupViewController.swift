@@ -40,7 +40,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        //let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         searchBar.keyboardAppearance = .dark
@@ -49,7 +49,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         addNotificationToken(items: items, notificationToken: notificationToken)
         setUpSearchBar(searchBar: searchBar)
-        addNavBar([sideBar,add],[logout],scoreCategory: Constants.groupScoreCategory)
+        addNavBar([sideBar],[add],scoreCategory: Constants.groupScoreCategory)
         addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
