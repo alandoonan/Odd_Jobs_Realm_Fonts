@@ -47,12 +47,12 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+        let addLifeTask = UIBarButtonItem(image: #imageLiteral(resourceName: "happy").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(addLifeTaskPassThrough))
+        let addPersonalTask = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: Constants.newLifeSC, searchBar: searchBar)
         //addNavBar([sideBar, add], [logout], scoreCategory: Constants.personalScoreCategory)
-        addNavBar([sideBar], [add], scoreCategory: Constants.personalScoreCategory)
+        addNavBar([sideBar], [addPersonalTask, addLifeTask], scoreCategory: Constants.personalScoreCategory)
         searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
@@ -171,6 +171,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     //MARK: Selector/Action Functions
     @objc func addTaskPassThrough() {
         showStoryBoardView(storyBoardID: "CreateTaskViewController")
+        //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
+    }
+    @objc func addLifeTaskPassThrough() {
+        showStoryBoardView(storyBoardID: "LifeTaskViewController")
         //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
     }
 }

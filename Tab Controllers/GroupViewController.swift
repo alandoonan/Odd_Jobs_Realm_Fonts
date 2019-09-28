@@ -40,16 +40,17 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
+        let addGroupTask = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
         addNotificationToken(items: items, notificationToken: notificationToken)
         setUpSearchBar(searchBar: searchBar)
-        addNavBar([sideBar],[add],scoreCategory: Constants.groupScoreCategory)
+        addNavBar([sideBar],[addGroupTask],scoreCategory: Constants.groupScoreCategory)
         addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
@@ -105,11 +106,12 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard editingStyle == .delete else { return }
         deleteOddJob(indexPath, realm: realm, items: items)
     }
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
             print("Swiping")
-            //self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items, themes: self.themes, scoreItem: self.scoreItem, tableView: self.tableView)
+            self.doneGroupOddJob(indexPath, realm: self.realm, items: self.items, tableView: self.tableView)
         }
         done.backgroundColor = Themes.current.done
         let config = UISwipeActionsConfiguration(actions: [done])
@@ -134,6 +136,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //MARK: Selector/Action Functions
     @objc func addTaskPassThrough() {
-        addTaskAlert(realm: realm,scoreCategory: Constants.groupScoreCategory)
+        showStoryBoardView(storyBoardID: "CreateTaskViewController")
     }
 }

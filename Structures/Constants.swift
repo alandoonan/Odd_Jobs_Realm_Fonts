@@ -57,6 +57,7 @@ struct Constants {
     static let summaryGroupTaskFilter = "Category in[c] %@ and IsDone == false"
     static let summaryGroupDoneTaskFilter = "Category in[c] %@ and IsDone == true"
     static let groupTaskFilter = "Category in[c] %@ and IsDone == false and SharedWith CONTAINS[c] %@"
+    static let groupTaskDoneFilter = "Category in[c] %@ and IsDone == true and SharedWith CONTAINS[c] %@"
     
     //Search Filter
     static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false and SharedWith CONTAINS[c] %@"

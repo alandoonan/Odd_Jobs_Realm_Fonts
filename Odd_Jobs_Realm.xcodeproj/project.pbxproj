@@ -113,6 +113,8 @@
 		81E0B92823280A1F003AE595 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92723280A1F003AE595 /* users.png */; };
 		81E0B92A23280A50003AE595 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92923280A50003AE595 /* logout.png */; };
 		81E0B92E23281581003AE595 /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92D23281581003AE595 /* task.png */; };
+		81E1820F233FBDE900D05B0B /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E1820E233FBDE800D05B0B /* happy.png */; };
+		81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -230,6 +232,8 @@
 		81E0B92723280A1F003AE595 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		81E0B92923280A50003AE595 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		81E0B92D23281581003AE595 /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
+		81E1820E233FBDE800D05B0B /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy.png; sourceTree = "<group>"; };
+		81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupArchiveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				81208ABB2303386C00F6548E /* MenuOption.swift */,
+				81208AE62312C5D700F6548E /* DropDownCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,9 +346,8 @@
 			children = (
 				816B8B0922D220B900C630B9 /* PersonalViewController.swift */,
 				8128598422D3D73500F1A406 /* GroupViewController.swift */,
-				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
-				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 				81E0B91723252D98003AE595 /* DoneViewController.swift */,
+				81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */,
 			);
 			path = "Tab Controllers";
 			sourceTree = "<group>";
@@ -492,7 +496,6 @@
 				81208AC02303397E00F6548E /* MenuController.swift */,
 				81208ACE2308612B00F6548E /* SearchUsersViewController.swift */,
 				81208AD5230DA66400F6548E /* OddJobViewController.swift */,
-				81208AE62312C5D700F6548E /* DropDownCell.swift */,
 				81208AE82312DFD900F6548E /* LifeTaskViewController.swift */,
 				8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */,
 			);
@@ -502,6 +505,8 @@
 		8192CCE022E8ECB1001AC3A9 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
+				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 				8125F39123258317004869CA /* Trash.swift */,
 				8192CCE122E8ECBD001AC3A9 /* home.gpx */,
 			);
@@ -526,6 +531,7 @@
 				81E0B92923280A50003AE595 /* logout.png */,
 				8125F393232ACC50004869CA /* lifetask.png */,
 				81E0B92723280A1F003AE595 /* users.png */,
+				81E1820E233FBDE800D05B0B /* happy.png */,
 				81E0B92523280961003AE595 /* location.png */,
 				81E0B92323280810003AE595 /* oddjobs.png */,
 				81E0B921232807A1003AE595 /* themes.png */,
@@ -647,6 +653,7 @@
 				8125F38A23205075004869CA /* clear_logo 2.png in Resources */,
 				81208AC62305C28C00F6548E /* Launchscreen_NO_CR.png in Resources */,
 				8132C35722E2506D00EC79F2 /* iPhone Spotlight 40pt@2x.png in Resources */,
+				81E1820F233FBDE900D05B0B /* happy.png in Resources */,
 				8132C35E22E2506D00EC79F2 /* App Store iOS.png in Resources */,
 				81E0B922232807A1003AE595 /* themes.png in Resources */,
 				811B21C822FF4187007425C0 /* settings.png in Resources */,
@@ -768,6 +775,7 @@
 				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
 				810319332332B1A700D34AFB /* CreateTaskExtensions.swift in Sources */,
 				81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */,
+				81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */,
 				810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */,
 				81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */,
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,

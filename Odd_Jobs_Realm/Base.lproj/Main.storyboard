@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -284,16 +282,19 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Q9b-A3-wVW" firstAttribute="height" secondItem="EwA-LU-KHm" secondAttribute="height" id="Rwh-Ok-9p4"/>
+                                                    <constraint firstItem="pBw-I6-xlh" firstAttribute="height" secondItem="Q9b-A3-wVW" secondAttribute="height" id="iHi-8c-qwN"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GW7-6F-OGb">
                                         <rect key="frame" x="0.0" y="240" width="414" height="327"/>
-                                        <color key="backgroundColor" red="0.18575608730000001" green="0.24224075680000001" blue="0.30982089039999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="separatorColor" red="0.9074763656" green="0.33993718029999997" blue="0.049518369139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="29w-DH-rxa" style="IBUITableViewCellStyleDefault" id="qa0-5W-4a0">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qa0-5W-4a0" id="WX4-Cw-e0f">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -308,7 +309,6 @@
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -379,6 +379,7 @@
                             <constraint firstItem="xOV-xl-rbP" firstAttribute="leading" secondItem="90J-Pf-Ag2" secondAttribute="trailing" constant="2" id="Nbo-zy-ctK"/>
                             <constraint firstItem="cHh-Su-JuP" firstAttribute="top" secondItem="2uH-M6-mzk" secondAttribute="bottom" constant="23" id="Nmy-5v-JhH"/>
                             <constraint firstItem="2uH-M6-mzk" firstAttribute="leading" secondItem="uBV-Wm-Hbu" secondAttribute="leadingMargin" id="PPC-TW-FS7"/>
+                            <constraint firstItem="EwA-LU-KHm" firstAttribute="top" secondItem="Joq-oU-P4w" secondAttribute="top" constant="141" id="Qek-7U-8IG"/>
                             <constraint firstItem="6QQ-hQ-Q3x" firstAttribute="top" secondItem="Joq-oU-P4w" secondAttribute="top" id="SOo-mK-AAf"/>
                             <constraint firstItem="6QQ-hQ-Q3x" firstAttribute="centerX" secondItem="cHh-Su-JuP" secondAttribute="centerX" id="WLg-G8-Wen"/>
                             <constraint firstItem="90J-Pf-Ag2" firstAttribute="baseline" secondItem="xOV-xl-rbP" secondAttribute="firstBaseline" id="Ykz-T2-pX8"/>
@@ -387,6 +388,7 @@
                             <constraint firstAttribute="trailing" secondItem="cHh-Su-JuP" secondAttribute="trailing" id="ajD-rg-h1a"/>
                             <constraint firstItem="Joq-oU-P4w" firstAttribute="bottom" secondItem="pBw-I6-xlh" secondAttribute="bottom" constant="445" id="fDj-sU-ubP"/>
                             <constraint firstItem="90J-Pf-Ag2" firstAttribute="bottom" secondItem="Joq-oU-P4w" secondAttribute="bottom" id="j9j-vV-3aX"/>
+                            <constraint firstItem="pBw-I6-xlh" firstAttribute="leading" secondItem="Joq-oU-P4w" secondAttribute="leading" id="oDP-By-Oci"/>
                             <constraint firstItem="cHh-Su-JuP" firstAttribute="leading" secondItem="uBV-Wm-Hbu" secondAttribute="leading" id="odO-Wq-mE2"/>
                             <constraint firstItem="6QQ-hQ-Q3x" firstAttribute="leading" secondItem="Joq-oU-P4w" secondAttribute="leading" constant="171" id="uMB-l2-8fs"/>
                         </constraints>
@@ -423,7 +425,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HjG-I4-xjd">
-                                <rect key="frame" x="7" y="143" width="400" height="31"/>
+                                <rect key="frame" x="7" y="143" width="400" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -464,22 +466,22 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMd-3B-IMa">
-                                <rect key="frame" x="7" y="182" width="400" height="31"/>
+                                <rect key="frame" x="7" y="186" width="400" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Priority" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDe-c8-44g">
-                                <rect key="frame" x="7" y="221" width="400" height="31"/>
+                                <rect key="frame" x="7" y="229" width="400" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQM-fx-1rf">
-                                <rect key="frame" x="7" y="260" width="400" height="31"/>
+                                <rect key="frame" x="7" y="272" width="400" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Add Location" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-s0-Z4H">
-                                <rect key="frame" x="0.0" y="299" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="315" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="LGs-JF-aoh"/>
                                 </constraints>
@@ -492,7 +494,7 @@
                                 <rect key="frame" x="171" y="44" width="73" height="66"/>
                             </imageView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Add Users" translatesAutoresizingMaskIntoConstraints="NO" id="bxb-dj-8Ve">
-                                <rect key="frame" x="0.0" y="343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="359" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gq5-Sv-bJk"/>
                                 </constraints>
@@ -503,7 +505,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kN4-cb-LA5">
-                                <rect key="frame" x="0.0" y="387" width="414" height="392"/>
+                                <rect key="frame" x="0.0" y="403" width="414" height="376"/>
                                 <color key="backgroundColor" red="0.18575608730000001" green="0.24224075680000001" blue="0.30982089039999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" red="0.9074763656" green="0.33993718029999997" blue="0.049518369139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>

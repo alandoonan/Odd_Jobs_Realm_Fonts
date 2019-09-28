@@ -82,9 +82,13 @@ class SideBarController: UIViewController {
             print("Lists")
             let tabBar = HomeViewController()
             present(tabBar, animated: true, completion: nil)
-        case .Archive:
-            print("Archive")
+        case .PersonalArchive:
+            print("Personal Archive}")
             let controller = DoneViewController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .GroupArchive:
+            print("Group Archive}")
+            let controller = GroupArchiveViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .Score:
             print("Score")
@@ -101,12 +105,12 @@ class SideBarController: UIViewController {
             print("Users")
             let controller = SearchUsersViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .CreateLifeTask:
-            print("Create Life Task")
-            showStoryBoardView(storyBoardID: "LifeTaskViewController")
-        case .CreateTask:
-            print("Create Task")
-            showStoryBoardView(storyBoardID: "CreateTaskViewController")
+//        case .CreateLifeTask:
+//            print("Create Life Task")
+//            showStoryBoardView(storyBoardID: "LifeTaskViewController")
+//        case .CreateTask:
+//            print("Create Task")
+//            showStoryBoardView(storyBoardID: "CreateTaskViewController")
         case .Logout:
             print("Log Out")
             logOutButtonPress()

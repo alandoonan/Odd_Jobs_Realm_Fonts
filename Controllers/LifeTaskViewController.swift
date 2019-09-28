@@ -124,6 +124,8 @@ extension LifeTaskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = Constants.taskData[p][indexPath.row]
+        cell.textLabel?.textColor = Themes.current.accent
+        cell.backgroundColor = .clear
         return cell
     }
     

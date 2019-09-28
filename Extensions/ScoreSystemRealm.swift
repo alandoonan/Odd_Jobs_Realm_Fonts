@@ -30,6 +30,15 @@ extension UIViewController {
             }
         }
     }
+    
+    // MARK: Task Completion Actions
+    func doneGroupOddJob(_ indexPath: IndexPath, realm: Realm, items: Results<OddJobItem>, tableView: UITableView) {
+        let item = items[indexPath.row]
+        try! realm.write {
+            item.IsDone = !item.IsDone
+        }
+    }
+    
     // MARK: Task Completion Actions
     func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>, tableView: UITableView) {
         let item = items[indexPath.row]
