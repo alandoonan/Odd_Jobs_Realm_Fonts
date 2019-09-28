@@ -16,15 +16,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     
     fileprivate func storeUserInformation(username: String) {
+        print("Storing User Information")
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         let realm = try! Realm(configuration: config!)
         print(realm)
         let item = UserItem()
         item.UserID = (SyncUser.current?.identity!)!
         item.Name = username
-        item.Category = "User"
         try! realm.write {
             realm.add(item)
+            print("User Added")
+            print(item)
         }
     }
     
@@ -44,13 +46,13 @@ class LoginViewController: UIViewController {
         let creds = SyncCredentials.usernamePassword(username: username, password: password, register: false)
         SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
             if let _ = user {
-                self?.navigationController?.pushViewController(HomeViewController(), animated: true)
                 print(username + " has logged in with password " + password)
                 if username == "alandoonan" {
                     self!.openSharedRealm()
                     self!.logOutButtonPress()
                 }
                 self?.transition()
+                self?.navigationController?.pushViewController(HomeViewController(), animated: true)
             }
             else if let error = err {
                 print("Error Logging In.")
@@ -103,6 +105,7 @@ class LoginViewController: UIViewController {
         SyncUser.current?.apply(permission) { error in
           if let error = error {
             // handle error
+            print("ERROR ERROR ERROR ERROR")
             print(error)
             return
           }

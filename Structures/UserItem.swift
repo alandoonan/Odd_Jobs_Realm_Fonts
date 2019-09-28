@@ -13,7 +13,7 @@ class UserItem: Object {
     @objc dynamic var UserTag: String = UUID().uuidString
     @objc dynamic var UserID: String = ""
     @objc dynamic var Name: String = ""
-    @objc dynamic var Category: String = ""
+    @objc dynamic var Category = "User"
     override static func primaryKey() -> String? {
         return "UserTag"
 }

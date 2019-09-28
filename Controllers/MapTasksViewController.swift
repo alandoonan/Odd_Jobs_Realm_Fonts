@@ -29,9 +29,12 @@ class MapTasksViewController: UIViewController {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         let realm = try! Realm(configuration: config!)
         let mapItems = realm.objects(OddJobItem.self).filter("Category in %@ and IsDone == false", Constants.listTypes)
+        let sharedConfig = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
+        let realm2 = try! Realm(configuration: sharedConfig!)
+        let sharedItems = realm2.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,SyncUser.current?.identity!)
         checkLocationServices()
         populateMap(mapItems)
-        
+        populateMap(sharedItems)
         view.backgroundColor = Themes.current.background
         UINavigationBar.appearance().barTintColor = Themes.current.background
         mapView.backgroundColor = Themes.current.background

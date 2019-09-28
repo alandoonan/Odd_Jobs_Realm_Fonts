@@ -16,7 +16,7 @@ class HomeViewControllerTest: UIViewController {
     var delegate: HomeControllerDelegate?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
         super.init(nibName: nil, bundle: nil)
     }

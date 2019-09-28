@@ -37,6 +37,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        tableView.reloadData()
         applyThemeView(view)
     }
     

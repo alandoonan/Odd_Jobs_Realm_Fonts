@@ -24,7 +24,7 @@ class OddJobItem: Object {
     @objc dynamic var Longitude = 0.0
     @objc dynamic var DueDate = ""
     @objc dynamic var User = ""
-    let SharedWith = List<String>()
+    @objc dynamic var SharedWith = ""
     override static func primaryKey() -> String? {
         return "itemId"
     }

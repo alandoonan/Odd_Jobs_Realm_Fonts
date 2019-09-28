@@ -15,7 +15,6 @@ struct Constants {
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
     static let ODDJOBS_REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
     static let ODDJOBS_REALM_USERS_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/Oddjobs_Users")!
-    static let ODDJOBS_REALM_OTHER_USER_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/~/Oddjobs")!
     
     //Testing Realm Share
     static let ODDJOBS_TEST_SHARE_TASK_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/7be9e24f2eb5b04e28439f886dbdd444/Oddjobs")!
@@ -57,13 +56,14 @@ struct Constants {
     static let taskDoneFilter = "Category in[c] %@ and IsDone == true AND User in [c] %@"
     static let summaryGroupTaskFilter = "Category in[c] %@ and IsDone == false"
     static let summaryGroupDoneTaskFilter = "Category in[c] %@ and IsDone == true"
+    static let groupTaskFilter = "Category in[c] %@ and IsDone == false and SharedWith CONTAINS[c] %@"
     
     //Search Filter
-    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false"
+    static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false and SharedWith CONTAINS[c] %@"
     static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true"
     
     //Cell Fields
-    static let cellFields = ["Location","Occurence","Due Date","User"]
+    static let cellFields = ["Location","Occurence","Due Date","Shared By"]
     static let doneSwipe = "Done"
     static let undoneSwipe = "Undone"
     

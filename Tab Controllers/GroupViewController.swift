@@ -14,18 +14,18 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
     var notificationToken: NotificationToken?
-    let themes: Results<ThemeItem>
-    let scoreItem: Results<ScoreItem>
+//    let themes: Results<ThemeItem>
+//    let scoreItem: Results<ScoreItem>
     let tableView = UITableView()
     var searchBar = UISearchBar()
 
     // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.summaryGroupTaskFilter, Constants.groupScoreCategory)
-        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
-        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
+        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,SyncUser.current?.identity!)
+//        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
+//        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -108,23 +108,25 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
-            self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items, themes: self.themes, scoreItem: self.scoreItem, tableView: self.tableView)
+            print("Swiping")
+            //self.doneOddJob(indexPath, value: Constants.increaseScore, realm: self.realm, items: self.items, themes: self.themes, scoreItem: self.scoreItem, tableView: self.tableView)
         }
         done.backgroundColor = Themes.current.done
         let config = UISwipeActionsConfiguration(actions: [done])
         config.performsFirstActionWithFullSwipe = false
         return config
+//    }
     }
     
     //MARK: Search Bar Functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.groupScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.groupScoreCategory, (SyncUser.current?.identity)!)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.groupScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+            self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory, (SyncUser.current?.identity)!)
             tableView.reloadData()
         }
         tableView.reloadData()
