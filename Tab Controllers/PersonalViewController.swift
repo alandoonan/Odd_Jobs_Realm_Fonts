@@ -29,7 +29,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.personalScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+        self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.newLifeSC, [UserDefaults.standard.string(forKey: "Name") ?? ""])
         self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
         self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
@@ -44,13 +44,15 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         super.viewDidAppear(true)
         applyTheme(tableView,view)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
-        addSearchBar(scoreCategory: Constants.personalScoreCategory, searchBar: searchBar)
-        addNavBar([sideBar, add], [logout], scoreCategory: Constants.personalScoreCategory)
+        addSearchBar(scoreCategory: Constants.newLifeSC, searchBar: searchBar)
+        //addNavBar([sideBar, add], [logout], scoreCategory: Constants.personalScoreCategory)
+        addNavBar([sideBar], [add], scoreCategory: Constants.personalScoreCategory)
         searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
@@ -156,11 +158,11 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.personalScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+            let predicate = NSPredicate(format:Constants.lifeSearchFilter, searchText, searchText, Constants.personalScoreCategory, (SyncUser.current?.identity)!)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.personalScoreCategory, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+            self.items = realm.objects(OddJobItem.self).filter(Constants.taskFilter, Constants.newLifeSC, [UserDefaults.standard.string(forKey: "Name") ?? ""])
             tableView.reloadData()
         }
         tableView.reloadData()

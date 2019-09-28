@@ -61,6 +61,7 @@ struct Constants {
     //Search Filter
     static let searchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false and SharedWith CONTAINS[c] %@"
     static let doneSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == true"
+    static let lifeSearchFilter = "(Name CONTAINS[c] %@ OR Occurrence CONTAINS[c] %@) AND Category in %@ AND IsDone == false"
     
     //Cell Fields
     static let cellFields = ["Location","Occurence","Due Date","Shared By"]
@@ -77,6 +78,8 @@ struct Constants {
     static let groupScoreCategory = ["Group"]
     static let lifeScoreCategory = ["Life"]
     static let workScoreCategory = ["Work"]
+    
+    static let newLifeSC = ["Personal","Life"]
     
     //Task Data
     static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],

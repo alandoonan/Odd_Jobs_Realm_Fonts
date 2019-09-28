@@ -33,9 +33,11 @@ class HomeViewController: UITabBarController {
         tab.title = title
     }
     
-    fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController) {
+    fileprivate func setupView(_ groupTab: UINavigationController, _ personalTab: UINavigationController) {
+        //, _ lifeTab: UINavigationController, _ summaryTab: UINavigationController) {
         self.view.backgroundColor = Themes.current.background
-        viewControllers = [summaryTab,personalTab,lifeTab,groupTab]
+        //viewControllers = [summaryTab,personalTab,lifeTab,groupTab]
+        viewControllers = [personalTab,groupTab]
     }
     
     override func viewDidLoad() {
@@ -45,7 +47,8 @@ class HomeViewController: UITabBarController {
         setupTabBarButton(tab: groupTab, image:#imageLiteral(resourceName: "users").withRenderingMode(.automatic), title: "Group")
         setupTabBarButton(tab: lifeTab, image:#imageLiteral(resourceName: "lifetask").withRenderingMode(.automatic), title: "Life")
         setupTabBarButton(tab: summaryTab, image:#imageLiteral(resourceName: "oddjobs").withRenderingMode(.automatic), title: "Summary")
-        setupView(groupTab, personalTab, lifeTab, summaryTab)
+        //setupView(groupTab, personalTab, lifeTab, summaryTab)
+        setupView(groupTab, personalTab)
         applyThemeView(view)
     }
     
