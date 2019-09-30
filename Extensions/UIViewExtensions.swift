@@ -52,6 +52,18 @@ extension UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
     
+    func presentTaskCreateController(storyBoardID: String, taskType: String) {
+        print("Go to Storyboard Button Pressed")
+        print(taskType)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: storyBoardID)
+        if let controller = storyboard.instantiateViewController(withIdentifier: storyBoardID) as? CreateTaskViewController {
+            controller.taskType = taskType
+            self.present(controller, animated: true)
+        }
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }

@@ -28,6 +28,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var notificationToken: NotificationToken?
     var sharedUserName = ""
     //var sharedUserID = ""
+    var taskType = ""
     var sharedUserList = [String]()
 
     @IBOutlet weak var locationSearchBar: UISearchBar!
@@ -52,6 +53,8 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        print("Task type from other view")
+        print(taskType)
         applyThemeView(view)
     }
     
@@ -64,8 +67,14 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Task type from other view")
+        print(taskType)
         p = 0
-        usersSearchBar.isHidden = true
+        if taskType == "Personal" {
+            usersSearchBar.isHidden = true
+        }
+        categoryTextField.text = taskType
+        categoryTextField.backgroundColor = Themes.current.accent
         //view.backgroundColor = Themes.current.background
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
         searchLocationsResults.separatorStyle = .none

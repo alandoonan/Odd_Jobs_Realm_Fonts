@@ -1,31 +1,38 @@
 //
-//  ItemsViewController.swift
+//  GroupArchiveViewController.swift
 //  Odd_Jobs_Realm
 //
-//  Created by Alan Doonan on 07/07/2019.
+//  Created by Alan Doonan on 28/09/2019.
 //  Copyright © 2019 Alan Doonan. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
-class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
+import RealmSearchViewController
+import RSSelectionMenu
+class GroupArchiveViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource
 {
-    let realm: Realm
+    
+    // Class Variables
+    var userID = SyncUser.current?.identity
+    var realm: Realm
     var items: Results<OddJobItem>
     var sorts : Results<OddJobItem>!
+    let themes: Results<ThemeItem>
+    let scoreItem: Results<ScoreItem>
+    var scoreVC = ScoreViewController()
     var notificationToken: NotificationToken?
-//    let themes: Results<ThemeItem>
-//    let scoreItem: Results<ScoreItem>
-    let tableView = UITableView()
+    var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
-
-    // MARK: Initialize & View Did Load Functions
+    let tableView = UITableView()
+    
+    // Initialize Realm
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,SyncUser.current?.identity!)
-//        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
-//        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
+        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskDoneFilter, Constants.listTypes, userID!)
+        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -34,40 +41,36 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     deinit {
         notificationToken?.invalidate()
     }
+    
+    // View Load & Appear
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyTheme(tableView,view)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
-        let addGroupTask = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
-        searchBar.keyboardAppearance = .dark
+        addSearchBar(scoreCategory: Constants.archiveScoreCategory, searchBar: searchBar)
+        addNavBar([sideBar], [logout], scoreCategory: Constants.archiveScoreCategory)
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
-        addNotificationToken(items: items, notificationToken: notificationToken)
+        addNotificationToken()
         setUpSearchBar(searchBar: searchBar)
-        addNavBar([sideBar],[addGroupTask],scoreCategory: Constants.groupScoreCategory)
-        addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
         hideKeyboardWhenTappedAround()
 
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.preferredStatusBarStyle
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     
-    // MARK: Notification Token
-    func addNotificationToken(items: Results<OddJobItem>, notificationToken: NotificationToken?) {
-        self.notificationToken = items.observe { [weak self] (changes) in
+    //Add UI & Customization Functions
+    fileprivate func addNotificationToken() {
+        notificationToken = items.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
@@ -87,57 +90,52 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    // MARK: TableView Functions
-    // MARK: This is in all classes (REFACTOR)
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Themes.current.preferredStatusBarStyle
     }
     
+    // Realm Class Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
+    func addTableCell(_ tableView: UITableView, _ indexPath: IndexPath, _ cellFields:[String]) -> UITableViewCell {
+        let item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cellSetup(cell, item, Constants.cellFields)
+        return cell
     }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return addTableCell(tableView, indexPath, Constants.cellFields)
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         deleteOddJob(indexPath, realm: realm, items: items)
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
+        let done = UIContextualAction(style: .normal, title: Constants.undoneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
-            print("Swiping")
-            self.doneGroupOddJob(indexPath, realm: self.realm, items: self.items, tableView: self.tableView)
+            self.doneGroupOddJob(indexPath, realm: self.realm, items: self.items, tableView: tableView)
         }
-        done.backgroundColor = Themes.current.done
+        done.backgroundColor = Themes.current.undone
         let config = UISwipeActionsConfiguration(actions: [done])
         config.performsFirstActionWithFullSwipe = false
         return config
-//    }
     }
-    
-    //MARK: Search Bar Functions
+}
+
+extension GroupArchiveViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.groupScoreCategory, (SyncUser.current?.identity)!)
+            let predicate = NSPredicate(format:Constants.doneSearchFilter, searchText, searchText, Constants.listTypes)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory, (SyncUser.current?.identity)!)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.summaryGroupDoneTaskFilter, Constants.listTypes)
             tableView.reloadData()
         }
         tableView.reloadData()
-    }
-    
-    //MARK: Selector/Action Functions
-    @objc func addTaskPassThrough() {
-        //showStoryBoardView(storyBoardID: "CreateTaskViewController")
-        presentTaskCreateController(storyBoardID: "CreateTaskViewController", taskType: "Group")
-
     }
 }

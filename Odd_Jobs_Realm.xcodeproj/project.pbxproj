@@ -441,6 +441,7 @@
 				8192CCE022E8ECB1001AC3A9 /* Other */,
 				81208AC92308558100F6548E /* Extensions */,
 				81208ACB2308564800F6548E /* Tab Controllers */,
+				81E18214234270AC00D05B0B /* Task Controllers */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
 				816B8AEE22D21EB200C630B9 /* Odd_Jobs_Realm */,
@@ -496,8 +497,6 @@
 				81208AC02303397E00F6548E /* MenuController.swift */,
 				81208ACE2308612B00F6548E /* SearchUsersViewController.swift */,
 				81208AD5230DA66400F6548E /* OddJobViewController.swift */,
-				81208AE82312DFD900F6548E /* LifeTaskViewController.swift */,
-				8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -551,6 +550,15 @@
 				811B216122FF3EC9007425C0 /* G.png */,
 			);
 			path = "Tab Bar Icons";
+			sourceTree = "<group>";
+		};
+		81E18214234270AC00D05B0B /* Task Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				81208AE82312DFD900F6548E /* LifeTaskViewController.swift */,
+				8125F37F231DA1F4004869CA /* CreateTaskViewController.swift */,
+			);
+			path = "Task Controllers";
 			sourceTree = "<group>";
 		};
 		FB1B6878DEC4E8D1201CE6FE /* Frameworks */ = {

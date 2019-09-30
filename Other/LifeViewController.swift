@@ -18,10 +18,7 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let scoreItem: Results<ScoreItem>
     let loginVC = LoginViewController()
     var notificationToken: NotificationToken?
-    var holidayDictionary:[String:String] = [:]
     let tableView = UITableView()
-    let calendar = Calendar.current
-    let date = Date()
     var searchBar = UISearchBar()
     
     // MARK: Initialize & View Did Load Functions
@@ -49,7 +46,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         searchBar.keyboardAppearance = .dark
-        getHolidayData()
         addSearchBar(scoreCategory: Constants.lifeScoreCategory, searchBar: searchBar)
         addNavBar([sideBar, add], [logout], scoreCategory: Constants.lifeScoreCategory)
         tableView.addTableView(tableView, view)
@@ -108,35 +104,6 @@ class LifeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func addTaskPassThrough() {
         showStoryBoardView(storyBoardID: "LifeTaskViewController")
-    }
-    
-    //MARK: Holiday API Functions
-    func getHolidayData () {
-        print("Getting Holiday Data")
-        let locale = Locale.current.regionCode!
-        print(locale)
-        let params = [
-            "key": HolidayItem.key,
-            "country": "IE",
-            "year" : HolidayItem.year,
-            "upcoming" : HolidayItem.upcoming,
-            "pretty": HolidayItem.pretty,
-            "public": false,
-            "month" : calendar.component(.month, from: date)
-            ] as [String : Any]
-        Alamofire.request(HolidayItem.url!, parameters: params).responseJSON { response in
-            if let result = response.result.value {
-                let json = JSON(result)
-                for holiday in json["holidays"].arrayValue
-                {
-                    if  let name = holiday["name"].string,
-                        let date = holiday["date"].string {
-                        self.holidayDictionary[name] = date
-                    }
-                }
-                self.addHolidayData(holidayDictionary: self.holidayDictionary, realm: self.realm)
-            }
-        }
     }
     
     // MARK: TableView Functions

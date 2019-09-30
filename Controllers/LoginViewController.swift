@@ -51,6 +51,8 @@ class LoginViewController: UIViewController {
                     self!.openSharedRealm()
                     self!.logOutButtonPress()
                 }
+                self!.checkingScoreSystem()
+                self!.getHolidayData()
                 self?.transition()
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
             }

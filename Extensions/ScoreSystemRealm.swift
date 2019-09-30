@@ -12,8 +12,13 @@ import RealmSwift
 extension UIViewController {
     
     // MARK: Creating Score Item
-    func checkingScoreSystem(realm: Realm) {
+    func checkingScoreSystem() {
+        var scoreItem: Results<ScoreItem>
+        let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
+        let realm = try! Realm(configuration: config!)
+        scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         print("Checking Scoring System.")
+        print(realm.objects(ScoreItem.self).count)
         if realm.objects(ScoreItem.self).count != 0
         {
             print("Score already exists.")

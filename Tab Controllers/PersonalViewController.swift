@@ -170,7 +170,8 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     
     //MARK: Selector/Action Functions
     @objc func addTaskPassThrough() {
-        showStoryBoardView(storyBoardID: "CreateTaskViewController")
+        presentTaskCreateController(storyBoardID: "CreateTaskViewController", taskType: "Personal")
+        //showStoryBoardView(storyBoardID: "CreateTaskViewController")
         //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
     }
     @objc func addLifeTaskPassThrough() {

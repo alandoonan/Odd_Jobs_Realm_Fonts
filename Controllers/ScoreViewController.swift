@@ -43,7 +43,7 @@ class ScoreViewController: UIViewController {
         addNavBar([sideBar], [logout],scoreCategory: [""])
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationItem.title = "Score"
-        checkingScoreSystem(realm: realm)
+        checkingScoreSystem()
         setupCircleLayers()
         let (userLabel,levelLabel,categoryLabel,totalScoreLabel) = setupUserLabels()
         animateCircle(category: "Life", userLabel: userLabel, levelLabel: levelLabel, categoryLabel: categoryLabel, totalScoreLabel: totalScoreLabel)
