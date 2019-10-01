@@ -115,17 +115,6 @@ extension UIViewController {
         }
     }
     
-    @objc func logOutButtonPress() {
-        let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
-        alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
-            alert -> Void in
-            SyncUser.current?.logOut()
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertController, animated: false, completion: nil)
-    }
-    
     func addSearchBar(scoreCategory: [String], searchBar: UISearchBar) {
         navigationItem.titleView = searchBar
         searchBar.showsScopeBar = false

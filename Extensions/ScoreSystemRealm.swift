@@ -18,6 +18,7 @@ extension UIViewController {
         let realm = try! Realm(configuration: config!)
         scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         print("Checking Scoring System.")
+        print(scoreItem)
         print(realm.objects(ScoreItem.self).count)
         if realm.objects(ScoreItem.self).count != 0
         {

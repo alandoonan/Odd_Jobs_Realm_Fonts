@@ -18,12 +18,14 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //    let scoreItem: Results<ScoreItem>
     let tableView = UITableView()
     var searchBar = UISearchBar()
+    var userID = SyncUser.current?.identity
+
 
     // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,SyncUser.current?.identity!)
+        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,userID!)
 //        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
 //        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)

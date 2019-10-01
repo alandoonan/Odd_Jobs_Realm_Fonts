@@ -115,6 +115,7 @@
 		81E0B92E23281581003AE595 /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92D23281581003AE595 /* task.png */; };
 		81E1820F233FBDE900D05B0B /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E1820E233FBDE800D05B0B /* happy.png */; };
 		81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */; };
+		81E182182343C03800D05B0B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E182172343C03800D05B0B /* Notifications.swift */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -234,6 +235,7 @@
 		81E0B92D23281581003AE595 /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
 		81E1820E233FBDE800D05B0B /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy.png; sourceTree = "<group>"; };
 		81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupArchiveViewController.swift; sourceTree = "<group>"; };
+		81E182172343C03800D05B0B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 				810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */,
 				810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */,
 				810319322332B1A700D34AFB /* CreateTaskExtensions.swift */,
+				81E182172343C03800D05B0B /* Notifications.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				81A91D522329815100426095 /* OddJobItem.swift in Sources */,
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
+				81E182182343C03800D05B0B /* Notifications.swift in Sources */,
 				81208AC12303397E00F6548E /* MenuController.swift in Sources */,
 				81A91D4B2328188400426095 /* UIViewExtensions.swift in Sources */,
 				811B22DF230096AD007425C0 /* Hulk.swift in Sources */,

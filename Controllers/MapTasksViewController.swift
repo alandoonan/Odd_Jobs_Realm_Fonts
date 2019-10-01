@@ -23,6 +23,8 @@ class MapTasksViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 20000
+    var userID = SyncUser.current?.identity
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,7 @@ class MapTasksViewController: UIViewController {
         let mapItems = realm.objects(OddJobItem.self).filter("Category in %@ and IsDone == false", Constants.listTypes)
         let sharedConfig = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         let realm2 = try! Realm(configuration: sharedConfig!)
-        let sharedItems = realm2.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,SyncUser.current?.identity!)
+        let sharedItems = realm2.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,userID!)
         checkLocationServices()
         populateMap(mapItems)
         populateMap(sharedItems)
