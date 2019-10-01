@@ -21,7 +21,6 @@ extension UIViewController {
         alertController.addAction(UIAlertAction(title: "Done", style: .destructive, handler: {
             alert -> Void in
             self.performSegueToReturnBack()
-            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }))
         self.present(alertController, animated: true, completion: nil)
     }
