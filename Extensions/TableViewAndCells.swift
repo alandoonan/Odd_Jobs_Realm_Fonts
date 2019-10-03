@@ -30,7 +30,7 @@ extension UIViewController {
             cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
         }
         if item.Category == "Life" && item.Occurrence == "Yearly" {
-            cell.backgroundColor = UIColor.greenTheme
+            cell.backgroundColor = UIColor.systemTeal
             cell.detailTextLabel?.text = (cellFields[2] + ": " + item.DueDate)
         }
         if item.Category == "Group" {
