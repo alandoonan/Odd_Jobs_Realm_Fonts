@@ -20,7 +20,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var searchBar = UISearchBar()
     var userID = SyncUser.current?.identity
     let viewScoreCateogry = Constants.groupScoreCategory
-    let searchFilter = Constants.searchFilter
+
+
 
     // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -98,6 +99,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             item.IsDone = !item.IsDone
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -108,6 +110,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard editingStyle == .delete else { return }
         deleteOddJob(indexPath, realm: realm, items: items)
     }
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
@@ -121,14 +124,14 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //MARK: Search Bar Functions
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String, searchFilter: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, viewScoreCateogry[0], (SyncUser.current?.identity)!)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, viewScoreCateogry, (SyncUser.current?.identity)!)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, viewScoreCateogry[0], (SyncUser.current?.identity)!)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, viewScoreCateogry, (SyncUser.current?.identity)!)
             tableView.reloadData()
         }
         tableView.reloadData()
