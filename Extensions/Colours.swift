@@ -6,7 +6,6 @@
 //  Copyright © 2019 Alan Doonan. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct Colours {
@@ -56,6 +55,10 @@ extension UIColor {
     static let purpleTheme = UIColor().hexColor("34314C")
     static let hulkTheme = UIColor().hexColor("9bc063")
     static let batmanTheme = UIColor().hexColor("FDFF00")
+    static let backgroundColor = UIColor.rgb(r: 21, g: 22, b: 33)
+    static let outlineStrokeColor = UIColor.rgb(r: 234, g: 46, b: 111)
+    static let trackStrokeColor = UIColor.rgb(r: 56, g: 25, b: 49)
+    static let pulsatingFillColor = UIColor.rgb(r: 86, g: 30, b: 63)
     
     func hexColor(_ hex : String) -> UIColor {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -70,8 +73,14 @@ extension UIColor {
         return UIColor.init(red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
                             green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0,
                             blue: CGFloat(rgb & 0x0000FF) / 255.0,
-                                          alpha: 1.0)
+                            alpha: 1.0)
+    }
+    
+    static func rgb(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
+        return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }
+
+
 
 

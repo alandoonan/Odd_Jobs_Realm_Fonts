@@ -19,13 +19,14 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let tableView = UITableView()
     var searchBar = UISearchBar()
     var userID = SyncUser.current?.identity
-
+    let viewScoreCateogry = Constants.groupScoreCategory
+    let searchFilter = Constants.searchFilter
 
     // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_USERS_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory,userID!)
+        self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, viewScoreCateogry,userID!)
 //        self.themes = realm.objects(ThemeItem.self).filter("Category contains[c] %@", "Theme")
 //        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         super.init(nibName: nil, bundle: nil)
@@ -52,8 +53,8 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         addNotificationToken(items: items, notificationToken: notificationToken)
         setUpSearchBar(searchBar: searchBar)
-        addNavBar([sideBar],[addGroupTask],scoreCategory: Constants.groupScoreCategory)
-        addSearchBar(scoreCategory: Constants.groupScoreCategory, searchBar: searchBar)
+        addNavBar([sideBar],[addGroupTask],scoreCategory: viewScoreCateogry)
+        addSearchBar(scoreCategory: viewScoreCateogry, searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
         hideKeyboardWhenTappedAround()
@@ -97,7 +98,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             item.IsDone = !item.IsDone
         }
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -108,7 +108,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard editingStyle == .delete else { return }
         deleteOddJob(indexPath, realm: realm, items: items)
     }
-    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = UIContextualAction(style: .normal, title: Constants.doneSwipe) { (action, view, completionHandler) in
             completionHandler(true)
@@ -119,18 +118,17 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let config = UISwipeActionsConfiguration(actions: [done])
         config.performsFirstActionWithFullSwipe = false
         return config
-//    }
     }
     
     //MARK: Search Bar Functions
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String, searchFilter: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, Constants.groupScoreCategory, (SyncUser.current?.identity)!)
+            let predicate = NSPredicate(format:Constants.searchFilter, searchText, searchText, viewScoreCateogry[0], (SyncUser.current?.identity)!)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
-            self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, Constants.groupScoreCategory, (SyncUser.current?.identity)!)
+            self.items = realm.objects(OddJobItem.self).filter(Constants.groupTaskFilter, viewScoreCateogry[0], (SyncUser.current?.identity)!)
             tableView.reloadData()
         }
         tableView.reloadData()
@@ -138,8 +136,6 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //MARK: Selector/Action Functions
     @objc func addTaskPassThrough() {
-        //showStoryBoardView(storyBoardID: "CreateTaskViewController")
         presentTaskCreateController(storyBoardID: "CreateTaskViewController", taskType: "Group")
-
     }
 }

@@ -13,7 +13,7 @@ import SwiftyJSON
 
 extension UIViewController {
     
-    func taskAlert (taskType: String, taskName: String) {
+    func taskCreatedAlert (taskType: String, taskName: String) {
         let alertController = UIAlertController(title: taskType + " Item Created", message: taskName, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Create Another Task", style: .default, handler: {
             alert -> Void in
@@ -36,4 +36,3 @@ extension UIViewController {
         self.present(alertController, animated: false, completion: nil)
     }
 }
-

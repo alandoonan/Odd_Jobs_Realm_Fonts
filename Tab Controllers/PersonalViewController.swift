@@ -24,6 +24,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     var delegate: HomeControllerDelegate?
     var searchBar = UISearchBar()
     let tableView = UITableView()
+    let viewScoreCateogry = Constants.personalScoreCategory
     
     // MARK: Initialize & View Did Load Functions
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -51,8 +52,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         let addPersonalTask = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         addSearchBar(scoreCategory: Constants.newLifeSC, searchBar: searchBar)
-        //addNavBar([sideBar, add], [logout], scoreCategory: Constants.personalScoreCategory)
-        addNavBar([sideBar], [addPersonalTask, addLifeTask], scoreCategory: Constants.personalScoreCategory)
+        addNavBar([sideBar], [addPersonalTask, addLifeTask], scoreCategory: viewScoreCateogry)
         searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
@@ -107,8 +107,6 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         }
         menu.show(style: .push, from: self)
     }
-    
-    //MARK: Button Press Functions & Actions
     @objc func selectSortField() {
         print("Sort Button Pressed")
         rssSelectionMenuSort()
@@ -158,7 +156,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing in search bar: term = \(searchText)")
         if searchText != "" {
-            let predicate = NSPredicate(format:Constants.lifeSearchFilter, searchText, searchText, Constants.personalScoreCategory, (SyncUser.current?.identity)!)
+            let predicate = NSPredicate(format:Constants.lifeSearchFilter, searchText, searchText, viewScoreCateogry, (SyncUser.current?.identity)!)
             self.items = realm.objects(OddJobItem.self).filter(predicate)
             tableView.reloadData()
         } else {
@@ -168,14 +166,7 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
         tableView.reloadData()
     }
     
-    //MARK: Selector/Action Functions
     @objc func addTaskPassThrough() {
-        presentTaskCreateController(storyBoardID: "CreateTaskViewController", taskType: "Personal")
-        //showStoryBoardView(storyBoardID: "CreateTaskViewController")
-        //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
-    }
-    @objc func addLifeTaskPassThrough() {
-        showStoryBoardView(storyBoardID: "LifeTaskViewController")
-        //addTaskAlert(realm: realm,scoreCategory: Constants.personalScoreCategory)
+        presentTaskCreateController(storyBoardID: "CreateTaskViewController", taskType: viewScoreCateogry[0])
     }
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2019 Alan Doonan. All rights reserved.
 //
 
-import UIKit
 import RealmSwift
 
 extension UIViewController {
@@ -19,11 +18,7 @@ extension UIViewController {
         scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
         print("Checking Scoring System.")
         print(scoreItem)
-        print(realm.objects(ScoreItem.self).count)
-        if realm.objects(ScoreItem.self).count != 0
-        {
-            print("Score already exists.")
-        } else {
+        if Int(realm.objects(ScoreItem.self).count) == 0 {
             for field in Constants.listTypes {
                 let newScore = ScoreItem()
                 newScore.Name = field
@@ -35,35 +30,6 @@ extension UIViewController {
                 }
             }
         }
-    }
-    
-    // MARK: Task Completion Actions
-    func doneGroupOddJob(_ indexPath: IndexPath, realm: Realm, items: Results<OddJobItem>, tableView: UITableView) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-    }
-    
-    // MARK: Task Completion Actions
-    func doneOddJob(_ indexPath: IndexPath, value: Int, realm: Realm, items: Results<OddJobItem>, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>, tableView: UITableView) {
-        let item = items[indexPath.row]
-        let score = getScore(realm: realm, category: item.Category)
-        let level = getLevel(realm: realm, category: item.Category)
-        if (score == 0) && (level == 0)  && (value < 0) {
-            print("We cant decrease the score.")
-        }
-        else {
-        updateScore(realm: realm, value: value, category: item.Category)
-        }
-        try! realm.write {
-            item.IsDone = !item.IsDone
-        }
-        addThemes(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
-        print("HERE NOW")
-        let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
-        print(unlocked)
-        
     }
     
     // MARK: Retrieve Levels, Scores & Score Item
@@ -102,5 +68,4 @@ extension UIViewController {
             }
         }
     }
-    
 }

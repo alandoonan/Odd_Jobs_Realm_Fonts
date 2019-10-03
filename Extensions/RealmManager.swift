@@ -9,35 +9,36 @@
 import UIKit
 import RealmSwift
 
-class RealmManager {
+extension UIViewController {
     
-    let realm = try! Realm()
-    
-    
-    /**
-     Delete local database
-     */
-    func deleteDatabase() {
-        try! realm.write({
-            realm.deleteAll()
-        })
+    //MARK: Delete the pass OddJobItem via user swipe or programatically
+    func deleteOddJob(_ indexPath: IndexPath, realm: Realm, items: Results<OddJobItem>) {
+        let item = items[indexPath.row]
+        try! realm.write {
+            realm.delete(item)
+        }
     }
     
-    /**
-     Save array of objects to database
-     */
-    func saveItems(item: [Object]) {
-        try! realm.write({
-            // If update = true, objects that are already in the Realm will be
-            // updated instead of added a new.
-            realm.add(item)
-        })
+    //MARK: Logs out all users on application login. This is mainly for testing purporses
+    func logOutUsers() {
+        print("Logging out users.")
+        for u in SyncUser.all {
+            print("Logging out user: " + String(u.value.identity!))
+            u.value.logOut()
+        }
     }
     
-    /**
-     Returs an array as Results<Object>?
-     */
-    func getItems(item: Object.Type) -> Results<Object>? {
-        return realm.objects(item)
+    /* MARK: Finds an OddJobItem by passing the items name. This will search the current Realm
+     for an object and return it to the user */
+    func findOddJobItemByName(_ Name: String, realm: Realm) -> Results<OddJobItem> {
+        let predicate = NSPredicate(format: "Name = %@ and User in [c] %@", Name, [UserDefaults.standard.string(forKey: "Name") ?? ""])
+        return realm.objects(OddJobItem.self).filter(predicate)
+    }
+    
+    /* MARK: Finds a theme item in the users Realm and returns it to the user */
+    func findColourByName(_ Name: String, realm: Realm) -> Results<ThemeItem>
+    {
+        let predicate = NSPredicate(format: "name = %@", Name)
+        return realm.objects(ThemeItem.self).filter(predicate)
     }
 }

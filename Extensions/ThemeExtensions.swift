@@ -11,6 +11,39 @@ import RealmSwift
 
 extension UIViewController {
     
+    func applyTheme(_ tableView: UITableView, _ view: UIView) {
+        let attributes = [NSAttributedString.Key.foregroundColor: Themes.current.accent]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        view.backgroundColor = Themes.current.background
+        tableView.backgroundColor = Themes.current.background
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = Themes.current.background
+        navigationController?.navigationBar.barTintColor = Themes.current.background
+        navigationController?.navigationBar.tintColor = Themes.current.accent
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        tabBarController?.tabBar.backgroundColor = Themes.current.background
+        tabBarController?.tabBar.barTintColor = Themes.current.background
+        tabBarController?.tabBar.tintColor = Themes.current.accent
+    }
+    
+    func applyThemeView(_ view: UIView) {
+        let attributes = [NSAttributedString.Key.foregroundColor: Themes.current.accent]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
+        let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
+        view.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.backgroundColor = Themes.current.background
+        navigationController?.navigationBar.barTintColor = Themes.current.background
+        navigationController?.navigationBar.tintColor = Themes.current.accent
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        tabBarController?.tabBar.backgroundColor = Themes.current.background
+        tabBarController?.tabBar.barTintColor = Themes.current.background
+        tabBarController?.tabBar.tintColor = Themes.current.accent
+    }
+    
     func addThemes(realm: Realm, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>, tableView:UITableView) {
         print("Checking Themes")
         let unlocked = checkThemeUnlocked(realm: realm, themes: themes, scoreItem: scoreItem, tableView: tableView)
@@ -64,16 +97,8 @@ extension UIViewController {
                 self.applyBatmanTheme(tableView)
             }
         }))
-
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
-        
-        
-//        Themes.current = BlueTheme()
-//        applyTheme(tableView,view)
-//        applyThemeView(view)
-//        view.layoutIfNeeded()
-        
     }
     
     func checkThemeUnlocked(realm: Realm, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>, tableView: UITableView) -> Bool{
@@ -93,6 +118,26 @@ extension UIViewController {
             }
         }
         return unlocked
+    }
+    
+    func applyTaskTheme(tableView: UITableView, selectTaskButton: UIButton, selectCategoryButton: UIButton, selectWhenButton: UIButton, userLabel: UILabel) {
+        tableView.isHidden = true
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        selectTaskButton.backgroundColor = Themes.current.accent
+        selectCategoryButton.backgroundColor = Themes.current.accent
+        selectWhenButton.backgroundColor = Themes.current.accent
+        selectTaskButton.titleLabel?.textColor = Themes.current.background
+        selectTaskButton.setTitleColor(Themes.current.background, for: .normal)
+        selectCategoryButton.setTitleColor(Themes.current.background, for: .normal)
+        selectWhenButton.setTitleColor(Themes.current.background, for: .normal)
+        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        userLabel.textColor = Themes.current.accent
+        let navigationAppearance = UINavigationBar.appearance()
+        navigationAppearance.tintColor = Themes.current.accent
+        navigationAppearance.barTintColor = Themes.current.background
+        navigationAppearance.backgroundColor = Themes.current.background
+        navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     
     func applyBlueTheme(_ tableView: UITableView) {

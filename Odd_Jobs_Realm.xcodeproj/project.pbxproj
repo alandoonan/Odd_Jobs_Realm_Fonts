@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		810319332332B1A700D34AFB /* CreateTaskExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810319322332B1A700D34AFB /* CreateTaskExtensions.swift */; };
-		810A6F7F232AB314007AB4A0 /* ScoreSystemRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */; };
+		810319332332B1A700D34AFB /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810319322332B1A700D34AFB /* Tasks.swift */; };
+		810A6F7F232AB314007AB4A0 /* ScoreSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreSystem.swift */; };
 		810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */; };
 		811B214622F7120A007425C0 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214522F7120A007425C0 /* UserItem.swift */; };
 		811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214922FD8320007425C0 /* HolidayItem.swift */; };
@@ -56,6 +56,11 @@
 		8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598422D3D73500F1A406 /* GroupViewController.swift */; };
 		8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598622D3D75F00F1A406 /* LifeViewController.swift */; };
 		8128598922D5059200F1A406 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128598822D5059200F1A406 /* HomeViewController.swift */; };
+		812F8C87234659CB002BF355 /* ButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C86234659CB002BF355 /* ButtonActions.swift */; };
+		812F8C8B23466553002BF355 /* TableViewAndCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C8A23466553002BF355 /* TableViewAndCells.swift */; };
+		812F8C8F23467364002BF355 /* NavBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C8E23467364002BF355 /* NavBars.swift */; };
+		812F8C912346739C002BF355 /* SearchBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C902346739C002BF355 /* SearchBars.swift */; };
+		812F8C93234676C1002BF355 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C92234676C1002BF355 /* TextFields.swift */; };
 		8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8131015922F48B2800420AFE /* LoginViewController.swift */; };
 		8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */; };
 		8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */; };
@@ -98,8 +103,7 @@
 		816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0922D220B900C630B9 /* PersonalViewController.swift */; };
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
-		8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCE722EE0422001AC3A9 /* Extensions.swift */; };
-		81A91D4B2328188400426095 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIViewExtensions.swift */; };
+		81A91D4B2328188400426095 /* UIActionsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIActionsExtensions.swift */; };
 		81A91D4E232821F500426095 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A91D4D232821F500426095 /* sidebar.png */; };
 		81A91D522329815100426095 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D512329815100426095 /* OddJobItem.swift */; };
 		81CF5F2C23159407003F12E7 /* Batman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF5F2B23159407003F12E7 /* Batman.swift */; };
@@ -115,7 +119,7 @@
 		81E0B92E23281581003AE595 /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0B92D23281581003AE595 /* task.png */; };
 		81E1820F233FBDE900D05B0B /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E1820E233FBDE800D05B0B /* happy.png */; };
 		81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */; };
-		81E182182343C03800D05B0B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E182172343C03800D05B0B /* Notifications.swift */; };
+		81E182182343C03800D05B0B /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E182172343C03800D05B0B /* Alerts.swift */; };
 		F0654FBB352D45F4EF03C026 /* Pods_Odd_Jobs_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */; };
 /* End PBXBuildFile section */
 
@@ -123,8 +127,8 @@
 		07AB7D7A8EB3A6F034CA7DB6 /* Pods_Odd_Jobs_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Odd_Jobs_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E2C0D59615800237B33C31 /* Pods-Odd_Jobs_Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.release.xcconfig"; sourceTree = "<group>"; };
 		3E76AB4AA925A7D2984748F9 /* Pods-Odd_Jobs_Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odd_Jobs_Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Odd_Jobs_Realm/Pods-Odd_Jobs_Realm.debug.xcconfig"; sourceTree = "<group>"; };
-		810319322332B1A700D34AFB /* CreateTaskExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskExtensions.swift; sourceTree = "<group>"; };
-		810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystemRealm.swift; sourceTree = "<group>"; };
+		810319322332B1A700D34AFB /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
+		810A6F7E232AB314007AB4A0 /* ScoreSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystem.swift; sourceTree = "<group>"; };
 		810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtensions.swift; sourceTree = "<group>"; };
 		811B214522F7120A007425C0 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		811B214922FD8320007425C0 /* HolidayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayItem.swift; sourceTree = "<group>"; };
@@ -174,6 +178,11 @@
 		8128598422D3D73500F1A406 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		8128598622D3D75F00F1A406 /* LifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeViewController.swift; sourceTree = "<group>"; };
 		8128598822D5059200F1A406 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		812F8C86234659CB002BF355 /* ButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonActions.swift; sourceTree = "<group>"; };
+		812F8C8A23466553002BF355 /* TableViewAndCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAndCells.swift; sourceTree = "<group>"; };
+		812F8C8E23467364002BF355 /* NavBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBars.swift; sourceTree = "<group>"; };
+		812F8C902346739C002BF355 /* SearchBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBars.swift; sourceTree = "<group>"; };
+		812F8C92234676C1002BF355 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		8131015922F48B2800420AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1.png"; sourceTree = "<group>"; };
 		8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x.png"; sourceTree = "<group>"; };
@@ -218,8 +227,7 @@
 		816B8B0922D220B900C630B9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
-		8192CCE722EE0422001AC3A9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		81A91D4A2328188400426095 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		81A91D4A2328188400426095 /* UIActionsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionsExtensions.swift; sourceTree = "<group>"; };
 		81A91D4D232821F500426095 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		81A91D512329815100426095 /* OddJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
 		81CF5F2B23159407003F12E7 /* Batman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batman.swift; sourceTree = "<group>"; };
@@ -235,7 +243,7 @@
 		81E0B92D23281581003AE595 /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
 		81E1820E233FBDE800D05B0B /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy.png; sourceTree = "<group>"; };
 		81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupArchiveViewController.swift; sourceTree = "<group>"; };
-		81E182172343C03800D05B0B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		81E182172343C03800D05B0B /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,14 +340,18 @@
 			children = (
 				811B214F22FDC910007425C0 /* MenuBar.swift */,
 				811B215322FEEEE3007425C0 /* UI.swift */,
-				8192CCE722EE0422001AC3A9 /* Extensions.swift */,
 				81208AD02309CFBB00F6548E /* RealmManager.swift */,
-				81A91D4A2328188400426095 /* UIViewExtensions.swift */,
+				81A91D4A2328188400426095 /* UIActionsExtensions.swift */,
 				814B51C222D79E5500102E73 /* Colours.swift */,
-				810A6F7E232AB314007AB4A0 /* ScoreSystemRealm.swift */,
+				810A6F7E232AB314007AB4A0 /* ScoreSystem.swift */,
 				810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */,
-				810319322332B1A700D34AFB /* CreateTaskExtensions.swift */,
-				81E182172343C03800D05B0B /* Notifications.swift */,
+				810319322332B1A700D34AFB /* Tasks.swift */,
+				81E182172343C03800D05B0B /* Alerts.swift */,
+				812F8C86234659CB002BF355 /* ButtonActions.swift */,
+				812F8C8A23466553002BF355 /* TableViewAndCells.swift */,
+				812F8C8E23467364002BF355 /* NavBars.swift */,
+				812F8C902346739C002BF355 /* SearchBars.swift */,
+				812F8C92234676C1002BF355 /* TextFields.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -764,7 +776,6 @@
 				8128598522D3D73500F1A406 /* GroupViewController.swift in Sources */,
 				81208AC82307318B00F6548E /* ThemeItem.swift in Sources */,
 				81208AAF2303312600F6548E /* SideBarController.swift in Sources */,
-				8192CCE822EE0422001AC3A9 /* Extensions.swift in Sources */,
 				81208ABC2303386C00F6548E /* MenuOption.swift in Sources */,
 				816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */,
 				814B51C322D79E5500102E73 /* Colours.swift in Sources */,
@@ -774,22 +785,26 @@
 				8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */,
 				811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */,
 				8125F380231DA1F4004869CA /* CreateTaskViewController.swift in Sources */,
-				810A6F7F232AB314007AB4A0 /* ScoreSystemRealm.swift in Sources */,
+				810A6F7F232AB314007AB4A0 /* ScoreSystem.swift in Sources */,
 				811B215422FEEEE3007425C0 /* UI.swift in Sources */,
 				81E0B91823252D98003AE595 /* DoneViewController.swift in Sources */,
 				811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */,
+				812F8C87234659CB002BF355 /* ButtonActions.swift in Sources */,
 				8125F39223258317004869CA /* Trash.swift in Sources */,
 				811B22DD230096A0007425C0 /* Orange.swift in Sources */,
 				8128598922D5059200F1A406 /* HomeViewController.swift in Sources */,
 				811B214622F7120A007425C0 /* UserItem.swift in Sources */,
+				812F8C8F23467364002BF355 /* NavBars.swift in Sources */,
+				812F8C93234676C1002BF355 /* TextFields.swift in Sources */,
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
 				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
-				810319332332B1A700D34AFB /* CreateTaskExtensions.swift in Sources */,
+				810319332332B1A700D34AFB /* Tasks.swift in Sources */,
 				81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */,
 				81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */,
 				810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */,
 				81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */,
 				816B8AF022D21EB200C630B9 /* AppDelegate.swift in Sources */,
+				812F8C8B23466553002BF355 /* TableViewAndCells.swift in Sources */,
 				816B8B0322D21FA400C630B9 /* Constants.swift in Sources */,
 				81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */,
 				81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */,
@@ -798,11 +813,12 @@
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				81A91D522329815100426095 /* OddJobItem.swift in Sources */,
+				812F8C912346739C002BF355 /* SearchBars.swift in Sources */,
 				8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */,
 				811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */,
-				81E182182343C03800D05B0B /* Notifications.swift in Sources */,
+				81E182182343C03800D05B0B /* Alerts.swift in Sources */,
 				81208AC12303397E00F6548E /* MenuController.swift in Sources */,
-				81A91D4B2328188400426095 /* UIViewExtensions.swift in Sources */,
+				81A91D4B2328188400426095 /* UIActionsExtensions.swift in Sources */,
 				811B22DF230096AD007425C0 /* Hulk.swift in Sources */,
 				81208AB92303382200F6548E /* HomeControllerDelegate.swift in Sources */,
 				814B51B922D67E7500102E73 /* ThemesViewController.swift in Sources */,
