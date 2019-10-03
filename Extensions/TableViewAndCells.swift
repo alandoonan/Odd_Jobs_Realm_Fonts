@@ -29,6 +29,10 @@ extension UIViewController {
             cell.backgroundColor = UIColor.greenTheme
             cell.detailTextLabel?.text = (cellFields[1] + ": " + item.Occurrence)
         }
+        if item.Category == "Life" && item.Occurrence == "Yearly" {
+            cell.backgroundColor = UIColor.greenTheme
+            cell.detailTextLabel?.text = (cellFields[2] + ": " + item.DueDate)
+        }
         if item.Category == "Group" {
             cell.backgroundColor = UIColor.blueTheme
             cell.detailTextLabel?.text = (cellFields[3] + ": " + item.User)
