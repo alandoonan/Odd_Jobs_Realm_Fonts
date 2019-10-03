@@ -51,7 +51,6 @@ class LoginViewController: UIViewController {
                     self!.openSharedRealm()
                     self!.logOutButtonPress()
                 }
-                self!.checkingScoreSystem()
                 self!.getHolidayData()
                 self?.transition()
                 self?.navigationController?.pushViewController(HomeViewController(), animated: true)
@@ -137,6 +136,7 @@ class LoginViewController: UIViewController {
                 self!.storeUserInformation(username: username)
                 self!.requestEmailConfirmation(username)
                 self!.openRealmPermissions()
+                self!.checkingScoreSystem()
                 self!.transition()
             } else if let error = err {
                 print(error)
