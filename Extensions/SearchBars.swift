@@ -10,6 +10,8 @@ import UIKit
 
 extension UIViewController {
     
+    
+    //MARK: Adds a search bar with place holder based on task category
     func addSearchBar(scoreCategory: [String], searchBar: UISearchBar) {
         navigationItem.titleView = searchBar
         searchBar.showsScopeBar = false

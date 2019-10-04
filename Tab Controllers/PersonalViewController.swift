@@ -151,6 +151,10 @@ class PersonalViewController: UIViewController, UITableViewDelegate, UISearchBar
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return addTableCell(tableView, indexPath, Constants.cellFields, items: items)
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    guard editingStyle == .delete else { return }
+    deleteOddJob(indexPath, realm: realm, items: items)
+    }
 
     // MARK: SearchBar Functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

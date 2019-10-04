@@ -61,6 +61,8 @@
 		812F8C8F23467364002BF355 /* NavBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C8E23467364002BF355 /* NavBars.swift */; };
 		812F8C912346739C002BF355 /* SearchBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C902346739C002BF355 /* SearchBars.swift */; };
 		812F8C93234676C1002BF355 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C92234676C1002BF355 /* TextFields.swift */; };
+		812F8C962347C810002BF355 /* task_created.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C952347C810002BF355 /* task_created.mp3 */; };
+		812F8C982347D3FF002BF355 /* task_created.wav in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C972347D3FF002BF355 /* task_created.wav */; };
 		8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8131015922F48B2800420AFE /* LoginViewController.swift */; };
 		8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */; };
 		8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */; };
@@ -183,6 +185,8 @@
 		812F8C8E23467364002BF355 /* NavBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBars.swift; sourceTree = "<group>"; };
 		812F8C902346739C002BF355 /* SearchBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBars.swift; sourceTree = "<group>"; };
 		812F8C92234676C1002BF355 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		812F8C952347C810002BF355 /* task_created.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = task_created.mp3; sourceTree = "<group>"; };
+		812F8C972347D3FF002BF355 /* task_created.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = task_created.wav; sourceTree = "<group>"; };
 		8131015922F48B2800420AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1.png"; sourceTree = "<group>"; };
 		8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x.png"; sourceTree = "<group>"; };
@@ -340,9 +344,9 @@
 			children = (
 				811B214F22FDC910007425C0 /* MenuBar.swift */,
 				811B215322FEEEE3007425C0 /* UI.swift */,
+				814B51C222D79E5500102E73 /* Colours.swift */,
 				81208AD02309CFBB00F6548E /* RealmManager.swift */,
 				81A91D4A2328188400426095 /* UIActionsExtensions.swift */,
-				814B51C222D79E5500102E73 /* Colours.swift */,
 				810A6F7E232AB314007AB4A0 /* ScoreSystem.swift */,
 				810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */,
 				810319322332B1A700D34AFB /* Tasks.swift */,
@@ -365,6 +369,15 @@
 				81E18210233FC83100D05B0B /* GroupArchiveViewController.swift */,
 			);
 			path = "Tab Controllers";
+			sourceTree = "<group>";
+		};
+		812F8C942347C809002BF355 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				812F8C952347C810002BF355 /* task_created.mp3 */,
+				812F8C972347D3FF002BF355 /* task_created.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
@@ -449,6 +462,7 @@
 		816B8AE322D21EB200C630B9 = {
 			isa = PBXGroup;
 			children = (
+				812F8C942347C809002BF355 /* Sounds */,
 				81208ABD2303391E00F6548E /* Views */,
 				81208ABA2303385900F6548E /* Model */,
 				81208AB72303380D00F6548E /* Protocols */,
@@ -661,6 +675,7 @@
 				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
 				81E0B92423280810003AE595 /* oddjobs.png in Resources */,
 				81A91D4E232821F500426095 /* sidebar.png in Resources */,
+				812F8C982347D3FF002BF355 /* task_created.wav in Resources */,
 				8125F38F2323F3D2004869CA /* PersonalPin.png in Resources */,
 				81E0B91E232806BE003AE595 /* score.png in Resources */,
 				811B218822FF3ECA007425C0 /* P.png in Resources */,
@@ -696,6 +711,7 @@
 				8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */,
 				8132C36222E2506D00EC79F2 /* icon_29pt-1.png in Resources */,
 				8125F38E2323F3D2004869CA /* LifePin.png in Resources */,
+				812F8C962347C810002BF355 /* task_created.mp3 in Resources */,
 				8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */,
 				8132C35A22E2506D00EC79F2 /* iPhone App 60pt@3x.png in Resources */,
 				8125F394232ACC50004869CA /* lifetask.png in Resources */,

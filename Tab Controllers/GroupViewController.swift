@@ -44,22 +44,19 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
         let addGroupTask = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaskPassThrough))
-        searchBar.keyboardAppearance = .dark
         tableView.addTableView(tableView, view)
         tableView.dataSource = self
         tableView.delegate = self
-        addNotificationToken(items: items, notificationToken: notificationToken)
-        setUpSearchBar(searchBar: searchBar)
-        addNavBar([sideBar],[addGroupTask],scoreCategory: viewScoreCateogry)
-        addSearchBar(scoreCategory: viewScoreCateogry, searchBar: searchBar)
         applyTheme(tableView,view)
         tableView.reloadData()
+        searchBar.keyboardAppearance = .dark
+        setUpSearchBar(searchBar: searchBar)
+        addSearchBar(scoreCategory: viewScoreCateogry, searchBar: searchBar)
+        addNavBar([sideBar],[addGroupTask],scoreCategory: viewScoreCateogry)
+        addNotificationToken(items: items, notificationToken: notificationToken)
         hideKeyboardWhenTappedAround()
-
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle

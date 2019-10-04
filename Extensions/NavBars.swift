@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    //Add a navigation bar to the current view. Allows users to add left and right buttons and and custom title
+    //MARK: Add a navigation bar to the current view. Allows users to add left and right buttons and and custom title
     func addNavBar(_ leftButtons: [UIBarButtonItem], _ rightButtons: [UIBarButtonItem], scoreCategory: [String]) {
         navigationItem.leftBarButtonItems = leftButtons
         navigationItem.rightBarButtonItems = rightButtons
@@ -18,7 +18,9 @@ extension UIViewController {
     }
 }
 
+
 extension UINavigationController {
+    //MARK: Override to update the preferred status bar colour 
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return topViewController?.preferredStatusBarStyle ?? .default
     }

@@ -13,6 +13,7 @@ import SwiftyJSON
 
 extension UIViewController {
     
+    //MARK: Present alert to the user on task creation based on task type
     func taskCreatedAlert (taskType: String, taskName: String) {
         let alertController = UIAlertController(title: taskType + " Item Created", message: taskName, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Create Another Task", style: .default, handler: {
@@ -22,9 +23,11 @@ extension UIViewController {
             alert -> Void in
             self.performSegueToReturnBack()
         }))
+        playSound()
         self.present(alertController, animated: true, completion: nil)
     }
     
+    //MARK: Action to perform logout for current user when logout button is pressed
     @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
