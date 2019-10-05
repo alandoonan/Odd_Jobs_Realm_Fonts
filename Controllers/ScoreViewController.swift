@@ -19,6 +19,41 @@ class ScoreViewController: UIViewController {
     var pulsatingLayer = CAShapeLayer()
     let userDetails = LoginViewController()
     var scoreActive = true
+    var userLabel: UILabel  = {
+           let label = UILabel()
+           label.textAlignment = .center
+           label.font = UIFont.boldSystemFont(ofSize: 30)
+           label.textColor = .white
+           return label
+       }()
+    var categoryLabel: UILabel = {
+           let label = UILabel()
+           label.textAlignment = .center
+           label.font = UIFont.boldSystemFont(ofSize: 30)
+           label.textColor = .white
+           return label
+       }()
+    var levelLabel: UILabel = {
+           let label = UILabel()
+           label.textAlignment = .center
+           label.font = UIFont.boldSystemFont(ofSize: 30)
+           label.textColor = .white
+           return label
+       }()
+    var totalScoreLabel: UILabel = {
+           let label = UILabel()
+           label.textAlignment = .center
+           label.font = UIFont.boldSystemFont(ofSize: 30)
+           label.textColor = .white
+           return label
+       }()
+    var toNextLevelLabel: UILabel = {
+           let label = UILabel()
+           label.textAlignment = .center
+           label.font = UIFont.boldSystemFont(ofSize: 30)
+           label.textColor = .white
+           return label
+       }()
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -42,14 +77,14 @@ class ScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(logOutButtonPress))
-        addNavBar([sideBar], [add],scoreCategory: [""])
+        let refreshScores = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshScoreBoard))
+        addNavBar([sideBar], [refreshScores],scoreCategory: [""])
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationItem.title = "Score"
         addLogo()
         checkingScoreSystem()
         setupCircleLayers()
-        let (userLabel,levelLabel,categoryLabel,totalScoreLabel,toNextLevelLabel) = setupUserLabels()
+        (userLabel,levelLabel,categoryLabel,totalScoreLabel,toNextLevelLabel) = setupUserLabels()
         animateCircle(category: viewScoreCateogry, userLabel: userLabel, levelLabel: levelLabel, categoryLabel: categoryLabel, totalScoreLabel: totalScoreLabel, toNextLevelLabel: toNextLevelLabel)
         applyThemeView(view)
     }
@@ -183,5 +218,16 @@ class ScoreViewController: UIViewController {
         totalScoreLabel.text = String("Total Score: " + String(scoreItem.TotalScore))
         toNextLevelLabel.text = String("Points to Next Level: " + String(scoreItem.LevelCap - scoreItem.Score))
         
+    }
+    
+    @objc func refreshScoreBoard() {
+        print("Refreshing Scoreboard.")
+        let scoreItem = getScoreItem(realm: realm, category: viewScoreCateogry)
+        scoreLabel.text = String(scoreItem.Score)
+        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
+        levelLabel.text = String("Level: " + String(scoreItem.Level))
+        categoryLabel.text = String("Category: " + String(scoreItem.Category))
+        totalScoreLabel.text = String("Total Score: " + String(scoreItem.TotalScore))
+        toNextLevelLabel.text = String("Points to Next Level: " + String(scoreItem.LevelCap - scoreItem.Score))
     }
 }
