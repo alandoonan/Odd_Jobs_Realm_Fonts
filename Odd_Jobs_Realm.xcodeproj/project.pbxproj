@@ -39,7 +39,6 @@
 		81208AC82307318B00F6548E /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AC72307318B00F6548E /* ThemeItem.swift */; };
 		81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208ACE2308612B00F6548E /* SearchUsersViewController.swift */; };
 		81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD02309CFBB00F6548E /* RealmManager.swift */; };
-		81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD3230B107100F6548E /* RealmProtocols.swift */; };
 		81208AD6230DA66400F6548E /* OddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AD5230DA66400F6548E /* OddJobViewController.swift */; };
 		81208AE72312C5D700F6548E /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE62312C5D700F6548E /* DropDownCell.swift */; };
 		81208AE92312DFD900F6548E /* LifeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81208AE82312DFD900F6548E /* LifeTaskViewController.swift */; };
@@ -165,7 +164,6 @@
 		81208ACC23085C7F00F6548E /* iPhone X-XS – 1@3x NO_CR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x NO_CR.png"; sourceTree = "<group>"; };
 		81208ACE2308612B00F6548E /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
 		81208AD02309CFBB00F6548E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		81208AD3230B107100F6548E /* RealmProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProtocols.swift; sourceTree = "<group>"; };
 		81208AD5230DA66400F6548E /* OddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddJobViewController.swift; sourceTree = "<group>"; };
 		81208AE62312C5D700F6548E /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		81208AE82312DFD900F6548E /* LifeTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTaskViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				81208AB82303382200F6548E /* HomeControllerDelegate.swift */,
-				81208AD3230B107100F6548E /* RealmProtocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -826,7 +823,6 @@
 				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
 				810319332332B1A700D34AFB /* Tasks.swift in Sources */,
 				812F8C9A2348A5A3002BF355 /* Sounds.swift in Sources */,
-				81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */,
 				81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */,
 				810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */,
 				81208ACF2308612B00F6548E /* SearchUsersViewController.swift in Sources */,
