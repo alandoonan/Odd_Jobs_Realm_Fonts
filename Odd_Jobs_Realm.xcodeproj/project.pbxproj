@@ -62,10 +62,10 @@
 		812F8C912346739C002BF355 /* SearchBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C902346739C002BF355 /* SearchBars.swift */; };
 		812F8C93234676C1002BF355 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C92234676C1002BF355 /* TextFields.swift */; };
 		812F8C962347C810002BF355 /* task_created.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C952347C810002BF355 /* task_created.mp3 */; };
-		812F8C982347D3FF002BF355 /* task_created.wav in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C972347D3FF002BF355 /* task_created.wav */; };
 		812F8C9A2348A5A3002BF355 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C992348A5A3002BF355 /* Sounds.swift */; };
 		812F8C9C2348A717002BF355 /* delete_task.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C9B2348A717002BF355 /* delete_task.mp3 */; };
 		812F8C9E2348A7ED002BF355 /* task_complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C9D2348A7ED002BF355 /* task_complete.mp3 */; };
+		812F8CA02348BB51002BF355 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C9F2348BB51002BF355 /* Dates.swift */; };
 		8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8131015922F48B2800420AFE /* LoginViewController.swift */; };
 		8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */; };
 		8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */; };
@@ -189,10 +189,10 @@
 		812F8C902346739C002BF355 /* SearchBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBars.swift; sourceTree = "<group>"; };
 		812F8C92234676C1002BF355 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		812F8C952347C810002BF355 /* task_created.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = task_created.mp3; sourceTree = "<group>"; };
-		812F8C972347D3FF002BF355 /* task_created.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = task_created.wav; sourceTree = "<group>"; };
 		812F8C992348A5A3002BF355 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		812F8C9B2348A717002BF355 /* delete_task.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = delete_task.mp3; sourceTree = "<group>"; };
 		812F8C9D2348A7ED002BF355 /* task_complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = task_complete.mp3; sourceTree = "<group>"; };
+		812F8C9F2348BB51002BF355 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		8131015922F48B2800420AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1.png"; sourceTree = "<group>"; };
 		8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x.png"; sourceTree = "<group>"; };
@@ -280,6 +280,7 @@
 		811B214E22FDC902007425C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				81208ABA2303385900F6548E /* Model */,
 				81208AC42304716300F6548E /* Themes */,
 				811B22CE23002FAD007425C0 /* Fonts */,
 				8132C32622E2506D00EC79F2 /* Images */,
@@ -322,14 +323,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		81208ABD2303391E00F6548E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				81208ABE2303392900F6548E /* MenuOptionCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		81208AC42304716300F6548E /* Themes */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +356,7 @@
 				812F8C902346739C002BF355 /* SearchBars.swift */,
 				812F8C92234676C1002BF355 /* TextFields.swift */,
 				812F8C992348A5A3002BF355 /* Sounds.swift */,
+				812F8C9F2348BB51002BF355 /* Dates.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -384,9 +378,16 @@
 				812F8C952347C810002BF355 /* task_created.mp3 */,
 				812F8C9B2348A717002BF355 /* delete_task.mp3 */,
 				812F8C9D2348A7ED002BF355 /* task_complete.mp3 */,
-				812F8C972347D3FF002BF355 /* task_created.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		812F8CA12348C356002BF355 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				816B8B0222D21FA400C630B9 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
@@ -472,13 +473,12 @@
 			isa = PBXGroup;
 			children = (
 				812F8C942347C809002BF355 /* Sounds */,
-				81208ABD2303391E00F6548E /* Views */,
-				81208ABA2303385900F6548E /* Model */,
 				81208AB72303380D00F6548E /* Protocols */,
 				811B214E22FDC902007425C0 /* UI */,
 				8192CCE022E8ECB1001AC3A9 /* Other */,
 				81208AC92308558100F6548E /* Extensions */,
 				81208ACB2308564800F6548E /* Tab Controllers */,
+				812F8CA12348C356002BF355 /* Constants */,
 				81E18214234270AC00D05B0B /* Task Controllers */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
 				816B8B0122D21F9500C630B9 /* Structures */,
@@ -511,7 +511,6 @@
 		816B8B0122D21F9500C630B9 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				816B8B0222D21FA400C630B9 /* Constants.swift */,
 				81A91D512329815100426095 /* OddJobItem.swift */,
 				814B51C622DCF4F300102E73 /* ScoreItem.swift */,
 				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
@@ -542,6 +541,7 @@
 		8192CCE022E8ECB1001AC3A9 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				81208ABE2303392900F6548E /* MenuOptionCell.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
 				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
 				8125F39123258317004869CA /* Trash.swift */,
@@ -685,7 +685,6 @@
 				8132C35522E2506D00EC79F2 /* icon_20pt@2x-1.png in Resources */,
 				81E0B92423280810003AE595 /* oddjobs.png in Resources */,
 				81A91D4E232821F500426095 /* sidebar.png in Resources */,
-				812F8C982347D3FF002BF355 /* task_created.wav in Resources */,
 				8125F38F2323F3D2004869CA /* PersonalPin.png in Resources */,
 				81E0B91E232806BE003AE595 /* score.png in Resources */,
 				811B218822FF3ECA007425C0 /* P.png in Resources */,
@@ -838,6 +837,7 @@
 				81208ABF2303392900F6548E /* MenuOptionCell.swift in Sources */,
 				81CF5F2C23159407003F12E7 /* Batman.swift in Sources */,
 				81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */,
+				812F8CA02348BB51002BF355 /* Dates.swift in Sources */,
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				81A91D522329815100426095 /* OddJobItem.swift in Sources */,

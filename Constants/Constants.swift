@@ -5,11 +5,11 @@
 //  Created by Alan Doonan on 07/07/2019.
 //  Copyright © 2019 Alan Doonan. All rights reserved.
 //
-
 import Foundation
 import RealmSwift
 
 struct Constants {
+    
     //Realm URLs
     static let MY_INSTANCE_ADDRESS = "odd-jobs-realm.de1a.cloud.realm.io"
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
@@ -20,7 +20,6 @@ struct Constants {
     static let ODDJOBS_TEST_SHARE_TASK_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/7be9e24f2eb5b04e28439f886dbdd444/Oddjobs")!
     
     //Theme Colours
-    //static let themeColours = ["Blue" : "20A4F3", "Dark": "453823","Green": "31BC53","Orange": "E07A5F"]
     static let themeColours = ["Blue": ["20A4F3","10","1","Blue","282b35"],
                                "Dark": ["282b35","20","2","Dark","E07A5F"],
                                "Hulk": ["9bc063","30","3","HulkTheme","34314C"],
@@ -34,11 +33,6 @@ struct Constants {
                               "Orange": Orange(),
                               "Batman": Batman()] as [String : Any]
     
-    //Alert Fields
-//    static let personalAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-//    static let groupAlertFields = ["Odd Job Name","Odd Job Priority","Odd Job Occurrence","Odd Job Location"]
-//    static let lifeAlertFields = ["Odd Job Name","Odd Job Occurrence","Life Area"]
-
     //Sort Fields
     static let sortFields: [String] = ["Name", "Priority", "Occurrence"]
     

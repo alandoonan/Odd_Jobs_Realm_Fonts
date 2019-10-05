@@ -160,14 +160,6 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
     }
     
-    func convertDateFormatter() -> String {
-      let date = Date()
-      let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy-MM-dd"
-      let result = formatter.string(from: date)
-      return result
-    }
-    
     func setupDatePicker() {
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
