@@ -123,7 +123,7 @@ extension UIViewController {
     func applyTaskTheme(tableView: UITableView, selectTaskButton: UIButton, selectCategoryButton: UIButton, selectWhenButton: UIButton, userLabel: UILabel) {
         tableView.isHidden = true
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         selectTaskButton.backgroundColor = Themes.current.accent
         selectCategoryButton.backgroundColor = Themes.current.accent
         selectWhenButton.backgroundColor = Themes.current.accent

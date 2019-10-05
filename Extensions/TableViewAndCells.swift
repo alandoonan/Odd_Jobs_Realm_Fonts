@@ -54,7 +54,7 @@ extension UITableView {
     func addTableView(_ tableView: UITableView, _ view: UIView) {
         tableView.backgroundColor = Themes.current.background
         tableView.frame = view.frame
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         view.addSubview(tableView)
     }
 }

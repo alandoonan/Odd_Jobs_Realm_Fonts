@@ -77,7 +77,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         categoryTextField.backgroundColor = Themes.current.accent
         //view.backgroundColor = Themes.current.background
         userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
-        searchLocationsResults.separatorStyle = .none
+        searchLocationsResults.separatorStyle = .singleLine
         applyTheme(searchLocationsResults,view)
         setupDatePicker()
         setupPriorityPicker()

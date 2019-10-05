@@ -27,7 +27,7 @@ class MenuController: UIViewController {
         tableView.dataSource = self
         tableView.register(MenuOptionCell.self, forCellReuseIdentifier: reuseIdentifer)
         tableView.backgroundColor = UIColor.orangeTheme
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.rowHeight = 80
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false

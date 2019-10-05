@@ -61,9 +61,8 @@ class ScoreViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+    
     let viewScoreCateogry = Constants.lifeScoreCategory[0]
-    
-    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
@@ -222,12 +221,6 @@ class ScoreViewController: UIViewController {
     
     @objc func refreshScoreBoard() {
         print("Refreshing Scoreboard.")
-        let scoreItem = getScoreItem(realm: realm, category: viewScoreCateogry)
-        scoreLabel.text = String(scoreItem.Score)
-        userLabel.text = UserDefaults.standard.string(forKey: "Name") ?? ""
-        levelLabel.text = String("Level: " + String(scoreItem.Level))
-        categoryLabel.text = String("Category: " + String(scoreItem.Category))
-        totalScoreLabel.text = String("Total Score: " + String(scoreItem.TotalScore))
-        toNextLevelLabel.text = String("Points to Next Level: " + String(scoreItem.LevelCap - scoreItem.Score))
+        animateCircle(category: viewScoreCateogry, userLabel: userLabel, levelLabel: levelLabel, categoryLabel: categoryLabel, totalScoreLabel: totalScoreLabel, toNextLevelLabel: toNextLevelLabel)
     }
 }
