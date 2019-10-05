@@ -23,7 +23,7 @@ extension UIViewController {
             alert -> Void in
             self.performSegueToReturnBack()
         }))
-        playSound()
+        playSound(soundName: "task_created.mp3")
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -34,6 +34,26 @@ extension UIViewController {
             alert -> Void in
             SyncUser.current?.logOut()
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: false, completion: nil)
+    }
+    
+    @objc func deleteAllTasksButtonPress() {
+        let alertController = UIAlertController(title: "Empty Archive", message: "", preferredStyle: .alert);
+        alertController.addAction(UIAlertAction(title: "Yes, Empty.", style: .destructive, handler: {
+            alert -> Void in
+            self.emptyPersonalArchivedTasks()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: false, completion: nil)
+    }
+    
+    @objc func deleteAllGroupTasksButtonPress() {
+        let alertController = UIAlertController(title: "Empty Archive", message: "", preferredStyle: .alert);
+        alertController.addAction(UIAlertAction(title: "Yes, Empty.", style: .destructive, handler: {
+            alert -> Void in
+            self.emptyGroupArchivedTasks()
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: false, completion: nil)

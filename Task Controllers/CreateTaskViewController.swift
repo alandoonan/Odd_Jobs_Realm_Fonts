@@ -84,6 +84,7 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         setupCategoryPicker()
         searchCompleter.delegate = self
         searchLocationsResults.reloadData()
+        dateTextField.text = convertDateFormatter()
         self.loadItems()
     }
     
@@ -157,6 +158,14 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 usersSearchBar.isHidden = true
             }
         }
+    }
+    
+    func convertDateFormatter() -> String {
+      let date = Date()
+      let formatter = DateFormatter()
+      formatter.dateFormat = "yyyy-MM-dd"
+      let result = formatter.string(from: date)
+      return result
     }
     
     func setupDatePicker() {

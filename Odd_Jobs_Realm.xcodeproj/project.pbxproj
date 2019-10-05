@@ -63,6 +63,9 @@
 		812F8C93234676C1002BF355 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C92234676C1002BF355 /* TextFields.swift */; };
 		812F8C962347C810002BF355 /* task_created.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C952347C810002BF355 /* task_created.mp3 */; };
 		812F8C982347D3FF002BF355 /* task_created.wav in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C972347D3FF002BF355 /* task_created.wav */; };
+		812F8C9A2348A5A3002BF355 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F8C992348A5A3002BF355 /* Sounds.swift */; };
+		812F8C9C2348A717002BF355 /* delete_task.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C9B2348A717002BF355 /* delete_task.mp3 */; };
+		812F8C9E2348A7ED002BF355 /* task_complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 812F8C9D2348A7ED002BF355 /* task_complete.mp3 */; };
 		8131015A22F48B2800420AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8131015922F48B2800420AFE /* LoginViewController.swift */; };
 		8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */; };
 		8132C34E22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */; };
@@ -187,6 +190,9 @@
 		812F8C92234676C1002BF355 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		812F8C952347C810002BF355 /* task_created.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = task_created.mp3; sourceTree = "<group>"; };
 		812F8C972347D3FF002BF355 /* task_created.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = task_created.wav; sourceTree = "<group>"; };
+		812F8C992348A5A3002BF355 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		812F8C9B2348A717002BF355 /* delete_task.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = delete_task.mp3; sourceTree = "<group>"; };
+		812F8C9D2348A7ED002BF355 /* task_complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = task_complete.mp3; sourceTree = "<group>"; };
 		8131015922F48B2800420AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8132C32822E2506D00EC79F2 /* iPhone X-XS – 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1.png"; sourceTree = "<group>"; };
 		8132C32A22E2506D00EC79F2 /* iPhone X-XS – 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X-XS – 1@3x.png"; sourceTree = "<group>"; };
@@ -356,6 +362,7 @@
 				812F8C8E23467364002BF355 /* NavBars.swift */,
 				812F8C902346739C002BF355 /* SearchBars.swift */,
 				812F8C92234676C1002BF355 /* TextFields.swift */,
+				812F8C992348A5A3002BF355 /* Sounds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -375,6 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				812F8C952347C810002BF355 /* task_created.mp3 */,
+				812F8C9B2348A717002BF355 /* delete_task.mp3 */,
+				812F8C9D2348A7ED002BF355 /* task_complete.mp3 */,
 				812F8C972347D3FF002BF355 /* task_created.wav */,
 			);
 			path = Sounds;
@@ -660,6 +669,7 @@
 			files = (
 				8132C36022E2506D00EC79F2 /* iPhone App 60pt@2x.png in Resources */,
 				8132C35022E2506D00EC79F2 /* OddJobsLogo1x.png in Resources */,
+				812F8C9C2348A717002BF355 /* delete_task.mp3 in Resources */,
 				8132C36822E2506D00EC79F2 /* Launchscreen.png in Resources */,
 				8132C36722E2506D00EC79F2 /* icon_20pt-5.png in Resources */,
 				8125F38623204DF3004869CA /* clear_logo.png in Resources */,
@@ -684,6 +694,7 @@
 				811B218722FF3ECA007425C0 /* L.png in Resources */,
 				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,
+				812F8C9E2348A7ED002BF355 /* task_complete.mp3 in Resources */,
 				8132C35B22E2506D00EC79F2 /* icon_29pt@2x-1.png in Resources */,
 				8132C34C22E2506D00EC79F2 /* iPhone X-XS – 1.png in Resources */,
 				8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */,
@@ -815,6 +826,7 @@
 				814B51C922DCF92700102E73 /* ScoreViewController.swift in Sources */,
 				811B22C523002A0E007425C0 /* Themes.swift in Sources */,
 				810319332332B1A700D34AFB /* Tasks.swift in Sources */,
+				812F8C9A2348A5A3002BF355 /* Sounds.swift in Sources */,
 				81208AD4230B107100F6548E /* RealmProtocols.swift in Sources */,
 				81E18211233FC83100D05B0B /* GroupArchiveViewController.swift in Sources */,
 				810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */,

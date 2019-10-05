@@ -11,14 +11,6 @@ import RealmSwift
 
 extension UIViewController {
     
-    //MARK: Delete the pass OddJobItem via user swipe or programatically
-    func deleteOddJob(_ indexPath: IndexPath, realm: Realm, items: Results<OddJobItem>) {
-        let item = items[indexPath.row]
-        try! realm.write {
-            realm.delete(item)
-        }
-    }
-    
     //MARK: Logs out all users on application login. This is mainly for testing purporses
     func logOutUsers() {
         print("Logging out users.")
