@@ -91,7 +91,6 @@
 		8132C36522E2506D00EC79F2 /* icon_29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34322E2506D00EC79F2 /* icon_29pt.png */; };
 		8132C36622E2506D00EC79F2 /* iPhone Notification 20pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34422E2506D00EC79F2 /* iPhone Notification 20pt@3x.png */; };
 		8132C36722E2506D00EC79F2 /* icon_20pt-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34522E2506D00EC79F2 /* icon_20pt-5.png */; };
-		8132C36822E2506D00EC79F2 /* Launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34722E2506D00EC79F2 /* Launchscreen.png */; };
 		8132C36A22E2506D00EC79F2 /* Launchscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34922E2506D00EC79F2 /* Launchscreen@3x.png */; };
 		8132C36B22E2506D00EC79F2 /* Launchscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */; };
 		8132C36E22E2511800EC79F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8132C36D22E2511800EC79F2 /* Assets.xcassets */; };
@@ -107,6 +106,7 @@
 		816B8B0A22D220B900C630B9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B8B0922D220B900C630B9 /* PersonalViewController.swift */; };
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
+		81A0BD0B2348D82B00D6C8CE /* Launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A0BD0A2348D82A00D6C8CE /* Launchscreen.png */; };
 		81A91D4B2328188400426095 /* UIActionsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIActionsExtensions.swift */; };
 		81A91D4E232821F500426095 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A91D4D232821F500426095 /* sidebar.png */; };
 		81A91D522329815100426095 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D512329815100426095 /* OddJobItem.swift */; };
@@ -217,7 +217,6 @@
 		8132C34322E2506D00EC79F2 /* icon_29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_29pt.png; sourceTree = "<group>"; };
 		8132C34422E2506D00EC79F2 /* iPhone Notification 20pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Notification 20pt@3x.png"; sourceTree = "<group>"; };
 		8132C34522E2506D00EC79F2 /* icon_20pt-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_20pt-5.png"; sourceTree = "<group>"; };
-		8132C34722E2506D00EC79F2 /* Launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen.png; sourceTree = "<group>"; };
 		8132C34922E2506D00EC79F2 /* Launchscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launchscreen@3x.png"; sourceTree = "<group>"; };
 		8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launchscreen@2x.png"; sourceTree = "<group>"; };
 		8132C36D22E2511800EC79F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -235,6 +234,7 @@
 		816B8B0922D220B900C630B9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
+		81A0BD0A2348D82A00D6C8CE /* Launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Launchscreen.png; path = "../../../../Odd Jobs Beta/Odd Jobs Beta/Assets.xcassets/Launchscreen.imageset/Launchscreen.png"; sourceTree = "<group>"; };
 		81A91D4A2328188400426095 /* UIActionsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionsExtensions.swift; sourceTree = "<group>"; };
 		81A91D4D232821F500426095 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		81A91D512329815100426095 /* OddJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
@@ -379,14 +379,6 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		812F8CA12348C356002BF355 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				816B8B0222D21FA400C630B9 /* Constants.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		8132C32622E2506D00EC79F2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,7 +451,7 @@
 		8132C34622E2506D00EC79F2 /* Launch Screen */ = {
 			isa = PBXGroup;
 			children = (
-				8132C34722E2506D00EC79F2 /* Launchscreen.png */,
+				81A0BD0A2348D82A00D6C8CE /* Launchscreen.png */,
 				8132C34922E2506D00EC79F2 /* Launchscreen@3x.png */,
 				8132C34A22E2506D00EC79F2 /* Launchscreen@2x.png */,
 			);
@@ -475,10 +467,9 @@
 				8192CCE022E8ECB1001AC3A9 /* Other */,
 				81208AC92308558100F6548E /* Extensions */,
 				81208ACB2308564800F6548E /* Tab Controllers */,
-				812F8CA12348C356002BF355 /* Constants */,
 				81E18214234270AC00D05B0B /* Task Controllers */,
 				816B8B0622D21FC900C630B9 /* Controllers */,
-				816B8B0122D21F9500C630B9 /* Structures */,
+				816B8B0122D21F9500C630B9 /* Constants */,
 				816B8AEE22D21EB200C630B9 /* Odd_Jobs_Realm */,
 				816B8AED22D21EB200C630B9 /* Products */,
 				607F930F42DE59049832331F /* Pods */,
@@ -505,9 +496,10 @@
 			path = Odd_Jobs_Realm;
 			sourceTree = "<group>";
 		};
-		816B8B0122D21F9500C630B9 /* Structures */ = {
+		816B8B0122D21F9500C630B9 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				816B8B0222D21FA400C630B9 /* Constants.swift */,
 				81A91D512329815100426095 /* OddJobItem.swift */,
 				814B51C622DCF4F300102E73 /* ScoreItem.swift */,
 				8192CCDE22E8E900001AC3A9 /* MapItem.swift */,
@@ -515,7 +507,7 @@
 				811B214922FD8320007425C0 /* HolidayItem.swift */,
 				81208AC72307318B00F6548E /* ThemeItem.swift */,
 			);
-			path = Structures;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		816B8B0622D21FC900C630B9 /* Controllers */ = {
@@ -666,8 +658,8 @@
 			files = (
 				8132C36022E2506D00EC79F2 /* iPhone App 60pt@2x.png in Resources */,
 				8132C35022E2506D00EC79F2 /* OddJobsLogo1x.png in Resources */,
+				81A0BD0B2348D82B00D6C8CE /* Launchscreen.png in Resources */,
 				812F8C9C2348A717002BF355 /* delete_task.mp3 in Resources */,
-				8132C36822E2506D00EC79F2 /* Launchscreen.png in Resources */,
 				8132C36722E2506D00EC79F2 /* icon_20pt-5.png in Resources */,
 				8125F38623204DF3004869CA /* clear_logo.png in Resources */,
 				816B8AFA22D21EB200C630B9 /* LaunchScreen.storyboard in Resources */,

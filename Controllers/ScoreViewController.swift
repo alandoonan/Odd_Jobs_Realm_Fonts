@@ -26,11 +26,14 @@ class ScoreViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+    let viewScoreCateogry = Constants.lifeScoreCategory[0]
+    
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         self.realm = try! Realm(configuration: config!)
-        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", "Life")
+        self.scoreItem = realm.objects(ScoreItem.self).filter("Category contains[c] %@", viewScoreCateogry)
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -39,16 +42,16 @@ class ScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let sideBar = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleDismiss))
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOutButtonPress))
-        addNavBar([sideBar], [logout],scoreCategory: [""])
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(logOutButtonPress))
+        addNavBar([sideBar], [add],scoreCategory: [""])
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationItem.title = "Score"
+        addLogo()
         checkingScoreSystem()
         setupCircleLayers()
-        let (userLabel,levelLabel,categoryLabel,totalScoreLabel) = setupUserLabels()
-        animateCircle(category: "Life", userLabel: userLabel, levelLabel: levelLabel, categoryLabel: categoryLabel, totalScoreLabel: totalScoreLabel)
+        let (userLabel,levelLabel,categoryLabel,totalScoreLabel,toNextLevelLabel) = setupUserLabels()
+        animateCircle(category: viewScoreCateogry, userLabel: userLabel, levelLabel: levelLabel, categoryLabel: categoryLabel, totalScoreLabel: totalScoreLabel, toNextLevelLabel: toNextLevelLabel)
         applyThemeView(view)
-        //autoRefreshScores(scoreCategory: "Personal")
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current.preferredStatusBarStyle
@@ -91,20 +94,30 @@ class ScoreViewController: UIViewController {
         label.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
         label.heightAnchor.constraint(equalToConstant: 300).isActive = true
         label.adjustsFontSizeToFitWidth = true
-
     }
     
-    func setupUserLabels() -> (UILabel, UILabel, UILabel, UILabel) {
+    func addLogo() {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0,  width: 72, height: 66))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "clear_logo 2.png")
+        imageView.image = image
+        navigationItem.titleView = imageView
+    }
+    
+    
+    func setupUserLabels() -> (UILabel, UILabel, UILabel, UILabel, UILabel) {
         let userLabel = createScoreUILabel(fontSize: 20)
         let categoryLabel = createScoreUILabel(fontSize: 20)
         let levelLabel = createScoreUILabel(fontSize: 20)
         let totalScoreLabel = createScoreUILabel(fontSize: 20)
-        addLabel(label: userLabel, anchor: 5, width: 300)
-        addLabel(label: categoryLabel, anchor: 35, width: 300)
-        addLabel(label: levelLabel, anchor: 65, width: 300)
-        addLabel(label: totalScoreLabel, anchor: 95, width: 300)
+        let toNextLevelLabel = createScoreUILabel(fontSize: 20)
+        addLabel(label: userLabel, anchor: 10, width: 300)
+        addLabel(label: categoryLabel, anchor: 45, width: 300)
+        addLabel(label: levelLabel, anchor: 75, width: 300)
+        addLabel(label: totalScoreLabel, anchor: 105, width: 300)
+        addLabel(label: toNextLevelLabel, anchor: 135, width: 300)
         addScoreLabel()
-        return (userLabel,levelLabel,categoryLabel,totalScoreLabel)
+        return (userLabel,levelLabel,categoryLabel,totalScoreLabel,toNextLevelLabel)
     }
     
     func addScoreLabel() {
@@ -156,8 +169,8 @@ class ScoreViewController: UIViewController {
         basicAnimation.isRemovedOnCompletion = false
     }
     
-    func animateCircle(category: String, userLabel: UILabel, levelLabel: UILabel, categoryLabel: UILabel, totalScoreLabel: UILabel) {
-        let scoreItem = getScoreItem(realm: realm, category: "Life")
+    func animateCircle(category: String, userLabel: UILabel, levelLabel: UILabel, categoryLabel: UILabel, totalScoreLabel: UILabel, toNextLevelLabel: UILabel) {
+        let scoreItem = getScoreItem(realm: realm, category: viewScoreCateogry)
         print("Score Item Animate Circle")
         print(self.scoreItem)
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -168,5 +181,7 @@ class ScoreViewController: UIViewController {
         levelLabel.text = String("Level: " + String(scoreItem.Level))
         categoryLabel.text = String("Category: " + String(scoreItem.Category))
         totalScoreLabel.text = String("Total Score: " + String(scoreItem.TotalScore))
+        toNextLevelLabel.text = String("Points to Next Level: " + String(scoreItem.LevelCap - scoreItem.Score))
+        
     }
 }
