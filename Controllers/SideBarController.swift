@@ -90,10 +90,13 @@ class SideBarController: UIViewController {
             print("Group Archive}")
             let controller = GroupArchiveViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .Score:
-            print("Score")
-            let controller = ScoreViewController()
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .ScoreBoard:
+            print("ScoreBoard")
+            showStoryBoardView(storyBoardID: "ScoreBoardViewController")
+//        case .Score:
+//            print("Score")
+//            let controller = ScoreViewController()
+//            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .Themes:
             print("Themes")
             let controller = ThemesViewController()
@@ -105,9 +108,6 @@ class SideBarController: UIViewController {
             print("Users")
             let controller = SearchUsersViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        case .ScoreBoard:
-            print("ScoreBoard")
-            showStoryBoardView(storyBoardID: "ScoreBoardViewController")
 //        case .CreateLifeTask:
 //            print("Create Life Task")
 //            showStoryBoardView(storyBoardID: "LifeTaskViewController")

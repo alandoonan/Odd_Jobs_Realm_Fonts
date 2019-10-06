@@ -521,7 +521,6 @@
 			children = (
 				8131015922F48B2800420AFE /* LoginViewController.swift */,
 				8128598822D5059200F1A406 /* HomeViewController.swift */,
-				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				81208AB0230331F800F6548E /* HomeViewControllerTest.swift */,
 				814B51B822D67E7500102E73 /* ThemesViewController.swift */,
 				8132C37722E77CD000EC79F2 /* MapTasksViewController.swift */,
@@ -540,6 +539,7 @@
 				81208ABE2303392900F6548E /* MenuOptionCell.swift */,
 				8128598622D3D75F00F1A406 /* LifeViewController.swift */,
 				811B214B22FDB644007425C0 /* SummaryViewController.swift */,
+				814B51C822DCF92700102E73 /* ScoreViewController.swift */,
 				8125F39123258317004869CA /* Trash.swift */,
 				8192CCE122E8ECBD001AC3A9 /* home.gpx */,
 			);
