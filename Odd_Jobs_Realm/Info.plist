@@ -27,6 +27,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Arial Rounded Bold.ttf</string>
+		<string>subway-ticker.regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

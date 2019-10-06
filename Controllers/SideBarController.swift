@@ -105,6 +105,9 @@ class SideBarController: UIViewController {
             print("Users")
             let controller = SearchUsersViewController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .ScoreBoard:
+            print("ScoreBoard")
+            showStoryBoardView(storyBoardID: "ScoreBoardViewController")
 //        case .CreateLifeTask:
 //            print("Create Life Task")
 //            showStoryBoardView(storyBoardID: "LifeTaskViewController")

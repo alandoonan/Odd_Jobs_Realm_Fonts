@@ -107,6 +107,8 @@
 		8192CCDF22E8E900001AC3A9 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192CCDE22E8E900001AC3A9 /* MapItem.swift */; };
 		8192CCE222E8ECBD001AC3A9 /* home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8192CCE122E8ECBD001AC3A9 /* home.gpx */; };
 		81A0BD0B2348D82B00D6C8CE /* Launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A0BD0A2348D82A00D6C8CE /* Launchscreen.png */; };
+		81A0BD0D2349E4D400D6C8CE /* ScoreBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A0BD0C2349E4D400D6C8CE /* ScoreBoardViewController.swift */; };
+		81A0BD0F234A038800D6C8CE /* subway-ticker.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81A0BD0E2349FFCD00D6C8CE /* subway-ticker.regular.ttf */; };
 		81A91D4B2328188400426095 /* UIActionsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D4A2328188400426095 /* UIActionsExtensions.swift */; };
 		81A91D4E232821F500426095 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A91D4D232821F500426095 /* sidebar.png */; };
 		81A91D522329815100426095 /* OddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A91D512329815100426095 /* OddJobItem.swift */; };
@@ -235,6 +237,8 @@
 		8192CCDE22E8E900001AC3A9 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		8192CCE122E8ECBD001AC3A9 /* home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 		81A0BD0A2348D82A00D6C8CE /* Launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Launchscreen.png; path = "../../../../Odd Jobs Beta/Odd Jobs Beta/Assets.xcassets/Launchscreen.imageset/Launchscreen.png"; sourceTree = "<group>"; };
+		81A0BD0C2349E4D400D6C8CE /* ScoreBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewController.swift; sourceTree = "<group>"; };
+		81A0BD0E2349FFCD00D6C8CE /* subway-ticker.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "subway-ticker.regular.ttf"; sourceTree = "<group>"; };
 		81A91D4A2328188400426095 /* UIActionsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionsExtensions.swift; sourceTree = "<group>"; };
 		81A91D4D232821F500426095 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		81A91D512329815100426095 /* OddJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddJobItem.swift; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */,
+				81A0BD0E2349FFCD00D6C8CE /* subway-ticker.regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 		8132C32622E2506D00EC79F2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81A0BD11234A15C800D6C8CE /* Nav Bar Buttons */,
 				81A91D4C2328214600426095 /* Location Icons */,
 				81E0B91C23280553003AE595 /* Tab Bar Icons */,
 				81E0B9192328052B003AE595 /* Sidebar Icons */,
@@ -523,6 +529,7 @@
 				81208AC02303397E00F6548E /* MenuController.swift */,
 				81208ACE2308612B00F6548E /* SearchUsersViewController.swift */,
 				81208AD5230DA66400F6548E /* OddJobViewController.swift */,
+				81A0BD0C2349E4D400D6C8CE /* ScoreBoardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -537,6 +544,13 @@
 				8192CCE122E8ECBD001AC3A9 /* home.gpx */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		81A0BD11234A15C800D6C8CE /* Nav Bar Buttons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Nav Bar Buttons";
 			sourceTree = "<group>";
 		};
 		81A91D4C2328214600426095 /* Location Icons */ = {
@@ -656,6 +670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A0BD0F234A038800D6C8CE /* subway-ticker.regular.ttf in Resources */,
 				8132C36022E2506D00EC79F2 /* iPhone App 60pt@2x.png in Resources */,
 				8132C35022E2506D00EC79F2 /* OddJobsLogo1x.png in Resources */,
 				81A0BD0B2348D82B00D6C8CE /* Launchscreen.png in Resources */,
@@ -826,6 +841,7 @@
 				81CF5F2C23159407003F12E7 /* Batman.swift in Sources */,
 				81208AD12309CFBB00F6548E /* RealmManager.swift in Sources */,
 				812F8CA02348BB51002BF355 /* Dates.swift in Sources */,
+				81A0BD0D2349E4D400D6C8CE /* ScoreBoardViewController.swift in Sources */,
 				8128598722D3D75F00F1A406 /* LifeViewController.swift in Sources */,
 				814B51C722DCF4F300102E73 /* ScoreItem.swift in Sources */,
 				81A91D522329815100426095 /* OddJobItem.swift in Sources */,

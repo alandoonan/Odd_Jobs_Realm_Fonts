@@ -54,17 +54,18 @@ extension UIViewController {
     func updateScore(realm: Realm, value: Int, category: String) {
         print("Checking Score & Level")
         let scoreItem = getScoreItem(realm: realm, category: category)
+        let lifeTotalScore = getScoreItem(realm: realm, category: Constants.lifeScoreCategory[0])
         if scoreItem.Score == scoreItem.LevelCap {
             try! realm.write {
                 scoreItem.Score = 0
                 scoreItem.Level += value
-                scoreItem.TotalScore += value
+                lifeTotalScore.TotalScore += value
             }
         }
         else {
             try! realm.write {
                 scoreItem.Score += value
-                scoreItem.TotalScore += value
+                lifeTotalScore.TotalScore += value
             }
         }
     }

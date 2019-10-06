@@ -28,6 +28,7 @@ class MapTasksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapBackButton.image = UIImage(named: "back.png")
         let config = SyncUser.current?.configuration(realmURL: Constants.ODDJOBS_REALM_URL, fullSynchronization: true)
         let realm = try! Realm(configuration: config!)
         let mapItems = realm.objects(OddJobItem.self).filter("Category in %@ and IsDone == false", Constants.listTypes)
@@ -37,14 +38,13 @@ class MapTasksViewController: UIViewController {
         checkLocationServices()
         populateMap(mapItems)
         populateMap(sharedItems)
-        view.backgroundColor = Themes.current.background
-        UINavigationBar.appearance().barTintColor = Themes.current.background
-        mapView.backgroundColor = Themes.current.background
         applyThemeView(view)
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         mapNavBar.titleTextAttributes = textAttributes
         mapBackButton.tintColor = Themes.current.accent
+        mapNavBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SubwayTicker", size: 20)!, NSAttributedString.Key.foregroundColor : Themes.current.accent]
+
         //searchInMap()
         }
     

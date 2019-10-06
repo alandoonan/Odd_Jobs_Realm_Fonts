@@ -11,6 +11,7 @@ import UIKit
 class Themes {
 
     static let mainFontName = "ArialRoundedMTBold"
+    static let scoreFontName = "SubwayTicker"
 //    static let accent = UIColor.orangeTheme
 //    static let background = UIColor.navyTheme
 //    static let tint = UIColor.greenTheme

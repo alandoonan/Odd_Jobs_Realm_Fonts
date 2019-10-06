@@ -19,6 +19,7 @@ enum MenuOption: Int, CustomStringConvertible {
     case Users
 //    case CreateLifeTask
 //    case CreateTask
+    case ScoreBoard
     case Logout
     
     var description: String {
@@ -33,6 +34,7 @@ enum MenuOption: Int, CustomStringConvertible {
         case .Users: return "Users"
 //        case .CreateLifeTask: return "Create Life Task"
 //        case .CreateTask: return "Create Task"
+        case .ScoreBoard: return "Score Board"
         case .Logout: return "Log Out"
 
         }
@@ -50,6 +52,7 @@ enum MenuOption: Int, CustomStringConvertible {
         case .Users: return UIImage(named: "users.png") ?? UIImage()
 //        case .CreateLifeTask: return UIImage(named: "lifetask.png") ?? UIImage()
 //        case .CreateTask: return UIImage(named: "task.png") ?? UIImage()
+        case .ScoreBoard: return UIImage(named: "trophy_sidebar.png") ?? UIImage()
         case .Logout: return UIImage(named: "logout.png") ?? UIImage()
 
         }

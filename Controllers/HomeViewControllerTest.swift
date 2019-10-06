@@ -34,6 +34,7 @@ class HomeViewControllerTest: UIViewController {
         super.viewDidAppear(true)
         configureNavigationBar()
         applyThemeView(view)
+        navigationItem.title = "ODD JOBS"
     }
     
     override func viewDidLoad() {
@@ -76,7 +77,6 @@ class HomeViewControllerTest: UIViewController {
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.view.backgroundColor = Themes.current.background
-        navigationItem.title = "Odd Jobs"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.automatic), style: .plain, target: self, action: #selector(handleMenuToggle))
         createHomeBackGround()
     }

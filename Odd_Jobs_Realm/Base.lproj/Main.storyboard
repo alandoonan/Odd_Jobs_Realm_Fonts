@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="subway-ticker.regular.ttf">
+            <string>SubwayTicker</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -16,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OddJobsLogo3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-u8-l9I">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear_logo 2.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-u8-l9I">
                                 <rect key="frame" x="72" y="78" width="270" height="230"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alandoonan@gmail.com" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BtJ-PE-8Sf">
@@ -163,7 +168,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laX-Rq-d3N">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Odd Jobs Map" id="fBs-v7-W3A">
+                                    <navigationItem title="ODD JOBS MAP" id="fBs-v7-W3A">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="Up0-NI-CXO">
                                             <connections>
                                                 <action selector="backToPersonalButton:" destination="0DB-Wp-r8S" id="3VC-r2-j5n"/>
@@ -574,9 +579,77 @@
             </objects>
             <point key="canvasLocation" x="-3223.1884057971015" y="114.50892857142857"/>
         </scene>
+        <!--Score Board View Controller-->
+        <scene sceneID="Znd-D3-m30">
+            <objects>
+                <viewController storyboardIdentifier="ScoreBoardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uhZ-jb-OLz" customClass="ScoreBoardViewController" customModule="Odd_Jobs_Realm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uVM-gq-YJN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Q-zU-dEA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="SCORE BOARD" id="IXo-mc-lfR">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="Nay-pG-JlM">
+                                            <connections>
+                                                <action selector="goBackButtonPress:" destination="uhZ-jb-OLz" id="VNL-ds-0QW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="M7a-d0-mtA">
+                                <rect key="frame" x="20" y="109" width="374" height="128.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijc-T3-UDC">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="SubwayTicker" family="Subway Ticker" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="dXl-18-tIk">
+                                        <rect key="frame" x="0.0" y="52.5" width="374" height="2"/>
+                                        <color key="tintColor" red="0.17094734310000001" green="0.68882632259999999" blue="0.37639367579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iLS-YV-MoS">
+                                        <rect key="frame" x="0.0" y="89.5" width="374" height="2"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LO4-x2-ZMo">
+                                        <rect key="frame" x="0.0" y="126.5" width="374" height="2"/>
+                                    </progressView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="80Q-zU-dEA" firstAttribute="leading" secondItem="rAA-RR-WY0" secondAttribute="leading" id="KP8-iz-ncz"/>
+                            <constraint firstItem="M7a-d0-mtA" firstAttribute="top" secondItem="80Q-zU-dEA" secondAttribute="bottom" constant="21" id="KxU-Y0-NUq"/>
+                            <constraint firstItem="M7a-d0-mtA" firstAttribute="leading" secondItem="rAA-RR-WY0" secondAttribute="leading" constant="20" id="PYk-PL-azB"/>
+                            <constraint firstItem="rAA-RR-WY0" firstAttribute="trailing" secondItem="M7a-d0-mtA" secondAttribute="trailing" constant="20" id="gnu-LA-AGD"/>
+                            <constraint firstItem="80Q-zU-dEA" firstAttribute="top" secondItem="rAA-RR-WY0" secondAttribute="top" id="oze-Co-pbw"/>
+                            <constraint firstItem="M7a-d0-mtA" firstAttribute="trailing" secondItem="uVM-gq-YJN" secondAttribute="trailingMargin" id="p7D-bK-Jgn"/>
+                            <constraint firstItem="M7a-d0-mtA" firstAttribute="leading" secondItem="uVM-gq-YJN" secondAttribute="leadingMargin" id="p7e-Zb-OZo"/>
+                            <constraint firstItem="80Q-zU-dEA" firstAttribute="centerX" secondItem="M7a-d0-mtA" secondAttribute="centerX" id="t7b-nH-IFB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rAA-RR-WY0"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBarButton" destination="Nay-pG-JlM" id="XwT-Lb-sic"/>
+                        <outlet property="groupProgressBar" destination="LO4-x2-ZMo" id="iSK-tE-47A"/>
+                        <outlet property="lifeProgressBar" destination="dXl-18-tIk" id="uGs-gj-kXJ"/>
+                        <outlet property="personalProgressBar" destination="iLS-YV-MoS" id="ptc-aj-1aO"/>
+                        <outlet property="scoreBoardNavBar" destination="80Q-zU-dEA" id="8Le-YX-F61"/>
+                        <outlet property="totalScoreLabel" destination="Ijc-T3-UDC" id="hi4-ty-Xwq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8af-bT-4u5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.086956521739133" y="114.50892857142857"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="OddJobsLogo3x.png" width="579" height="921"/>
         <image name="clear_logo 2.png" width="631" height="671"/>
     </resources>
 </document>
