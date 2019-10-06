@@ -21,6 +21,7 @@ extension UIViewController {
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = Themes.current.background
+        UILabel.appearance().tintColor = Themes.current.accent
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
         navigationController?.navigationBar.backgroundColor = Themes.current.background
@@ -36,6 +37,7 @@ extension UIViewController {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         let textAttributes = [NSAttributedString.Key.foregroundColor:Themes.current.accent]
         view.backgroundColor = Themes.current.background
+        UILabel.appearance().tintColor = Themes.current.accent
         navigationController?.navigationBar.backgroundColor = Themes.current.background
         navigationController?.navigationBar.barTintColor = Themes.current.background
         navigationController?.navigationBar.tintColor = Themes.current.accent
