@@ -599,46 +599,123 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="M7a-d0-mtA">
-                                <rect key="frame" x="20" y="109" width="374" height="128.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="nSE-Pi-Kpv">
+                                <rect key="frame" x="21" y="238" width="373" height="21"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijc-T3-UDC">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="17.5"/>
-                                        <fontDescription key="fontDescription" name="SubwayTicker" family="Subway Ticker" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnk-tI-WFF">
+                                        <rect key="frame" x="0.0" y="0.0" width="10.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="dXl-18-tIk">
-                                        <rect key="frame" x="0.0" y="52.5" width="374" height="2"/>
+                                        <rect key="frame" x="21.5" y="0.0" width="330" height="21"/>
                                         <color key="tintColor" red="0.17094734310000001" green="0.68882632259999999" blue="0.37639367579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aoh-VR-7I8">
+                                        <rect key="frame" x="362.5" y="0.0" width="10.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-Rs-5oZ">
+                                <rect key="frame" x="21" y="271" width="373" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dK-Pl-SXp">
+                                        <rect key="frame" x="0.0" y="0.0" width="10.5" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iLS-YV-MoS">
-                                        <rect key="frame" x="0.0" y="89.5" width="374" height="2"/>
+                                        <rect key="frame" x="21.5" y="0.0" width="330" height="20"/>
                                         <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90J-xq-CNo">
+                                        <rect key="frame" x="362.5" y="0.0" width="10.5" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="5Ii-bK-Oic">
+                                <rect key="frame" x="21" y="303" width="373" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hht-wu-59k">
+                                        <rect key="frame" x="0.0" y="0.0" width="10.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LO4-x2-ZMo">
-                                        <rect key="frame" x="0.0" y="126.5" width="374" height="2"/>
+                                        <rect key="frame" x="21.5" y="0.0" width="330" height="20.5"/>
                                     </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNm-rN-qmB">
+                                        <rect key="frame" x="362.5" y="0.0" width="10.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="tTV-Yz-zkX">
+                                <rect key="frame" x="94" y="102" width="226" height="94.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijc-T3-UDC">
+                                        <rect key="frame" x="0.0" y="0.0" width="226" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="SubwayTicker" family="Subway Ticker" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEVEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swu-9P-Ecr">
+                                        <rect key="frame" x="0.0" y="38.5" width="226" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="SubwayTicker" family="Subway Ticker" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POINTS TO NEXT LEVEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6c-dE-PJO">
+                                        <rect key="frame" x="0.0" y="77" width="226" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="SubwayTicker" family="Subway Ticker" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="80Q-zU-dEA" firstAttribute="leading" secondItem="rAA-RR-WY0" secondAttribute="leading" id="KP8-iz-ncz"/>
-                            <constraint firstItem="M7a-d0-mtA" firstAttribute="top" secondItem="80Q-zU-dEA" secondAttribute="bottom" constant="21" id="KxU-Y0-NUq"/>
-                            <constraint firstItem="M7a-d0-mtA" firstAttribute="leading" secondItem="rAA-RR-WY0" secondAttribute="leading" constant="20" id="PYk-PL-azB"/>
-                            <constraint firstItem="rAA-RR-WY0" firstAttribute="trailing" secondItem="M7a-d0-mtA" secondAttribute="trailing" constant="20" id="gnu-LA-AGD"/>
-                            <constraint firstItem="80Q-zU-dEA" firstAttribute="top" secondItem="rAA-RR-WY0" secondAttribute="top" id="oze-Co-pbw"/>
-                            <constraint firstItem="M7a-d0-mtA" firstAttribute="trailing" secondItem="uVM-gq-YJN" secondAttribute="trailingMargin" id="p7D-bK-Jgn"/>
-                            <constraint firstItem="M7a-d0-mtA" firstAttribute="leading" secondItem="uVM-gq-YJN" secondAttribute="leadingMargin" id="p7e-Zb-OZo"/>
-                            <constraint firstItem="80Q-zU-dEA" firstAttribute="centerX" secondItem="M7a-d0-mtA" secondAttribute="centerX" id="t7b-nH-IFB"/>
+                            <constraint firstItem="rAA-RR-WY0" firstAttribute="trailing" secondItem="nSE-Pi-Kpv" secondAttribute="trailing" constant="19.5" id="84F-Nu-OeR"/>
+                            <constraint firstItem="80Q-zU-dEA" firstAttribute="centerX" secondItem="uVM-gq-YJN" secondAttribute="centerX" id="CHb-H3-dJz"/>
+                            <constraint firstItem="ffz-Rs-5oZ" firstAttribute="leading" secondItem="5Ii-bK-Oic" secondAttribute="leading" id="JRG-zN-djb"/>
+                            <constraint firstItem="80Q-zU-dEA" firstAttribute="top" secondItem="rAA-RR-WY0" secondAttribute="top" id="Jcx-1x-8jg"/>
+                            <constraint firstItem="ffz-Rs-5oZ" firstAttribute="top" secondItem="nSE-Pi-Kpv" secondAttribute="bottom" constant="12" id="Kz3-ir-NhO"/>
+                            <constraint firstItem="nSE-Pi-Kpv" firstAttribute="top" secondItem="uVM-gq-YJN" secondAttribute="top" constant="238" id="VwD-EU-r1V"/>
+                            <constraint firstItem="tTV-Yz-zkX" firstAttribute="top" secondItem="80Q-zU-dEA" secondAttribute="bottom" constant="14" id="bjb-HT-s9F"/>
+                            <constraint firstItem="ffz-Rs-5oZ" firstAttribute="trailing" secondItem="5Ii-bK-Oic" secondAttribute="trailing" id="d0d-eX-K24"/>
+                            <constraint firstItem="5Ii-bK-Oic" firstAttribute="top" secondItem="uVM-gq-YJN" secondAttribute="top" constant="303" id="fpa-eQ-aWd"/>
+                            <constraint firstItem="nSE-Pi-Kpv" firstAttribute="leading" secondItem="rAA-RR-WY0" secondAttribute="leading" constant="21.5" id="mcC-p7-Eg4"/>
+                            <constraint firstItem="ffz-Rs-5oZ" firstAttribute="top" secondItem="uVM-gq-YJN" secondAttribute="top" constant="271" id="nFd-7a-qjA"/>
+                            <constraint firstItem="nSE-Pi-Kpv" firstAttribute="trailing" secondItem="ffz-Rs-5oZ" secondAttribute="trailing" id="nQN-cd-gba"/>
+                            <constraint firstItem="tTV-Yz-zkX" firstAttribute="centerX" secondItem="80Q-zU-dEA" secondAttribute="centerX" id="ouf-de-XNS"/>
+                            <constraint firstItem="5Ii-bK-Oic" firstAttribute="top" secondItem="ffz-Rs-5oZ" secondAttribute="bottom" constant="12" id="snL-gW-Ic5"/>
+                            <constraint firstItem="80Q-zU-dEA" firstAttribute="leading" secondItem="rAA-RR-WY0" secondAttribute="leading" id="w5V-nZ-TJI"/>
+                            <constraint firstItem="nSE-Pi-Kpv" firstAttribute="leading" secondItem="ffz-Rs-5oZ" secondAttribute="leading" id="wjU-DE-IOD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rAA-RR-WY0"/>
                     </view>
                     <connections>
                         <outlet property="backBarButton" destination="Nay-pG-JlM" id="XwT-Lb-sic"/>
+                        <outlet property="groupCurrentScoreLabel" destination="hht-wu-59k" id="ahx-j3-Eme"/>
+                        <outlet property="groupLevelCapLabel" destination="yNm-rN-qmB" id="ZdG-Nk-46M"/>
                         <outlet property="groupProgressBar" destination="LO4-x2-ZMo" id="iSK-tE-47A"/>
+                        <outlet property="lifeCurrentScoreLabel" destination="Pnk-tI-WFF" id="wH4-rf-05W"/>
+                        <outlet property="lifeLevelCapLabel" destination="Aoh-VR-7I8" id="SxY-aJ-994"/>
                         <outlet property="lifeProgressBar" destination="dXl-18-tIk" id="uGs-gj-kXJ"/>
+                        <outlet property="personalCurrentScoreLabel" destination="1dK-Pl-SXp" id="urD-p3-mRH"/>
+                        <outlet property="personalLevelCapLabel" destination="90J-xq-CNo" id="WRX-xp-4vE"/>
                         <outlet property="personalProgressBar" destination="iLS-YV-MoS" id="ptc-aj-1aO"/>
                         <outlet property="scoreBoardNavBar" destination="80Q-zU-dEA" id="8Le-YX-F61"/>
                         <outlet property="totalScoreLabel" destination="Ijc-T3-UDC" id="hi4-ty-Xwq"/>
