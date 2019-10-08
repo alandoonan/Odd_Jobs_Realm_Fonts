@@ -27,6 +27,17 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    //MARK: Life Task Alert Invalid Selection
+    func invalidLifeSelection (selection: String) {
+        let alertController = UIAlertController(title: selection + " Not Selected", message: "Please Select A " + selection, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .destructive, handler: {
+            alert -> Void in
+            print("ERROR")
+        }))
+        playSound(soundName: "task_created.mp3")
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     //MARK: Action to perform logout for current user when logout button is pressed
     @objc func logOutButtonPress() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert);

@@ -14,6 +14,75 @@ class LoginViewController: UIViewController {
     let tableView = UITableView()
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
+    @IBOutlet weak var loginButton: UI!
+    
+    @IBOutlet weak var newUserButton: UI!
+    
+    @IBOutlet weak var changePasswordButton: UI!
+    
+    @IBOutlet weak var passwordResetButton: UI!
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        print("Login Button Pressed")
+        let username = emailTextField.text!
+        let password = passTextField.text!
+        currentUserSync(username, password)
+        sharedUser = username
+        UserDefaults.standard.set(username, forKey: "Name")
+        print("Shared User Login VC: " + sharedUser)
+    }
+    
+    @IBAction func newUserButtonPressed(_ sender: Any) {
+        print("New User Button Pressed")
+        let username = emailTextField.text!
+        let password = passTextField.text!
+        newUserSync(username, password)
+    }
+    
+    @IBAction func resetPassButtonPressed(_ sender: Any) {
+        print("Request Password Reset Button Pressed")
+        let usernameRequest = emailTextField.text!
+        print(usernameRequest)
+        SyncUser.requestPasswordReset(forAuthServer: Constants.AUTH_URL, userEmail: "alandoonan@gmail.com"){ error in
+            if (error != nil) {
+                print(error!)
+                print("Error Requesting Password")
+            }
+        }
+        let token = "resetToken"
+        let newPassword = "newPassword"
+        SyncUser.completePasswordReset(forAuthServer: Constants.AUTH_URL, token: token, password: newPassword) { error in
+            if (error != nil) {
+                print("Error changing password")
+            }
+        }
+    }
+    
+    // Change Current User Password
+    @IBAction func changePassButtonPressed(_ sender: Any) {
+        print("Change Password Button Pressed")
+        let alert = UIAlertController(title: "Change Password", message: "Enter new password.", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter New Password"
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            print("Text field: " + textField!.text!)
+            let newPassword = textField!.text!
+            print(newPassword)
+            SyncUser.current!.changePassword(newPassword) { (error) in
+                if error != nil {
+                    print("Error")
+                }
+                else {
+                    print("Password changed successfully")
+                }
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
     
     fileprivate func storeUserInformation(username: String) {
         print("Storing User Information")
@@ -72,15 +141,7 @@ class LoginViewController: UIViewController {
         return Themes.current.preferredStatusBarStyle
     }
     
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        print("Login Button Pressed")
-        let username = emailTextField.text!
-        let password = passTextField.text!
-        currentUserSync(username, password)
-        sharedUser = username
-        UserDefaults.standard.set(username, forKey: "Name")
-        print("Shared User Login VC: " + sharedUser)
-    }
+    
     
     func openRealmPermissions () {
         let userRealm = "/~/Oddjobs"
@@ -120,7 +181,6 @@ class LoginViewController: UIViewController {
         let email = username
         SyncUser.requestEmailConfirmation(forAuthServer: Constants.AUTH_URL, userEmail: email) { error in
             if (error != nil) {
-                // something went wrong
                 print(error!)
                 print("ERROR GETTING EMAIL")
             }
@@ -144,65 +204,20 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @IBAction func newUserButtonPressed(_ sender: Any) {
-        print("New User Button Pressed")
-        let username = emailTextField.text!
-        let password = passTextField.text!
-        newUserSync(username, password)
-    }
-    
-    // Change Current User Password
-    @IBAction func changePassButtonPressed(_ sender: Any) {
-        print("Change Password Button Pressed")
-        let alert = UIAlertController(title: "Change Password", message: "Enter new password.", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "Enter New Password"
-        }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0]
-            print("Text field: " + textField!.text!)
-            let newPassword = textField!.text!
-            print(newPassword)
-            SyncUser.current!.changePassword(newPassword) { (error) in
-                if error != nil {
-                    print("Error")
-                }
-                else {
-                    print("Password changed successfully")
-                }
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func resetPassButtonPressed(_ sender: Any) {
-        print("Request Password Reset Button Pressed")
-        let usernameRequest = emailTextField.text!
-        print(usernameRequest)
-        SyncUser.requestPasswordReset(forAuthServer: Constants.AUTH_URL, userEmail: "alandoonan@gmail.com"){ error in
-            if (error != nil) {
-                print(error!)
-                print("Error Requesting Password")
-            }
-        }
-        let token = "resetToken"
-        let newPassword = "newPassword"
-        SyncUser.completePasswordReset(forAuthServer: Constants.AUTH_URL, token: token, password: newPassword) { error in
-            if (error != nil) {
-                print("Error changing password")
-            }
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         applyThemeView(view)
         UITextField.appearance().keyboardAppearance = .dark
-    }
+        loginButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
+        newUserButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
+        changePasswordButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
+        passwordResetButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
+       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         applyThemeView(view)
+        
         logOutUsers()
         if let _ = SyncUser.current {
             print("Already Logged In.")

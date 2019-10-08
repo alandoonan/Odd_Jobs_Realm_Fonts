@@ -26,6 +26,9 @@ class LifeTaskViewController: UIViewController{
         super.viewDidLoad()
         p=0
         applyThemeView(view)
+        selectCategoryButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
+        selectWhenButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
+        selectTaskButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
         applyTaskTheme(tableView: tableView, selectTaskButton: selectTaskButton, selectCategoryButton: selectCategoryButton, selectWhenButton: selectWhenButton, userLabel: userLabel)
         hideKeyboardWhenTappedAround()
     }
@@ -44,6 +47,10 @@ class LifeTaskViewController: UIViewController{
     
     @IBAction func selectTaskButtonPress(_ sender: Any) {
         print("Select Task Pressed")
+        if selectCategoryButton.titleLabel?.text == "Life Category" {
+            invalidLifeSelection(selection: "Life Category")
+            return
+        }
         if categoryButtonTitle.titleLabel?.text == "Health" {
             p=1
             print("Health")
@@ -81,6 +88,10 @@ class LifeTaskViewController: UIViewController{
         }
     }
     @IBAction func selectWhenButtonPressed(_ sender: Any) {
+        if selectTaskButton.titleLabel?.text == "Life Task" {
+            invalidLifeSelection(selection: "Life Task")
+            return
+        }
         print("Select When Pressed")
         p = 7
         tableView.reloadData()
@@ -126,6 +137,7 @@ extension LifeTaskViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = Constants.taskData[p][indexPath.row]
         cell.textLabel?.textColor = Themes.current.accent
         cell.backgroundColor = .clear
+        cell.textLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
         return cell
     }
     

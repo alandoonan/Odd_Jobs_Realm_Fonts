@@ -19,7 +19,7 @@ extension UIViewController {
         tableView.backgroundColor = Themes.current.background
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.separatorColor = Themes.current.background
         UILabel.appearance().tintColor = Themes.current.accent
         navigationController?.navigationBar.barTintColor = Themes.current.background
@@ -130,7 +130,7 @@ extension UIViewController {
     func applyTaskTheme(tableView: UITableView, selectTaskButton: UIButton, selectCategoryButton: UIButton, selectWhenButton: UIButton, userLabel: UILabel) {
         tableView.isHidden = true
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         selectTaskButton.backgroundColor = Themes.current.accent
         selectCategoryButton.backgroundColor = Themes.current.accent
         selectWhenButton.backgroundColor = Themes.current.accent

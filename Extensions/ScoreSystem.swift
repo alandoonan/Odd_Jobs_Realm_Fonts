@@ -55,7 +55,7 @@ extension UIViewController {
         print("Checking Score & Level")
         let scoreItem = getScoreItem(realm: realm, category: category)
         let lifeTotalScore = getScoreItem(realm: realm, category: Constants.lifeScoreCategory[0])
-        if scoreItem.Score == scoreItem.LevelCap {
+        if scoreItem.Score == scoreItem.LevelCap - 1 {
             try! realm.write {
                 scoreItem.Score = 0
                 scoreItem.Level += value
