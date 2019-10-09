@@ -79,7 +79,7 @@ struct Constants {
     //Task Data
     static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],
                            ["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal","Go For A Run","Go To The Gym"],
-                           ["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody","Participate in Groups"],
+                           ["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody","Participate in Groups","Donate To A Charity"],
                            ["Save For Rainy Day","Pay A Bill","Save Small Sum For Future Events","Setup Pension"],
                            ["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday","Friends Birthday"],
                            ["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],

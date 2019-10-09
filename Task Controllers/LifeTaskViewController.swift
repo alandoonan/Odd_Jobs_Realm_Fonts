@@ -12,19 +12,27 @@ import RealmSwift
 
 class LifeTaskViewController: UIViewController{
     var p: Int!
+    var hideTextField = [4,5]
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var categoryButtonTitle: UIButton!
     @IBOutlet weak var selectTaskButton: UIButton!
     @IBOutlet weak var selectWhenButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var taskNamingTextField: UITextField!
+    @IBAction func taskNameEntryTextField(_ sender: Any) {
+        
+    }
+    
     @IBAction func doneTaskButtonPress(_ sender: Any) {
         performSegueToReturnBack()
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         p=0
+        taskNamingTextField.isHidden = true
         applyThemeView(view)
         selectCategoryButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
         selectWhenButton.titleLabel?.font = UIFont(name: Themes.mainFontName,size: 18)
@@ -36,6 +44,13 @@ class LifeTaskViewController: UIViewController{
     @IBAction func selectCategoryButtonPress(_ sender: Any) {
         print("Select Category Pressed")
         p = 0
+        if hideTextField.contains(p) {
+            print("FOUND P")
+            taskNamingTextField.isHidden = false
+        }
+        else {
+            taskNamingTextField.isHidden = true
+        }
         tableView.reloadData()
         if tableView.isHidden {
             buttonViewToggle(toggle: true)
@@ -77,7 +92,13 @@ class LifeTaskViewController: UIViewController{
         if categoryButtonTitle.titleLabel?.text == "Custom" {
             p=6
             print("Custom")
-
+        }
+        if hideTextField.contains(p) {
+            print("FOUND P")
+            taskNamingTextField.isHidden = false
+        }
+        else {
+            taskNamingTextField.isHidden = true
         }
         tableView.reloadData()
         if tableView.isHidden {
