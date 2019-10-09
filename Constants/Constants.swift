@@ -43,7 +43,7 @@ struct Constants {
     static let createTaskTypes = ["Group","Personal","Work"]
     
     //Map Pin Icons
-    static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png", "Work" : "W.png"]
+//    static let mapPins = ["Personal" : "P.png", "Group": "G.png", "Life" : "L.png", "Work" : "W.png"]
     
     //Task Filters
     static let taskFilter = "Category in [c] %@ and IsDone == false AND User in [c] %@"
@@ -78,10 +78,10 @@ struct Constants {
     
     //Task Data
     static let taskData = [["Health", "Social", "Finance", "Birthday", "Anniversary","Custom"],
-                           ["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal"],
-                           ["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody"],
-                           ["Save Small Sum Of Money","Pay A Bill"],
-                           ["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday"],
+                           ["No Smoking","Drink Water","Go For A Walk","Eat A Healthy Meal","Go For A Run","Go To The Gym"],
+                           ["Call A Friend","Go Visit A Family Member","Do Something Nice For Somebody","Participate in Groups"],
+                           ["Save For Rainy Day","Pay A Bill","Save Small Sum For Future Events","Setup Pension"],
+                           ["Partners Birthday","Childs Birthday","Mothers Birthday","Fathers Birthday","Friends Birthday"],
                            ["Wedding","Couple","Passed Family Member or Friend","Parents Wedding"],
                            ["Test"],
                            ["Daily","Weekly","Monthly","Yearly"]]
