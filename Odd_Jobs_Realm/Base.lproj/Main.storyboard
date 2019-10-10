@@ -248,7 +248,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOV-xl-rbP" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
                                 <rect key="frame" x="212" y="787" width="190" height="75"/>
                                 <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Create Life Task">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -439,7 +439,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-Zo-9dR" customClass="UI" customModule="Odd_Jobs_Realm" customModuleProvider="target">
                                 <rect key="frame" x="211" y="787" width="190" height="75"/>
                                 <color key="backgroundColor" red="1" green="0.4941176471" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Create Task">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>

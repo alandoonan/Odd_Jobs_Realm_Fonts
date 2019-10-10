@@ -10,6 +10,7 @@
 		810319332332B1A700D34AFB /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810319322332B1A700D34AFB /* Tasks.swift */; };
 		810A6F7F232AB314007AB4A0 /* ScoreSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F7E232AB314007AB4A0 /* ScoreSystem.swift */; };
 		810A6F81232D3A38007AB4A0 /* ThemeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */; };
+		8117BEE9234FB39500516A54 /* Arial Rounded Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8117BEE8234FB39500516A54 /* Arial Rounded Bold.ttf */; };
 		811B214622F7120A007425C0 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214522F7120A007425C0 /* UserItem.swift */; };
 		811B214A22FD8320007425C0 /* HolidayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214922FD8320007425C0 /* HolidayItem.swift */; };
 		811B214C22FDB644007425C0 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B214B22FDB644007425C0 /* SummaryViewController.swift */; };
@@ -22,7 +23,6 @@
 		811B21ED22FF426B007425C0 /* summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B21DE22FF426A007425C0 /* summary.png */; };
 		811B224F22FF437B007425C0 /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = 811B221322FF436F007425C0 /* goal.png */; };
 		811B22C523002A0E007425C0 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22C423002A0E007425C0 /* Themes.swift */; };
-		811B22D123002FE0007425C0 /* Arial Rounded Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */; };
 		811B22D523003946007425C0 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D423003946007425C0 /* ThemeProtocol.swift */; };
 		811B22D72300398B007425C0 /* Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D62300398B007425C0 /* Dark.swift */; };
 		811B22D923003A02007425C0 /* Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B22D823003A02007425C0 /* Personal.swift */; };
@@ -136,6 +136,7 @@
 		810319322332B1A700D34AFB /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		810A6F7E232AB314007AB4A0 /* ScoreSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystem.swift; sourceTree = "<group>"; };
 		810A6F80232D3A38007AB4A0 /* ThemeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtensions.swift; sourceTree = "<group>"; };
+		8117BEE8234FB39500516A54 /* Arial Rounded Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arial Rounded Bold.ttf"; path = "../../../../../../System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf"; sourceTree = "<group>"; };
 		811B214522F7120A007425C0 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		811B214922FD8320007425C0 /* HolidayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayItem.swift; sourceTree = "<group>"; };
 		811B214B22FDB644007425C0 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +149,6 @@
 		811B21DE22FF426A007425C0 /* summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary.png; sourceTree = "<group>"; };
 		811B221322FF436F007425C0 /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
 		811B22C423002A0E007425C0 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
-		811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arial Rounded Bold.ttf"; path = "../../../../../../Library/Fonts/Arial Rounded Bold.ttf"; sourceTree = "<group>"; };
 		811B22D423003946007425C0 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		811B22D62300398B007425C0 /* Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dark.swift; sourceTree = "<group>"; };
 		811B22D823003A02007425C0 /* Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 		811B22CE23002FAD007425C0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				811B22D023002FE0007425C0 /* Arial Rounded Bold.ttf */,
+				8117BEE8234FB39500516A54 /* Arial Rounded Bold.ttf */,
 				81A0BD0E2349FFCD00D6C8CE /* subway-ticker.regular.ttf */,
 			);
 			path = Fonts;
@@ -683,6 +683,7 @@
 				81E0B91B23280547003AE595 /* archive.png in Resources */,
 				8132C36422E2506D00EC79F2 /* iPhone Settings 29pt@3x.png in Resources */,
 				8132C36622E2506D00EC79F2 /* iPhone Notification 20pt@3x.png in Resources */,
+				8117BEE9234FB39500516A54 /* Arial Rounded Bold.ttf in Resources */,
 				811B224F22FF437B007425C0 /* goal.png in Resources */,
 				8125F38823204F5B004869CA /* clear_small.png in Resources */,
 				8125F3902323F3D2004869CA /* GroupPin.png in Resources */,
@@ -693,7 +694,6 @@
 				81E0B91E232806BE003AE595 /* score.png in Resources */,
 				811B218822FF3ECA007425C0 /* P.png in Resources */,
 				8125F38223204D22004869CA /* iPhone X-XS – 1@3x NO_CR.png in Resources */,
-				811B22D123002FE0007425C0 /* Arial Rounded Bold.ttf in Resources */,
 				811B218722FF3ECA007425C0 /* L.png in Resources */,
 				8132C35422E2506D00EC79F2 /* icon_83.5@2x-1.png in Resources */,
 				8132C35822E2506D00EC79F2 /* icon_40pt@2x-1.png in Resources */,

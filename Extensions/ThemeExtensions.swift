@@ -29,7 +29,7 @@ extension UIViewController {
         tabBarController?.tabBar.backgroundColor = Themes.current.background
         tabBarController?.tabBar.barTintColor = Themes.current.background
         tabBarController?.tabBar.tintColor = Themes.current.accent
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SubwayTicker", size: 20)!, NSAttributedString.Key.foregroundColor : Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 20)!, NSAttributedString.Key.foregroundColor : Themes.current.accent]
     }
     
     func applyThemeView(_ view: UIView) {
@@ -48,7 +48,7 @@ extension UIViewController {
         UINavigationBar.appearance().barTintColor = Themes.current.background
         UINavigationBar.appearance().tintColor = Themes.current.accent
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SubwayTicker", size: 20)!, NSAttributedString.Key.foregroundColor : Themes.current.accent]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 20)!, NSAttributedString.Key.foregroundColor : Themes.current.accent]
     }
     
     func addThemes(realm: Realm, themes: Results<ThemeItem>, scoreItem: Results<ScoreItem>, tableView:UITableView) {
@@ -145,6 +145,8 @@ extension UIViewController {
         navigationAppearance.barTintColor = Themes.current.background
         navigationAppearance.backgroundColor = Themes.current.background
         navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 20)!, NSAttributedString.Key.foregroundColor : Themes.current.accent]
+
     }
     
     func applyBlueTheme(_ tableView: UITableView) {
